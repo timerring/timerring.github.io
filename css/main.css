@@ -1447,7 +1447,7 @@ header.header {
   white-space: nowrap;
 }
 .post-toc .nav .nav-child {
-  display: none;
+  display: block;
 }
 .post-toc .nav .active > .nav-child {
   display: block;
@@ -1540,7 +1540,7 @@ header.header {
   width: 100%;
 }
 .with-love {
-  color: #f00;
+  color: #808080;
   display: inline-block;
   margin: 0 5px;
 }
