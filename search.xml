@@ -1,238 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Kaggle</title>
-    <url>/Competition/Kaggle/</url>
-    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
-<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
-<p>数据竞赛特点：</p>
-<ul>
-<li>实践性强</li>
-<li>评估指标量化</li>
-<li>体会真实场景下的算法迭代优化过程</li>
-</ul>
-<p>数据竞赛的好处：</p>
-<ul>
-<li>企业看重，求职加分</li>
-<li>奖金激励丰厚</li>
-<li>交友学习</li>
-</ul>
-<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
-<ul>
-<li>结构化比赛：推荐,风控等</li>
-<li>多模态比赛：图像+文本，视频+文本等</li>
-<li>CV比赛：图像分类，分割，目标识别等</li>
-<li>复杂任务比赛：多目标，多模态+结构化等</li>
-<li>NLP比赛：文本分类，文本问答等</li>
-<li>其他类型：强化学习, HPO（自动调超参）等</li>
-</ul>
-<h4 id="入门方向的推荐">入门方向的推荐</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
-<h4 id="数据竞赛平台">数据竞赛平台</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
-alt="image-20221003104931063" />
-<figcaption aria-hidden="true">image-20221003104931063</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
-alt="image-20221003104938911" />
-<figcaption aria-hidden="true">image-20221003104938911</figcaption>
-</figure>
-<h3 id="代码能力">代码能力</h3>
-<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
-<ul>
-<li>代码整体思路的构建</li>
-<li>核心技术路线的构思</li>
-<li>各个部分应该如何进行交互</li>
-</ul>
-<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
-<ul>
-<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
-<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
-<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
-<li>找BUG的能力</li>
-</ul>
-<h4 id="如何提高代码能力">如何提高代码能力</h4>
-<ul>
-<li>把编程语言基础打扎实</li>
-<li>多练习使用常用开源工具，熟悉相关文档</li>
-<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
-<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
-</ul>
-<h3 id="前置知识">前置知识</h3>
-<p>理论知识：</p>
-<ul>
-<li>数学基础
-<ul>
-<li>高数，线代，概率论, ......</li>
-</ul></li>
-<li>机器学习基础
-<ul>
-<li>基础模型的结构，基础模型的求解方法</li>
-</ul></li>
-<li>深度学习基础
-<ul>
-<li>基础模型结构，基础反向传播</li>
-</ul></li>
-</ul>
-<p>代码知识：</p>
-<ul>
-<li>Python基础
-<ul>
-<li>环境配置，基础语法，基础语句的书写......</li>
-</ul></li>
-<li>数据分析工具包的使用
-<ul>
-<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
-</ul></li>
-<li>机器学习工具包的使用
-<ul>
-<li>Scikit-Learn</li>
-</ul></li>
-<li>深度学习工具包的使用
-<ul>
-<li>Pytorch，Tensorflow，Paddle</li>
-</ul></li>
-</ul>
-<h3 id="kaggle-1">Kaggle</h3>
-<h4 id="kaggle账号注册">Kaggle账号注册</h4>
-<ul>
-<li>需要科学上网</li>
-<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
-</ul>
-<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
-<h4 id="kaggle排位机制">Kaggle排位机制</h4>
-<ul>
-<li>Novice</li>
-<li>Contributor</li>
-<li>Expert</li>
-<li>Master</li>
-<li>Grandmaster</li>
-</ul>
-<p>Kaggle常用功能：</p>
-<ul>
-<li>Kaggle的课程学习资源</li>
-<li>如何白嫖Kaggle资源
-<ul>
-<li>上传自己的数据集</li>
-<li>跑自己的代码</li>
-</ul></li>
-</ul>
-<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
-<h5 id="home">1.Home</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
-<h5 id="competitions">2.Competitions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
-<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<ul>
-<li><strong>Getting
-Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
-一旦提交超过两个月，它将失效，不再计入排行榜。</li>
-<li><strong>Featured</strong>：Featured 比赛是 Kaggle
-最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
-<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
-比赛，比入门难度高出一步。
-这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
-Kaggler。 奖品范围从荣誉到小额现金奖。</li>
-<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
-<li><strong>Research</strong>：研究型 Research
-竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
-</ul>
-<h5 id="dataset">3.Dataset</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
-<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
-<p>可以单击“All
-datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
-Hotness
-中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
-<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
-<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
-<p>也可以自己上传数据集。</p>
-<p>自己创建的数据集有限制：</p>
-<ul>
-<li>每个数据集限制 100GB</li>
-<li>最大 100GB
-私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
-<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
-</ul>
-<p>更多有关于数据集部分的内容我们以后再介绍。</p>
-<h5 id="code">4.Code</h5>
-<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
-是一种云计算环境，可实现可重复和协作分析。</p>
-<p>Kaggle Notebooks 的类型有两种，分别是：</p>
-<ul>
-<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
-<li><p>Notebooks：类似于 Jupyter 笔记本</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
-</ul>
-<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
-<h5 id="discussions">5.Discussions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
-<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
-<h5 id="learn">6.Learn</h5>
-<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
-<p>7.More</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
-<p>More中有很多功能，</p>
-<p>例如查看排名：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
-<p>比赛奖牌获取规则：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
-<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
-10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
-<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-]]></content>
-      <categories>
-        <category>Competition</category>
-      </categories>
-      <tags>
-        <tag>Kaggle</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Data Communication and Computer Networks</title>
     <url>/learn/Data%20Communication%20and%20Computer%20Networks/</url>
     <content><![CDATA[<h1 id="data-communication-and-computer-networks">Data Communication and
@@ -697,6 +465,238 @@ of Services toProtocols</h4>
       </categories>
       <tags>
         <tag>Computer Networks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kaggle</title>
+    <url>/Competition/Kaggle/</url>
+    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
+<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
+<p>数据竞赛特点：</p>
+<ul>
+<li>实践性强</li>
+<li>评估指标量化</li>
+<li>体会真实场景下的算法迭代优化过程</li>
+</ul>
+<p>数据竞赛的好处：</p>
+<ul>
+<li>企业看重，求职加分</li>
+<li>奖金激励丰厚</li>
+<li>交友学习</li>
+</ul>
+<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
+<ul>
+<li>结构化比赛：推荐,风控等</li>
+<li>多模态比赛：图像+文本，视频+文本等</li>
+<li>CV比赛：图像分类，分割，目标识别等</li>
+<li>复杂任务比赛：多目标，多模态+结构化等</li>
+<li>NLP比赛：文本分类，文本问答等</li>
+<li>其他类型：强化学习, HPO（自动调超参）等</li>
+</ul>
+<h4 id="入门方向的推荐">入门方向的推荐</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
+<h4 id="数据竞赛平台">数据竞赛平台</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
+alt="image-20221003104931063" />
+<figcaption aria-hidden="true">image-20221003104931063</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
+alt="image-20221003104938911" />
+<figcaption aria-hidden="true">image-20221003104938911</figcaption>
+</figure>
+<h3 id="代码能力">代码能力</h3>
+<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
+<ul>
+<li>代码整体思路的构建</li>
+<li>核心技术路线的构思</li>
+<li>各个部分应该如何进行交互</li>
+</ul>
+<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
+<ul>
+<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
+<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
+<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
+<li>找BUG的能力</li>
+</ul>
+<h4 id="如何提高代码能力">如何提高代码能力</h4>
+<ul>
+<li>把编程语言基础打扎实</li>
+<li>多练习使用常用开源工具，熟悉相关文档</li>
+<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
+<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
+</ul>
+<h3 id="前置知识">前置知识</h3>
+<p>理论知识：</p>
+<ul>
+<li>数学基础
+<ul>
+<li>高数，线代，概率论, ......</li>
+</ul></li>
+<li>机器学习基础
+<ul>
+<li>基础模型的结构，基础模型的求解方法</li>
+</ul></li>
+<li>深度学习基础
+<ul>
+<li>基础模型结构，基础反向传播</li>
+</ul></li>
+</ul>
+<p>代码知识：</p>
+<ul>
+<li>Python基础
+<ul>
+<li>环境配置，基础语法，基础语句的书写......</li>
+</ul></li>
+<li>数据分析工具包的使用
+<ul>
+<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
+</ul></li>
+<li>机器学习工具包的使用
+<ul>
+<li>Scikit-Learn</li>
+</ul></li>
+<li>深度学习工具包的使用
+<ul>
+<li>Pytorch，Tensorflow，Paddle</li>
+</ul></li>
+</ul>
+<h3 id="kaggle-1">Kaggle</h3>
+<h4 id="kaggle账号注册">Kaggle账号注册</h4>
+<ul>
+<li>需要科学上网</li>
+<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
+</ul>
+<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
+<h4 id="kaggle排位机制">Kaggle排位机制</h4>
+<ul>
+<li>Novice</li>
+<li>Contributor</li>
+<li>Expert</li>
+<li>Master</li>
+<li>Grandmaster</li>
+</ul>
+<p>Kaggle常用功能：</p>
+<ul>
+<li>Kaggle的课程学习资源</li>
+<li>如何白嫖Kaggle资源
+<ul>
+<li>上传自己的数据集</li>
+<li>跑自己的代码</li>
+</ul></li>
+</ul>
+<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
+<h5 id="home">1.Home</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
+<h5 id="competitions">2.Competitions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
+<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li><strong>Getting
+Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
+一旦提交超过两个月，它将失效，不再计入排行榜。</li>
+<li><strong>Featured</strong>：Featured 比赛是 Kaggle
+最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
+<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
+比赛，比入门难度高出一步。
+这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
+Kaggler。 奖品范围从荣誉到小额现金奖。</li>
+<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
+<li><strong>Research</strong>：研究型 Research
+竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
+</ul>
+<h5 id="dataset">3.Dataset</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
+<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
+<p>可以单击“All
+datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
+Hotness
+中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
+<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
+<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
+<p>也可以自己上传数据集。</p>
+<p>自己创建的数据集有限制：</p>
+<ul>
+<li>每个数据集限制 100GB</li>
+<li>最大 100GB
+私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
+<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
+</ul>
+<p>更多有关于数据集部分的内容我们以后再介绍。</p>
+<h5 id="code">4.Code</h5>
+<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
+是一种云计算环境，可实现可重复和协作分析。</p>
+<p>Kaggle Notebooks 的类型有两种，分别是：</p>
+<ul>
+<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
+<li><p>Notebooks：类似于 Jupyter 笔记本</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
+</ul>
+<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
+<h5 id="discussions">5.Discussions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
+<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
+<h5 id="learn">6.Learn</h5>
+<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
+<p>7.More</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
+<p>More中有很多功能，</p>
+<p>例如查看排名：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
+<p>比赛奖牌获取规则：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
+<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
+10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
+<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>Competition</category>
+      </categories>
+      <tags>
+        <tag>Kaggle</tag>
       </tags>
   </entry>
   <entry>
