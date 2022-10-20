@@ -23,21 +23,22 @@
     <meta name="description" content="Kaggle 数据竞赛介绍 数据竞赛特点：  实践性强 评估指标量化 体会真实场景下的算法迭代优化过程  数据竞赛的好处：  企业看重，求职加分 奖金激励丰厚 交友学习  数据竞赛的类型  结构化比赛：推荐,风控等 多模态比赛：图像+文本，视频+文本等 CV比赛：图像分类，分割，目标识别等 复杂任务比赛：多目标，多模态+结构化等 NLP比赛：文本分类，文本问">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Kaggle">
-<meta property="og:url" content="http://example.com/uncategorized/Kaggle">
+<meta property="og:url" content="http://example.com/Competition/Kaggle">
 <meta property="og:site_name" content="timerring&#39;s BLOG">
 <meta property="og:description" content="Kaggle 数据竞赛介绍 数据竞赛特点：  实践性强 评估指标量化 体会真实场景下的算法迭代优化过程  数据竞赛的好处：  企业看重，求职加分 奖金激励丰厚 交友学习  数据竞赛的类型  结构化比赛：推荐,风控等 多模态比赛：图像+文本，视频+文本等 CV比赛：图像分类，分割，目标识别等 复杂任务比赛：多目标，多模态+结构化等 NLP比赛：文本分类，文本问">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-19T12:59:10.428Z">
-<meta property="article:modified_time" content="2022-10-19T13:05:26.549Z">
+<meta property="article:modified_time" content="2022-10-20T01:40:58.771Z">
 <meta property="article:author" content="timerring">
+<meta property="article:tag" content="Kaggle">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/uncategorized/Kaggle">
+<link rel="canonical" href="http://example.com/Competition/Kaggle">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/uncategorized/Kaggle","path":"uncategorized/Kaggle","title":"Kaggle"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Competition/Kaggle","path":"Competition/Kaggle","title":"Kaggle"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Kaggle | timerring's BLOG</title>
@@ -86,7 +87,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">0</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">0</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">3</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">2</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>Commonweal 404</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -156,9 +157,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -204,7 +215,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/uncategorized/Kaggle">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Competition/Kaggle">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -232,9 +243,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2022-10-19 20:59:10 / Modified: 21:05:26" itemprop="dateCreated datePublished" datetime="2022-10-19T20:59:10+08:00">2022-10-19</time>
+      <time title="Created: 2022-10-19 20:59:10" itemprop="dateCreated datePublished" datetime="2022-10-19T20:59:10+08:00">2022-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2022-10-20 09:40:58" itemprop="dateModified" datetime="2022-10-20T09:40:58+08:00">2022-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Competition/" itemprop="url" rel="index"><span itemprop="name">Competition</span></a>
+        </span>
     </span>
 
   
@@ -271,37 +297,17 @@
 <li>其他类型：强化学习, HPO（自动调超参）等</li>
 </ul>
 <h4 id="入门方向的推荐">入门方向的推荐</h4>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png"
-alt="image-20221003104608577" />
-<figcaption aria-hidden="true">image-20221003104608577</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
 <h4 id="数据竞赛平台">数据竞赛平台</h4>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png"
-alt="image-20221003104858176" />
-<figcaption aria-hidden="true">image-20221003104858176</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png"
-alt="image-20221003104904037" />
-<figcaption aria-hidden="true">image-20221003104904037</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png"
-alt="image-20221003104916296" />
-<figcaption aria-hidden="true">image-20221003104916296</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png"
-alt="image-20221003104923637" />
-<figcaption aria-hidden="true">image-20221003104923637</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
 <figure>
 <img
 src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
@@ -377,12 +383,8 @@ alt="image-20221003104938911" />
 <li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
 </ul>
 <h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png"
-alt="image-20221003110727944" />
-<figcaption aria-hidden="true">image-20221003110727944</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
 <h4 id="kaggle排位机制">Kaggle排位机制</h4>
 <ul>
 <li>Novice</li>
@@ -402,19 +404,11 @@ alt="image-20221003110727944" />
 </ul>
 <h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
 <h5 id="home">1.Home</h5>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png"
-alt="image-20221003155721273" />
-<figcaption aria-hidden="true">image-20221003155721273</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
 <h5 id="competitions">2.Competitions</h5>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png"
-alt="image-20221003155933281" />
-<figcaption aria-hidden="true">image-20221003155933281</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
 <p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
 id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ul>
@@ -432,31 +426,19 @@ Kaggler。 奖品范围从荣誉到小额现金奖。</li>
 竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
 </ul>
 <h5 id="dataset">3.Dataset</h5>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png"
-alt="image-20221003161821457" />
-<figcaption aria-hidden="true">image-20221003161821457</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
 <p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
 <p>可以单击“All
 datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
 Hotness
 中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
 <p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png"
-alt="image-20221003162106106" />
-<figcaption aria-hidden="true">image-20221003162106106</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
 <p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png"
-alt="image-20221003162231551" />
-<figcaption aria-hidden="true">image-20221003162231551</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
 <p>也可以自己上传数据集。</p>
 <p>自己创建的数据集有限制：</p>
 <ul>
@@ -472,71 +454,35 @@ alt="image-20221003162231551" />
 <p>Kaggle Notebooks 的类型有两种，分别是：</p>
 <ul>
 <li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png"
-alt="image-20221003163911773" />
-<figcaption aria-hidden="true">image-20221003163911773</figcaption>
-</figure></li>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
 <li><p>Notebooks：类似于 Jupyter 笔记本</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png"
-alt="image-20221003163924359" />
-<figcaption aria-hidden="true">image-20221003163924359</figcaption>
-</figure></li>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
 </ul>
 <p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png"
-alt="image-20221003164054303" />
-<figcaption aria-hidden="true">image-20221003164054303</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png"
-alt="image-20221003164306141" />
-<figcaption aria-hidden="true">image-20221003164306141</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
 <h5 id="discussions">5.Discussions</h5>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png"
-alt="image-20221003164456483" />
-<figcaption aria-hidden="true">image-20221003164456483</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
 <p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
 <h5 id="learn">6.Learn</h5>
 <p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png"
-alt="image-20221003164905706" />
-<figcaption aria-hidden="true">image-20221003164905706</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
 <p>7.More</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png"
-alt="image-20221003164935437" />
-<figcaption aria-hidden="true">image-20221003164935437</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
 <p>More中有很多功能，</p>
 <p>例如查看排名：</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png"
-alt="image-20221003165040154" />
-<figcaption aria-hidden="true">image-20221003165040154</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
 <p>比赛奖牌获取规则：</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png"
-alt="image-20221003165442665" />
-<figcaption aria-hidden="true">image-20221003165442665</figcaption>
-</figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
 <p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
 10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
 <p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
@@ -583,18 +529,18 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
   </div>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/Kaggle/" rel="tag"><i class="fa fa-tag"></i> Kaggle</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/uncategorized/hello-world" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
-                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/uncategorized/Data%20Communication%20and%20Computer%20Networks" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/learn/Data%20Communication%20and%20Computer%20Networks" rel="next" title="Data Communication and Computer Networks">
+                  Data Communication and Computer Networks <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -618,12 +564,10 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
   &copy; 2020 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">timerring</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
-  </div>
 
     </div>
   </footer>
