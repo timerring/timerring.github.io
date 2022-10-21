@@ -24,6 +24,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220
 alt="image-20220922103842007" />
 <figcaption aria-hidden="true">image-20220922103842007</figcaption>
 </figure>
+<span id="more"></span>
 <p>数据通信网络的概念</p>
 <ul>
 <li>数据通信网络由路由器、交换机、防火墙、无线控制器、无线接入点，以及个人电脑、网络打印机、服务器等设备构成，其最基本的功能是实现设备之间的数据互通。</li>
@@ -478,6 +479,7 @@ of Services toProtocols</h4>
 <li>评估指标量化</li>
 <li>体会真实场景下的算法迭代优化过程</li>
 </ul>
+<span id="more"></span>
 <p>数据竞赛的好处：</p>
 <ul>
 <li>企业看重，求职加分</li>
@@ -717,6 +719,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220
 <blockquote>
 <p>注意：右移本身就是一个二进制层面的操作过程。</p>
 </blockquote>
+<span id="more"></span>
 <p>将1和2结合起来，即：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">n &gt;&gt; k &amp; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 <p>例如：输出n的二进制表示</p>
@@ -758,6 +761,47 @@ class="math inline">\(10^9\)</span></p>
       </categories>
       <tags>
         <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
+    <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
+    <content><![CDATA[<h4
+id="resolve-error-failed-to-push-some-refs-to-httpsgithub.com">Resolve
+error: failed to push some refs to 'https://github.com/</h4>
+<p>报错：</p>
+<blockquote>
+<p>! [rejected] main -&gt; main (fetch first) error: failed to push some
+refs to 'https://github.com/XXX.git'</p>
+</blockquote>
+<p>原因：远程库和本地库不一致。通常出现在初始化仓库有readme而本地没有等情况。</p>
+<p>提示：git的提示同上。</p>
+<blockquote>
+<p>hint: Updates were rejected because the remote contains work that you
+do</p>
+<p>hint: not have locally. This is usually caused by another repository
+pushing</p>
+<p>hint: to the same ref. You may want to first integrate the remote
+changes</p>
+<p>hint: (e.g., 'git pull ...') before pushing again.</p>
+<p>hint: See the 'Note about fast-forwards' in 'git push --help' for
+details.</p>
+</blockquote>
+<p>解决方法： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure> 原理：</p>
+<p>把远程库中的更新合并到本地库中，–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。然后再进行push即可。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221021145647861.png" /></p>
+<span id="more"></span>
+<p><code>git pull -–rebase origin master</code>
+操作，意为先取消commit记录，并且把它们临时保存为补丁(patch)(这些补丁在”.git/rebase”目录中)，之后同步远程库到本地，最后合并补丁到本地库之中。</p>
+<p>注意：距离上次push提交至今，在本地库commit的记录均暂存为patch。</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+        <category>Resolve Error</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
 </search>
