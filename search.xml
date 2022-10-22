@@ -804,4 +804,251 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
         <tag>Git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>区块链的应用与发展综述</title>
+    <url>/Overview/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%95%E8%A8%80/</url>
+    <content><![CDATA[<h1 id="区块链的应用与发展综述">区块链的应用与发展综述</h1>
+<h3 id="数字货币">数字货币</h3>
+<p>eCash（1982）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141115166.png" /></p>
+<p>特点∶使用盲签名技术支持匿名交易，避免双重支付问题。</p>
+<p>失败原因∶需要一个中心化机构管理的服务器才可以运行。</p>
+<p>E-gold（1996）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141125015.png" /></p>
+<p>特点∶锚定黄金价格将金本位时代交易模式电子化。</p>
+<p>失败原因∶需要一个中心化机构管理的服务器才可以运行。</p>
+<p>B-money（1998）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141133927.png" /></p>
+<p>特点:第一个有去中心化思想的数字货币明确了分布式记账的概念。</p>
+<p>失败原因∶缺乏共识机制，无法解决双重支付和货币生成问题。</p>
+<span id="more"></span>
+<p>Bitgold（2005）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141140879.png" /></p>
+<p>特点:引入PoW共识机制。</p>
+<p>失败原因:没有找到合适的开发者导致设想没有成功落地。</p>
+<p>Bitcoin（2008）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141148783.png" /></p>
+<p>特点∶<strong>结合分布式账本和PoW共识</strong>，首次提出区块链技术并解决零信任之上的共识问题。</p>
+<p>取得成功</p>
+<h4 id="altcoins">Altcoins</h4>
+<p>这些币统称“Altcoins”，来源Alternatives 即替代币，因此也称为代币。</p>
+<h5 id="比特币btc2008">比特币BTC（2008）</h5>
+<h5 id="section"><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141933426.png" /></h5>
+<p>比特币BTC中本聪发明了首个去中心化数字货币比特币(BTC)，成功解决了探索阶段的各项技术难题。同时，BTC的底层技术区块链也名声大噪。</p>
+<h5 id="莱特币ltc2011">莱特币LTC（2011）</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919141954086.png" /></p>
+<p>山寨币”兴起，其中李启威创造的莱特币在比特币的基础上做了三处改进,使得交易确认更快、挖矿更加容易、货币总量更多。并凭借场景优势脱顾而出。</p>
+<h5 id="以太币eth2014">以太币ETH（2014）</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142001746.png" /></p>
+<p>比特币系统拓展性不足，维塔利克·布特林创立以太坊,建立了一个开源、开放的职能合约平台，开启区块链2.0时代，推动了ICO浪潮。</p>
+<h5 id="泰达币usdt2017">泰达币USDT（2017）</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142010335.png" /></p>
+<p>Tether公司发行USDT，通过锚定美元实现货币稳定，充当多人数字货币之间的交易媒介。</p>
+<h5 id="柚子币eos">柚子币EOS</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142017599.png" /></p>
+<p>EOS在以太坊上进行ICO筹资并发行代币,相对于以太坊.EOS主打高性能。提高了转账速度、系统可以开发更多小程序。</p>
+<h5 id="比特币现金bth2017">比特币现金BTH（2017）</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142103984.png" /></p>
+<p>比特大陆投资的ViaBTC宣布分叉比特币，用原有的基础架构和共识机制，增加了区块的体机.提高了转账速月，降低了手续费。</p>
+<h5 id="天秤币libra2019">天秤币Libra（2019）</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142110496.png" /></p>
+<p>Facebook联合各行业领先机构发布了《Libra白皮书》,Libra以区块链技术为基础，以一篮子银行存款（包括美元、英镑、欧元、日元等法币)和短期政府债券为储备资产，最大限度降低币值波动风险。</p>
+<p><strong>区块链技术</strong>成功解决了<strong>零信任之上的共识问题</strong>，开启了虚拟货币的新发展。除了虚拟货币，<strong>零信任之上的共识</strong>这一需求无处不在，比如物联网、供应链、网络计算机、元宇宙。</p>
+<h3 id="物联网领域">物联网领域</h3>
+<p>1、海量新加入设备不可信:
+2020年中国物联网设备连接量达74亿预计2025年突破150亿[艾瑞咨询报告]</p>
+<p>相关解决方案的支撑为：</p>
+<ul>
+<li>形式化NP</li>
+<li>密码学：提供可证明安全性。</li>
+</ul>
+<p>2、功能控制的信任</p>
+<ul>
+<li>设备之间<strong>互信</strong>问题</li>
+<li>设备与服务器之间的<strong>互信</strong>问题</li>
+</ul>
+<p>3、安全问题带来的信任危机:<em>[Nozomi,2021年上半年物联网安全报告]</em></p>
+<ul>
+<li>2021年上半年漏洞数量增长了44%</li>
+<li>用户对物联网系统不信任</li>
+</ul>
+<p>物联网在<strong>设备接入</strong>、<strong>功能控制</strong>以及<strong>用户应用</strong>三个方面存在信任问题，如何在零信任基础上达成共识成为挑战。</p>
+<h3 id="供应链领域">供应链领域</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919142804644.png" /></p>
+<p>供应链由于利益冲突，<strong>成员与成员之间，成员与商品之间</strong>存在信任危机严重影响了商品的生产质量与流通效率。</p>
+<h3 id="元宇宙领域">元宇宙领域</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919143049247.png" /></p>
+<p>元宇宙在<strong>多主体协作、虚实数据维持一致性</strong>的过程中有着迫切的零信任共识需求。</p>
+<h2 id="区块链">区块链</h2>
+<p>P2P两点中自由度比较高，鲁棒性比较好，数学上看是一个完全图，在构建网络时也考虑是一个完全图，如何构建一个分布式的账本，通过区块构成的链状结构。区块链的第一个区块是创世块即(Genesis
+Block)。</p>
+<p>节点分为全节点和轻节点。</p>
+<p>全节点：要存完整的区块数据（图中所有颜色）。</p>
+<p>轻节点：只需存一部分数据（其中一个颜色）。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919143010229.png" /></p>
+<p>一个账本中存储很多数据：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919143658050.png" /></p>
+<p>有应用数据App
+Data：例如转账，图片等等多样数据。以交易的形式存在，eg"A -&gt; B
+10dollars"。</p>
+<p>区块中还有Hash，生成验证文件的hash value。</p>
+<p>前一个区块的哈希，用于验证。并且可以连接。</p>
+<p>Order序的概念很重要，对于一致性非常关键。数学上定义有Full
+Order：在集合中的任意两个元素都可以排出先后结构。区块的本质核心是一个排序问题。</p>
+<p>序列化：采用gRPC进行远程调用。</p>
+<p>eg：A给B传个人信息，若A给B发送的信息是 419 615
+149可能分辨不出对应的是身高体重肺活量。这时就需要序列化，使双方按照规定好的序列接口对应数据。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919150359179.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919150419118.png" /></p>
+<p>如果想要篡改数据，除非从创世块开始就篡改，然后一直篡改到目前的区块，非常复杂，区块链的形式具有不可篡改性。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926142952718.png" /></p>
+<p>多个区块本身具有这种特性，而且同时会有很多节点存储该账本，相当于冗余备份。</p>
+<p>同样冗余备份的方式有很多，例如：</p>
+<ul>
+<li>Eraser Code（纠察码）</li>
+<li>Duplication（复制）区块链采用的方式，比较浪费空间。</li>
+</ul>
+<p>新区块的产生</p>
+<p>每一个区块的到达都需共识（Consensus）算法。共识过程的本质是信息交换，通信成本的效率直接影响到区块链的性能。</p>
+<p>区块链需要满足两个特性</p>
+<ul>
+<li>Persistence持久性：所有的节点看到的区块链必须一样</li>
+<li>Liveness 活性：区块会长，长度增加</li>
+</ul>
+<h3 id="区块链的代价">区块链的代价</h3>
+<p>区块链：区块链是一种分布式对等节点共同维护的去中心化共享账本，该账本是由若干有时序的数据区块连接在一起的“链”状数据结构组成，由密码学方法保证数据不可篡改。</p>
+<h4 id="通讯成本高昂">1.通讯成本高昂</h4>
+<ul>
+<li><p>优点:通信成本低（单向一次通讯)</p></li>
+<li><p>缺点∶受到攻击则会面临网络崩溃</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919152910898.png" /></p></li>
+</ul>
+<h4 id="计算存储成本高昂">2.计算存储成本高昂</h4>
+<p>单点链状时序保护结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919153223528.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919153245242.png" /></p>
+<p>哈希：将任意长度的数据映射到有限长度的域上，是所有真实数据的<strong>唯一真实签名（指纹）</strong>，如数据被篡改，则签名验证失败。数据用此保证所有数据未被篡改、未被伪造。</p>
+<p>记录︰此区块链网络中的数据，可以是交易、合同、事件、智能合约等。数据可溯源。（但验证和储存代价大)。计算有一个Gas
+Limit，不支持太过复杂的合约计算。因此不是图灵完备的。</p>
+<h3 id="区块链的发展阶段">区块链的发展阶段</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919153747917.png" /></p>
+<h4 id="目前较新的方向">目前较新的方向</h4>
+<ul>
+<li><p>模块化：一个系统拆解为多个模块，可以替换模块。</p></li>
+<li><p>快速建链</p></li>
+<li><p>图式区块链</p></li>
+</ul>
+<h4 id="区块链1.0">区块链1.0</h4>
+<p>核心贡献︰<strong>在开放、不可信环境中，实现可信交易</strong>。</p>
+<p>无需任何中介进行<strong>主观信用担保</strong>，无需担保环境是<strong>可信环境</strong>。而采用密码学实现<strong>客观可证明安全</strong>的可信交易。</p>
+<ul>
+<li>技术贡献︰
+<ul>
+<li>UTXO-原子化交易模型</li>
+<li>PoW-基于算力的安全共识方法.</li>
+</ul></li>
+</ul>
+<p>所有这些技术都为完成上述这一简单而重要的目的。</p>
+<ul>
+<li><p>社会贡献:比特币用密码学手段改变了人与人之间的信任关系和信用来源。</p></li>
+<li><p>比特币的成功之处∶</p>
+<p>消除<strong>不可靠的主观人为因素</strong>，利用密码和安全手段实现<strong>客观事实上的安全可信存储</strong></p></li>
+</ul>
+<h4 id="区块链2.0">区块链2.0</h4>
+<p>核心贡献∶在开放不可信环境中，<strong>实现可信的合约执行</strong>。</p>
+<p><strong>无需任何中介进行主观信用担保</strong>。采用密码学实现<strong>客观可证明可信的合同执行</strong>。</p>
+<p>思想与比特币类似，但将可信操作从<strong>金融交易</strong>拓展到了<strong>合约执行</strong>。</p>
+<ul>
+<li><p>技术贡献:</p>
+<ul>
+<li>EVM智能合约引擎</li>
+<li>Solidity智能合约语言</li>
+</ul></li>
+<li><p>社会贡献:以太坊用工程手段进一步改变了人与人之间的契约关系。</p></li>
+<li><p>以太坊的成功之处与比特币的理念不约而同:</p>
+<p><strong>消除不可靠的主观人为因素</strong>，利用密码和安全手段<strong>实现客观事实上的安全可信控制</strong></p></li>
+</ul>
+<h2 id="概念辨析">概念辨析</h2>
+<p>元宇宙web3.0区块链之间的关系是?</p>
+<p>新区块链的产生往往与新的经济增长点有关。用新的技术激发更活跃的经济增长。</p>
+<h4 id="web3.0">Web3.0</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919154625370.png" /></p>
+<p>大部分与NFT相关，核心：数据归于数据的生产者所有。</p>
+<ul>
+<li>web1.0阶段：仅可以已读。</li>
+<li>web2.0阶段：参与内容，用户可以写入修改的信息。数据的权益在平台。eg：数据的收益多数在提供的服务商平台上。</li>
+<li>web3.0阶段：更加去中心化的领域，在保证一定的隐私下，数据属于数据生产者。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919155032223.png" /></p>
+<h4 id="元宇宙">元宇宙</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919155009458.png" /></p>
+<ul>
+<li>Networking中关键的有SDN和NFV：SDN可以通过上层平台对路由下层网络拓扑结构进行编程。</li>
+<li>Ubiquitous computing（普适计算）：设备进行无感知的服务</li>
+<li>AI</li>
+<li>Blockchain</li>
+<li>Digital
+twin（数字孪生）：数字世界和真实世界联系起来，把物理实体映射到数字世界中，然后把数字世界的结果反馈给物理世界。</li>
+<li>lnteractivity（虚拟现实：交互）：VR,
+AR。与数字孪生不同，物理世界和数字世界是一个重合的状态。</li>
+</ul>
+<h5 id="metaverse-元宇宙">Metaverse (元宇宙)</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926143541599.png" /></p>
+<p>Minecraft ：Blocky game 块状。原因：计算力不够。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926145310886.png" /></p>
+<h3 id="区块链web3.0元宇宙">区块链、Web3.0、元宇宙</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926144551371.png" /></p>
+<h4 id="元宇宙安全图谱">元宇宙安全图谱</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926144507833.png" /></p>
+<p>Source: A Survey on Metaverse: Fundamentals, Security, and
+Privacy</p>
+<h3 id="如何入门区块链">如何入门区块链</h3>
+<h5 id="first-step">First Step</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926144705594.png" /></p>
+<h5 id="second-step">Second Step</h5>
+<p>智能合约：以太坊开发文档</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220926144900751.png" /></p>
+<p>本文内容参考SDU Professor Minghui Xu
+的Slides，更多内容请关注近期即将出版的新书。</p>
+]]></content>
+      <categories>
+        <category>Blockchain</category>
+        <category>Overview</category>
+      </categories>
+      <tags>
+        <tag>Blockchain</tag>
+      </tags>
+  </entry>
 </search>
