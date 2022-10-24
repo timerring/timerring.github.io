@@ -1,6 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Kaggle</title>
+    <url>/Competition/Kaggle/</url>
+    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
+<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
+<p>数据竞赛特点：</p>
+<ul>
+<li>实践性强</li>
+<li>评估指标量化</li>
+<li>体会真实场景下的算法迭代优化过程</li>
+</ul>
+<span id="more"></span>
+<p>数据竞赛的好处：</p>
+<ul>
+<li>企业看重，求职加分</li>
+<li>奖金激励丰厚</li>
+<li>交友学习</li>
+</ul>
+<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
+<ul>
+<li>结构化比赛：推荐,风控等</li>
+<li>多模态比赛：图像+文本，视频+文本等</li>
+<li>CV比赛：图像分类，分割，目标识别等</li>
+<li>复杂任务比赛：多目标，多模态+结构化等</li>
+<li>NLP比赛：文本分类，文本问答等</li>
+<li>其他类型：强化学习, HPO（自动调超参）等</li>
+</ul>
+<h4 id="入门方向的推荐">入门方向的推荐</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
+<h4 id="数据竞赛平台">数据竞赛平台</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
+alt="image-20221003104931063" />
+<figcaption aria-hidden="true">image-20221003104931063</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
+alt="image-20221003104938911" />
+<figcaption aria-hidden="true">image-20221003104938911</figcaption>
+</figure>
+<h3 id="代码能力">代码能力</h3>
+<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
+<ul>
+<li>代码整体思路的构建</li>
+<li>核心技术路线的构思</li>
+<li>各个部分应该如何进行交互</li>
+</ul>
+<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
+<ul>
+<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
+<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
+<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
+<li>找BUG的能力</li>
+</ul>
+<h4 id="如何提高代码能力">如何提高代码能力</h4>
+<ul>
+<li>把编程语言基础打扎实</li>
+<li>多练习使用常用开源工具，熟悉相关文档</li>
+<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
+<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
+</ul>
+<h3 id="前置知识">前置知识</h3>
+<p>理论知识：</p>
+<ul>
+<li>数学基础
+<ul>
+<li>高数，线代，概率论, ......</li>
+</ul></li>
+<li>机器学习基础
+<ul>
+<li>基础模型的结构，基础模型的求解方法</li>
+</ul></li>
+<li>深度学习基础
+<ul>
+<li>基础模型结构，基础反向传播</li>
+</ul></li>
+</ul>
+<p>代码知识：</p>
+<ul>
+<li>Python基础
+<ul>
+<li>环境配置，基础语法，基础语句的书写......</li>
+</ul></li>
+<li>数据分析工具包的使用
+<ul>
+<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
+</ul></li>
+<li>机器学习工具包的使用
+<ul>
+<li>Scikit-Learn</li>
+</ul></li>
+<li>深度学习工具包的使用
+<ul>
+<li>Pytorch，Tensorflow，Paddle</li>
+</ul></li>
+</ul>
+<h3 id="kaggle-1">Kaggle</h3>
+<h4 id="kaggle账号注册">Kaggle账号注册</h4>
+<ul>
+<li>需要科学上网</li>
+<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
+</ul>
+<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
+<h4 id="kaggle排位机制">Kaggle排位机制</h4>
+<ul>
+<li>Novice</li>
+<li>Contributor</li>
+<li>Expert</li>
+<li>Master</li>
+<li>Grandmaster</li>
+</ul>
+<p>Kaggle常用功能：</p>
+<ul>
+<li>Kaggle的课程学习资源</li>
+<li>如何白嫖Kaggle资源
+<ul>
+<li>上传自己的数据集</li>
+<li>跑自己的代码</li>
+</ul></li>
+</ul>
+<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
+<h5 id="home">1.Home</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
+<h5 id="competitions">2.Competitions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
+<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li><strong>Getting
+Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
+一旦提交超过两个月，它将失效，不再计入排行榜。</li>
+<li><strong>Featured</strong>：Featured 比赛是 Kaggle
+最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
+<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
+比赛，比入门难度高出一步。
+这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
+Kaggler。 奖品范围从荣誉到小额现金奖。</li>
+<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
+<li><strong>Research</strong>：研究型 Research
+竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
+</ul>
+<h5 id="dataset">3.Dataset</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
+<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
+<p>可以单击“All
+datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
+Hotness
+中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
+<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
+<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
+<p>也可以自己上传数据集。</p>
+<p>自己创建的数据集有限制：</p>
+<ul>
+<li>每个数据集限制 100GB</li>
+<li>最大 100GB
+私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
+<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
+</ul>
+<p>更多有关于数据集部分的内容我们以后再介绍。</p>
+<h5 id="code">4.Code</h5>
+<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
+是一种云计算环境，可实现可重复和协作分析。</p>
+<p>Kaggle Notebooks 的类型有两种，分别是：</p>
+<ul>
+<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
+<li><p>Notebooks：类似于 Jupyter 笔记本</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
+</ul>
+<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
+<h5 id="discussions">5.Discussions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
+<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
+<h5 id="learn">6.Learn</h5>
+<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
+<p>7.More</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
+<p>More中有很多功能，</p>
+<p>例如查看排名：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
+<p>比赛奖牌获取规则：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
+<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
+10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
+<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>Competition</category>
+      </categories>
+      <tags>
+        <tag>Kaggle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Data Communication and Computer Networks</title>
     <url>/learn/Data%20Communication%20and%20Computer%20Networks/</url>
     <content><![CDATA[<h1 id="data-communication-and-computer-networks">Data Communication and
@@ -469,236 +702,196 @@ of Services toProtocols</h4>
       </tags>
   </entry>
   <entry>
-    <title>Kaggle</title>
-    <url>/Competition/Kaggle/</url>
-    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
-<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
-<p>数据竞赛特点：</p>
+    <title>OpenCV图像处理:数字图像的必会知识</title>
+    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BF%85%E4%BC%9A%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023145616441.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023150514705.png" /></p>
+<h2 id="数字图像">数字图像</h2>
+<h3 id="数字图像概念">1.数字图像概念</h3>
+<p>数字图像：</p>
 <ul>
-<li>实践性强</li>
-<li>评估指标量化</li>
-<li>体会真实场景下的算法迭代优化过程</li>
+<li>数字图像，又称数码图像，一幅二维图像可以由一个数组或矩阵表示。</li>
+<li>数字图像可以理解为一个二维函数f(x,y), 其中 x 和 y
+是空间平面坐标，而在任意坐标处的值 f 称为图像在该点处的强度或灰度。</li>
 </ul>
+<p>图像处理目的：</p>
+<ul>
+<li>改善图示的信息以便人们解释；</li>
+<li>为存储、传输和表示而对图像进行的处理。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023151441017.png" /></p>
 <span id="more"></span>
-<p>数据竞赛的好处：</p>
+<h3 id="数字图像起源">2.数字图像起源</h3>
+<p>最早应用的行业</p>
 <ul>
-<li>企业看重，求职加分</li>
-<li>奖金激励丰厚</li>
-<li>交友学习</li>
+<li>媒体（报纸业）</li>
 </ul>
-<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
+<p>最早应用的时间</p>
 <ul>
-<li>结构化比赛：推荐,风控等</li>
-<li>多模态比赛：图像+文本，视频+文本等</li>
-<li>CV比赛：图像分类，分割，目标识别等</li>
-<li>复杂任务比赛：多目标，多模态+结构化等</li>
-<li>NLP比赛：文本分类，文本问答等</li>
-<li>其他类型：强化学习, HPO（自动调超参）等</li>
+<li>20 世纪 20 年代（ 1921 年）</li>
 </ul>
-<h4 id="入门方向的推荐">入门方向的推荐</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
-<h4 id="数据竞赛平台">数据竞赛平台</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
-alt="image-20221003104931063" />
-<figcaption aria-hidden="true">image-20221003104931063</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
-alt="image-20221003104938911" />
-<figcaption aria-hidden="true">image-20221003104938911</figcaption>
-</figure>
-<h3 id="代码能力">代码能力</h3>
-<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
+<p>最早“数字图像处理”系统的用途</p>
 <ul>
-<li>代码整体思路的构建</li>
-<li>核心技术路线的构思</li>
-<li>各个部分应该如何进行交互</li>
+<li>通过海底电缆，将图像从伦敦传输至纽约。客观的讲，当时的应用并不涉及“数字图像处理”，而是“数字图像传输”</li>
 </ul>
-<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
+<h3 id="常见成像方式">3.常见成像方式</h3>
+<p>电磁波谱</p>
 <ul>
-<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
-<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
-<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
-<li>找BUG的能力</li>
+<li>光子即光量子（ light quantum），电磁辐射的量子 E=hf ，其中 h
+为普朗克常量， f 为光的频率。普朗克常数的值约为： h=6.62 × 10^ （-34）
+J·s ，单位为焦 J · 秒（s ）。</li>
+<li>光速 波长与频率的关系： v=fλ</li>
+<li>波长与能量的关系 E = hc/λ</li>
+<li>c = 光速</li>
 </ul>
-<h4 id="如何提高代码能力">如何提高代码能力</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023151947673.png" /></p>
+<h3 id="数字图像的应用">4.数字图像的应用</h3>
+<h4 id="γ-射线成像">γ 射线成像</h4>
+<p>是波长小于 10^ 10
+米的电磁波。这种不可见的电磁波是从原子核内发出来的，放射性物质或原子核反应中常有这种辐射伴随着发出。
+γ 射线的穿透力很强，对生物的破坏力很大 。 <strong>大脑生理信号
+EEG</strong>中常用这个频段 。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153117386.png" /></p>
+<h4 id="x-射线成像">X 射线成像</h4>
+<p>也叫，伦琴射线，这部分电磁波波长从（ 10~0.01） × 10^ -9 米。 CT
+就是用 X 射线照射物体，由于生物组织或者工程组件的不同部位对 X
+射线的吸收率不一样，从而得到不同的衰减以成像。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153212883.png" /></p>
+<p><strong>密度越高，吸收的越多，会发白。</strong></p>
+<p>紫外线波段成像 波长比可见光短的称为紫外线，它的波长从 (380~10) × 10^
+-9 米，它有显著的化学效应和荧光效应 。在生物医学领域应用最多。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153303921.png" /></p>
+<h4 id="可见光波段成像">可见光波段成像</h4>
+<p>这是人们所能感光的极狭窄的一个波段，波长从（ 7.8~3.8）× 10^ -7
+米，人类能
+看见的所有物体都是可见光波段成像，也就是光线照射在物体上，反射到人眼中从而成像的
+。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153353795.png" /></p>
+<h4 id="红外线波段成像">红外线波段成像</h4>
+<p>红外线波长为 0.78——1000 微米的电磁波，其中波长为 0.78——2.0
+微米的部分称为近红外，波长为 2.0——1000
+微米的部分称为热红外线。自然界中，一切物体都可以辐射红外线，因此利用探测仪测量目标本身与背景间的红外线差可以得到不同的热红外线形成的红外图像。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153444097.png" /></p>
+<h4 id="微波波段成像">微波波段成像</h4>
+<p>波长从 1 米到 0.1
+厘米，这些波多用在雷达或其它通讯系统。微波影像是应用成像微波辐射计（扫描型）接收地物发射波长为1mm~30cm
+的微波辐射能形成的影像。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153504471.png" /></p>
+<h4 id="射频波段成像">射频波段成像</h4>
+<p>波长从 3000 米到 10^-3
+米，一般的电视和无线电广播、手机等的波段就是用这种波，但也能用于医学成像，
+<strong>MRI 是常见的影像诊疗手段。</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153541346.png" /></p>
+<p>传统领域</p>
 <ul>
-<li>把编程语言基础打扎实</li>
-<li>多练习使用常用开源工具，熟悉相关文档</li>
-<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
-<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
+<li>医学、空间应用、生物学、军事</li>
 </ul>
-<h3 id="前置知识">前置知识</h3>
-<p>理论知识：</p>
+<p>最新领域</p>
 <ul>
-<li>数学基础
-<ul>
-<li>高数，线代，概率论, ......</li>
-</ul></li>
-<li>机器学习基础
-<ul>
-<li>基础模型的结构，基础模型的求解方法</li>
-</ul></li>
-<li>深度学习基础
-<ul>
-<li>基础模型结构，基础反向传播</li>
-</ul></li>
+<li>数码相机DC 、数码摄像机DV</li>
+<li>指纹识别、人脸识别，虹膜识别</li>
+<li>互联网、视频、多媒体等</li>
+<li>基于内容的图像检索、视频检索、多媒体检索</li>
+<li>水印、游戏、电影特技、虚拟现实、电子商务等</li>
 </ul>
-<p>代码知识：</p>
+<h4
+id="图像处理机器视觉人工智能关系">图像处理、机器视觉、人工智能关系</h4>
+<p>图像处理主要研究<strong>二维图像</strong>
+，处理一个图像或一组图像之间的相互转换的过程，包括
+图像滤波，图像识别，图像分割等问题</p>
+<p>计算机视觉主要研究映射到单幅或多幅图像上的<strong>三维场景</strong>从图像中提取抽象的语义信息，实现图像理解是计算机视觉的终极目标。</p>
+<p>人工智能在计算机视觉上的目标就是解决<strong>像素值和语义之间关系</strong>
+，主要的问题有图片检测，图片识别，图片分割和图片检索。</p>
+<h3 id="opencv介绍">5.Opencv介绍</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023153945477.png" /></p>
+<p>OpenCV 于 1999 年由 Intel 建立；</p>
+<p>开源发行的跨平台计算机视觉库；</p>
+<p>操作系统： Linux 、 Windows 、 Android 、 Mac OS</p>
+<p>构成： C 函数和少量 C++ 类；</p>
+<p>接口： Python 、 Java 、 MATLAB 等语言</p>
+<p>opencv
+是数字图像处理和计算机视觉领域最常见的工具包，是学习，科研，企业项目开发的好帮手。</p>
+<h4 id="环境安装">环境安装</h4>
+<p>python 安装</p>
 <ul>
-<li>Python基础
-<ul>
-<li>环境配置，基础语法，基础语句的书写......</li>
-</ul></li>
-<li>数据分析工具包的使用
-<ul>
-<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
-</ul></li>
-<li>机器学习工具包的使用
-<ul>
-<li>Scikit-Learn</li>
-</ul></li>
-<li>深度学习工具包的使用
-<ul>
-<li>Pytorch，Tensorflow，Paddle</li>
-</ul></li>
+<li>推荐版本 python3.6</li>
 </ul>
-<h3 id="kaggle-1">Kaggle</h3>
-<h4 id="kaggle账号注册">Kaggle账号注册</h4>
-<ul>
-<li>需要科学上网</li>
-<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
-</ul>
-<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
-<h4 id="kaggle排位机制">Kaggle排位机制</h4>
-<ul>
-<li>Novice</li>
-<li>Contributor</li>
-<li>Expert</li>
-<li>Master</li>
-<li>Grandmaster</li>
-</ul>
-<p>Kaggle常用功能：</p>
-<ul>
-<li>Kaggle的课程学习资源</li>
-<li>如何白嫖Kaggle资源
-<ul>
-<li>上传自己的数据集</li>
-<li>跑自己的代码</li>
-</ul></li>
-</ul>
-<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
-<h5 id="home">1.Home</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
-<h5 id="competitions">2.Competitions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
-<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<ul>
-<li><strong>Getting
-Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
-一旦提交超过两个月，它将失效，不再计入排行榜。</li>
-<li><strong>Featured</strong>：Featured 比赛是 Kaggle
-最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
-<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
-比赛，比入门难度高出一步。
-这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
-Kaggler。 奖品范围从荣誉到小额现金奖。</li>
-<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
-<li><strong>Research</strong>：研究型 Research
-竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
-</ul>
-<h5 id="dataset">3.Dataset</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
-<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
-<p>可以单击“All
-datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
-Hotness
-中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
-<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
-<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
-<p>也可以自己上传数据集。</p>
-<p>自己创建的数据集有限制：</p>
-<ul>
-<li>每个数据集限制 100GB</li>
-<li>最大 100GB
-私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
-<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
-</ul>
-<p>更多有关于数据集部分的内容我们以后再介绍。</p>
-<h5 id="code">4.Code</h5>
-<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
-是一种云计算环境，可实现可重复和协作分析。</p>
-<p>Kaggle Notebooks 的类型有两种，分别是：</p>
-<ul>
-<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
-<li><p>Notebooks：类似于 Jupyter 笔记本</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
-</ul>
-<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
-<h5 id="discussions">5.Discussions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
-<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
-<h5 id="learn">6.Learn</h5>
-<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
-<p>7.More</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
-<p>More中有很多功能，</p>
-<p>例如查看排名：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
-<p>比赛奖牌获取规则：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
-<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
-10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
-<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
+<p>Jupyter Notebook 安装</p>
+<p>1.打开命令行 cmd 2.更新
+<code>pip python -m pip install --upgrade pip</code> 3.安装
+Jupyter：<code>pip install jupyter</code></p>
+<h5 id="安装-opencv-python">安装 Opencv python</h5>
+<p>1.打开命令行 cmd 2.<code>pip install opencv-contrib-python</code></p>
+<h5 id="jupter切换环境">jupter切换环境</h5>
+<p>查看已有环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+<p>选择要想用的环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conda activate xxx</span><br></pre></td></tr></table></figure>
+<p>下载ipykernel</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install ipykernel</span><br></pre></td></tr></table></figure>
+<p>将改环境加入jupyter</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python -m ipykernel install --name xxx</span><br></pre></td></tr></table></figure>
+<p>打开jupyter，在Kernel里选择所需要的环境即可。</p>
 ]]></content>
       <categories>
-        <category>Competition</category>
+        <category>Image Processing</category>
       </categories>
       <tags>
-        <tag>Kaggle</tag>
+        <tag>OpenCV</tag>
+        <tag>Installation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
+    <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
+    <content><![CDATA[<h4
+id="resolve-error-failed-to-push-some-refs-to-httpsgithub.com">Resolve
+error: failed to push some refs to 'https://github.com/</h4>
+<p>报错：</p>
+<blockquote>
+<p>! [rejected] main -&gt; main (fetch first) error: failed to push some
+refs to 'https://github.com/XXX.git'</p>
+</blockquote>
+<p>原因：远程库和本地库不一致。通常出现在初始化仓库有readme而本地没有等情况。</p>
+<p>提示：git的提示同上。</p>
+<blockquote>
+<p>hint: Updates were rejected because the remote contains work that you
+do</p>
+<p>hint: not have locally. This is usually caused by another repository
+pushing</p>
+<p>hint: to the same ref. You may want to first integrate the remote
+changes</p>
+<p>hint: (e.g., 'git pull ...') before pushing again.</p>
+<p>hint: See the 'Note about fast-forwards' in 'git push --help' for
+details.</p>
+</blockquote>
+<p>解决方法： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure> 原理：</p>
+<p>把远程库中的更新合并到本地库中，–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。然后再进行push即可。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221021145647861.png" /></p>
+<span id="more"></span>
+<p><code>git pull -–rebase origin master</code>
+操作，意为先取消commit记录，并且把它们临时保存为补丁(patch)(这些补丁在”.git/rebase”目录中)，之后同步远程库到本地，最后合并补丁到本地库之中。</p>
+<p>注意：距离上次push提交至今，在本地库commit的记录均暂存为patch。</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+        <category>Resolve Error</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -761,47 +954,6 @@ class="math inline">\(10^9\)</span></p>
       </categories>
       <tags>
         <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
-    <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
-    <content><![CDATA[<h4
-id="resolve-error-failed-to-push-some-refs-to-httpsgithub.com">Resolve
-error: failed to push some refs to 'https://github.com/</h4>
-<p>报错：</p>
-<blockquote>
-<p>! [rejected] main -&gt; main (fetch first) error: failed to push some
-refs to 'https://github.com/XXX.git'</p>
-</blockquote>
-<p>原因：远程库和本地库不一致。通常出现在初始化仓库有readme而本地没有等情况。</p>
-<p>提示：git的提示同上。</p>
-<blockquote>
-<p>hint: Updates were rejected because the remote contains work that you
-do</p>
-<p>hint: not have locally. This is usually caused by another repository
-pushing</p>
-<p>hint: to the same ref. You may want to first integrate the remote
-changes</p>
-<p>hint: (e.g., 'git pull ...') before pushing again.</p>
-<p>hint: See the 'Note about fast-forwards' in 'git push --help' for
-details.</p>
-</blockquote>
-<p>解决方法： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure> 原理：</p>
-<p>把远程库中的更新合并到本地库中，–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。然后再进行push即可。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221021145647861.png" /></p>
-<span id="more"></span>
-<p><code>git pull -–rebase origin master</code>
-操作，意为先取消commit记录，并且把它们临时保存为补丁(patch)(这些补丁在”.git/rebase”目录中)，之后同步远程库到本地，最后合并补丁到本地库之中。</p>
-<p>注意：距离上次push提交至今，在本地库commit的记录均暂存为patch。</p>
-]]></content>
-      <categories>
-        <category>Git</category>
-        <category>Resolve Error</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
