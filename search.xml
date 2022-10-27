@@ -1,239 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Kaggle</title>
-    <url>/Competition/Kaggle/</url>
-    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
-<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
-<p>数据竞赛特点：</p>
-<ul>
-<li>实践性强</li>
-<li>评估指标量化</li>
-<li>体会真实场景下的算法迭代优化过程</li>
-</ul>
-<span id="more"></span>
-<p>数据竞赛的好处：</p>
-<ul>
-<li>企业看重，求职加分</li>
-<li>奖金激励丰厚</li>
-<li>交友学习</li>
-</ul>
-<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
-<ul>
-<li>结构化比赛：推荐,风控等</li>
-<li>多模态比赛：图像+文本，视频+文本等</li>
-<li>CV比赛：图像分类，分割，目标识别等</li>
-<li>复杂任务比赛：多目标，多模态+结构化等</li>
-<li>NLP比赛：文本分类，文本问答等</li>
-<li>其他类型：强化学习, HPO（自动调超参）等</li>
-</ul>
-<h4 id="入门方向的推荐">入门方向的推荐</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
-<h4 id="数据竞赛平台">数据竞赛平台</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
-alt="image-20221003104931063" />
-<figcaption aria-hidden="true">image-20221003104931063</figcaption>
-</figure>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
-alt="image-20221003104938911" />
-<figcaption aria-hidden="true">image-20221003104938911</figcaption>
-</figure>
-<h3 id="代码能力">代码能力</h3>
-<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
-<ul>
-<li>代码整体思路的构建</li>
-<li>核心技术路线的构思</li>
-<li>各个部分应该如何进行交互</li>
-</ul>
-<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
-<ul>
-<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
-<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
-<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
-<li>找BUG的能力</li>
-</ul>
-<h4 id="如何提高代码能力">如何提高代码能力</h4>
-<ul>
-<li>把编程语言基础打扎实</li>
-<li>多练习使用常用开源工具，熟悉相关文档</li>
-<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
-<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
-</ul>
-<h3 id="前置知识">前置知识</h3>
-<p>理论知识：</p>
-<ul>
-<li>数学基础
-<ul>
-<li>高数，线代，概率论, ......</li>
-</ul></li>
-<li>机器学习基础
-<ul>
-<li>基础模型的结构，基础模型的求解方法</li>
-</ul></li>
-<li>深度学习基础
-<ul>
-<li>基础模型结构，基础反向传播</li>
-</ul></li>
-</ul>
-<p>代码知识：</p>
-<ul>
-<li>Python基础
-<ul>
-<li>环境配置，基础语法，基础语句的书写......</li>
-</ul></li>
-<li>数据分析工具包的使用
-<ul>
-<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
-</ul></li>
-<li>机器学习工具包的使用
-<ul>
-<li>Scikit-Learn</li>
-</ul></li>
-<li>深度学习工具包的使用
-<ul>
-<li>Pytorch，Tensorflow，Paddle</li>
-</ul></li>
-</ul>
-<h3 id="kaggle-1">Kaggle</h3>
-<h4 id="kaggle账号注册">Kaggle账号注册</h4>
-<ul>
-<li>需要科学上网</li>
-<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
-</ul>
-<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
-<h4 id="kaggle排位机制">Kaggle排位机制</h4>
-<ul>
-<li>Novice</li>
-<li>Contributor</li>
-<li>Expert</li>
-<li>Master</li>
-<li>Grandmaster</li>
-</ul>
-<p>Kaggle常用功能：</p>
-<ul>
-<li>Kaggle的课程学习资源</li>
-<li>如何白嫖Kaggle资源
-<ul>
-<li>上传自己的数据集</li>
-<li>跑自己的代码</li>
-</ul></li>
-</ul>
-<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
-<h5 id="home">1.Home</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
-<h5 id="competitions">2.Competitions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
-<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<ul>
-<li><strong>Getting
-Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
-一旦提交超过两个月，它将失效，不再计入排行榜。</li>
-<li><strong>Featured</strong>：Featured 比赛是 Kaggle
-最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
-<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
-比赛，比入门难度高出一步。
-这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
-Kaggler。 奖品范围从荣誉到小额现金奖。</li>
-<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
-<li><strong>Research</strong>：研究型 Research
-竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
-</ul>
-<h5 id="dataset">3.Dataset</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
-<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
-<p>可以单击“All
-datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
-Hotness
-中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
-<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
-<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
-<p>也可以自己上传数据集。</p>
-<p>自己创建的数据集有限制：</p>
-<ul>
-<li>每个数据集限制 100GB</li>
-<li>最大 100GB
-私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
-<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
-</ul>
-<p>更多有关于数据集部分的内容我们以后再介绍。</p>
-<h5 id="code">4.Code</h5>
-<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
-是一种云计算环境，可实现可重复和协作分析。</p>
-<p>Kaggle Notebooks 的类型有两种，分别是：</p>
-<ul>
-<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
-<li><p>Notebooks：类似于 Jupyter 笔记本</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
-</ul>
-<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
-<h5 id="discussions">5.Discussions</h5>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
-<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
-<h5 id="learn">6.Learn</h5>
-<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
-<p>7.More</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
-<p>More中有很多功能，</p>
-<p>例如查看排名：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
-<p>比赛奖牌获取规则：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
-<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
-10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
-<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
-]]></content>
-      <categories>
-        <category>Competition</category>
-      </categories>
-      <tags>
-        <tag>Kaggle</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Data Communication and Computer Networks</title>
     <url>/learn/Data%20Communication%20and%20Computer%20Networks/</url>
     <content><![CDATA[<h1 id="data-communication-and-computer-networks">Data Communication and
@@ -702,6 +469,239 @@ of Services toProtocols</h4>
       </tags>
   </entry>
   <entry>
+    <title>Kaggle</title>
+    <url>/Competition/Kaggle/</url>
+    <content><![CDATA[<h1 id="kaggle">Kaggle</h1>
+<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
+<p>数据竞赛特点：</p>
+<ul>
+<li>实践性强</li>
+<li>评估指标量化</li>
+<li>体会真实场景下的算法迭代优化过程</li>
+</ul>
+<span id="more"></span>
+<p>数据竞赛的好处：</p>
+<ul>
+<li>企业看重，求职加分</li>
+<li>奖金激励丰厚</li>
+<li>交友学习</li>
+</ul>
+<h3 id="数据竞赛的类型">数据竞赛的类型</h3>
+<ul>
+<li>结构化比赛：推荐,风控等</li>
+<li>多模态比赛：图像+文本，视频+文本等</li>
+<li>CV比赛：图像分类，分割，目标识别等</li>
+<li>复杂任务比赛：多目标，多模态+结构化等</li>
+<li>NLP比赛：文本分类，文本问答等</li>
+<li>其他类型：强化学习, HPO（自动调超参）等</li>
+</ul>
+<h4 id="入门方向的推荐">入门方向的推荐</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104608577.png" /></p>
+<h4 id="数据竞赛平台">数据竞赛平台</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104858176.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104904037.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104916296.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104923637.png" /></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104931063.png"
+alt="image-20221003104931063" />
+<figcaption aria-hidden="true">image-20221003104931063</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003104938911.png"
+alt="image-20221003104938911" />
+<figcaption aria-hidden="true">image-20221003104938911</figcaption>
+</figure>
+<h3 id="代码能力">代码能力</h3>
+<h4 id="宏观代码能力的体现">宏观代码能力的体现</h4>
+<ul>
+<li>代码整体思路的构建</li>
+<li>核心技术路线的构思</li>
+<li>各个部分应该如何进行交互</li>
+</ul>
+<h4 id="微观代码能力的体现">微观代码能力的体现</h4>
+<ul>
+<li>编程语言基础(环境配置/代码运行/代码调试/ . . . . . . )</li>
+<li>个人代码规范(注释格式/变量命名/函数命名/ . . . . . . )</li>
+<li>开源工具的使用( Pandas / Numpy / Pytorch / . . . . . . )</li>
+<li>找BUG的能力</li>
+</ul>
+<h4 id="如何提高代码能力">如何提高代码能力</h4>
+<ul>
+<li>把编程语言基础打扎实</li>
+<li>多练习使用常用开源工具，熟悉相关文档</li>
+<li>多逛 Github/Kaggle，阅读/白嫖别人代码</li>
+<li>多参加项目/比赛，在实际的锻炼中沉淀一套自己的代码库</li>
+</ul>
+<h3 id="前置知识">前置知识</h3>
+<p>理论知识：</p>
+<ul>
+<li>数学基础
+<ul>
+<li>高数，线代，概率论, ......</li>
+</ul></li>
+<li>机器学习基础
+<ul>
+<li>基础模型的结构，基础模型的求解方法</li>
+</ul></li>
+<li>深度学习基础
+<ul>
+<li>基础模型结构，基础反向传播</li>
+</ul></li>
+</ul>
+<p>代码知识：</p>
+<ul>
+<li>Python基础
+<ul>
+<li>环境配置，基础语法，基础语句的书写......</li>
+</ul></li>
+<li>数据分析工具包的使用
+<ul>
+<li>Pandas，Numpy，Matplotlib，Seaborn，......</li>
+</ul></li>
+<li>机器学习工具包的使用
+<ul>
+<li>Scikit-Learn</li>
+</ul></li>
+<li>深度学习工具包的使用
+<ul>
+<li>Pytorch，Tensorflow，Paddle</li>
+</ul></li>
+</ul>
+<h3 id="kaggle-1">Kaggle</h3>
+<h4 id="kaggle账号注册">Kaggle账号注册</h4>
+<ul>
+<li>需要科学上网</li>
+<li>指南：https://docs.qq.com/doc/DYUlXaktmZFZZZ2lC</li>
+</ul>
+<h4 id="kaggle比赛类别">Kaggle比赛类别</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003110727944.png" /></p>
+<h4 id="kaggle排位机制">Kaggle排位机制</h4>
+<ul>
+<li>Novice</li>
+<li>Contributor</li>
+<li>Expert</li>
+<li>Master</li>
+<li>Grandmaster</li>
+</ul>
+<p>Kaggle常用功能：</p>
+<ul>
+<li>Kaggle的课程学习资源</li>
+<li>如何白嫖Kaggle资源
+<ul>
+<li>上传自己的数据集</li>
+<li>跑自己的代码</li>
+</ul></li>
+</ul>
+<h4 id="kaggle功能介绍">Kaggle功能介绍</h4>
+<h5 id="home">1.Home</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155721273.png" /></p>
+<h5 id="competitions">2.Competitions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003155933281.png" /></p>
+<p>这里需要注意的是比赛分类：<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<ul>
+<li><strong>Getting
+Started</strong>：这些是半永久性的比赛，旨在供刚刚涉足机器学习领域的新用户使用。他们不提供奖品或积分。由于其长期运行的性质，入门竞赛可能是机器学习中教程最多的问题，入门比赛有两个月的滚动排行榜。
+一旦提交超过两个月，它将失效，不再计入排行榜。</li>
+<li><strong>Featured</strong>：Featured 比赛是 Kaggle
+最出名的比赛类型。这些都是全面的机器学习挑战，它们构成了困难的、通常用于商业目的的预测问题。</li>
+<li><strong>Playground</strong>：Playground 比赛是一种“有趣”的 Kaggle
+比赛，比入门难度高出一步。
+这些竞赛通常提供相对简单的机器学习任务，同样针对有兴趣在低风险环境中练习新型问题的新手或
+Kaggler。 奖品范围从荣誉到小额现金奖。</li>
+<li><strong>Community</strong>：是学校教授机器学习的老师留作业的地方，这里的竞赛有些会向public开放参赛，也有些仅仅是学校内部教学使用。</li>
+<li><strong>Research</strong>：研究型 Research
+竞赛通常是机器学习前沿技术或者公益性质的题目。由于其实验性质，研究竞赛通常不提供奖品或积分。但它们提供了解决可能没有干净或简单的解决方案的问题的机会，这些问题在竞争稍弱的环境中对特定领域或领域来说是不可或缺的。</li>
+</ul>
+<h5 id="dataset">3.Dataset</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003161821457.png" /></p>
+<p>从主菜单栏中的“数据集”选项卡可以访问更结构化的数据集访问方式。数据集按不同的类别分组：“趋势数据集”、“热门数据集”、“最近查看的数据集”和其他一些轮换类别。</p>
+<p>可以单击“All
+datasets”按钮以获取所有数据集的列表视图。该列表默认按“热度”排序。“热度”就是它的意思：一种衡量平台上数据集的趣味性和新近度的方法。在
+Hotness
+中得分高并因此在此列表中出现高分的数据集通常是最近发布的已被标记为已审核且参与度高的数据集，或者是在平台上持续流行的“历史上的”伟大的很久。</p>
+<p>其他排序方法是按大多数投票、最新、已更新的和可用性进行排序。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162106106.png" /></p>
+<p>导航栏中可用的其他过滤选项包括大小（小、中或大）、文件类型（CSV、SQLite、JSON、BigQuery）、许可证（知识共享、GPL、其他数据库、其他）和标签。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003162231551.png" /></p>
+<p>也可以自己上传数据集。</p>
+<p>自己创建的数据集有限制：</p>
+<ul>
+<li>每个数据集限制 100GB</li>
+<li>最大 100GB
+私有数据集（如果超过这个，要么公开你的数据集，要么删除未使用的数据集）</li>
+<li>最多 50 个顶级文件（如果有更多，请使用目录结构并上传存档）</li>
+</ul>
+<p>更多有关于数据集部分的内容我们以后再介绍。</p>
+<h5 id="code">4.Code</h5>
+<p>使用 Kaggle Notebooks 探索和运行机器学习代码，Kaggle Notebooks
+是一种云计算环境，可实现可重复和协作分析。</p>
+<p>Kaggle Notebooks 的类型有两种，分别是：</p>
+<ul>
+<li><p>Scripts：第一种类型是脚本。脚本是按顺序将所有内容作为代码执行的文件。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163911773.png" /></p></li>
+<li><p>Notebooks：类似于 Jupyter 笔记本</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003163924359.png" /></p></li>
+</ul>
+<p>除了作为交互式编辑平台之外，您还可以查找和使用社区中其他人公开共享的代码。基本用法同Datasets部分。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164054303.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164306141.png" /></p>
+<h5 id="discussions">5.Discussions</h5>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164456483.png" /></p>
+<p>论坛中有收藏，自己的讨论等等。也可以在Discussion中就问题进行交流。学习他人的方法与思路。</p>
+<h5 id="learn">6.Learn</h5>
+<p>Learn中有许多课程与指南，都比较简短，对新手很友好。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164905706.png" /></p>
+<p>7.More</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003164935437.png" /></p>
+<p>More中有很多功能，</p>
+<p>例如查看排名：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165040154.png" /></p>
+<p>比赛奖牌获取规则：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221003165442665.png" /></p>
+<p>鉴于Kaggle比赛的参赛队伍一般都比较多，因此直接记为铜：TOP
+10%，银：TOP 5%，金TOP 10 + 0.2% 即可。</p>
+<p>举办比赛，查看文档，成就等。由于非主要功能，这里不多作介绍了。</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>https://www.kaggle.com/docs/competitions<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>Competition</category>
+      </categories>
+      <tags>
+        <tag>Kaggle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenCV 图像处理：常用绘图函数</title>
     <url>/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p><img
@@ -887,6 +887,140 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
       </tags>
   </entry>
   <entry>
+    <title>Opencv 图像处理：图像通道、直方图与色彩空间</title>
+    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E9%80%9A%E9%81%93%E3%80%81%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<h3 id="图像通道">1.图像通道</h3>
+<h4 id="通道分离">通道分离</h4>
+<p>目的</p>
+<p>将彩色图像，分成b 、g 、r 3个单通道图像。方便我们对 BGR
+三个通道分别进行操作。</p>
+<p>函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.split(img)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1 ：待分离通道的图像</p>
+<span id="more"></span>
+<p>例程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#三通道分别显示</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;blue&#x27;</span>,b)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;green&#x27;</span>,g)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;red&#x27;</span>,r)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>分离后的每个通道实际上还是一个灰度图，输出之后每个通道仍是灰色的。如果想要查看每个颜色的图，应该进行合并。这时需要生成一个规模相同的零矩阵。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment"># 无符号的8位，即0-255</span></span><br></pre></td></tr></table></figure>
+<p>其中print(image.shape[:2])取出的就是该照片的长宽(459, 571)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv模块</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2            </span><br><span class="line"> </span><br><span class="line">image=cv2.imread(<span class="string">&quot;split.jpg&quot;</span>)<span class="comment">#读取要处理的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;src&quot;</span>,image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">B,G,R = cv2.split(image)<span class="comment">#分离出图片的B，R，G颜色通道</span></span><br><span class="line"></span><br><span class="line">zeros = np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment">#创建与image相同大小的零矩阵</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;BLUE&quot;</span>,cv2.merge([B,zeros,zeros]))<span class="comment">#显示 （B，0，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;GREEN&quot;</span>,cv2.merge([zeros,G,zeros]))<span class="comment">#显示（0，G，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;RED&quot;</span>,cv2.merge([zeros,zeros,R]))<span class="comment">#显示（0，0，R）图像</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="通道合并">通道合并</h4>
+<p>目的</p>
+<p>通道分离为B,G,R
+后，对单独通道进行修改，最后将修改后的三通道合并为彩色图像。</p>
+<p>函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.merge(<span class="type">List</span>)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1 ：待合并的通道数，<strong>以 list 的形式输入</strong></p>
+<p>例程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#将Blue通道数值修改为0</span></span><br><span class="line">g[:] = <span class="number">0</span></span><br><span class="line"><span class="comment">#合并修改后的通道</span></span><br><span class="line">img_merge=cv2.merge([b,g,r])</span><br><span class="line">cv2.imshow(<span class="string">&#x27;merge&#x27;</span>,img_merge)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h3 id="图像直方图">2.图像直方图</h3>
+<p>图像直方图：</p>
+<p>图像直方图（Image
+Histogram）是用以表示数字图像中亮度分布的直方图，<strong>标绘了图像中每个亮度值的像素数</strong>。这种直方图中，横坐标的左侧为纯黑、较暗
+的区域，而右侧为较亮、纯白的区域。</p>
+<p>图像直方图的意义：</p>
+<ul>
+<li><p>直方图是图像中像素强度分布的图形表达方式</p></li>
+<li><p>它统计了每一个强度值所具有的像素个数</p></li>
+<li><p>CV 领域常借助图像直方图来实现图像的二值化</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185405654.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185411039.png" /></p>
+<h4 id="直方图绘制">直方图绘制</h4>
+<p>目的</p>
+<p>直方图是对图像像素的统计分布，它统计了每个像素（0 到 255
+）的数量。</p>
+<p>函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.calcHist(images, channels, mask, histSize, ranges)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1：待统计图像，需用中括号括起来</p>
+<p>参数2：待计算的通道</p>
+<p>参数3：Mask，这里没有使用，所以用 None。</p>
+<p>参数4：histSize ，表示直方图分成多少份</p>
+<p>参数5：是表示直方图中各个像素的值 ，[0.0,
+256.0]表示直方图能表示像素值从 0.0 到 256
+的像素。直方图是对图像像素的统计分布，它统计了每个像素（ 0 到
+255）的数量。</p>
+<h5 id="方法一cv库">方法一：cv库</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">plt.imshow(img_gray, cmap=plt.cm.gray)</span><br><span class="line">hist = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.title(<span class="string">&quot;Grayscale Histogram&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;# of Pixels&quot;</span>)</span><br><span class="line">plt.plot(hist)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185908905.png" /></p>
+<h5 id="方法二plt库">方法二：plt库</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方库</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line"><span class="comment"># girl.ravel()函数是将图像的三位数组降到一维上去，</span></span><br><span class="line"><span class="comment">#256为bins的数目,[0, 256]为范围</span></span><br><span class="line">plt.hist(girl.ravel(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192252647.png" /></p>
+<h4 id="三通道直方图绘制">三通道直方图绘制</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line">color = (<span class="string">&quot;b&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="comment">#使用for循环遍历color列表，enumerate枚举返回索引和值</span></span><br><span class="line"><span class="keyword">for</span> i, color <span class="keyword">in</span> <span class="built_in">enumerate</span>(color):</span><br><span class="line">    hist = cv2.calcHist([girl], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.title(<span class="string">&quot;girl&quot;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;num of perlex&quot;</span>)</span><br><span class="line">    plt.plot(hist, color = color)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">260</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023190557714.png" /></p>
+<h3 id="图像色彩空间">3.图像色彩空间</h3>
+<p>概念：</p>
+<p>颜色空间也称彩色模型(又称彩色空间或彩色系统）它的用途是在某些标准下用通常可接受的方式对彩色加以说明。</p>
+<p>常见的颜色空间：</p>
+<p>RGB 、 HSV 、 HSI 、 CMYK</p>
+<h4 id="rgb-颜色空间">RGB 颜色空间</h4>
+<p>主要用于计算机图形学中，依据人眼识别的颜色创建，图像中每一个像素都具有
+R,G,B 三个颜色分量组成，这三个分量大小均为 [
+0，255]。通常表示某个颜色的时候，写成一个 3 维向量的形式（ 110,150,130
+）。</p>
+<p>颜色模型：</p>
+<ul>
+<li>原点对应的颜色为黑色，它的三个分量值都为 0</li>
+<li>距离原点最远的顶点对应的颜色为白色，三个分量值都为1</li>
+<li>从黑色到白色的灰度值分布在这两个点的连线上，该虚线称为灰度线；</li>
+<li>立方体的其余各点对应不同的颜色，即三原色红、绿、蓝及其混合色黄、品红、
+青色；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023191833189.png"
+alt="image-20221023191833189" />
+<figcaption aria-hidden="true">image-20221023191833189</figcaption>
+</figure>
+<p><strong>对角线上的值都是一样的，我们称它为灰度线。</strong></p>
+<h4 id="hsv-颜色空间">HSV 颜色空间</h4>
+<p>HSV(Hue, Saturation, Value) 是根据颜色的直观特性由 A. R. Smith 在
+1978 年创建的一种颜色空间，这个模型中颜色的参数分别是：色调（ H
+），饱和度 （S），明度（V）。</p>
+<p>颜色模型：</p>
+<ul>
+<li>H 通道 Hue ，色调色彩，这个通道代表颜色。</li>
+<li>S 通道 Saturation
+，饱和度，取值范围0%~100%，值越大，颜色越饱和。</li>
+<li>V 通道 Value ，明暗，数值越高，越明亮， 0%（黑）到 100%（白）。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192035876.png" /></p>
+<h5 id="rgb空间与hsv-转化">RGB空间与HSV 转化</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="comment">#色彩空间转换函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">color_space_demo</span>(<span class="params">image</span>):</span><br><span class="line">    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;gray&#x27;</span>,gray)</span><br><span class="line">    hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV)</span><br><span class="line">    <span class="comment">#print(hsv)</span></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;hsv&#x27;</span>,hsv)</span><br><span class="line"><span class="comment">#读入一张彩色图</span></span><br><span class="line">src=cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用color_space_demo函数进行色彩空间转化</span></span><br><span class="line">color_space_demo(src)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="hsi-颜色空间概念">HSI 颜色空间概念</h4>
+<p>HSI 模型是美国色彩学家孟塞尔 (H.A.Munseu）于 1915
+年提出的，它反映了人的视觉系统感知彩色的方式，以色调、饱和度和强度三种基本特征量来感知颜色。</p>
+<p>模型优点</p>
+<ul>
+<li>在处理彩色图像时，可仅对I分量进行处理，结果不改变原图像中的彩色种类；</li>
+<li>HSI
+模型完全反映了人感知颜色的基本属性，与人感知颜色的结果一一对应。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192418775.png" /></p>
+<h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
+<p>CMYK(Cyan,Magenta,Yellow,blacK)颜色空间应用于印刷工业,印刷业通过青(C)、品(M)、黄(Y)三原色油墨的不同网点面积率的叠印来表现丰富多彩的颜色和阶调，这便是三原色的CMY颜色空间。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192528226.png" /></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>OpenCV</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OpenCV图像处理:数字图像的必会知识</title>
     <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BF%85%E4%BC%9A%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<p><img
@@ -1039,140 +1173,6 @@ Jupyter：<code>pip install jupyter</code></p>
       </tags>
   </entry>
   <entry>
-    <title>Opencv 图像处理：图像通道、直方图与色彩空间</title>
-    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E9%80%9A%E9%81%93%E3%80%81%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4/</url>
-    <content><![CDATA[<h3 id="图像通道">1.图像通道</h3>
-<h4 id="通道分离">通道分离</h4>
-<p>目的</p>
-<p>将彩色图像，分成b 、g 、r 3个单通道图像。方便我们对 BGR
-三个通道分别进行操作。</p>
-<p>函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.split(img)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1 ：待分离通道的图像</p>
-<span id="more"></span>
-<p>例程</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#三通道分别显示</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;blue&#x27;</span>,b)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;green&#x27;</span>,g)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;red&#x27;</span>,r)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p>分离后的每个通道实际上还是一个灰度图，输出之后每个通道仍是灰色的。如果想要查看每个颜色的图，应该进行合并。这时需要生成一个规模相同的零矩阵。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment"># 无符号的8位，即0-255</span></span><br></pre></td></tr></table></figure>
-<p>其中print(image.shape[:2])取出的就是该照片的长宽(459, 571)。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv模块</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2            </span><br><span class="line"> </span><br><span class="line">image=cv2.imread(<span class="string">&quot;split.jpg&quot;</span>)<span class="comment">#读取要处理的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;src&quot;</span>,image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">B,G,R = cv2.split(image)<span class="comment">#分离出图片的B，R，G颜色通道</span></span><br><span class="line"></span><br><span class="line">zeros = np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment">#创建与image相同大小的零矩阵</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;BLUE&quot;</span>,cv2.merge([B,zeros,zeros]))<span class="comment">#显示 （B，0，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;GREEN&quot;</span>,cv2.merge([zeros,G,zeros]))<span class="comment">#显示（0，G，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;RED&quot;</span>,cv2.merge([zeros,zeros,R]))<span class="comment">#显示（0，0，R）图像</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="通道合并">通道合并</h4>
-<p>目的</p>
-<p>通道分离为B,G,R
-后，对单独通道进行修改，最后将修改后的三通道合并为彩色图像。</p>
-<p>函数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.merge(<span class="type">List</span>)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1 ：待合并的通道数，<strong>以 list 的形式输入</strong></p>
-<p>例程</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#将Blue通道数值修改为0</span></span><br><span class="line">g[:] = <span class="number">0</span></span><br><span class="line"><span class="comment">#合并修改后的通道</span></span><br><span class="line">img_merge=cv2.merge([b,g,r])</span><br><span class="line">cv2.imshow(<span class="string">&#x27;merge&#x27;</span>,img_merge)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h3 id="图像直方图">2.图像直方图</h3>
-<p>图像直方图：</p>
-<p>图像直方图（Image
-Histogram）是用以表示数字图像中亮度分布的直方图，<strong>标绘了图像中每个亮度值的像素数</strong>。这种直方图中，横坐标的左侧为纯黑、较暗
-的区域，而右侧为较亮、纯白的区域。</p>
-<p>图像直方图的意义：</p>
-<ul>
-<li><p>直方图是图像中像素强度分布的图形表达方式</p></li>
-<li><p>它统计了每一个强度值所具有的像素个数</p></li>
-<li><p>CV 领域常借助图像直方图来实现图像的二值化</p></li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185405654.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185411039.png" /></p>
-<h4 id="直方图绘制">直方图绘制</h4>
-<p>目的</p>
-<p>直方图是对图像像素的统计分布，它统计了每个像素（0 到 255
-）的数量。</p>
-<p>函数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.calcHist(images, channels, mask, histSize, ranges)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1：待统计图像，需用中括号括起来</p>
-<p>参数2：待计算的通道</p>
-<p>参数3：Mask，这里没有使用，所以用 None。</p>
-<p>参数4：histSize ，表示直方图分成多少份</p>
-<p>参数5：是表示直方图中各个像素的值 ，[0.0,
-256.0]表示直方图能表示像素值从 0.0 到 256
-的像素。直方图是对图像像素的统计分布，它统计了每个像素（ 0 到
-255）的数量。</p>
-<h5 id="方法一cv库">方法一：cv库</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">plt.imshow(img_gray, cmap=plt.cm.gray)</span><br><span class="line">hist = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.title(<span class="string">&quot;Grayscale Histogram&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;# of Pixels&quot;</span>)</span><br><span class="line">plt.plot(hist)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185908905.png" /></p>
-<h5 id="方法二plt库">方法二：plt库</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方库</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line"><span class="comment"># girl.ravel()函数是将图像的三位数组降到一维上去，</span></span><br><span class="line"><span class="comment">#256为bins的数目,[0, 256]为范围</span></span><br><span class="line">plt.hist(girl.ravel(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192252647.png" /></p>
-<h4 id="三通道直方图绘制">三通道直方图绘制</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line">color = (<span class="string">&quot;b&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="comment">#使用for循环遍历color列表，enumerate枚举返回索引和值</span></span><br><span class="line"><span class="keyword">for</span> i, color <span class="keyword">in</span> <span class="built_in">enumerate</span>(color):</span><br><span class="line">    hist = cv2.calcHist([girl], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.title(<span class="string">&quot;girl&quot;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;num of perlex&quot;</span>)</span><br><span class="line">    plt.plot(hist, color = color)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">260</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023190557714.png" /></p>
-<h3 id="图像色彩空间">3.图像色彩空间</h3>
-<p>概念：</p>
-<p>颜色空间也称彩色模型(又称彩色空间或彩色系统）它的用途是在某些标准下用通常可接受的方式对彩色加以说明。</p>
-<p>常见的颜色空间：</p>
-<p>RGB 、 HSV 、 HSI 、 CMYK</p>
-<h4 id="rgb-颜色空间">RGB 颜色空间</h4>
-<p>主要用于计算机图形学中，依据人眼识别的颜色创建，图像中每一个像素都具有
-R,G,B 三个颜色分量组成，这三个分量大小均为 [
-0，255]。通常表示某个颜色的时候，写成一个 3 维向量的形式（ 110,150,130
-）。</p>
-<p>颜色模型：</p>
-<ul>
-<li>原点对应的颜色为黑色，它的三个分量值都为 0</li>
-<li>距离原点最远的顶点对应的颜色为白色，三个分量值都为1</li>
-<li>从黑色到白色的灰度值分布在这两个点的连线上，该虚线称为灰度线；</li>
-<li>立方体的其余各点对应不同的颜色，即三原色红、绿、蓝及其混合色黄、品红、
-青色；</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023191833189.png"
-alt="image-20221023191833189" />
-<figcaption aria-hidden="true">image-20221023191833189</figcaption>
-</figure>
-<p><strong>对角线上的值都是一样的，我们称它为灰度线。</strong></p>
-<h4 id="hsv-颜色空间">HSV 颜色空间</h4>
-<p>HSV(Hue, Saturation, Value) 是根据颜色的直观特性由 A. R. Smith 在
-1978 年创建的一种颜色空间，这个模型中颜色的参数分别是：色调（ H
-），饱和度 （S），明度（V）。</p>
-<p>颜色模型：</p>
-<ul>
-<li>H 通道 Hue ，色调色彩，这个通道代表颜色。</li>
-<li>S 通道 Saturation
-，饱和度，取值范围0%~100%，值越大，颜色越饱和。</li>
-<li>V 通道 Value ，明暗，数值越高，越明亮， 0%（黑）到 100%（白）。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192035876.png" /></p>
-<h5 id="rgb空间与hsv-转化">RGB空间与HSV 转化</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="comment">#色彩空间转换函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">color_space_demo</span>(<span class="params">image</span>):</span><br><span class="line">    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;gray&#x27;</span>,gray)</span><br><span class="line">    hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV)</span><br><span class="line">    <span class="comment">#print(hsv)</span></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;hsv&#x27;</span>,hsv)</span><br><span class="line"><span class="comment">#读入一张彩色图</span></span><br><span class="line">src=cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用color_space_demo函数进行色彩空间转化</span></span><br><span class="line">color_space_demo(src)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="hsi-颜色空间概念">HSI 颜色空间概念</h4>
-<p>HSI 模型是美国色彩学家孟塞尔 (H.A.Munseu）于 1915
-年提出的，它反映了人的视觉系统感知彩色的方式，以色调、饱和度和强度三种基本特征量来感知颜色。</p>
-<p>模型优点</p>
-<ul>
-<li>在处理彩色图像时，可仅对I分量进行处理，结果不改变原图像中的彩色种类；</li>
-<li>HSI
-模型完全反映了人感知颜色的基本属性，与人感知颜色的结果一一对应。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192418775.png" /></p>
-<h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
-<p>CMYK(Cyan,Magenta,Yellow,blacK)颜色空间应用于印刷工业,印刷业通过青(C)、品(M)、黄(Y)三原色油墨的不同网点面积率的叠印来表现丰富多彩的颜色和阶调，这便是三原色的CMY颜色空间。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192528226.png" /></p>
-]]></content>
-      <categories>
-        <category>Image Processing</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
     <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
     <content><![CDATA[<h4
@@ -1211,6 +1211,427 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pytorch、CUDA和cuDNN的安装图文详解win11(解决版本匹配问题)</title>
+    <url>/Frame/PyTorch/Pytorch%E3%80%81CUDA%E5%92%8CcuDNN%E7%9A%84%E5%AE%89%E8%A3%85%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3win11%EF%BC%88%E8%A7%A3%E5%86%B3%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%EF%BC%89/</url>
+    <content><![CDATA[<p>可能出现的问题：</p>
+<ul>
+<li>CUDA和cuDNN版本不匹配</li>
+<li>CUDA和Pytorch版本不匹配</li>
+<li>cuDNN和Pytorch版本不匹配</li>
+<li>显卡不支持CUDA该版本</li>
+<li>已经装完部分，发现版本不匹配准备卸载。</li>
+</ul>
+<p>说在前面的话！</p>
+<ol type="1">
+<li>在ubuntu系统下，可以尝试装多个cuda版本，然后通过conda安装对应的Pytorch版本。通过软连接的方式来实现cuda版本的切换。<strong>但是，在win系统下，最好是用相同的支持版本，以免不匹配。</strong>不用纠结是否向下兼容等等问题，最优的方法就是安装相同的版本。</li>
+<li>对于CUDA的版本，我推荐用以往的稳定版本，就是指目前还在一直维护的比较旧的版本，原因有很多：
+<ul>
+<li>比较旧的版本有强大的社区支持，可以方便地找到前人总结地bug解决方案，而不是遇到最新问题时能力不够导致的一筹莫展。</li>
+<li>较旧的版本至今仍在维护，说明其仍有很大的价值，用户基数很多，能确保开发的流畅与稳定。</li>
+<li>由于学术界和工业界都喜欢用比较稳定的版本来搭建模型，因此如果想要复现论文，或是pull别人的代码修改，较新的版本很有可能会出现错误。</li>
+</ul></li>
+</ol>
+<span id="more"></span>
+<h3 id="cuda的安装">CUDA的安装</h3>
+<h4 id="查询支持的最高版本">1.查询支持的最高版本</h4>
+<p>首先安装之前要先检查我们显卡所支持的最高的CUDA版本：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004171838784.png"
+alt="image-20221004171838784" />
+<figcaption aria-hidden="true">image-20221004171838784</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004171904219.png"
+alt="image-20221004171904219" />
+<figcaption aria-hidden="true">image-20221004171904219</figcaption>
+</figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004172119500.png"
+alt="image-20221004172119500" />
+<figcaption aria-hidden="true">image-20221004172119500</figcaption>
+</figure>
+<p>目前是11.6的驱动，因此我的显卡最高是可以支持到CUDA11.6版本的。</p>
+<p>知道了我们的最高支持版本之后，我们就可以在小于等于该版本的CUDA中选择了。</p>
+<h4 id="查询pytoch与cudnn版本">2.查询Pytoch与cuDNN版本</h4>
+<p>首先不用着急挑选CUDA的版本。我们先看下<a
+href="https://pytorch.org/">pytorch</a>以及<a
+href="https://developer.nvidia.com/rdp/cudnn-archive">cuDNN</a>的版本支持情况。</p>
+<p>Pytorch：https://pytorch.org/</p>
+<p>cuDNN：https://developer.nvidia.com/rdp/cudnn-archive</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005205103236.png"
+alt="image-20221005205103236" />
+<figcaption aria-hidden="true">image-20221005205103236</figcaption>
+</figure>
+<p>可以看到对于win系统，Pytorch支持的版本有10.2，11.3，11.6等。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005205417938.png"
+alt="image-20221005205417938" />
+<figcaption aria-hidden="true">image-20221005205417938</figcaption>
+</figure>
+<p>cuDNN支持的版本有10.2，11.5，11.4等等。</p>
+<p><strong>这里我推荐装10.2或者11.3，原因见开头，不多做赘述。这里以11.3为例。</strong></p>
+<h4 id="下载cuda">3.下载CUDA</h4>
+<p>在CUDAhttps://developer.nvidia.com/cuda-toolkit-archive中，寻找<a
+href="https://developer.nvidia.com/cuda-11.3.0-download-archive">CUDA
+Toolkit 11.3</a>版本，然后寻找相应的版本下载即可。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005211449241.png"
+alt="image-20221005211449241" />
+<figcaption aria-hidden="true">image-20221005211449241</figcaption>
+</figure>
+<h4 id="安装cuda">4.安装CUDA</h4>
+<p>安装CUDA，首先需要选择CUDA的临时解压路径，这个临时解压文件夹会在安装完成后自动删除，这里建议默认。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005220025160.png"
+alt="image-20221005220025160" />
+<figcaption aria-hidden="true">image-20221005220025160</figcaption>
+</figure>
+<p>解压完成后会有安装程序，同意即可。接下来的安装选项选择自定义：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005220553919.png"
+alt="image-20221005220553919" />
+<figcaption aria-hidden="true">image-20221005220553919</figcaption>
+</figure>
+<p>在安装CUDA中取消这个VS有关的组件：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005220639170.png"
+alt="image-20221005220639170" />
+<figcaption aria-hidden="true">image-20221005220639170</figcaption>
+</figure>
+<p>底下这三个也没必要，可安可不安，看个人选择：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005220730477.png"
+alt="image-20221005220730477" />
+<figcaption aria-hidden="true">image-20221005220730477</figcaption>
+</figure>
+<p>安装路径仍然建议默认，在Program
+Files中，方便以后寻找。建议记住这里的CUDA路径。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005220819979.png"
+alt="image-20221005220819979" />
+<figcaption aria-hidden="true">image-20221005220819979</figcaption>
+</figure>
+<p>然后一直确认最后关闭即可，这里不多赘述。</p>
+<h4 id="验证cuda是否安装成功">5.验证CUDA是否安装成功</h4>
+<p>我们在<code>cmd</code>中使用cd命令切换到刚刚CUDA的安装路径下的bin(二进制)文件夹下，再执行nvcc
+-V命令。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005221631804.png"
+alt="image-20221005221631804" />
+<figcaption aria-hidden="true">image-20221005221631804</figcaption>
+</figure>
+<p>可见CUDA是正确安装的。</p>
+<h3 id="cudnn的安装">cuDNN的安装</h3>
+<p>在cuDNN的版本中，选择支持该版本的CUDA即可，这里我们看到v8.5.0的cuDNN支持CUDA
+11.X，说明兼容cuda11.x全系列。点击下载即可。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005212213927.png"
+alt="image-20221005212213927" />
+<figcaption aria-hidden="true">image-20221005212213927</figcaption>
+</figure>
+<p>接下来，解压该压缩包，然后复制其中的文件夹</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005221835067.png"
+alt="image-20221005221835067" />
+<figcaption aria-hidden="true">image-20221005221835067</figcaption>
+</figure>
+<p>粘贴到CUDA的安装目录下，即完成了cuDNN的安装。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005222043585.png"
+alt="image-20221005222043585" />
+<figcaption aria-hidden="true">image-20221005222043585</figcaption>
+</figure>
+<h4 id="验证是否安装成功">验证是否安装成功</h4>
+<p>在cmd中进入到demo文件夹：路径为<code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.3\extras\demo_suite</code></p>
+<p>执行<code>bandwidthTest.exe</code>，如果运行结果出现了PASS即代表安装成功。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005222523389.png"
+alt="image-20221005222523389" />
+<figcaption aria-hidden="true">image-20221005222523389</figcaption>
+</figure>
+<p>再输入命令<code>deviceQuery.exe</code>查询设备。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005222811243.png"
+alt="image-20221005222811243" />
+<figcaption aria-hidden="true">image-20221005222811243</figcaption>
+</figure>
+<p>这里会显示你的GPU型号，以及PASS，表示CUDA和cuDNN都安装成功了。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005222856213.png"
+alt="image-20221005222856213" />
+<figcaption aria-hidden="true">image-20221005222856213</figcaption>
+</figure>
+<h3 id="pytorch安装">Pytorch安装</h3>
+<p>进入Pytorch官网https://pytorch.org/，选择需要安装的pytorch版本。这里安装方式可以选择pip。可以看到有生成的command，里面有个网站，只需要进入该网址下载即可。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005223222069.png"
+alt="image-20221005223222069" />
+<figcaption aria-hidden="true">image-20221005223222069</figcaption>
+</figure>
+<h4 id="下载torch">下载torch</h4>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005223341575.png"
+alt="image-20221005223341575" />
+<figcaption aria-hidden="true">image-20221005223341575</figcaption>
+</figure>
+<p>由于我们安装的torch版本为Stable1.12.1，因此我们需要查找前缀为：<code>torch-1.12.1</code>的文件。注意找的是GPU版本，cuxxx代表CUDA版本xxx。这里我们找到对应的cu113，然后点击下载。cp代表python版本，这里我们选择cp37版本的win下载。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005223819969.png"
+alt="image-20221005223819969" />
+<figcaption aria-hidden="true">image-20221005223819969</figcaption>
+</figure>
+<p>然后返回，进入torchvision。</p>
+<h4 id="下载torchvision">下载torchvision</h4>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005224125728.png"
+alt="image-20221005224125728" />
+<figcaption aria-hidden="true">image-20221005224125728</figcaption>
+</figure>
+<p>torchvision的版本选择最新就好，但是要与cuda及python匹配，这里直接搜索<code>cu113-cp37</code></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221005224427066.png"
+alt="image-20221005224427066" />
+<figcaption aria-hidden="true">image-20221005224427066</figcaption>
+</figure>
+<p>下载对应的版本即可。</p>
+<p>新建pycharm创建项目，新建项目名称为PytorchTest，
+文件名为HelloPytorch。输入以下代码测试</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello Pytorch&#123;&#125;&quot;</span>.<span class="built_in">format</span>(torch.__version__))</span><br></pre></td></tr></table></figure>
+<p>结果报错，<code>ModuleNotFoundError: No module named 'torch'</code>，因为当前环境没有torch。</p>
+<p>我们可以用conda创建虚拟环境并安装torch。</p>
+<p>首先再Terminal中输入<code>conda create -n pytorch-gpu python=3.7</code>，这里python版本与我们要安装的版本相同。</p>
+<p>出现Proceed ([y]/n)? 直接输入y即可。</p>
+<p>接着输入<code>conda activate pytorch_gpu</code>激活环境。</p>
+<blockquote>
+<p>注意：进入conda虚拟环境后venv前面的提示会变成你的环境名称，如下：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006093929724.png"
+alt="image-20221006093929724" />
+<figcaption aria-hidden="true">image-20221006093929724</figcaption>
+</figure>
+<p>如果没有显示，则可能因为pycharm终端采用的是PowerShell。需要在设置中切换。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006094048053.png"
+alt="image-20221006094048053" />
+<figcaption aria-hidden="true">image-20221006094048053</figcaption>
+</figure>
+<p>换成如图所示的cmd终端即可。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006094121856.png"
+alt="image-20221006094121856" />
+<figcaption aria-hidden="true">image-20221006094121856</figcaption>
+</figure>
+</blockquote>
+<p>进入终端后切换到下载刚刚torch和torchvision的文件夹中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\Develop\pytorch_install //因人而异，cd到你的下载torch和torchvision的文件夹中即可。</span><br></pre></td></tr></table></figure>
+<p>用pip安装torch</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install &quot;torch-1.12.1+cu113-cp37-cp37m-win_amd64.whl&quot;</span><br></pre></td></tr></table></figure>
+<p>用pip安装torchvision</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install &quot;torchvision-0.13.1+cu113-cp37-cp37m-win_amd64.whl&quot;</span><br></pre></td></tr></table></figure>
+<p>完成安装</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006094726646.png"
+alt="image-20221006094726646" />
+<figcaption aria-hidden="true">image-20221006094726646</figcaption>
+</figure>
+<p>安装完成后，需要绑定该项目的解释器为这个虚拟环境。因此需要设置：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006094823670.png"
+alt="image-20221006094823670" />
+<figcaption aria-hidden="true">image-20221006094823670</figcaption>
+</figure>
+<p>找到该项目的Python解释器，然后点击齿轮，选择add：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006094937368.png"
+alt="image-20221006094937368" />
+<figcaption aria-hidden="true">image-20221006094937368</figcaption>
+</figure>
+<p>选择conda，找到已经存在的环境：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006095030919.png"
+alt="image-20221006095030919" />
+<figcaption aria-hidden="true">image-20221006095030919</figcaption>
+</figure>
+<p>查找你的anaconda安装的目录</p>
+<p>这里可以搜索anaconda并打开文件位置。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006124152338.png"
+alt="image-20221006124152338" />
+<figcaption aria-hidden="true">image-20221006124152338</figcaption>
+</figure>
+<p>然后继续右键打开文件位置即可。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006124319493.png"
+alt="image-20221006124319493" />
+<figcaption aria-hidden="true">image-20221006124319493</figcaption>
+</figure>
+<p>打开后找到envs（环境）文件夹。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006124554532.png"
+alt="image-20221006124554532" />
+<figcaption aria-hidden="true">image-20221006124554532</figcaption>
+</figure>
+<p>找到刚刚创建的环境，复制文件路径到pycharm。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006124706598.png"
+alt="image-20221006124706598" />
+<figcaption aria-hidden="true">image-20221006124706598</figcaption>
+</figure>
+<p>在pycharm中选择该文件路径下的python.exe解释器即可</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006124842235.png"
+alt="image-20221006124842235" />
+<figcaption aria-hidden="true">image-20221006124842235</figcaption>
+</figure>
+<p>然后一直ok，等待python解释器的重载即可，可能需要等一分钟。</p>
+<p>然后重新尝试测试代码并运行。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello Pytorch&#123;&#125;&quot;</span>.<span class="built_in">format</span>(torch.__version__))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.cuda.is_available())</span><br></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006125306212.png"
+alt="image-20221006125306212" />
+<figcaption aria-hidden="true">image-20221006125306212</figcaption>
+</figure>
+<p>返回true说明安装成功。</p>
+<h3 id="cuda的卸载">CUDA的卸载</h3>
+<p>首先，搜索控制面板并打开</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004165243861.png"
+alt="image-20221004165243861" />
+<figcaption aria-hidden="true">image-20221004165243861</figcaption>
+</figure>
+<p>找到程序卸载</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004165329186.png"
+alt="image-20221004165329186" />
+<figcaption aria-hidden="true">image-20221004165329186</figcaption>
+</figure>
+<p>可以在列表中找到有关于NVIDIA的相关组件，找到有关于CUDA的组件并卸载即可，其他的可以保留，因为高于该版本的CUDA会更新其他组件的。（<strong>本质上临近时间安装的都能卸载</strong>）</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004172459627.png"
+alt="image-20221004172459627" />
+<figcaption aria-hidden="true">image-20221004172459627</figcaption>
+</figure>
+<p>右键 -&gt; 卸载 然后在卸载程序中卸载即可。剩下的方法类似。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221004172743410.png"
+alt="image-20221004172743410" />
+<figcaption aria-hidden="true">image-20221004172743410</figcaption>
+</figure>
+<p>最后不放心的话可以用火绒等软件清理一下注册表。</p>
+]]></content>
+      <categories>
+        <category>Frame</category>
+        <category>PyTorch</category>
+      </categories>
+      <tags>
+        <tag>Installation</tag>
+        <tag>PyTorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>位运算</title>
+    <url>/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<h1 id="位运算">位运算</h1>
+<p>位运算常用操作：</p>
+<h2
+id="查看整数n的二进制表示中第k位是几">查看整数n的二进制表示中第k位是几。</h2>
+<p>eg: <span class="math inline">\(n = 15 = (1111)_2\)</span></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928224656481.png" /></p>
+<p>具体步骤：</p>
+<ol type="1">
+<li>先把第k位数字移动到最后一位( n &gt;&gt; k )</li>
+<li>看个位是几 (x &amp; 1)</li>
+</ol>
+<blockquote>
+<p>注意：右移本身就是一个二进制层面的操作过程。</p>
+</blockquote>
+<span id="more"></span>
+<p>将1和2结合起来，即：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">n &gt;&gt; k &amp; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>例如：输出n的二进制表示</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">3</span>; k &gt;= <span class="number">0</span>; k--)cout &lt;&lt; (n &gt;&gt; k &amp; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="lowbitx返回x的最后一位1">lowbit(x):返回x的最后一位1。</h2>
+<p>树状数组的基本操作。</p>
+<p>应用：统计x里1的个数。每一次把x的最后一位1减掉，当最后x位为0时，计算减的次数，就是x中含有1的个数。</p>
+<p>eg:</p>
+<ul>
+<li>x = 1010 lowbit(x) return 10</li>
+<li>x = 10110000 lowbit(x) return 10000</li>
+</ul>
+<p>实际实现： <code>x &amp; -x</code></p>
+<p>解释：由于是补码存储，因此 -x = ~x +1 ; 因此 x &amp; -x = x &amp;(~x
++ 1)</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928225854477.png" /></p>
+<h3 id="例题二进制中1的个数">例题：二进制中1的个数</h3>
+<p>给定一个长度为 n 的数列，请你求出数列中每个数的二进制表示中 1
+的个数。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 n。</p>
+<p>第二行包含 n 个整数，表示整个数列。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含 n 个整数，其中的第 i 个数表示数列中的第 i
+个数的二进制表示中 1 的个数。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n≤100000, 0≤数列中元素的值≤<span
+class="math inline">\(10^9\)</span></p>
+<p><strong>输入样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 1 2 1 2</span><br></pre></td></tr></table></figure>
+<h3 id="code">code</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, res = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 每次减去x的最后一位1以及后面的部分</span></span><br><span class="line">        <span class="keyword">while</span>(x)x -= <span class="built_in">lowbit</span>(x),res ++;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; res &lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -1458,68 +1879,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220
       </categories>
       <tags>
         <tag>Blockchain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>位运算</title>
-    <url>/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
-    <content><![CDATA[<h1 id="位运算">位运算</h1>
-<p>位运算常用操作：</p>
-<h2
-id="查看整数n的二进制表示中第k位是几">查看整数n的二进制表示中第k位是几。</h2>
-<p>eg: <span class="math inline">\(n = 15 = (1111)_2\)</span></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928224656481.png" /></p>
-<p>具体步骤：</p>
-<ol type="1">
-<li>先把第k位数字移动到最后一位( n &gt;&gt; k )</li>
-<li>看个位是几 (x &amp; 1)</li>
-</ol>
-<blockquote>
-<p>注意：右移本身就是一个二进制层面的操作过程。</p>
-</blockquote>
-<span id="more"></span>
-<p>将1和2结合起来，即：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">n &gt;&gt; k &amp; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>例如：输出n的二进制表示</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">3</span>; k &gt;= <span class="number">0</span>; k--)cout &lt;&lt; (n &gt;&gt; k &amp; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="lowbitx返回x的最后一位1">lowbit(x):返回x的最后一位1。</h2>
-<p>树状数组的基本操作。</p>
-<p>应用：统计x里1的个数。每一次把x的最后一位1减掉，当最后x位为0时，计算减的次数，就是x中含有1的个数。</p>
-<p>eg:</p>
-<ul>
-<li>x = 1010 lowbit(x) return 10</li>
-<li>x = 10110000 lowbit(x) return 10000</li>
-</ul>
-<p>实际实现： <code>x &amp; -x</code></p>
-<p>解释：由于是补码存储，因此 -x = ~x +1 ; 因此 x &amp; -x = x &amp;(~x
-+ 1)</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928225854477.png" /></p>
-<h3 id="例题二进制中1的个数">例题：二进制中1的个数</h3>
-<p>给定一个长度为 n 的数列，请你求出数列中每个数的二进制表示中 1
-的个数。</p>
-<p><strong>输入格式</strong></p>
-<p>第一行包含整数 n。</p>
-<p>第二行包含 n 个整数，表示整个数列。</p>
-<p><strong>输出格式</strong></p>
-<p>共一行，包含 n 个整数，其中的第 i 个数表示数列中的第 i
-个数的二进制表示中 1 的个数。</p>
-<p><strong>数据范围</strong></p>
-<p>1≤n≤100000, 0≤数列中元素的值≤<span
-class="math inline">\(10^9\)</span></p>
-<p><strong>输入样例</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
-<p><strong>输出样例</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 1 2 1 2</span><br></pre></td></tr></table></figure>
-<h3 id="code">code</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, res = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 每次减去x的最后一位1以及后面的部分</span></span><br><span class="line">        <span class="keyword">while</span>(x)x -= <span class="built_in">lowbit</span>(x),res ++;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; res &lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
       </tags>
   </entry>
 </search>
