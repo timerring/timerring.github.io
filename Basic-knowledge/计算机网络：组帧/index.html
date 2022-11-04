@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="计算机网络：数据报与虚电路 分组交换根据其通信子网向端点系统提供的服务，还可进一步分为面向连接的虚电路方式和无连接的数据报方式。 这两种服务方式都由网络层提供。 要注意数据报方式和虚电路方式是分组交换的两种方式。">
+    <meta name="description" content="计算机网络：组帧 数据链路层之所以要把比特组合成帧为单位传输，是为了在出错时只重发出错的帧，而不必重发全部数据，从而提高效率。为了使接收方能正确地接收并检查所传输的帧，发送方必须依据一定的规则把网络层递交的分组封装成帧（称为组帧)。组帧主要解决帧定界、帧同步、透明传输等问题。 通常有4种方法实现组帧。">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="计算机网络：数据报与虚电路">
-<meta property="og:url" content="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF/index.html">
+<meta property="og:title" content="计算机网络：组帧">
+<meta property="og:url" content="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/index.html">
 <meta property="og:site_name" content="timerring&#39;s BLOG">
-<meta property="og:description" content="计算机网络：数据报与虚电路 分组交换根据其通信子网向端点系统提供的服务，还可进一步分为面向连接的虚电路方式和无连接的数据报方式。 这两种服务方式都由网络层提供。 要注意数据报方式和虚电路方式是分组交换的两种方式。">
+<meta property="og:description" content="计算机网络：组帧 数据链路层之所以要把比特组合成帧为单位传输，是为了在出错时只重发出错的帧，而不必重发全部数据，从而提高效率。为了使接收方能正确地接收并检查所传输的帧，发送方必须依据一定的规则把网络层递交的分组封装成帧（称为组帧)。组帧主要解决帧定界、帧同步、透明传输等问题。 通常有4种方法实现组帧。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-02T02:59:07.555Z">
-<meta property="article:modified_time" content="2022-11-02T02:59:02.271Z">
+<meta property="article:published_time" content="2022-11-03T01:08:19.518Z">
+<meta property="article:modified_time" content="2022-11-03T01:08:09.907Z">
 <meta property="article:author" content="timerring">
 <meta property="article:tag" content="computer network">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF/">
+<link rel="canonical" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF/","path":"Basic-knowledge/计算机网络：数据报与虚电路/","title":"计算机网络：数据报与虚电路"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/","path":"Basic-knowledge/计算机网络：组帧/","title":"计算机网络：组帧"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>计算机网络：数据报与虚电路 | timerring's BLOG</title>
+<title>计算机网络：组帧 | timerring's BLOG</title>
   
 
 
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">计算机网络：数据报与虚电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="nav-number">1.1.</span> <span class="nav-text">1．数据报</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%9C%8D%E5%8A%A1%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">数据报服务特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E7%94%B5%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">2．虚电路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E7%94%B5%E8%B7%AF%E6%9C%8D%E5%8A%A1%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚电路服务特点</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%84%E5%B8%A7"><span class="nav-number">1.</span> <span class="nav-text">计算机网络：组帧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E8%AE%A1%E6%95%B0%E6%B3%95%E4%B8%8D%E5%B8%B8%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1.字符计数法(不常用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%A1%AB%E5%85%85%E7%9A%84%E9%A6%96%E5%B0%BE%E5%AE%9A%E7%95%8C%E7%AC%A6%E6%B3%95%E4%B8%8D%E5%B8%B8%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">2.字符填充的首尾定界符法(不常用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E6%AF%94%E7%89%B9%E5%A1%AB%E5%85%85%E7%9A%84%E9%A6%96%E5%B0%BE%E6%A0%87%E5%BF%97%E6%B3%95%E5%B8%B8%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3.零比特填充的首尾标志法(常用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9D%E8%A7%84%E7%BC%96%E7%A0%81%E6%B3%95%E5%B8%B8%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">4.违规编码法(常用)</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +221,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,12 +234,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="计算机网络：数据报与虚电路 | timerring's BLOG">
+      <meta itemprop="name" content="计算机网络：组帧 | timerring's BLOG">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          计算机网络：数据报与虚电路
+          计算机网络：组帧
         </h1>
 
         <div class="post-meta-container">
@@ -250,7 +250,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-11-02 10:59:07" itemprop="dateCreated datePublished" datetime="2022-11-02T10:59:07+08:00">2022-11-02</time>
+      <time title="Created: 2022-11-03 09:08:19" itemprop="dateCreated datePublished" datetime="2022-11-03T09:08:19+08:00">2022-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,46 +272,42 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="计算机网络数据报与虚电路">计算机网络：数据报与虚电路</h2>
-<p>分组交换根据其通信子网向端点系统提供的服务，还可进一步分为面向连接的虚电路方式和无连接的数据报方式。</p>
-<p><strong>这两种服务方式都由网络层提供</strong>。</p>
-<p>要注意数据报方式和虚电路方式是<strong>分组交换的两种方式</strong>。</p>
+        <h2 id="计算机网络组帧">计算机网络：组帧</h2>
+<p>数据链路层之所以要把比特组合成帧为单位传输，是为了在出错时只重发出错的帧，而不必重发全部数据，从而提高效率。为了使接收方能正确地接收并检查所传输的帧，<strong>发送方必须依据一定的规则把网络层递交的分组封装成帧（称为组帧)</strong>。组帧主要解决<strong>帧定界、帧同步、透明传输</strong>等问题。</p>
+<p>通常有4种方法实现组帧。</p>
 <span id="more"></span>
-<h3 id="数据报">1．数据报</h3>
-<p>作为通信子网用户的端系统发送一个报文时，在端系统中实现的高层协议先把报文拆成若干带有序号的数据单元，并在网络层加上地址等控制信息后形成数据报分组（即网络层的
-PDU)。中间结点存储分组很短一段时间，找到最佳的路由后，尽快转发每个分组。不同的分组可以走不同的路径，也可以按不同的顺序到达目的结点。</p>
-<h4 id="数据报服务特点">数据报服务特点</h4>
-<ol type="1">
-<li>发送分组前不需要建立连接。发送方可随时发送分组，网络中的结点可随时接收分组。</li>
-<li>网络尽<strong>最大努力交付，传输不保证可靠性</strong>，所以可能丢失;为每个分组独立地选择路由，转发的路径可能不同，因而分组不一定按序到达目的结点。</li>
-<li>发送的分组中要<strong>包括发送端和接收端的完整地址</strong>，以便可以独立传输。</li>
-<li>分组在交换结点存储转发时，<strong>需要排队等候处理</strong>，这会带来一定的时延。通过交换结点的通信量较大或网络发生拥塞时，这种时延会大大增加，交换结点还可根据情况丢弃部分分组。</li>
-<li>网络具有冗余路径，当某个交换结点或一条链路出现故障时，可相应地更新转发表，寻找另一条路径转发分组，<strong>对故障的适应能力强</strong>。</li>
-<li><strong>存储转发的延时一般较小</strong>，提高了网络的吞吐量。</li>
-<li>收发双方不独占某条链路，<strong>资源利用率较高</strong>。</li>
-</ol>
-<h3 id="虚电路">2．虚电路</h3>
-<p>虚电路方式试图将数据报方式与电路交换方式结合起来。</p>
-<p>在分组发送之前，要求在发送方和接收方建立一条逻辑上相连的虚电路，并且连接一旦建立，就固定了虚电路所对应的物理路径。通信过程分为三个阶段:虚电路建立（发送呼叫请求、呼叫应答分组）、数据传输与虚电路释放（发送释放请求、呼叫释放分组）。</p>
-<p>端系统每次建立虚电路时，选择一个未用过的虚电路号分配给该虚电路，以区别于本系统中的其他虚电路。</p>
-<p>在传送数据时，每个数据分组不仅要有分组号、校验和等控制信息，还要有它要通过的虚电路号，以区别于其他虚电路上的分组。</p>
-<p>在虚电路网络中的每个结点上都维持一张虚电路表，表中的每项记录了一个打开的虚电路的信息，包括在<strong>接收链路和发送链路上的虚电路号、前一结点和下一结点的标识</strong>。数据的传输是双向进行的，上述信息是在虚电路的建立过程中确定的。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221029220904173.png" /></p>
-<h4 id="虚电路服务特点">虚电路服务特点</h4>
-<ol type="1">
-<li>虚电路通信链路的建立和拆除需要时间开销。</li>
-<li>连接建立后，就确定了传输路径。</li>
-<li>虚电路提供了可靠的通信功能，能保证每个分组正确且有序到达。此外，还可以对两个数据端点的流量进行控制，当接收方来不及接收数据时，可以通知发送方暂缓发送。</li>
-<li>虚电路有一个致命的弱点，即当网络中的某个结点或某条链路出现故障而彻底失效时，所有经过该结点或该链路的虚电路将遭到破坏。</li>
-<li>分组首部不包含目的地址，包含的是虚电路标识符，相对于数据报方式，其开销小。</li>
-</ol>
-<p>每个结点到其他结点之间的链路可能同时有若干虚电路通过，也可能同时与多个结点之间建立虚电路。每条虚电路支持特定的两个端系统之间的数据传输，两个端系统之间也可以有多条虚电路为不同的进程服务，这些虚电路的实际路由可能相同也可能不同。</p>
 <blockquote>
-<p>注意，数据传输过程是有确认的传输（由高层实现)，主机收到分组后要发回相应分组的确认。<strong>网络中的传输是否有确认与网络层提供的两种服务没有任何关系。</strong></p>
+<p><strong>比较组帧与分组</strong>：</p>
+<p>组帧时要加首、尾部。原因是在网络中信息是以帧为最小单位进行传输的，所以接收端要正确地接收帧，必须要清楚该帧在一串比特流中从哪里开始到哪里结束（因为接收端收到的是一串比特流，没有首部和尾部是不能正确区分帧的)。而分组（即IP数据报)仅是包含在帧中的数据部分，所以不需要加尾部来定界。</p>
 </blockquote>
+<h3 id="字符计数法不常用">1.字符计数法(不常用)</h3>
+<p>字符计数法是指在帧头部使用一个计数字段来标明帧内字符数（计数字段提供的字节数包含自身所占用的一个字节)。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221029221616980.png" /></p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030120942903.png" /></p>
+<p>缺点：如果计数字段出错，即失去了帧边界划分的依据，那么接收方就无法判断所传输帧的结束位和下一帧的开始位，收发双方将失去同步，从而造成灾难性后果。</p>
+<h3
+id="字符填充的首尾定界符法不常用">2.字符填充的首尾定界符法(不常用)</h3>
+<p>字符填充法使用特定字符来定界一帧的开始与结束。</p>
+<ul>
+<li><strong>控制字符SOH（Start of
+Heading）表示帧的首部开始</strong></li>
+<li><strong>控制字符EOT(End Of Transmission)表示帧的结束。</strong></li>
+<li>为了使信息位中出现的特殊字符不被误判为帧的首尾定界符，可在特殊字符前面填充一个转义字符（ESC，Escape
+character)来加以区分（注意，转义字符是ASCII码中的控制字符，是一个字符，而非“E”“S”"C”三个字符的组合)，以实现数据的透明传输。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030144104358.png" /></p>
+<p>接收方收到数据后会自己删除这个插入的ESC字符,
+得到原来的数据。但是实现复杂，不兼容，不常用。</p>
+<h3 id="零比特填充的首尾标志法常用">3.零比特填充的首尾标志法(常用)</h3>
+<p>零比特填充法允许数据帧包含任意个数的比特，也允许每个字符的编码包含任意个数的比特。它使用一个特定的比特模式，即<strong>01111110来标志一帧的开始和结束</strong>。为了不使信息位中出现的比特流01111110被误判为帧的首尾标志，发送方的数据链路层在信息位中<strong>遇到5个连续的“1”时，将自动在其后插入一个“0”</strong>;而接收方做该过程的逆操作，即每收到5个连续的“1”时，自动删除后面紧跟的“0”，以恢复原信息。硬件实现容易，性能优于字符填充。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030144907606.png" /></p>
+<h3 id="违规编码法常用">4.违规编码法(常用)</h3>
+<p>在物理层进行比特编码时，通常采用违规编码法。</p>
+<p>例如，曼彻斯特编码方法将数据比特“1”编码成“高-低”电平对，将数据比特“0”编码成“低-高”电平对，而“高-高”电平对和“低-低”电平对在数据比特中是违规的（即没有采用)。可以<strong>借用这些违规编码序列来定界帧的起始和终止</strong>。局域网IEEE
+802标准就采用了这种方法。</p>
+<p>违规编码法不需要采用任何填充技术，便能实现数据传输的透明性，但它只适用于采用冗余编码的特殊编码环境。</p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
@@ -360,13 +356,13 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%94%B5%E8%B7%AF%E3%80%81%E6%8A%A5%E6%96%87%E4%B8%8E%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/" rel="prev" title="计算机网络：电路、报文与分组交换">
-                  <i class="fa fa-chevron-left"></i> 计算机网络：电路、报文与分组交换
+                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF/" rel="prev" title="计算机网络：数据报与虚电路">
+                  <i class="fa fa-chevron-left"></i> 计算机网络：数据报与虚电路
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/" rel="next" title="计算机网络：组帧">
-                  计算机网络：组帧 <i class="fa fa-chevron-right"></i>
+                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/" rel="next" title="计算机网络：数据链路层功能">
+                  计算机网络：数据链路层功能 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
