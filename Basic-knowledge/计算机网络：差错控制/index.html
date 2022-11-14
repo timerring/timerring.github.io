@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="计算机网络：差错控制 比特在传输过程中可能会产生差错，1可能会变成0，0也可能会变成1，这就是比特差错。比特差错是传输差错中的一种。 通常利用编码技术进行差错控制,主要有两类:自动重传请求ARQ和前向纠错FEC。  在 ARQ方式中，接收端检测到差错时，就设法通知发送端重发，直到接收到正确的码字为止。 在FEC方式中，接收端不但能发现差错，而且能确定比特串的错误位置，从而加以纠正。">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="计算机网络：差错控制">
+<meta property="og:url" content="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="计算机网络：差错控制 比特在传输过程中可能会产生差错，1可能会变成0，0也可能会变成1，这就是比特差错。比特差错是传输差错中的一种。 通常利用编码技术进行差错控制,主要有两类:自动重传请求ARQ和前向纠错FEC。  在 ARQ方式中，接收端检测到差错时，就设法通知发送端重发，直到接收到正确的码字为止。 在FEC方式中，接收端不但能发现差错，而且能确定比特串的错误位置，从而加以纠正。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-05T11:29:42.976Z">
+<meta property="article:modified_time" content="2022-11-05T11:29:36.196Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="computer network">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/","path":"Basic-knowledge/计算机网络：差错控制/","title":"计算机网络：差错控制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机网络：差错控制 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">11</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">28</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">计算机网络：差错控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E9%94%99%E7%BC%96%E7%A0%81"><span class="nav-number">1.0.1.</span> <span class="nav-text">检错编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.奇偶校验码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E7%A0%81"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">2.循环冗余码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A0%E9%94%99%E7%BC%96%E7%A0%81"><span class="nav-number">1.0.2.</span> <span class="nav-text">纠错编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E6%B5%B7%E6%98%8E%E7%A0%81%E7%9A%84%E4%BD%8D%E6%95%B0"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">(1) 确定海明码的位数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E6%A0%A1%E9%AA%8C%E4%BD%8D%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">(2)确定校验位的分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BB%A5%E5%BD%A2%E6%88%90%E6%A0%A1%E9%AA%8C%E5%85%B3%E7%B3%BB"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">(3) 分组以形成校验关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E4%BD%8D%E5%8F%96%E5%80%BC"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">(4) 校验位取值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%B7%E6%98%8E%E7%A0%81%E7%9A%84%E6%A0%A1%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">(5)海明码的校验原理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机网络：差错控制 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络：差错控制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-05 19:29:42" itemprop="dateCreated datePublished" datetime="2022-11-05T19:29:42+08:00">2022-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="计算机网络差错控制">计算机网络：差错控制</h1>
+<p>比特在传输过程中可能会产生差错，1可能会变成0，0也可能会变成1，这就是<strong>比特差错</strong>。比特差错是传输差错中的一种。</p>
+<p>通常利用编码技术进行差错控制,主要有两类:自动重传请求ARQ和前向纠错FEC。</p>
+<ul>
+<li>在
+ARQ方式中，接收端检测到差错时，就设法通知发送端重发，直到接收到正确的码字为止。</li>
+<li>在FEC方式中，接收端不但能发现差错，而且能确定比特串的错误位置，从而加以纠正。</li>
+</ul>
+<p>因此，差错控制又可分为检错编码和纠错编码。</p>
+<span id="more"></span>
+<h3 id="检错编码">检错编码</h3>
+<p>检错编码<strong>都采用冗余编码</strong>技术，其核心思想是在有效数据（信息位）被发送前，先按某种关系附加一定的冗余位，构成一个符合某一规则的码字后再发送。当要发送的有效数据变化时，相应的冗余位也随之变化，使得码字遵从不变的规则。接收端根据收到的码字是否仍符合原规则来判断是否出错。</p>
+<p>常见的检错编码有奇偶校验码和循环冗余码。</p>
+<h4 id="奇偶校验码">1.奇偶校验码</h4>
+<p>奇偶校验码是奇校验码和偶校验码的统称，是一种最基本的检错码。<strong>它由n-1位信息元和1位校验元组成，如果是奇校验码，那么在附加一个校验元后，码长为n的码字中“1”的个数为奇数</strong>,这是奇数校验码
+;如果是偶校验码，那么在附加一个校验元以后，码长为n的码字中“1”的个数为偶数。它只能检测奇数位的出错情况，(如果有一组刚好出错，1的奇偶却不变，则无法查清楚是否出错)。</p>
+<h4 id="循环冗余码">2.循环冗余码</h4>
+<p>循环冗余码 (Cyclic Redundancy Code, CRC) 又 称多项式码。一个 k
+位帧可以视为从 <span class="math inline">\(X^{k-1}\)</span> 到 $ X^{0}$
+的 k 次多项式的系数序列, 这个多项式的阶数为 k-1, 例如, 1110011 有 7 位,
+表示成多项式是 <span class="math inline">\(X^{6}+X^{5}+X^{4}+
+X+1\)</span></p>
+<p>给定一个m bit的帧或报文, <strong>发送器生成一个r
+bit的序列，称为帧检验序列(FCS)
+就是余数</strong>。这样所形成的帧将由m+r比特组成。发送方和接收方事先商定一个多项式G(x)(最高位和最低位必须为1)，使这个带检验码的帧刚好能被预先确定的多项式G(x)整除。接收方用相同的多项式去除收到的帧，如果无余数，那么认为无差错。
+假设一个帧有m位，其对应的多项式为Mx)，则计算冗余码的步骤如下:</p>
+<ol type="1">
+<li>加0。假设G(x)的阶为r(<strong>阶数是指最高位的次数，不是总式子的长度</strong>)，在帧的低位端加上r个0。</li>
+<li>模2除。利用模2除法（就是异或），用G(x)对应的数据串去除1）中的数据串，得到的余数即为冗余码（共r位，前面的0不可省略)。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030154015498.png" /></p>
+<p>注意:循环冗余码(CRC)是具有纠错功能的，只是数据链路层仅使用了它的检错功能，检测到帧出错则直接丢弃。</p>
+<h3 id="纠错编码">纠错编码</h3>
+<p>最常见的纠错编码是海明码，其实现原理是在有效信息位中加入几个校验位形成海明码，并把海明码的每个二进制位分配到几个奇偶校验组中。当某一位出错后，就会引起有关的几个校验位的值发生变化，这不但可以发现错位，而且能指出错位的位置，为自动纠错提供依据。</p>
+<p>现以数据码 1010 为例讲述海明码的编码原理和过程。</p>
+<h4 id="确定海明码的位数">(1) 确定海明码的位数</h4>
+<p>设 n 为有效信息的位数, k 为校验位的位数, 则信息位 n 和校验位 k 应满足
+<span class="math inline">\(n+k \leq 2^{k}-1\)</span> (若要检测两位错,
+则需再增加 1 位校验位, 即 k+1 位) 海明码位数为 <span
+class="math inline">\(n+k=7 \leq 2^{3}-1\)</span> 成立, 则 n 、 k
+有效。设信息位为 <span class="math inline">\(D_{4} D_{3} D_{2}
+D_{1}(1010)\)</span> , 共 4 位, 校验位为 <span
+class="math inline">\(P_{3} P_{2} P_{1}\)</span> , 共 3 位,
+对应的海明码为<span class="math inline">\(H_{7} H_{6} H_{5} H_{4} H_{3}
+H_{2} H_{1}\)</span>。</p>
+<h4 id="确定校验位的分布">(2)确定校验位的分布</h4>
+<p>规定校验位 <span class="math inline">\(P_{i}\)</span> 在海明位号为
+<span class="math inline">\(2^{i-1}\)</span> 的位置上, 其余各位为信息位,
+因此有: <span class="math inline">\(P_{1}\)</span> 的海明位号为 <span
+class="math inline">\(2^{i-1}=2^{0}=1\)</span> , 即 <span
+class="math inline">\(H_{1}\)</span> 为 <span
+class="math inline">\(P_{1}\)</span> 。 $ P_{2}$ 的海明位号为 $
+2<sup>{i-1}=2</sup>{1}=2$ , 即 <span
+class="math inline">\(H_{2}\)</span> 为 <span
+class="math inline">\(P_{2}\)</span> 。 $ P_{3}$ 的海明位号为 <span
+class="math inline">\(2^{i-1}=2^{2}=4\)</span> , 即 <span
+class="math inline">\(H_{4}\)</span> 为 <span
+class="math inline">\(P_{3}\)</span> 。 将信息位按原来的顺序揷入,
+则海明码各位的分布如下:</p>
+<p><span class="math inline">\(\begin{array}{lllllll} H_{7} &amp; H_{6}
+&amp; H_{5} &amp; H_{4} &amp; H_{3} &amp; H_{2} &amp; H_{1} \\ D_{4}
+&amp; D_{3} &amp; D_{2} &amp; P_{3} &amp; D_{1} &amp; P_{2} &amp; P_{1}
+\end{array}\)</span></p>
+<h4 id="分组以形成校验关系">(3) 分组以形成校验关系</h4>
+<p>每个数据位用多个校验位进行校验, 但要满足条件:
+被校验数据位的海明位号等于校验该数 据位的各校验位海明位号之和。另外,
+校验位不需要再被校验。分组形成的校验关系如下。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030155737888.png" /></p>
+<h4 id="校验位取值">(4) 校验位取值</h4>
+<p>校验位 <span class="math inline">\(P_{i}\)</span> 的值为第 i 组
+(由该校验位校验的数据位) 所有位求异或。 根据（3）中的分组有</p>
+<p><span class="math inline">\(P_{1}=D_{1} \oplus D_{2} \oplus D_{4}=0
+\oplus 1 \oplus 1=0\)</span> <span class="math inline">\(P_{2}=D_{1}
+\oplus D_{3} \oplus D_{4}=0 \oplus 0 \oplus 1=1\)</span> <span
+class="math inline">\(P_{3}=D_{2} \oplus D_{3} \oplus D_{4}=1 \oplus 0
+\oplus 1=0\)</span></p>
+<p>所以, 1010 对应的海明码为 101<u>0</u>0<u>10</u>(下画线为校验位,
+其他为信息位)。</p>
+<h4 id="海明码的校验原理">(5)海明码的校验原理</h4>
+<p>每个校验组分别利用校验位和参与形成该校验位的信息位进行奇偶校验检查,
+构成 k 个校验方程:</p>
+<p><span class="math inline">\(\begin{array}{l} S_{1}=P_{1} \oplus D_{1}
+\oplus D_{2} \oplus D_{4} \\ S_{2}=P_{2} \oplus D_{1} \oplus D_{3}
+\oplus D_{4} \\ S_{3}=P_{3} \oplus D_{2} \oplus D_{3} \oplus D_{4}
+\end{array}\)</span></p>
+<p>若 <span class="math inline">\(S_{3} S_{2} S_{1}\)</span> 的值为 “
+000 ”, 则说明无错; 否则说明出错, 且这个数就是错误位的位号, 如 <span
+class="math inline">\(S_{3} S_{2} S_{1}=001\)</span> , 说明第 1 位出错,
+即 <span class="math inline">\(H_{1}\)</span> 出错,
+直接将该位取反就达到了纠错的目的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/computer-network/" rel="tag"><i class="fa fa-tag"></i> computer network</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/" rel="prev" title="计算机网络：数据链路层功能">
+                  <i class="fa fa-chevron-left"></i> 计算机网络：数据链路层功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E6%9C%BA%E5%88%B6/" rel="next" title="计算机网络：流量控制与可靠传输机制">
+                  计算机网络：流量控制与可靠传输机制 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

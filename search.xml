@@ -469,125 +469,6 @@ of Services toProtocols</h4>
       </tags>
   </entry>
   <entry>
-    <title>Opencv 图像处理：图像基础操作与灰度转化</title>
-    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%81%B0%E5%BA%A6%E8%BD%AC%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="图像属性">图像属性</h2>
-<h3 id="图像格式">1.图像格式</h3>
-<p>图像压缩比:
-通过编码器压缩后的图象数字大小和原图象数字大小的压缩比。</p>
-<ul>
-<li>BMP 格式
-Windows系统下的<strong>标准位图格式</strong>，未经过压缩，一般图像文件会比较大。在很多软件中被广泛应用。</li>
-<li>JPEG 格式
-也是应用最广泛的图片格式之一，它采用一种特殊的<strong>有损压缩算法</strong>，达到较大的压缩比可达到
-2:1 甚至 40:1，互联网上最广泛使用的格式</li>
-<li>GIF 格式
-不仅可以是一张静止的图片，也可以是动画，并且支持透明背景图像，适用于多种操作系统，
-体型很小，网上很多小动画都是 GIF
-格式。但是其<strong>色域不太广</strong>只支持 256 种颜色。</li>
-<li>PNG 格式 与JPG 格式类似，<strong>压缩比高于 GIF</strong>
-（因此png损失较小，质量更好），支持图像透明支持 Alpha
-通道调节图像的透明度。</li>
-<li>TIFF 格式 它的特点是图像格式复杂、<strong>存贮信息多</strong>。在
-Mac 中广泛使用， 非常有利于原稿的复制。很多地方将 TIFF
-格式用于印刷。</li>
-</ul>
-<span id="more"></span>
-<h3 id="图像尺寸">2.图像尺寸</h3>
-<h4 id="图像尺寸-1">图像尺寸</h4>
-<ul>
-<li>图像尺寸的长度与宽度是以像素为单位的。</li>
-</ul>
-<h4 id="像素">像素</h4>
-<ul>
-<li>像素是数码影像最基本的单位，每个像素就是一个小点，而不同颜色的点聚集起来就变成一幅照片。</li>
-<li>灰度像素点数值范围在 0 到 255 之间， 0 表示黑、255
-表示白，其它值表示处于黑白之间；</li>
-<li>黑白照片只需一个通道表示即可。</li>
-<li>彩色图用红、绿、蓝三通道的二维矩阵来表示。每个数值也是在 0 到 255
-之间， 0 表示相应的基色，而 255
-则代表相应的基色在该像素中取得最大值。</li>
-</ul>
-<h4 id="读入图像cv2.imread">读入图像cv2.imread()</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imread()</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p>第一参数为待读路径；</p>
-<p>第二个参数为读取方式，常见读取方式有三种</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023163925170.png" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv的python版本依赖库cv2</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用opencv中imread函数读取图片，</span></span><br><span class="line"><span class="comment">#0代表灰度图形式打开，1代表彩色形式打开</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(img.shape)</span><br><span class="line"><span class="comment">#print(img) 打印图像的数组</span></span><br></pre></td></tr></table></figure>
-<h4 id="显示图像cv2.imshow">显示图像cv2.imshow()</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imshow()</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p><strong>参数1 ：窗口的名字</strong></p>
-<p><strong>参数2 ：图像数据名/变量名</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv依赖库</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取图像，读取方式为彩色读取</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;photo&#x27;</span>,img)</span><br><span class="line">k = cv2.waitKey(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> k == <span class="number">27</span>:   <span class="comment"># 输入ESC键退出</span></span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line"><span class="keyword">elif</span> k == <span class="built_in">ord</span>(<span class="string">&#x27;s&#x27;</span>): <span class="comment"># 输入S键保存图片并退出</span></span><br><span class="line">    cv2.imwrite(<span class="string">&#x27;split_.jpg&#x27;</span>,img)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h5 id="也可matplotlib导入图像">也可matplotlib导入图像</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方包</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用Matplotlib导入图像</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;test_image.png&#x27;</span>,<span class="number">0</span>)</span><br><span class="line">plt.imshow(img, cmap = <span class="string">&#x27;gray&#x27;</span>, interpolation = <span class="string">&#x27;bicubic&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#隐藏X、Y轴上的刻度</span></span><br><span class="line"><span class="comment">#plt.xticks([]), plt.yticks([])</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023180803623.png" /></p>
-<h4 id="键盘绑定cv2.waitkey0">键盘绑定cv2.waitKey(0)</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#cv2.waitKey()是一个键盘绑定函数</span></span><br><span class="line"><span class="comment">#若为数字则是单位毫秒，若为0代表等待键盘输入。</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h4
-id="删除窗口cv2.destrovallwindows">删除窗口cv2.destrovAllWindows()</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cv2.destroyAllWindows() 删除窗口</span></span><br><span class="line"><span class="comment"># 默认值为所有窗口，参数一为待删除窗口名。</span></span><br><span class="line">cv2.destrovAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="保存图像cv2.imwrite">保存图像cv2.imwrite()</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imwrite(&#x27;split_.jpg&#x27;,img)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p>参数1 ：图像名（包括格式）</p>
-<p>参数2 ：待写入的图像数据变量名。</p>
-<h3 id="图像分辨率">3.图像分辨率</h3>
-<ul>
-<li>分辨率：
-单位长度中所表达或截取的像素数目。每英寸图像内的像素点数，单位是像素每英寸
-(PPI） 。图像分辨率越高，像素的点密度越高，图像越清晰。</li>
-<li>通道数： 图像的位深度，是指描述图像中每个pixel
-数值所占的二进制位数。 位深度
-越大则图像能表示的颜色数就越多，色彩越丰富逼真。
-<ul>
-<li>8 位：单通道图像，也就是灰度图，灰度值范围2**8=256</li>
-<li>24 位：三通道 3*8=24</li>
-<li>32 位：三通道加透明度 Alpha 通道</li>
-</ul></li>
-</ul>
-<h4 id="灰度转化">灰度转化</h4>
-<ul>
-<li><p>目的</p>
-<p>将三通道图像（彩色图）转化为单通道图像（灰度图）。</p></li>
-<li><p>公式</p>
-<p>3----&gt;1: GRAY = B * 0.114 + G * 0.587 + R * 0.299</p>
-<p>1----&gt;3: R = G = B = GRAY; A = 0</p></li>
-<li><p>函数：</p>
-<p>cv2.cvtColor(img，flag)</p></li>
-<li><p>参数说明</p>
-<p>参数1 ：待转化图像</p>
-<p>参数2 ：flag 就是转换模式</p>
-<ul>
-<li>cv2.COLOR_BGR2GRAY ：彩色转灰度</li>
-<li>cv2.COLOR_GRAY2BGR：单通道转三通道</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="comment">#读入原始图像，使用cv2.IMREAD_UNCHANGED</span></span><br><span class="line">img = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>,cv2.IMREAD_UNCHANGED)</span><br><span class="line"><span class="comment">#查看打印图像的shape</span></span><br><span class="line">shape = img.shape</span><br><span class="line"><span class="built_in">print</span>(shape)</span><br><span class="line"><span class="comment">#判断通道数是否为3通道或4通道</span></span><br><span class="line"><span class="keyword">if</span> shape[<span class="number">2</span>] == <span class="number">3</span> <span class="keyword">or</span> shape[<span class="number">2</span>] == <span class="number">4</span> :</span><br><span class="line">    <span class="comment">#将彩色图转化为单通道图</span></span><br><span class="line">    img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&quot;gray_image&quot;</span>,img_gray)</span><br><span class="line">cv2.imshow(<span class="string">&quot;image&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">1000</span>) <span class="comment"># 等待1000毫秒也就是1秒</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="rgb与-bgr-转化">RGB与 BGR 转化</h4>
-<p>Opencv读取图像是以BGR读取的，但是许多包是RGB读取，因此有些情况下需要转化。</p>
-<p>转化的方法</p>
-<p>opencv自带的方法转</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br></pre></td></tr></table></figure>
-<p>numpy转</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img[:,:,::-1] #列左右翻转</span><br></pre></td></tr></table></figure>
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">img = cv2.imread(<span class="string">&quot;test2.png&quot;</span>, cv2.IMREAD_COLOR)</span><br><span class="line">cv2.imshow(<span class="string">&quot;Opencv_win&quot;</span>, img)</span><br><span class="line"><span class="comment"># 用opencv自带的方法转</span></span><br><span class="line">img_cv_method = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line"><span class="comment"># 用numpy转，img[:,:,::-1]列左右翻转</span></span><br><span class="line">img_numpy_method = img[:,:,::-<span class="number">1</span>] <span class="comment"># 本来是BGR 现在逆序，变成RGB</span></span><br><span class="line"><span class="comment"># 用matplot画图</span></span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)<span class="comment"># 划分一个1行3列的空间</span></span><br><span class="line">plt.imshow(img_cv_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">plt.imshow(img_numpy_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.savefig(<span class="string">&quot;./plt.png&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">cv2.imwrite(<span class="string">&quot;opencv.png&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023181757142.png" /></p>
-]]></content>
-      <categories>
-        <category>Image Processing</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV 图像处理：常用绘图函数</title>
     <url>/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p><img
@@ -887,140 +768,6 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
       </tags>
   </entry>
   <entry>
-    <title>Opencv 图像处理：图像通道、直方图与色彩空间</title>
-    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E9%80%9A%E9%81%93%E3%80%81%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4/</url>
-    <content><![CDATA[<h3 id="图像通道">1.图像通道</h3>
-<h4 id="通道分离">通道分离</h4>
-<p>目的</p>
-<p>将彩色图像，分成b 、g 、r 3个单通道图像。方便我们对 BGR
-三个通道分别进行操作。</p>
-<p>函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.split(img)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1 ：待分离通道的图像</p>
-<span id="more"></span>
-<p>例程</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#三通道分别显示</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;blue&#x27;</span>,b)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;green&#x27;</span>,g)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;red&#x27;</span>,r)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p>分离后的每个通道实际上还是一个灰度图，输出之后每个通道仍是灰色的。如果想要查看每个颜色的图，应该进行合并。这时需要生成一个规模相同的零矩阵。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment"># 无符号的8位，即0-255</span></span><br></pre></td></tr></table></figure>
-<p>其中print(image.shape[:2])取出的就是该照片的长宽(459, 571)。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv模块</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2            </span><br><span class="line"> </span><br><span class="line">image=cv2.imread(<span class="string">&quot;split.jpg&quot;</span>)<span class="comment">#读取要处理的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;src&quot;</span>,image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">B,G,R = cv2.split(image)<span class="comment">#分离出图片的B，R，G颜色通道</span></span><br><span class="line"></span><br><span class="line">zeros = np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment">#创建与image相同大小的零矩阵</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;BLUE&quot;</span>,cv2.merge([B,zeros,zeros]))<span class="comment">#显示 （B，0，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;GREEN&quot;</span>,cv2.merge([zeros,G,zeros]))<span class="comment">#显示（0，G，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;RED&quot;</span>,cv2.merge([zeros,zeros,R]))<span class="comment">#显示（0，0，R）图像</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="通道合并">通道合并</h4>
-<p>目的</p>
-<p>通道分离为B,G,R
-后，对单独通道进行修改，最后将修改后的三通道合并为彩色图像。</p>
-<p>函数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.merge(<span class="type">List</span>)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1 ：待合并的通道数，<strong>以 list 的形式输入</strong></p>
-<p>例程</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#将Blue通道数值修改为0</span></span><br><span class="line">g[:] = <span class="number">0</span></span><br><span class="line"><span class="comment">#合并修改后的通道</span></span><br><span class="line">img_merge=cv2.merge([b,g,r])</span><br><span class="line">cv2.imshow(<span class="string">&#x27;merge&#x27;</span>,img_merge)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h3 id="图像直方图">2.图像直方图</h3>
-<p>图像直方图：</p>
-<p>图像直方图（Image
-Histogram）是用以表示数字图像中亮度分布的直方图，<strong>标绘了图像中每个亮度值的像素数</strong>。这种直方图中，横坐标的左侧为纯黑、较暗
-的区域，而右侧为较亮、纯白的区域。</p>
-<p>图像直方图的意义：</p>
-<ul>
-<li><p>直方图是图像中像素强度分布的图形表达方式</p></li>
-<li><p>它统计了每一个强度值所具有的像素个数</p></li>
-<li><p>CV 领域常借助图像直方图来实现图像的二值化</p></li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185405654.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185411039.png" /></p>
-<h4 id="直方图绘制">直方图绘制</h4>
-<p>目的</p>
-<p>直方图是对图像像素的统计分布，它统计了每个像素（0 到 255
-）的数量。</p>
-<p>函数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.calcHist(images, channels, mask, histSize, ranges)</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>参数1：待统计图像，需用中括号括起来</p>
-<p>参数2：待计算的通道</p>
-<p>参数3：Mask，这里没有使用，所以用 None。</p>
-<p>参数4：histSize ，表示直方图分成多少份</p>
-<p>参数5：是表示直方图中各个像素的值 ，[0.0,
-256.0]表示直方图能表示像素值从 0.0 到 256
-的像素。直方图是对图像像素的统计分布，它统计了每个像素（ 0 到
-255）的数量。</p>
-<h5 id="方法一cv库">方法一：cv库</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">plt.imshow(img_gray, cmap=plt.cm.gray)</span><br><span class="line">hist = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.title(<span class="string">&quot;Grayscale Histogram&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;# of Pixels&quot;</span>)</span><br><span class="line">plt.plot(hist)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185908905.png" /></p>
-<h5 id="方法二plt库">方法二：plt库</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方库</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line"><span class="comment"># girl.ravel()函数是将图像的三位数组降到一维上去，</span></span><br><span class="line"><span class="comment">#256为bins的数目,[0, 256]为范围</span></span><br><span class="line">plt.hist(girl.ravel(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192252647.png" /></p>
-<h4 id="三通道直方图绘制">三通道直方图绘制</h4>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line">color = (<span class="string">&quot;b&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="comment">#使用for循环遍历color列表，enumerate枚举返回索引和值</span></span><br><span class="line"><span class="keyword">for</span> i, color <span class="keyword">in</span> <span class="built_in">enumerate</span>(color):</span><br><span class="line">    hist = cv2.calcHist([girl], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.title(<span class="string">&quot;girl&quot;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;num of perlex&quot;</span>)</span><br><span class="line">    plt.plot(hist, color = color)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">260</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023190557714.png" /></p>
-<h3 id="图像色彩空间">3.图像色彩空间</h3>
-<p>概念：</p>
-<p>颜色空间也称彩色模型(又称彩色空间或彩色系统）它的用途是在某些标准下用通常可接受的方式对彩色加以说明。</p>
-<p>常见的颜色空间：</p>
-<p>RGB 、 HSV 、 HSI 、 CMYK</p>
-<h4 id="rgb-颜色空间">RGB 颜色空间</h4>
-<p>主要用于计算机图形学中，依据人眼识别的颜色创建，图像中每一个像素都具有
-R,G,B 三个颜色分量组成，这三个分量大小均为 [
-0，255]。通常表示某个颜色的时候，写成一个 3 维向量的形式（ 110,150,130
-）。</p>
-<p>颜色模型：</p>
-<ul>
-<li>原点对应的颜色为黑色，它的三个分量值都为 0</li>
-<li>距离原点最远的顶点对应的颜色为白色，三个分量值都为1</li>
-<li>从黑色到白色的灰度值分布在这两个点的连线上，该虚线称为灰度线；</li>
-<li>立方体的其余各点对应不同的颜色，即三原色红、绿、蓝及其混合色黄、品红、
-青色；</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023191833189.png"
-alt="image-20221023191833189" />
-<figcaption aria-hidden="true">image-20221023191833189</figcaption>
-</figure>
-<p><strong>对角线上的值都是一样的，我们称它为灰度线。</strong></p>
-<h4 id="hsv-颜色空间">HSV 颜色空间</h4>
-<p>HSV(Hue, Saturation, Value) 是根据颜色的直观特性由 A. R. Smith 在
-1978 年创建的一种颜色空间，这个模型中颜色的参数分别是：色调（ H
-），饱和度 （S），明度（V）。</p>
-<p>颜色模型：</p>
-<ul>
-<li>H 通道 Hue ，色调色彩，这个通道代表颜色。</li>
-<li>S 通道 Saturation
-，饱和度，取值范围0%~100%，值越大，颜色越饱和。</li>
-<li>V 通道 Value ，明暗，数值越高，越明亮， 0%（黑）到 100%（白）。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192035876.png" /></p>
-<h5 id="rgb空间与hsv-转化">RGB空间与HSV 转化</h5>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="comment">#色彩空间转换函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">color_space_demo</span>(<span class="params">image</span>):</span><br><span class="line">    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;gray&#x27;</span>,gray)</span><br><span class="line">    hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV)</span><br><span class="line">    <span class="comment">#print(hsv)</span></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;hsv&#x27;</span>,hsv)</span><br><span class="line"><span class="comment">#读入一张彩色图</span></span><br><span class="line">src=cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用color_space_demo函数进行色彩空间转化</span></span><br><span class="line">color_space_demo(src)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
-<h4 id="hsi-颜色空间概念">HSI 颜色空间概念</h4>
-<p>HSI 模型是美国色彩学家孟塞尔 (H.A.Munseu）于 1915
-年提出的，它反映了人的视觉系统感知彩色的方式，以色调、饱和度和强度三种基本特征量来感知颜色。</p>
-<p>模型优点</p>
-<ul>
-<li>在处理彩色图像时，可仅对I分量进行处理，结果不改变原图像中的彩色种类；</li>
-<li>HSI
-模型完全反映了人感知颜色的基本属性，与人感知颜色的结果一一对应。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192418775.png" /></p>
-<h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
-<p>CMYK(Cyan,Magenta,Yellow,blacK)颜色空间应用于印刷工业,印刷业通过青(C)、品(M)、黄(Y)三原色油墨的不同网点面积率的叠印来表现丰富多彩的颜色和阶调，这便是三原色的CMY颜色空间。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192528226.png" /></p>
-]]></content>
-      <categories>
-        <category>Image Processing</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OpenCV图像处理:数字图像的必会知识</title>
     <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E5%BF%85%E4%BC%9A%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<p><img
@@ -1173,92 +920,256 @@ Jupyter：<code>pip install jupyter</code></p>
       </tags>
   </entry>
   <entry>
-    <title>PyTorch 张量的拼接、切分、索引</title>
-    <url>/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<h3 id="一张量拼接与切分">一、张量拼接与切分</h3>
-<h4 id="torch.cat">1.1 torch.cat</h4>
-<p>功能：将张量按维度dim 进行拼接</p>
+    <title>Opencv 图像处理：图像基础操作与灰度转化</title>
+    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%81%B0%E5%BA%A6%E8%BD%AC%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="图像属性">图像属性</h2>
+<h3 id="图像格式">1.图像格式</h3>
+<p>图像压缩比:
+通过编码器压缩后的图象数字大小和原图象数字大小的压缩比。</p>
 <ul>
-<li><p><strong>tensors</strong> : 张量序列</p></li>
-<li><p><strong>dim</strong>： 要拼接的维度</p></li>
+<li>BMP 格式
+Windows系统下的<strong>标准位图格式</strong>，未经过压缩，一般图像文件会比较大。在很多软件中被广泛应用。</li>
+<li>JPEG 格式
+也是应用最广泛的图片格式之一，它采用一种特殊的<strong>有损压缩算法</strong>，达到较大的压缩比可达到
+2:1 甚至 40:1，互联网上最广泛使用的格式</li>
+<li>GIF 格式
+不仅可以是一张静止的图片，也可以是动画，并且支持透明背景图像，适用于多种操作系统，
+体型很小，网上很多小动画都是 GIF
+格式。但是其<strong>色域不太广</strong>只支持 256 种颜色。</li>
+<li>PNG 格式 与JPG 格式类似，<strong>压缩比高于 GIF</strong>
+（因此png损失较小，质量更好），支持图像透明支持 Alpha
+通道调节图像的透明度。</li>
+<li>TIFF 格式 它的特点是图像格式复杂、<strong>存贮信息多</strong>。在
+Mac 中广泛使用， 非常有利于原稿的复制。很多地方将 TIFF
+格式用于印刷。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">   t_0 = torch.cat([t, t], dim=<span class="number">0</span>)</span><br><span class="line">   t_1 = torch.cat([t, t, t], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;t_0:&#123;&#125; shape:&#123;&#125;\nt_1:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_0, t_0.shape, t_1, t_1.shape))</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_0:tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]) shape:torch.Size([4, 3])</span><br><span class="line">t_1:tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1.],</span><br><span class="line">        [1., 1., 1., 1., 1., 1., 1., 1., 1.]]) shape:torch.Size([2, 9])</span><br></pre></td></tr></table></figure>
-<p>（2，3） -&gt; （2，6）</p>
-<p>这里的dim维度与axis相同，0代表列，1代表行。</p>
-<h4 id="torch.stack">1.2 torch.stack</h4>
-<p>功能：在新创建的维度 dim 上进行拼接（会拓宽原有的张量维度）</p>
+<h3 id="图像尺寸">2.图像尺寸</h3>
+<h4 id="图像尺寸-1">图像尺寸</h4>
 <ul>
-<li><strong>tensors</strong>：张量序列</li>
-<li><strong>dim</strong>：要拼接的维度</li>
+<li>图像尺寸的长度与宽度是以像素为单位的。</li>
 </ul>
+<h4 id="像素">像素</h4>
+<ul>
+<li>像素是数码影像最基本的单位，每个像素就是一个小点，而不同颜色的点聚集起来就变成一幅照片。</li>
+<li>灰度像素点数值范围在 0 到 255 之间， 0 表示黑、255
+表示白，其它值表示处于黑白之间；</li>
+<li>黑白照片只需一个通道表示即可。</li>
+<li>彩色图用红、绿、蓝三通道的二维矩阵来表示。每个数值也是在 0 到 255
+之间， 0 表示相应的基色，而 255
+则代表相应的基色在该像素中取得最大值。</li>
+</ul>
+<h4 id="读入图像cv2.imread">读入图像cv2.imread()</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imread()</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>第一参数为待读路径；</p>
+<p>第二个参数为读取方式，常见读取方式有三种</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006220254589.png" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">t_stack = torch.stack([t, t, t], dim=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nt_stack:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_stack, t_stack.shape))</span><br></pre></td></tr></table></figure>
-<p>可见，它在新的维度上进行了拼接。</p>
-<p>参数[t, t, t]的意思就是在第n个维度上拼接成这个样子。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_stack:tensor([[[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]],</span><br><span class="line"></span><br><span class="line">        [[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]]]) shape:torch.Size([2, 3, 3])</span><br><span class="line"># 在第二维度上进行了拼接</span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="torch.chunk">1.3 torch.chunk</h4>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023163925170.png" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv的python版本依赖库cv2</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用opencv中imread函数读取图片，</span></span><br><span class="line"><span class="comment">#0代表灰度图形式打开，1代表彩色形式打开</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>,<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(img.shape)</span><br><span class="line"><span class="comment">#print(img) 打印图像的数组</span></span><br></pre></td></tr></table></figure>
+<h4 id="显示图像cv2.imshow">显示图像cv2.imshow()</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imshow()</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p><strong>参数1 ：窗口的名字</strong></p>
+<p><strong>参数2 ：图像数据名/变量名</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv依赖库</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取图像，读取方式为彩色读取</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;photo&#x27;</span>,img)</span><br><span class="line">k = cv2.waitKey(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">if</span> k == <span class="number">27</span>:   <span class="comment"># 输入ESC键退出</span></span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line"><span class="keyword">elif</span> k == <span class="built_in">ord</span>(<span class="string">&#x27;s&#x27;</span>): <span class="comment"># 输入S键保存图片并退出</span></span><br><span class="line">    cv2.imwrite(<span class="string">&#x27;split_.jpg&#x27;</span>,img)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h5 id="也可matplotlib导入图像">也可matplotlib导入图像</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方包</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用Matplotlib导入图像</span></span><br><span class="line">img = cv2.imread(<span class="string">&#x27;test_image.png&#x27;</span>,<span class="number">0</span>)</span><br><span class="line">plt.imshow(img, cmap = <span class="string">&#x27;gray&#x27;</span>, interpolation = <span class="string">&#x27;bicubic&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#隐藏X、Y轴上的刻度</span></span><br><span class="line"><span class="comment">#plt.xticks([]), plt.yticks([])</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006222011511.png" /></p>
-<p>功能：将张量按维度 dim 进行平均切分</p>
-<p>返回值：张量列表</p>
-<p>注意事项：若不能整除，最后一份张量小于其他张量。</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023180803623.png" /></p>
+<h4 id="键盘绑定cv2.waitkey0">键盘绑定cv2.waitKey(0)</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#cv2.waitKey()是一个键盘绑定函数</span></span><br><span class="line"><span class="comment">#若为数字则是单位毫秒，若为0代表等待键盘输入。</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4
+id="删除窗口cv2.destrovallwindows">删除窗口cv2.destrovAllWindows()</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cv2.destroyAllWindows() 删除窗口</span></span><br><span class="line"><span class="comment"># 默认值为所有窗口，参数一为待删除窗口名。</span></span><br><span class="line">cv2.destrovAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="保存图像cv2.imwrite">保存图像cv2.imwrite()</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.imwrite(&#x27;split_.jpg&#x27;,img)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>参数1 ：图像名（包括格式）</p>
+<p>参数2 ：待写入的图像数据变量名。</p>
+<h3 id="图像分辨率">3.图像分辨率</h3>
 <ul>
-<li>input : 要切分的张量</li>
-<li>chunks 要切分的份数</li>
-<li>dim 要切分的维度</li>
-</ul>
-<p>code</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cut into 3</span></span><br><span class="line">a = torch.ones((<span class="number">2</span>, <span class="number">7</span>))  <span class="comment"># 7</span></span><br><span class="line">list_of_tensors = torch.chunk(a, dim=<span class="number">1</span>, chunks=<span class="number">3</span>)   <span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
-<p>可知，切分是7/3向上取整，每份是3，最后剩下的维度直接输出即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
-<h4 id="torch.split">1.4 torch.split</h4>
-<p><code>torch.split(Tensor, split_size_or_sections, dim)</code></p>
-<p>功能：将张量按维度 dim 进行切分</p>
-<p>返回值：张量列表</p>
+<li>分辨率：
+单位长度中所表达或截取的像素数目。每英寸图像内的像素点数，单位是像素每英寸
+(PPI） 。图像分辨率越高，像素的点密度越高，图像越清晰。</li>
+<li>通道数： 图像的位深度，是指描述图像中每个pixel
+数值所占的二进制位数。 位深度
+越大则图像能表示的颜色数就越多，色彩越丰富逼真。
 <ul>
-<li>tensor : 要切分的张量</li>
-<li>split_size_or_sections 为 int 时，表示 每一份的长度；为 list 时，按
-list 元素切分</li>
-<li>dim 要切分的维度</li>
+<li>8 位：单通道图像，也就是灰度图，灰度值范围2**8=256</li>
+<li>24 位：三通道 3*8=24</li>
+<li>32 位：三通道加透明度 Alpha 通道</li>
+</ul></li>
 </ul>
-<p>code：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">list_of_tensors = torch.split(t, [<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>], dim=<span class="number">1</span>)  <span class="comment"># [2 , 1, 2]</span></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
-<p>是按照指定长度list进行切分的。注意list中长度总和必须为原张量在改维度的大小，不然会报错。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
-<h3 id="二张量索引">二、张量索引</h3>
-<h4 id="torch.index_select">2.1 torch.index_select</h4>
-<p><code>torch.index_select(input, dim, index, out=None)</code></p>
-<p>功能：在维度dim 上，按 index 索引数据</p>
-<p>返回值：依index 索引数据拼接的张量</p>
+<h4 id="灰度转化">灰度转化</h4>
 <ul>
-<li>input : 要索引的张量</li>
-<li>dim 要索引的维度</li>
-<li>index 要索引数据的序号</li>
-</ul>
-<p>code：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">idx = torch.tensor([<span class="number">0</span>, <span class="number">2</span>], dtype=torch.long)    <span class="comment"># if float will report an error</span></span><br><span class="line">t_select = torch.index_select(t, dim=<span class="number">0</span>, index=idx)</span><br><span class="line"><span class="built_in">print</span>(idx)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nt_select:\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t, t_select))</span><br></pre></td></tr></table></figure>
-<p>可见idx是一个存储序号的张量，而torch.index_select通过该张量索引原tensor并且拼接返回。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([0, 2])</span><br><span class="line">t:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [2, 5, 8]])</span><br></pre></td></tr></table></figure>
-<h4 id="torch.masked_select">2.2 torch.masked_select</h4>
-<p>功能：按mask 中的 True 进行索引</p>
-<p>返回值：一维张量(无法确定true的个数，因此也就无法显示原来的形状，因此这里返回一维张量)</p>
+<li><p>目的</p>
+<p>将三通道图像（彩色图）转化为单通道图像（灰度图）。</p></li>
+<li><p>公式</p>
+<p>3----&gt;1: GRAY = B * 0.114 + G * 0.587 + R * 0.299</p>
+<p>1----&gt;3: R = G = B = GRAY; A = 0</p></li>
+<li><p>函数：</p>
+<p>cv2.cvtColor(img，flag)</p></li>
+<li><p>参数说明</p>
+<p>参数1 ：待转化图像</p>
+<p>参数2 ：flag 就是转换模式</p>
 <ul>
-<li>input : 要索引的张量</li>
-<li>mask 与 input 同形状的布尔类型张量</li>
+<li>cv2.COLOR_BGR2GRAY ：彩色转灰度</li>
+<li>cv2.COLOR_GRAY2BGR：单通道转三通道</li>
+</ul></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">mask = t.le(<span class="number">5</span>)  <span class="comment"># ge is mean greater than or equal/   gt: greater than  le  lt</span></span><br><span class="line">t_select = torch.masked_select(t, mask)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select:\n&#123;&#125; &quot;</span>.<span class="built_in">format</span>(t, mask, t_select))</span><br></pre></td></tr></table></figure>
-<p>通过掩码来索引。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">mask:</span><br><span class="line">tensor([[ True,  True,  True],</span><br><span class="line">        [ True, False,  True],</span><br><span class="line">        [ True,  True, False]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([4, 5, 0, 5, 1, 2, 5]) </span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="comment">#读入原始图像，使用cv2.IMREAD_UNCHANGED</span></span><br><span class="line">img = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>,cv2.IMREAD_UNCHANGED)</span><br><span class="line"><span class="comment">#查看打印图像的shape</span></span><br><span class="line">shape = img.shape</span><br><span class="line"><span class="built_in">print</span>(shape)</span><br><span class="line"><span class="comment">#判断通道数是否为3通道或4通道</span></span><br><span class="line"><span class="keyword">if</span> shape[<span class="number">2</span>] == <span class="number">3</span> <span class="keyword">or</span> shape[<span class="number">2</span>] == <span class="number">4</span> :</span><br><span class="line">    <span class="comment">#将彩色图转化为单通道图</span></span><br><span class="line">    img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&quot;gray_image&quot;</span>,img_gray)</span><br><span class="line">cv2.imshow(<span class="string">&quot;image&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">1000</span>) <span class="comment"># 等待1000毫秒也就是1秒</span></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="rgb与-bgr-转化">RGB与 BGR 转化</h4>
+<p>Opencv读取图像是以BGR读取的，但是许多包是RGB读取，因此有些情况下需要转化。</p>
+<p>转化的方法</p>
+<p>opencv自带的方法转</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br></pre></td></tr></table></figure>
+<p>numpy转</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img[:,:,::-1] #列左右翻转</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">img = cv2.imread(<span class="string">&quot;test2.png&quot;</span>, cv2.IMREAD_COLOR)</span><br><span class="line">cv2.imshow(<span class="string">&quot;Opencv_win&quot;</span>, img)</span><br><span class="line"><span class="comment"># 用opencv自带的方法转</span></span><br><span class="line">img_cv_method = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line"><span class="comment"># 用numpy转，img[:,:,::-1]列左右翻转</span></span><br><span class="line">img_numpy_method = img[:,:,::-<span class="number">1</span>] <span class="comment"># 本来是BGR 现在逆序，变成RGB</span></span><br><span class="line"><span class="comment"># 用matplot画图</span></span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)<span class="comment"># 划分一个1行3列的空间</span></span><br><span class="line">plt.imshow(img_cv_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">plt.imshow(img_numpy_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.savefig(<span class="string">&quot;./plt.png&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">cv2.imwrite(<span class="string">&quot;opencv.png&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023181757142.png" /></p>
 ]]></content>
       <categories>
-        <category>Frame</category>
-        <category>PyTorch</category>
+        <category>Image Processing</category>
       </categories>
       <tags>
-        <tag>PyTorch</tag>
+        <tag>OpenCV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Opencv 图像处理：图像通道、直方图与色彩空间</title>
+    <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E9%80%9A%E9%81%93%E3%80%81%E7%9B%B4%E6%96%B9%E5%9B%BE%E4%B8%8E%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<h3 id="图像通道">1.图像通道</h3>
+<h4 id="通道分离">通道分离</h4>
+<p>目的</p>
+<p>将彩色图像，分成b 、g 、r 3个单通道图像。方便我们对 BGR
+三个通道分别进行操作。</p>
+<p>函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.split(img)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1 ：待分离通道的图像</p>
+<span id="more"></span>
+<p>例程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#三通道分别显示</span></span><br><span class="line">cv2.imshow(<span class="string">&#x27;blue&#x27;</span>,b)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;green&#x27;</span>,g)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;red&#x27;</span>,r)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>分离后的每个通道实际上还是一个灰度图，输出之后每个通道仍是灰色的。如果想要查看每个颜色的图，应该进行合并。这时需要生成一个规模相同的零矩阵。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment"># 无符号的8位，即0-255</span></span><br></pre></td></tr></table></figure>
+<p>其中print(image.shape[:2])取出的就是该照片的长宽(459, 571)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#导入opencv模块</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2            </span><br><span class="line"> </span><br><span class="line">image=cv2.imread(<span class="string">&quot;split.jpg&quot;</span>)<span class="comment">#读取要处理的图片</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;src&quot;</span>,image)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">B,G,R = cv2.split(image)<span class="comment">#分离出图片的B，R，G颜色通道</span></span><br><span class="line"></span><br><span class="line">zeros = np.zeros(image.shape[:<span class="number">2</span>],dtype=<span class="string">&quot;uint8&quot;</span>)<span class="comment">#创建与image相同大小的零矩阵</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;BLUE&quot;</span>,cv2.merge([B,zeros,zeros]))<span class="comment">#显示 （B，0，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;GREEN&quot;</span>,cv2.merge([zeros,G,zeros]))<span class="comment">#显示（0，G，0）图像</span></span><br><span class="line">cv2.imshow(<span class="string">&quot;RED&quot;</span>,cv2.merge([zeros,zeros,R]))<span class="comment">#显示（0，0，R）图像</span></span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="通道合并">通道合并</h4>
+<p>目的</p>
+<p>通道分离为B,G,R
+后，对单独通道进行修改，最后将修改后的三通道合并为彩色图像。</p>
+<p>函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.merge(<span class="type">List</span>)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1 ：待合并的通道数，<strong>以 list 的形式输入</strong></p>
+<p>例程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载opencv</span></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">src=cv2.imread(<span class="string">&#x27;split.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用通道分离</span></span><br><span class="line">b,g,r=cv2.split(src)</span><br><span class="line"><span class="comment">#将Blue通道数值修改为0</span></span><br><span class="line">g[:] = <span class="number">0</span></span><br><span class="line"><span class="comment">#合并修改后的通道</span></span><br><span class="line">img_merge=cv2.merge([b,g,r])</span><br><span class="line">cv2.imshow(<span class="string">&#x27;merge&#x27;</span>,img_merge)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h3 id="图像直方图">2.图像直方图</h3>
+<p>图像直方图：</p>
+<p>图像直方图（Image
+Histogram）是用以表示数字图像中亮度分布的直方图，<strong>标绘了图像中每个亮度值的像素数</strong>。这种直方图中，横坐标的左侧为纯黑、较暗
+的区域，而右侧为较亮、纯白的区域。</p>
+<p>图像直方图的意义：</p>
+<ul>
+<li><p>直方图是图像中像素强度分布的图形表达方式</p></li>
+<li><p>它统计了每一个强度值所具有的像素个数</p></li>
+<li><p>CV 领域常借助图像直方图来实现图像的二值化</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185405654.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185411039.png" /></p>
+<h4 id="直方图绘制">直方图绘制</h4>
+<p>目的</p>
+<p>直方图是对图像像素的统计分布，它统计了每个像素（0 到 255
+）的数量。</p>
+<p>函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.calcHist(images, channels, mask, histSize, ranges)</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>参数1：待统计图像，需用中括号括起来</p>
+<p>参数2：待计算的通道</p>
+<p>参数3：Mask，这里没有使用，所以用 None。</p>
+<p>参数4：histSize ，表示直方图分成多少份</p>
+<p>参数5：是表示直方图中各个像素的值 ，[0.0,
+256.0]表示直方图能表示像素值从 0.0 到 256
+的像素。直方图是对图像像素的统计分布，它统计了每个像素（ 0 到
+255）的数量。</p>
+<h5 id="方法一cv库">方法一：cv库</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">img = cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">plt.imshow(img_gray, cmap=plt.cm.gray)</span><br><span class="line">hist = cv2.calcHist([img], [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line">plt.title(<span class="string">&quot;Grayscale Histogram&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;# of Pixels&quot;</span>)</span><br><span class="line">plt.plot(hist)</span><br><span class="line">plt.xlim([<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023185908905.png" /></p>
+<h5 id="方法二plt库">方法二：plt库</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#加载第三方库</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line"><span class="comment"># girl.ravel()函数是将图像的三位数组降到一维上去，</span></span><br><span class="line"><span class="comment">#256为bins的数目,[0, 256]为范围</span></span><br><span class="line">plt.hist(girl.ravel(), <span class="number">256</span>, [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192252647.png" /></p>
+<h4 id="三通道直方图绘制">三通道直方图绘制</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">girl = cv2.imread(<span class="string">&quot;girl.jpg&quot;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&quot;girl&quot;</span>, girl)</span><br><span class="line">color = (<span class="string">&quot;b&quot;</span>, <span class="string">&quot;g&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="comment">#使用for循环遍历color列表，enumerate枚举返回索引和值</span></span><br><span class="line"><span class="keyword">for</span> i, color <span class="keyword">in</span> <span class="built_in">enumerate</span>(color):</span><br><span class="line">    hist = cv2.calcHist([girl], [i], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    plt.title(<span class="string">&quot;girl&quot;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;Bins&quot;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;num of perlex&quot;</span>)</span><br><span class="line">    plt.plot(hist, color = color)</span><br><span class="line">    plt.xlim([<span class="number">0</span>, <span class="number">260</span>])</span><br><span class="line">plt.show()</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023190557714.png" /></p>
+<h3 id="图像色彩空间">3.图像色彩空间</h3>
+<p>概念：</p>
+<p>颜色空间也称彩色模型(又称彩色空间或彩色系统）它的用途是在某些标准下用通常可接受的方式对彩色加以说明。</p>
+<p>常见的颜色空间：</p>
+<p>RGB 、 HSV 、 HSI 、 CMYK</p>
+<h4 id="rgb-颜色空间">RGB 颜色空间</h4>
+<p>主要用于计算机图形学中，依据人眼识别的颜色创建，图像中每一个像素都具有
+R,G,B 三个颜色分量组成，这三个分量大小均为 [
+0，255]。通常表示某个颜色的时候，写成一个 3 维向量的形式（ 110,150,130
+）。</p>
+<p>颜色模型：</p>
+<ul>
+<li>原点对应的颜色为黑色，它的三个分量值都为 0</li>
+<li>距离原点最远的顶点对应的颜色为白色，三个分量值都为1</li>
+<li>从黑色到白色的灰度值分布在这两个点的连线上，该虚线称为灰度线；</li>
+<li>立方体的其余各点对应不同的颜色，即三原色红、绿、蓝及其混合色黄、品红、
+青色；</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023191833189.png"
+alt="image-20221023191833189" />
+<figcaption aria-hidden="true">image-20221023191833189</figcaption>
+</figure>
+<p><strong>对角线上的值都是一样的，我们称它为灰度线。</strong></p>
+<h4 id="hsv-颜色空间">HSV 颜色空间</h4>
+<p>HSV(Hue, Saturation, Value) 是根据颜色的直观特性由 A. R. Smith 在
+1978 年创建的一种颜色空间，这个模型中颜色的参数分别是：色调（ H
+），饱和度 （S），明度（V）。</p>
+<p>颜色模型：</p>
+<ul>
+<li>H 通道 Hue ，色调色彩，这个通道代表颜色。</li>
+<li>S 通道 Saturation
+，饱和度，取值范围0%~100%，值越大，颜色越饱和。</li>
+<li>V 通道 Value ，明暗，数值越高，越明亮， 0%（黑）到 100%（白）。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192035876.png" /></p>
+<h5 id="rgb空间与hsv-转化">RGB空间与HSV 转化</h5>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="comment">#色彩空间转换函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">color_space_demo</span>(<span class="params">image</span>):</span><br><span class="line">    gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)</span><br><span class="line">    cv2.imshow(<span class="string">&#x27;gray&#x27;</span>,gray)</span><br><span class="line">    hsv=cv2.cvtColor(image,cv2.COLOR_BGR2HSV)</span><br><span class="line">    <span class="comment">#print(hsv)</span></span><br><span class="line">    cv2.imshow(<span class="string">&#x27;hsv&#x27;</span>,hsv)</span><br><span class="line"><span class="comment">#读入一张彩色图</span></span><br><span class="line">src=cv2.imread(<span class="string">&#x27;girl.jpg&#x27;</span>)</span><br><span class="line">cv2.imshow(<span class="string">&#x27;before&#x27;</span>,src)</span><br><span class="line"><span class="comment">#调用color_space_demo函数进行色彩空间转化</span></span><br><span class="line">color_space_demo(src)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<h4 id="hsi-颜色空间概念">HSI 颜色空间概念</h4>
+<p>HSI 模型是美国色彩学家孟塞尔 (H.A.Munseu）于 1915
+年提出的，它反映了人的视觉系统感知彩色的方式，以色调、饱和度和强度三种基本特征量来感知颜色。</p>
+<p>模型优点</p>
+<ul>
+<li>在处理彩色图像时，可仅对I分量进行处理，结果不改变原图像中的彩色种类；</li>
+<li>HSI
+模型完全反映了人感知颜色的基本属性，与人感知颜色的结果一一对应。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192418775.png" /></p>
+<h4 id="cmyk-颜色空间">CMYK 颜色空间</h4>
+<p>CMYK(Cyan,Magenta,Yellow,blacK)颜色空间应用于印刷工业,印刷业通过青(C)、品(M)、黄(Y)三原色油墨的不同网点面积率的叠印来表现丰富多彩的颜色和阶调，这便是三原色的CMY颜色空间。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023192528226.png" /></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>OpenCV</tag>
       </tags>
   </entry>
   <entry>
@@ -1378,6 +1289,95 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007111421313.png" /></p>
 <p><img
 src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007111425618.png" /></p>
+]]></content>
+      <categories>
+        <category>Frame</category>
+        <category>PyTorch</category>
+      </categories>
+      <tags>
+        <tag>PyTorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyTorch 张量的拼接、切分、索引</title>
+    <url>/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<h3 id="一张量拼接与切分">一、张量拼接与切分</h3>
+<h4 id="torch.cat">1.1 torch.cat</h4>
+<p>功能：将张量按维度dim 进行拼接</p>
+<ul>
+<li><p><strong>tensors</strong> : 张量序列</p></li>
+<li><p><strong>dim</strong>： 要拼接的维度</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">   t_0 = torch.cat([t, t], dim=<span class="number">0</span>)</span><br><span class="line">   t_1 = torch.cat([t, t, t], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;t_0:&#123;&#125; shape:&#123;&#125;\nt_1:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_0, t_0.shape, t_1, t_1.shape))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_0:tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]) shape:torch.Size([4, 3])</span><br><span class="line">t_1:tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1.],</span><br><span class="line">        [1., 1., 1., 1., 1., 1., 1., 1., 1.]]) shape:torch.Size([2, 9])</span><br></pre></td></tr></table></figure>
+<p>（2，3） -&gt; （2，6）</p>
+<p>这里的dim维度与axis相同，0代表列，1代表行。</p>
+<h4 id="torch.stack">1.2 torch.stack</h4>
+<p>功能：在新创建的维度 dim 上进行拼接（会拓宽原有的张量维度）</p>
+<ul>
+<li><strong>tensors</strong>：张量序列</li>
+<li><strong>dim</strong>：要拼接的维度</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006220254589.png" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">t_stack = torch.stack([t, t, t], dim=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nt_stack:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_stack, t_stack.shape))</span><br></pre></td></tr></table></figure>
+<p>可见，它在新的维度上进行了拼接。</p>
+<p>参数[t, t, t]的意思就是在第n个维度上拼接成这个样子。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_stack:tensor([[[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]],</span><br><span class="line"></span><br><span class="line">        [[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]]]) shape:torch.Size([2, 3, 3])</span><br><span class="line"># 在第二维度上进行了拼接</span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="torch.chunk">1.3 torch.chunk</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006222011511.png" /></p>
+<p>功能：将张量按维度 dim 进行平均切分</p>
+<p>返回值：张量列表</p>
+<p>注意事项：若不能整除，最后一份张量小于其他张量。</p>
+<ul>
+<li>input : 要切分的张量</li>
+<li>chunks 要切分的份数</li>
+<li>dim 要切分的维度</li>
+</ul>
+<p>code</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cut into 3</span></span><br><span class="line">a = torch.ones((<span class="number">2</span>, <span class="number">7</span>))  <span class="comment"># 7</span></span><br><span class="line">list_of_tensors = torch.chunk(a, dim=<span class="number">1</span>, chunks=<span class="number">3</span>)   <span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
+<p>可知，切分是7/3向上取整，每份是3，最后剩下的维度直接输出即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
+<h4 id="torch.split">1.4 torch.split</h4>
+<p><code>torch.split(Tensor, split_size_or_sections, dim)</code></p>
+<p>功能：将张量按维度 dim 进行切分</p>
+<p>返回值：张量列表</p>
+<ul>
+<li>tensor : 要切分的张量</li>
+<li>split_size_or_sections 为 int 时，表示 每一份的长度；为 list 时，按
+list 元素切分</li>
+<li>dim 要切分的维度</li>
+</ul>
+<p>code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">list_of_tensors = torch.split(t, [<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>], dim=<span class="number">1</span>)  <span class="comment"># [2 , 1, 2]</span></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
+<p>是按照指定长度list进行切分的。注意list中长度总和必须为原张量在改维度的大小，不然会报错。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
+<h3 id="二张量索引">二、张量索引</h3>
+<h4 id="torch.index_select">2.1 torch.index_select</h4>
+<p><code>torch.index_select(input, dim, index, out=None)</code></p>
+<p>功能：在维度dim 上，按 index 索引数据</p>
+<p>返回值：依index 索引数据拼接的张量</p>
+<ul>
+<li>input : 要索引的张量</li>
+<li>dim 要索引的维度</li>
+<li>index 要索引数据的序号</li>
+</ul>
+<p>code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">idx = torch.tensor([<span class="number">0</span>, <span class="number">2</span>], dtype=torch.long)    <span class="comment"># if float will report an error</span></span><br><span class="line">t_select = torch.index_select(t, dim=<span class="number">0</span>, index=idx)</span><br><span class="line"><span class="built_in">print</span>(idx)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nt_select:\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t, t_select))</span><br></pre></td></tr></table></figure>
+<p>可见idx是一个存储序号的张量，而torch.index_select通过该张量索引原tensor并且拼接返回。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([0, 2])</span><br><span class="line">t:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [2, 5, 8]])</span><br></pre></td></tr></table></figure>
+<h4 id="torch.masked_select">2.2 torch.masked_select</h4>
+<p>功能：按mask 中的 True 进行索引</p>
+<p>返回值：一维张量(无法确定true的个数，因此也就无法显示原来的形状，因此这里返回一维张量)</p>
+<ul>
+<li>input : 要索引的张量</li>
+<li>mask 与 input 同形状的布尔类型张量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">mask = t.le(<span class="number">5</span>)  <span class="comment"># ge is mean greater than or equal/   gt: greater than  le  lt</span></span><br><span class="line">t_select = torch.masked_select(t, mask)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select:\n&#123;&#125; &quot;</span>.<span class="built_in">format</span>(t, mask, t_select))</span><br></pre></td></tr></table></figure>
+<p>通过掩码来索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">mask:</span><br><span class="line">tensor([[ True,  True,  True],</span><br><span class="line">        [ True, False,  True],</span><br><span class="line">        [ True,  True, False]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([4, 5, 0, 5, 1, 2, 5]) </span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Frame</category>
@@ -1747,95 +1747,6 @@ alt="image-20221004172743410" />
       </tags>
   </entry>
   <entry>
-    <title>PyTorch 计算图与动态图机制</title>
-    <url>/Frame/PyTorch/PyTorch%20%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="计算图">计算图</h2>
-<p>计算图是用来描述运算的有向无环图</p>
-<p>计算图有两个主要元素：</p>
-<ul>
-<li><p>结点 Node</p></li>
-<li><p>边 Edge</p></li>
-</ul>
-<p>结点表示数据：如向量，矩阵，张量</p>
-<p>边表示运算：如加减乘除卷积等</p>
-<p>用计算图表示：y = (x+ w) * (w+1) a = x + w b = w + 1 y = a * b</p>
-<span id="more"></span>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007140501247.png"
-alt="image-20221007140501247" />
-<figcaption aria-hidden="true">image-20221007140501247</figcaption>
-</figure>
-<p>计算图与梯度求导</p>
-<p>y = (x+ w) * (w+1) a = x + w b = w + 1 y = a * b</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007142316040.png"
-alt="image-20221007142316040" />
-<figcaption aria-hidden="true">image-20221007142316040</figcaption>
-</figure>
-<p><span class="math inline">\(\begin{aligned} \frac{\partial
-y}{\partial w} &amp;=\frac{\partial y}{\partial a} \frac{\partial
-a}{\partial w}+\frac{\partial y}{\partial b} \frac{\partial b}{\partial
-w} \\ &amp;=b * 1+a * 1 \\ &amp;=b+a \\ &amp;=(w+1)+(x+w) \\ &amp;=2 *
-w+x+1 \\ &amp;=2 * 1+2+1=5 \end{aligned}\)</span></p>
-<p>可见，对于变量w的求导过程就是寻找它在计算图中的所有路径的求导之和。</p>
-<p>code：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">w = torch.tensor([<span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = torch.tensor([<span class="number">2.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">a = torch.add(w, x)     <span class="comment"># retain_grad()</span></span><br><span class="line">b = torch.add(w, <span class="number">1</span>)</span><br><span class="line">y = torch.mul(a, b)</span><br><span class="line"></span><br><span class="line">y.backward()</span><br><span class="line"><span class="built_in">print</span>(w.grad)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([5.])</span><br></pre></td></tr></table></figure>
-<p>计算图与梯度求导 y = (x+ w) * (w+1)</p>
-<p>叶子结点 ：用户创建的结点称为叶子结点，如 X 与 W</p>
-<p>is_leaf: 指示张量是否为叶子结点</p>
-<blockquote>
-<p>叶子节点的作用是标志存储叶子节点的梯度，而清除在反向传播过程中的变量的梯度，以达到节省内存的目的。</p>
-<p>当然，如果想要保存过程中变量的梯度值，可以采用retain_grad()</p>
-</blockquote>
-<p>grad_fn: 记录创建该张量时所用的方法（函数）</p>
-<ul>
-<li>y.grad_fn= &lt;MulBackward0&gt;</li>
-<li>a.grad_fn= &lt;AddBackward0&gt;</li>
-<li>b.grad_fn= &lt;AddBackward0&gt;</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007142938198.png"
-alt="image-20221007142938198" />
-<figcaption aria-hidden="true">image-20221007142938198</figcaption>
-</figure>
-<h2 id="pytorch的动态图机制">PyTorch的动态图机制</h2>
-<p>根据计算图搭建方式，可将计算图分为<strong>动态图</strong>和<strong>静态图</strong></p>
-<ul>
-<li><p>动态图</p>
-<p>运算与搭建同时进行</p>
-<p>灵活 易调节</p>
-<p>例如动态图 PyTorch：</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007144304367.png"
-alt="image-20221007144304367" />
-<figcaption aria-hidden="true">image-20221007144304367</figcaption>
-</figure></li>
-<li><p>静态</p>
-<p>先搭建图， 后运算</p>
-<p>高效 不灵活。</p>
-<p>静态图 TensorFlow</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007144319338.png"
-alt="image-20221007144319338" />
-<figcaption aria-hidden="true">image-20221007144319338</figcaption>
-</figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Frame</category>
-        <category>PyTorch</category>
-      </categories>
-      <tags>
-        <tag>PyTorch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PyTorch：了解Tensor(张量)及其创建方法</title>
     <url>/Frame/PyTorch/PyTorch%EF%BC%9A%E4%BA%86%E8%A7%A3Tensor(%E5%BC%A0%E9%87%8F)%E5%8F%8A%E5%85%B6%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h2 id="认识张量">认识张量</h2>
@@ -2032,6 +1943,95 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
       </tags>
   </entry>
   <entry>
+    <title>PyTorch 计算图与动态图机制</title>
+    <url>/Frame/PyTorch/PyTorch%20%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="计算图">计算图</h2>
+<p>计算图是用来描述运算的有向无环图</p>
+<p>计算图有两个主要元素：</p>
+<ul>
+<li><p>结点 Node</p></li>
+<li><p>边 Edge</p></li>
+</ul>
+<p>结点表示数据：如向量，矩阵，张量</p>
+<p>边表示运算：如加减乘除卷积等</p>
+<p>用计算图表示：y = (x+ w) * (w+1) a = x + w b = w + 1 y = a * b</p>
+<span id="more"></span>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007140501247.png"
+alt="image-20221007140501247" />
+<figcaption aria-hidden="true">image-20221007140501247</figcaption>
+</figure>
+<p>计算图与梯度求导</p>
+<p>y = (x+ w) * (w+1) a = x + w b = w + 1 y = a * b</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007142316040.png"
+alt="image-20221007142316040" />
+<figcaption aria-hidden="true">image-20221007142316040</figcaption>
+</figure>
+<p><span class="math inline">\(\begin{aligned} \frac{\partial
+y}{\partial w} &amp;=\frac{\partial y}{\partial a} \frac{\partial
+a}{\partial w}+\frac{\partial y}{\partial b} \frac{\partial b}{\partial
+w} \\ &amp;=b * 1+a * 1 \\ &amp;=b+a \\ &amp;=(w+1)+(x+w) \\ &amp;=2 *
+w+x+1 \\ &amp;=2 * 1+2+1=5 \end{aligned}\)</span></p>
+<p>可见，对于变量w的求导过程就是寻找它在计算图中的所有路径的求导之和。</p>
+<p>code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">w = torch.tensor([<span class="number">1.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">x = torch.tensor([<span class="number">2.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">a = torch.add(w, x)     <span class="comment"># retain_grad()</span></span><br><span class="line">b = torch.add(w, <span class="number">1</span>)</span><br><span class="line">y = torch.mul(a, b)</span><br><span class="line"></span><br><span class="line">y.backward()</span><br><span class="line"><span class="built_in">print</span>(w.grad)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([5.])</span><br></pre></td></tr></table></figure>
+<p>计算图与梯度求导 y = (x+ w) * (w+1)</p>
+<p>叶子结点 ：用户创建的结点称为叶子结点，如 X 与 W</p>
+<p>is_leaf: 指示张量是否为叶子结点</p>
+<blockquote>
+<p>叶子节点的作用是标志存储叶子节点的梯度，而清除在反向传播过程中的变量的梯度，以达到节省内存的目的。</p>
+<p>当然，如果想要保存过程中变量的梯度值，可以采用retain_grad()</p>
+</blockquote>
+<p>grad_fn: 记录创建该张量时所用的方法（函数）</p>
+<ul>
+<li>y.grad_fn= &lt;MulBackward0&gt;</li>
+<li>a.grad_fn= &lt;AddBackward0&gt;</li>
+<li>b.grad_fn= &lt;AddBackward0&gt;</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007142938198.png"
+alt="image-20221007142938198" />
+<figcaption aria-hidden="true">image-20221007142938198</figcaption>
+</figure>
+<h2 id="pytorch的动态图机制">PyTorch的动态图机制</h2>
+<p>根据计算图搭建方式，可将计算图分为<strong>动态图</strong>和<strong>静态图</strong></p>
+<ul>
+<li><p>动态图</p>
+<p>运算与搭建同时进行</p>
+<p>灵活 易调节</p>
+<p>例如动态图 PyTorch：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007144304367.png"
+alt="image-20221007144304367" />
+<figcaption aria-hidden="true">image-20221007144304367</figcaption>
+</figure></li>
+<li><p>静态</p>
+<p>先搭建图， 后运算</p>
+<p>高效 不灵活。</p>
+<p>静态图 TensorFlow</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221007144319338.png"
+alt="image-20221007144319338" />
+<figcaption aria-hidden="true">image-20221007144319338</figcaption>
+</figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Frame</category>
+        <category>PyTorch</category>
+      </categories>
+      <tags>
+        <tag>PyTorch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
     <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
     <content><![CDATA[<h4
@@ -2070,6 +2070,68 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>位运算</title>
+    <url>/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<h1 id="位运算">位运算</h1>
+<p>位运算常用操作：</p>
+<h2
+id="查看整数n的二进制表示中第k位是几">查看整数n的二进制表示中第k位是几。</h2>
+<p>eg: <span class="math inline">\(n = 15 = (1111)_2\)</span></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928224656481.png" /></p>
+<p>具体步骤：</p>
+<ol type="1">
+<li>先把第k位数字移动到最后一位( n &gt;&gt; k )</li>
+<li>看个位是几 (x &amp; 1)</li>
+</ol>
+<blockquote>
+<p>注意：右移本身就是一个二进制层面的操作过程。</p>
+</blockquote>
+<span id="more"></span>
+<p>将1和2结合起来，即：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">n &gt;&gt; k &amp; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>例如：输出n的二进制表示</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">3</span>; k &gt;= <span class="number">0</span>; k--)cout &lt;&lt; (n &gt;&gt; k &amp; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="lowbitx返回x的最后一位1">lowbit(x):返回x的最后一位1。</h2>
+<p>树状数组的基本操作。</p>
+<p>应用：统计x里1的个数。每一次把x的最后一位1减掉，当最后x位为0时，计算减的次数，就是x中含有1的个数。</p>
+<p>eg:</p>
+<ul>
+<li>x = 1010 lowbit(x) return 10</li>
+<li>x = 10110000 lowbit(x) return 10000</li>
+</ul>
+<p>实际实现： <code>x &amp; -x</code></p>
+<p>解释：由于是补码存储，因此 -x = ~x +1 ; 因此 x &amp; -x = x &amp;(~x
++ 1)</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928225854477.png" /></p>
+<h3 id="例题二进制中1的个数">例题：二进制中1的个数</h3>
+<p>给定一个长度为 n 的数列，请你求出数列中每个数的二进制表示中 1
+的个数。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 n。</p>
+<p>第二行包含 n 个整数，表示整个数列。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含 n 个整数，其中的第 i 个数表示数列中的第 i
+个数的二进制表示中 1 的个数。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n≤100000, 0≤数列中元素的值≤<span
+class="math inline">\(10^9\)</span></p>
+<p><strong>输入样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 1 2 1 2</span><br></pre></td></tr></table></figure>
+<h3 id="code">code</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, res = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 每次减去x的最后一位1以及后面的部分</span></span><br><span class="line">        <span class="keyword">while</span>(x)x -= <span class="built_in">lowbit</span>(x),res ++;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; res &lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -2320,65 +2382,213 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220
       </tags>
   </entry>
   <entry>
-    <title>位运算</title>
-    <url>/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/</url>
-    <content><![CDATA[<h1 id="位运算">位运算</h1>
-<p>位运算常用操作：</p>
-<h2
-id="查看整数n的二进制表示中第k位是几">查看整数n的二进制表示中第k位是几。</h2>
-<p>eg: <span class="math inline">\(n = 15 = (1111)_2\)</span></p>
+    <title>算法基础：差分算法及模板应用</title>
+    <url>/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="一维差分">一维差分</h2>
+<p>差分思想和前缀和是相反的。</p>
+<p>首先我们先定义数组a, 其中a[1],a[2]...a[n]作为前缀和。</p>
+<p>然后构造数组b，b[1],b[2]...b[n]为差分数组。其中通过差分数组的前缀和来表示a数组，即a[n]
+= b[1] + b[2]+...+b[n]。</p>
+<p>一维差分数组的构造也很简单，即a[1] = b[1], b[2] = a[2] - a[1], b[n] =
+a[n] - a[n-1]；</p>
+<p>注意：刚开始时可以初始化数组a,b全部为0，输入a数组后；在构造时，只需要将b[1]看做在[1,
+1]区间上加上a[1]; b[2] 看作在[2, 2]区间上加上a[2]；</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg:对于b[1]:</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">0</span> + a[<span class="number">1</span>];</span><br><span class="line">b[<span class="number">2</span>] = <span class="number">0</span> - a[<span class="number">1</span>]; 	<span class="comment">//最终：b[1] = a[1]</span></span><br><span class="line"><span class="comment">//对于b[2]:</span></span><br><span class="line">b[<span class="number">2</span>] = b[<span class="number">2</span>] + a[<span class="number">2</span>];  <span class="comment">//==&gt; 最终：b[2] = a[2] - a[1]</span></span><br><span class="line">b[<span class="number">3</span>] = b[<span class="number">3</span>] - b[<span class="number">2</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>差分数组的好处是可以简化运算，例如想要给一个区间 [l,r]
+上的数组加一个常数c，原始的方法是依次加上c，这样的时间复杂度是O(n)的。但是如果采用差分数组的话，可以大大降低时间复杂度到O(1)。</p>
+<p>由于a[n] = b[1] + b[2]+...+b[n]，因此只需要将b[l] = b[l] + c
+即可，这样l之后的数字会依次加上常数c，而在 b[r]处，将b[r+1] = b[r+1] - c
+，这样r之后的数组又会恢复原值，仅需要处理这两个边界的差分数组即可，时间复杂度大大降低。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928224656481.png" /></p>
-<p>具体步骤：</p>
-<ol type="1">
-<li>先把第k位数字移动到最后一位( n &gt;&gt; k )</li>
-<li>看个位是几 (x &amp; 1)</li>
-</ol>
-<blockquote>
-<p>注意：右移本身就是一个二进制层面的操作过程。</p>
-</blockquote>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220915162819362.png" /></p>
 <span id="more"></span>
-<p>将1和2结合起来，即：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">n &gt;&gt; k &amp; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>例如：输出n的二进制表示</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">3</span>; k &gt;= <span class="number">0</span>; k--)cout &lt;&lt; (n &gt;&gt; k &amp; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="lowbitx返回x的最后一位1">lowbit(x):返回x的最后一位1。</h2>
-<p>树状数组的基本操作。</p>
-<p>应用：统计x里1的个数。每一次把x的最后一位1减掉，当最后x位为0时，计算减的次数，就是x中含有1的个数。</p>
-<p>eg:</p>
-<ul>
-<li>x = 1010 lowbit(x) return 10</li>
-<li>x = 10110000 lowbit(x) return 10000</li>
-</ul>
-<p>实际实现： <code>x &amp; -x</code></p>
-<p>解释：由于是补码存储，因此 -x = ~x +1 ; 因此 x &amp; -x = x &amp;(~x
-+ 1)</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928225854477.png" /></p>
-<h3 id="例题二进制中1的个数">例题：二进制中1的个数</h3>
-<p>给定一个长度为 n 的数列，请你求出数列中每个数的二进制表示中 1
-的个数。</p>
+<h3 id="例题差分">例题：差分</h3>
+<p>输入一个长度为 n 的整数序列。</p>
+<p>接下来输入 m 个操作，每个操作包含三个整数 l,r,c，表示将序列中 [l,r]
+之间的每个数加上 c。</p>
+<p>请你输出进行完所有操作后的序列。</p>
 <p><strong>输入格式</strong></p>
-<p>第一行包含整数 n。</p>
-<p>第二行包含 n 个整数，表示整个数列。</p>
+<p>第一行包含两个整数 n 和 m。</p>
+<p>第二行包含 n 个整数，表示整数序列。</p>
+<p>接下来 m 行，每行包含三个整数 l，r，c表示一个操作。</p>
 <p><strong>输出格式</strong></p>
-<p>共一行，包含 n 个整数，其中的第 i 个数表示数列中的第 i
-个数的二进制表示中 1 的个数。</p>
+<p>共一行，包含 n 个整数，表示最终序列。</p>
 <p><strong>数据范围</strong></p>
-<p>1≤n≤100000, 0≤数列中元素的值≤<span
-class="math inline">\(10^9\)</span></p>
-<p><strong>输入样例</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 2 3 4 5</span><br></pre></td></tr></table></figure>
-<p><strong>输出样例</strong>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 1 2 1 2</span><br></pre></td></tr></table></figure>
-<h3 id="code">code</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, res = <span class="number">0</span>;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 每次减去x的最后一位1以及后面的部分</span></span><br><span class="line">        <span class="keyword">while</span>(x)x -= <span class="built_in">lowbit</span>(x),res ++;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; res &lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1≤n,m≤100000, 1≤l≤r≤n, −1000≤c≤1000,
+−1000≤整数序列中元素的值≤1000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6 3</span><br><span class="line">1 2 2 1 2 1</span><br><span class="line">1 3 1</span><br><span class="line">3 5 1</span><br><span class="line">1 6 1</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 5 3 4 2</span><br></pre></td></tr></table></figure>
+<h4 id="代码模板">代码模板</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> m,n;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r , <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[l] += c;</span><br><span class="line">    b[r+<span class="number">1</span>] -= c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="comment">//插入的方式形成b[i]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">insert</span>(i, i, a[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l, r ,c;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;l, &amp;r, &amp;c);</span><br><span class="line">        <span class="built_in">insert</span>(l, r, c);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) b[i] += b[i - <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二维差分">二维差分</h2>
+<p>将a[i][j]表示为一个差分数列b[i][j]的和即可。如下所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919221638474.png" /></p>
+<p>基本思路：给其中的一个子矩阵加上一个值。矩阵以外的减去一个值即可。</p>
+<p>可列公式表示各个范围如下：</p>
+<p><span class="math inline">\(b[x_1][y_1] += C;\)</span></p>
+<p><span class="math inline">\(b[x_1][y_2 + 1] -= C;\)</span></p>
+<p><span class="math inline">\(b[x_2 + 1][y_1] += C;\)</span></p>
+<p>$b[x_2 + 1][y_2 + 1] += C; $</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919222657158.png" /></p>
+<p>由上面范围，可以求得最终要算的小正方形的面积公式：</p>
+<p><span class="math inline">\(S = b[x_1][y_1] - b[x_1][y_2 + 1]- b[x_2
++ 1][y_1] + b[x_2 + 1][y_2 + 1]\)</span></p>
+<p>矩阵的初始化；</p>
+<p>假定a[i][j] = 0,b[i][j]
+=0,然后读取数组a，只需要对b进行插入即可。b[i][j]相当于从(i,j)到(i,j)插入一个a[i][j]形成的。</p>
+<p>最后求a[i][j]只需要求解b[i][j]的前缀和即可。</p>
+<h3 id="例题差分矩阵">例题：差分矩阵</h3>
+<p>输入一个 n 行 m 列的整数矩阵，再输入 q 个操作，每个操作包含五个整数
+x1,y1,x2,y2,c，其中 (x1,y1) 和
+(x2,y2)表示一个子矩阵的左上角坐标和右下角坐标。</p>
+<p>每个操作都要将选中的子矩阵中的每个元素的值加上 c。</p>
+<p>请你将进行完所有操作后的矩阵输出。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 n,m,q</p>
+<p>接下来 n 行，每行包含 m 个整数，表示整数矩阵。</p>
+<p>接下来 q 行，每行包含 5 个整数 x1,y1,x2,y2,c表示一个操作。</p>
+<p><strong>输出格式</strong></p>
+<p>共 n 行，每行 m 个整数，表示所有操作进行完毕后的最终矩阵。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n,m≤1000 1≤q≤100000 1≤x1≤x2≤n 1≤y1≤y2≤m −1000≤c≤1000
+−1000≤矩阵内元素的值≤1000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 3</span><br><span class="line">1 2 2 1</span><br><span class="line">3 2 2 1</span><br><span class="line">1 1 1 1</span><br><span class="line">1 1 2 2 1</span><br><span class="line">1 3 2 3 2</span><br><span class="line">3 1 3 4 1</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 3 4 1</span><br><span class="line">4 3 4 1</span><br><span class="line">2 2 2 2</span><br></pre></td></tr></table></figure>
+<h4 id="代码模板-1">代码模板</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N =<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[N][N],b[N][N];</span><br><span class="line"><span class="type">int</span> n, m ,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[x1][y1] += c;</span><br><span class="line">    b[x2 + <span class="number">1</span>][y1] -= c;</span><br><span class="line">    b[x1][y2 +<span class="number">1</span>] -= c;</span><br><span class="line">    b[x2 +<span class="number">1</span>][y2+<span class="number">1</span>] +=c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;q);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i][j]);</span><br><span class="line">            </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">insert</span>(i, j, i, j, a[i][j]);</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">while</span>( q-- )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x1, x2, y1, y2, c;</span><br><span class="line">        cin &gt;&gt; x1 &gt;&gt; y1&gt;&gt; x2 &gt;&gt; y2 &gt;&gt; c;</span><br><span class="line">        <span class="built_in">insert</span>(x1,y1, x2, y2, c);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//求前缀和</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        b[i][j] += b[i<span class="number">-1</span>][j] +b[i][j<span class="number">-1</span>] -b[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i][j]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Algorithm</category>
       </categories>
       <tags>
-        <tag>Algorithm</tag>
+        <tag>Basic algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：信道划分介质访问控制</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BF%A1%E9%81%93%E5%88%92%E5%88%86%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</url>
+    <content><![CDATA[<h2
+id="计算机网络信道划分介质访问控制">计算机网络：信道划分介质访问控制</h2>
+<p>介质访问控制所要完成的主要任务是：<strong>为使用介质的每个结点隔离来自同一信道上其他结点所传送的信号，以协调活动结点的传输。</strong></p>
+<p>用来决定广播信道中<strong>信道分配的协议</strong>属于<strong>数据链路层的一个子层</strong>，称为介质访问控制(Medium
+Access Control，MAC)子层。</p>
+<p>常见的介质访问控制方法有<strong>信道划分</strong>介质访问控制、<strong>随机访问</strong>介质访问控制和<strong>轮询访问</strong>介质访问控制。其中前者是静态划分信道的方法，而后两者是动态分配信道的方法。</p>
+<span id="more"></span>
+<h3 id="信道划分介质访问控制">信道划分介质访问控制</h3>
+<p>把时域和频域资源合理地分配给网络上的设备。</p>
+<p>多路复用技术把多个信号组合在一条物理信道上进行传输，使多个计算机或终端设备共享信道资源，提高了信道的利用率。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203631379.png" /></p>
+<p>信道划分的实质就是通过分时、分频、分码等方法把原来的一条广播信道，逻辑上分为多条用于两个结点之间通信的互不干扰的子信道，实际上就是把广播信道转变为点对点信道。</p>
+<h4 id="频分多路复用fdm">频分多路复用（FDM)</h4>
+<p>频分多路复用是一种将多路基带信号调制到不同频率载波上，再叠加形成一个复合信号的多路复用技术。</p>
+<p>每个子信道分配的带宽可不相同，但它们的总和必须不超过信道的总带宽。在实际应用中，为了防止子信道之间的干扰,相邻信道之间需要加入“保护频带”。</p>
+<p>频分多路复用的优点在于充分利用了传输介质的带宽，系统效率较高。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203857513.png" /></p>
+<h4 id="时分多路复用tdm">时分多路复用(TDM)</h4>
+<p>时分多路复用是将一条物理信道按时间分成若干时间片，轮流地分配给多个信号使用。这样，利用每个信号在时间上的交叉，就可以在一条物理信道上传输多个信号。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203953562.png" /></p>
+<p>TDM的信道的利用率一般不高。</p>
+<p>统计时分多路复用(STDM，又称异步时分多路复用）是 TDM
+的一种改进，它采用
+STDM帧，STDM帧并不固定分配时隙，而按需动态地分配时隙，当终端有数据要传送时，才会分配到时间片，因此可以提高线路的利用率。</p>
+<h4 id="波分多路复用wdm">波分多路复用(WDM)</h4>
+<p>波分多路复用即<strong>光的频分多路复用</strong>，它在一根光纤中传输多种不同波长（频率）的光信号，由于波长（频率）不同，各路光信号互不干扰，最后再用波长分解复用器将各路波长分解出来。由于光波处于频谱的高频段，有很高的带宽，因而可以实现多路的波分复用。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102204518000.png" /></p>
+<h4 id="码分多路复用cdm">码分多路复用(CDM)</h4>
+<p>码分多路复用是采用不同的编码来区分各路原始信号的一种复用方式。与FDM和TDM不同，它既共享信道的频率，又共享时间。</p>
+<p>实际上，更常用的名词是<strong>码分多址(Code Division Multiple
+Access，CDMA)</strong>，其原理是每个比特时间再划分成m个短的时间槽，称为码片(Chip)，通常m的值是64或128，下例中为简单起见，设m为8。每个站点被指派一个唯一的m位码片序列。发送1时，站点发送它的码片序列;
+发送0时，站点发送该码片序列的反码。当两个或多个站点同时发送时，各路数据在信道中线性相加。为从信道中分离出各路信号，要求各个站点的码片序列相互正交。</p>
+<p>简单理解就是，A站向C站发出的信号用一个向量来表示，B站向C站发出的信号用另一个向量来表示，两个向量要求相互正交。向量中的分量，就是所谓的码片。</p>
+<p>下面举例说明CDMA的原理。</p>
+<p>假如站点A的码片序列被指派为00011011，则A站发送00011011就表示发送比特1，发送11100100就表示发送比特0。为了方便，按惯例将码片中的0写为-1，将1写为+1，因此A站的码片序列是-1-1
+-1+1+1 -1+1+1。</p>
+<p>令向量S表示A站的码片向量，令T表示B站的码片向量。两个不同站的码片序列正交，即向量S和T的规格化内积（Inner
+Product）为0: <span class="math display">\[
+\boldsymbol{S} \cdot \boldsymbol{T} \equiv \frac{1}{m} \sum_{i=1}^{m}
+S_{i} T_{i}=0
+\]</span>
+任何一个码片向量和该码片向量自身的规格化内积都是1，任何一个码片向量和该码片反码的向量的规格化内积是-1，如
+<span class="math display">\[
+S \cdot S=\frac{1}{m} \sum_{i=1}^{m} S_{i} S_{i}=\frac{1}{m}
+\sum_{i=1}^{m} S_{i}^{2}=\frac{1}{m} \sum_{i=1}^{m}(\pm 1)^{2}=1
+\]</span> 令向量T为(-1-1+1 -1+1+1 +1 -1)。</p>
+<p>当A站向C站发送数据1时，就发送了向量（-1-1-1+1+1-1+1+1
+)。当B站向C站发送数据0时，就发送了向量（+1+1 -1 +1 -1 -1
+-1+1)。两个向量到了公共信道上就进行叠加，实际上就是线性相加，得到 S - T
+=(0 0 -2 2 0 -2 0 2)</p>
+<p>到达C站后，进行数据分离，如果要得到来自A站的数据，C站就必须知道A站的码片序列，让S与S-T进行规格化内积。</p>
+<p>根据叠加原理，其他站点的信号都在内积的结果中被过滤掉了，内积的相关项都是0，而只剩下A站发送的信号。得到S*(S-T)=1,
+所以A站发出的数据是1。</p>
+<p>同理，如果要得到来自B站的数据，那么T*(S-T) = -1
+因此从B站发送过来的信号向量是一个反码向量，代表0。</p>
+<p>规格化内积是线性代数中的内容，它是在得到两个向量的内积后再除以向量的分量的个数。码分多路复用技术具有频谱利用率高、抗干扰能力强、保密性强、语音质量好等优点。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：局域网的基本概念和体系结构</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<p><strong>局域网（Local Area Network，LAN )
+是指在一个较小的地理范围（如所学校）内，将各种计算机、外部设备和数据库系统等通过双绞线、同轴电缆等连接介质互相连接起来，组成资源和信息共享的计算机互联网络。</strong>主要特点如下:</p>
+<ol type="1">
+<li>为一个单位所拥有，且地理范围和站点数目均有限。</li>
+<li>所有站点共享较高的总带宽（即较高的数据传输速率)。</li>
+<li>较低的时延和较低的误码率。</li>
+<li>各站为平等关系而非主从关系。</li>
+<li>能进行广播和组播。</li>
+</ol>
+<p>局域网的特性主要由三个要素决定:<strong>拓扑结构、传输介质、介质访问控制方式</strong>，其中最重要的是<strong>介质访问控制方式，它决定着局域网的技术特性。</strong></p>
+<span id="more"></span>
+<p>常见的局域网拓扑结构主要有以下4大类:</p>
+<p>①星形结构;②环形结构;③总线形结构;④星形和总线形结合的复合型结构。</p>
+<p>局域网可以使用双绞线、铜缆和光纤等多种传输介质，其中双绞线为主流传输介质。</p>
+<p>局域网的介质访问控制方法主要有CSMA/CD、令牌总线和令牌环，其中前两种方法主要用于总线形局域网，令牌环主要用于环形局域网。</p>
+<p>三种特殊的局域网拓扑实现如下:</p>
+<ul>
+<li>以太网（目前使用范围最广的局域网)。逻辑拓扑是总线形结构，物理拓扑是星形或拓展星形结构。</li>
+<li>令牌环（Token Ring，IEEE
+802.5)。逻辑拓扑是环形结构，物理拓扑是星形结构。</li>
+<li>FDDI(光纤分布数字接口，IEEE
+802.8)。逻辑拓扑是环形结构，物理拓扑是双环结构。</li>
+</ul>
+<p>IEEE
+802标准定义的局域网参考模型只对应于OSI参考模型的数据链路层和物理层，并<strong>将数据链路层拆分为两个子层:逻辑链路控制(LLC)子层和媒体接入控制(MAC)子层</strong>。与接入传输媒体有关的内容都放在<strong>MAC子层</strong>，它<strong>向上层屏蔽对物理层访问的各种差异，提供对物理层的统一访问接口</strong>，主要功能包括:
+<strong>组帧和拆卸帧、比特传输差错检测、透明传输</strong>。LLC子层<strong>与传输媒体无关，它向网络层提供无确认无连接、面向连接、带确认无连接、高速传送4种不同的连接服务类型。</strong></p>
+<p>由于以太网在局域网市场中取得垄断地位，几乎成为局域网的代名词，而802委员会制定的LLC子层作用已经不大，因此现在许多网卡仅装有MAC协议而没有LLC协议。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103205014081.png" /></p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
       </tags>
   </entry>
   <entry>
@@ -2438,6 +2648,109 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
       </tags>
   </entry>
   <entry>
+    <title>计算机网络：差错控制</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/</url>
+    <content><![CDATA[<h1 id="计算机网络差错控制">计算机网络：差错控制</h1>
+<p>比特在传输过程中可能会产生差错，1可能会变成0，0也可能会变成1，这就是<strong>比特差错</strong>。比特差错是传输差错中的一种。</p>
+<p>通常利用编码技术进行差错控制,主要有两类:自动重传请求ARQ和前向纠错FEC。</p>
+<ul>
+<li>在
+ARQ方式中，接收端检测到差错时，就设法通知发送端重发，直到接收到正确的码字为止。</li>
+<li>在FEC方式中，接收端不但能发现差错，而且能确定比特串的错误位置，从而加以纠正。</li>
+</ul>
+<p>因此，差错控制又可分为检错编码和纠错编码。</p>
+<span id="more"></span>
+<h3 id="检错编码">检错编码</h3>
+<p>检错编码<strong>都采用冗余编码</strong>技术，其核心思想是在有效数据（信息位）被发送前，先按某种关系附加一定的冗余位，构成一个符合某一规则的码字后再发送。当要发送的有效数据变化时，相应的冗余位也随之变化，使得码字遵从不变的规则。接收端根据收到的码字是否仍符合原规则来判断是否出错。</p>
+<p>常见的检错编码有奇偶校验码和循环冗余码。</p>
+<h4 id="奇偶校验码">1.奇偶校验码</h4>
+<p>奇偶校验码是奇校验码和偶校验码的统称，是一种最基本的检错码。<strong>它由n-1位信息元和1位校验元组成，如果是奇校验码，那么在附加一个校验元后，码长为n的码字中“1”的个数为奇数</strong>,这是奇数校验码
+;如果是偶校验码，那么在附加一个校验元以后，码长为n的码字中“1”的个数为偶数。它只能检测奇数位的出错情况，(如果有一组刚好出错，1的奇偶却不变，则无法查清楚是否出错)。</p>
+<h4 id="循环冗余码">2.循环冗余码</h4>
+<p>循环冗余码 (Cyclic Redundancy Code, CRC) 又 称多项式码。一个 k
+位帧可以视为从 <span class="math inline">\(X^{k-1}\)</span> 到 $ X^{0}$
+的 k 次多项式的系数序列, 这个多项式的阶数为 k-1, 例如, 1110011 有 7 位,
+表示成多项式是 <span class="math inline">\(X^{6}+X^{5}+X^{4}+
+X+1\)</span></p>
+<p>给定一个m bit的帧或报文, <strong>发送器生成一个r
+bit的序列，称为帧检验序列(FCS)
+就是余数</strong>。这样所形成的帧将由m+r比特组成。发送方和接收方事先商定一个多项式G(x)(最高位和最低位必须为1)，使这个带检验码的帧刚好能被预先确定的多项式G(x)整除。接收方用相同的多项式去除收到的帧，如果无余数，那么认为无差错。
+假设一个帧有m位，其对应的多项式为Mx)，则计算冗余码的步骤如下:</p>
+<ol type="1">
+<li>加0。假设G(x)的阶为r(<strong>阶数是指最高位的次数，不是总式子的长度</strong>)，在帧的低位端加上r个0。</li>
+<li>模2除。利用模2除法（就是异或），用G(x)对应的数据串去除1）中的数据串，得到的余数即为冗余码（共r位，前面的0不可省略)。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030154015498.png" /></p>
+<p>注意:循环冗余码(CRC)是具有纠错功能的，只是数据链路层仅使用了它的检错功能，检测到帧出错则直接丢弃。</p>
+<h3 id="纠错编码">纠错编码</h3>
+<p>最常见的纠错编码是海明码，其实现原理是在有效信息位中加入几个校验位形成海明码，并把海明码的每个二进制位分配到几个奇偶校验组中。当某一位出错后，就会引起有关的几个校验位的值发生变化，这不但可以发现错位，而且能指出错位的位置，为自动纠错提供依据。</p>
+<p>现以数据码 1010 为例讲述海明码的编码原理和过程。</p>
+<h4 id="确定海明码的位数">(1) 确定海明码的位数</h4>
+<p>设 n 为有效信息的位数, k 为校验位的位数, 则信息位 n 和校验位 k 应满足
+<span class="math inline">\(n+k \leq 2^{k}-1\)</span> (若要检测两位错,
+则需再增加 1 位校验位, 即 k+1 位) 海明码位数为 <span
+class="math inline">\(n+k=7 \leq 2^{3}-1\)</span> 成立, 则 n 、 k
+有效。设信息位为 <span class="math inline">\(D_{4} D_{3} D_{2}
+D_{1}(1010)\)</span> , 共 4 位, 校验位为 <span
+class="math inline">\(P_{3} P_{2} P_{1}\)</span> , 共 3 位,
+对应的海明码为<span class="math inline">\(H_{7} H_{6} H_{5} H_{4} H_{3}
+H_{2} H_{1}\)</span>。</p>
+<h4 id="确定校验位的分布">(2)确定校验位的分布</h4>
+<p>规定校验位 <span class="math inline">\(P_{i}\)</span> 在海明位号为
+<span class="math inline">\(2^{i-1}\)</span> 的位置上, 其余各位为信息位,
+因此有: <span class="math inline">\(P_{1}\)</span> 的海明位号为 <span
+class="math inline">\(2^{i-1}=2^{0}=1\)</span> , 即 <span
+class="math inline">\(H_{1}\)</span> 为 <span
+class="math inline">\(P_{1}\)</span> 。 $ P_{2}$ 的海明位号为 $
+2<sup>{i-1}=2</sup>{1}=2$ , 即 <span
+class="math inline">\(H_{2}\)</span> 为 <span
+class="math inline">\(P_{2}\)</span> 。 $ P_{3}$ 的海明位号为 <span
+class="math inline">\(2^{i-1}=2^{2}=4\)</span> , 即 <span
+class="math inline">\(H_{4}\)</span> 为 <span
+class="math inline">\(P_{3}\)</span> 。 将信息位按原来的顺序揷入,
+则海明码各位的分布如下:</p>
+<p><span class="math inline">\(\begin{array}{lllllll} H_{7} &amp; H_{6}
+&amp; H_{5} &amp; H_{4} &amp; H_{3} &amp; H_{2} &amp; H_{1} \\ D_{4}
+&amp; D_{3} &amp; D_{2} &amp; P_{3} &amp; D_{1} &amp; P_{2} &amp; P_{1}
+\end{array}\)</span></p>
+<h4 id="分组以形成校验关系">(3) 分组以形成校验关系</h4>
+<p>每个数据位用多个校验位进行校验, 但要满足条件:
+被校验数据位的海明位号等于校验该数 据位的各校验位海明位号之和。另外,
+校验位不需要再被校验。分组形成的校验关系如下。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030155737888.png" /></p>
+<h4 id="校验位取值">(4) 校验位取值</h4>
+<p>校验位 <span class="math inline">\(P_{i}\)</span> 的值为第 i 组
+(由该校验位校验的数据位) 所有位求异或。 根据（3）中的分组有</p>
+<p><span class="math inline">\(P_{1}=D_{1} \oplus D_{2} \oplus D_{4}=0
+\oplus 1 \oplus 1=0\)</span> <span class="math inline">\(P_{2}=D_{1}
+\oplus D_{3} \oplus D_{4}=0 \oplus 0 \oplus 1=1\)</span> <span
+class="math inline">\(P_{3}=D_{2} \oplus D_{3} \oplus D_{4}=1 \oplus 0
+\oplus 1=0\)</span></p>
+<p>所以, 1010 对应的海明码为 101<u>0</u>0<u>10</u>(下画线为校验位,
+其他为信息位)。</p>
+<h4 id="海明码的校验原理">(5)海明码的校验原理</h4>
+<p>每个校验组分别利用校验位和参与形成该校验位的信息位进行奇偶校验检查,
+构成 k 个校验方程:</p>
+<p><span class="math inline">\(\begin{array}{l} S_{1}=P_{1} \oplus D_{1}
+\oplus D_{2} \oplus D_{4} \\ S_{2}=P_{2} \oplus D_{1} \oplus D_{3}
+\oplus D_{4} \\ S_{3}=P_{3} \oplus D_{2} \oplus D_{3} \oplus D_{4}
+\end{array}\)</span></p>
+<p>若 <span class="math inline">\(S_{3} S_{2} S_{1}\)</span> 的值为 “
+000 ”, 则说明无错; 否则说明出错, 且这个数就是错误位的位号, 如 <span
+class="math inline">\(S_{3} S_{2} S_{1}=001\)</span> , 说明第 1 位出错,
+即 <span class="math inline">\(H_{1}\)</span> 出错,
+直接将该位取反就达到了纠错的目的。</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络：数据链路层功能</title>
     <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<h2 id="计算机网络数据链路层功能">计算机网络：数据链路层功能</h2>
@@ -2478,6 +2791,112 @@ HDLC协议中，用标识位F(O1111110）来标识帧的开始和结束。通信
 Repeat reQuest，ARQ）方式来重传出错的帧。</p>
 <p>具体做法是:让发送方将要发送的数据帧附加一定的CRC冗余检错码一并发送，接收方则根据检错码对数据帧进行错误检测，若发现错误则丢弃，发送方超时重传该数据帧。这种差错控制方法称为<strong>ARQ法</strong>。ARQ法只需返回很少的控制信息就可有效地确认所发数据帧是否被正确接收。</p>
 <p><strong>帧错指帧的丢失、重复或失序等错误。</strong>在<strong>数据链路层引入定时器（保证不丢失，超时重发）和编号机制（保证不会重复接收）</strong>，能保证每一帧最终都能有且仅有一次正确地交付给目的结点。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：流量控制与可靠传输机制</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2
+id="计算机网络流量控制与可靠传输机制">计算机网络：流量控制与可靠传输机制</h2>
+<h3
+id="流量控制可靠传输与滑动窗口机制">流量控制、可靠传输与滑动窗口机制</h3>
+<p>在面向帧的自动重传请求系统中，当待确认帧的数量增加时，有可能超出缓冲存储空间而造成过载。</p>
+<p>流量控制的基本方法是由<strong>接收方控制发送方发送数据的速率</strong>，常见的方式有两种:<strong>停止——等待协议</strong>和<strong>滑动窗口协议</strong>。</p>
+<span id="more"></span>
+<h4 id="停止-等待流量控制基本原理">1.停止-等待流量控制基本原理</h4>
+<p>发送方每发送一帧，都要等待接收方的应答信号，之后才能发送下一帧，因而传输效率很低。</p>
+<h4 id="滑动窗口流量拉制基本原理">2.滑动窗口流量拉制基本原理</h4>
+<p>在任意时刻，发送方都维持一组连续的允许发送的帧的序号，称为<strong>发送窗口</strong>；</p>
+<p>同时接收方也维持一组连续的允许接收帧的序号，称为<strong>接收窗口</strong>。</p>
+<p><strong>发送窗口</strong>用来对发送方进行流量控制，而<strong>发送窗口的大小<span
+class="math inline">\(W_T\)</span></strong>代表在还未收到对方确认信息的情况下发送方最多还可以发送多少个数据帧。</p>
+<p><strong>接收窗口</strong>是为了控制可以接收哪些数据帧和不可以接收哪些帧。</p>
+<p>发送窗口</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030163856830.png" /></p>
+<p>接收窗口</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030163940318.png" /></p>
+<p><strong>发送端</strong>每收到一个确认帧，发送窗口就向前滑动一个帧的位置，没有可发送时就停止，收到确认帧后再继续发送。</p>
+<p><strong>接收端</strong>收到数据帧后，将窗口向前移一个位置，并发回确认帧，若收到的数据帧的序号落在接收窗口之外，则一律丢弃。</p>
+<p>滑动窗口特性：</p>
+<ol type="1">
+<li><p>只有接收窗口向前滑动（同时接收方发送了确认帧）时，发送窗口才有可能（只有发送方收到确认帧后才一定）向前滑动。</p></li>
+<li><p>从滑动窗口的概念看，<strong>停止-等待协议、后退N帧协议和选择重传协议</strong>只在发送窗口大小与接收窗口大小上有所差别:</p>
+<p>停止-等待协议:发送窗口大小=1，接收窗口大小= 1。</p>
+<p>后退N帧协议:发送窗口大小&gt;1，接收窗口大小=1。</p>
+<p>选择重传协议:发送窗口大小&gt;1，接收窗口大小&gt;1。</p></li>
+<li><p><strong>接收窗口的大小为1时，可保证帧的有序接收</strong>。</p></li>
+<li><p>数据链路层的滑动窗口协议中，窗口的大小在传输过程中是固定的（注意与传输层的滑动窗口协议的区别)。</p></li>
+</ol>
+<h4 id="可靠传扮机制">3.可靠传扮机制</h4>
+<p>数据链路层的可靠传输通常使用<strong>确认</strong>和<strong>超时重传</strong>两种机制来完成。</p>
+<p>确认是一种无数据的控制帧，这种控制帧使得接收方可以让发送方知道哪些内容被正确接收。有些情况下为了提高传输效率，将确认捎带在一个回复帧中，称为<strong>捎带确认</strong>。</p>
+<p>超时重传是指发送方在发送某个数据帧后就开启一个计时器，在一定时间内如果没有得到发送的数据帧的确认帧，那么就重新发送该数据帧，直到发送成功为止。</p>
+<p><strong>自动重传请求(Automatic Repeat
+reQuest，ARQ）</strong>通过接收方请求发送方重传出错的数据帧来恢复出错的帧。</p>
+<p>传统自动重传请求分为三种，即<strong>停止-等待(Stop-and-Wait)ARQ、后退N帧(Go-Back-N)ARQ和选择性重传(Selective
+Repeat)ARQ</strong>。又称其为连续ARQ
+协议。注意，在数据链路层中流量控制机制和可靠传输机制是交织在一起的。</p>
+<h3 id="单帧滑动窗口与停止-等待协议">单帧滑动窗口与停止-等待协议</h3>
+<p>停止-等待协议相当于发送窗口和接收窗口大小均为1的滑动窗口协议。在停止-等待协议中，除数据帧丢失外，还可能出现以下两种差错。</p>
+<p>到达目的站的帧可能已遭破坏，接收站利用前面讨论过的差错检测技术检出后，简单地将该帧丢弃。为了对付这种可能发生的情况，源站装备了计时器。超时重发。</p>
+<p>另一种可能的差错是数据帧正确而确认帧被破坏，此时接收方已收到正确的数据帧，但发送方收不到确认帧，因此发送方会重传已被接收的数据帧,接收方收到同样的数据帧时会丢弃该帧，并重传一个该帧对应的确认帧。发送的帧交替地用0和1来标识，确认帧分别用ACK0和
+ACK1来表示，收到的确认帧有误时，重传己发送的帧。</p>
+<p>此外，为了超时重发和判定重复帧的需要，发送方和接收方都须设置一个帧缓冲区。发送端在发送完数据帧时，必须在其发送缓存中保留此数据帧的副本，这样才能在出差错时进行重传。只有在收到对方发来的确认帧ACK时，方可清除此副本。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030194558291.png" /></p>
+<h3
+id="多帧滑动窗口与后退n帧协议gbn">多帧滑动窗口与后退N帧协议（GBN)</h3>
+<p><strong>接收方只允许按顺序接收帧</strong></p>
+<p>在后退N帧式ARQ中，发送方可以连续发送帧。</p>
+<ul>
+<li>接收方检测出失序的信息帧后，要求发送方重发最后一个正确接收的信息帧之后的所有未被确认的帧；</li>
+<li>发送方发送了N个帧后，若发现该N个帧的前一个帧在计时器超时后仍未返回其确认信息，则该帧被判为出错或丢失，此时发送方重传该出错帧及随后的N个帧。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030195312993.png" /></p>
+<p>源站每发送完一帧就要为该帧设置超时计时器。为了减少开销，GBN协议还规定可以在连续收到好几个正确的数据帧后，才对最后一个数据帧发确认信息，或者可在自己有数据要发送时才将对以前正确收到的帧加以捎带确认。</p>
+<p>接收端虽然丢弃了这些不按序的无差错帧，但应重复发送已发送的最后一个确认帧ACK1（这是为了防止已发送的确认帧ACK1丢失)。</p>
+<p>后退 N 帧协议的接收窗口为 1 , 可以保证按序接收数据帧。若采用 n
+比特对帧编号, 则其发 送窗口的尺寸 <span
+class="math inline">\(W_{\mathrm{T}}\)</span> 应满足 <span
+class="math inline">\(1 \leq W_{\mathrm{T}} \leq 2^{n}-1\)</span>
+。若发送窗口的尺寸大于 <span class="math inline">\(2^{n}-1\)</span> ,
+则会造成接收方无法分辨新帧和旧帧 (请参考本章疑难点 3 )。</p>
+<p>一方面因连续发送数据帧而提高了信道的利用率，另一方面在重传时又必须把原来已传送正确的数据帧进行重传，这种做法又使传送效率降低。若信道的传输质量很差导致误码率较大时，后退N帧协议不一定优于停止-等待协议。</p>
+<h3
+id="多帧滑动窗口与选择重传协议sr">多帧滑动窗口与选择重传协议（SR)</h3>
+<p>为进一步提高信道的利用率，可设法只重传出现差错的数据帧或计时器超时的数据帧，但此时必须加大接收窗口，以便先收下发送序号不连续但仍处在接收窗口中的那些数据帧。等到所缺序号的数据帧收到后再一并送交主机。这就是选择重传ARQ协议。</p>
+<p>在选择重传协议中，每个发送缓冲区对应一个计时器，当计时器超时时，缓冲区的帧就会重传。另外，该协议使用了比上述其他协议更有效的差错处理策略，即一旦接收方怀疑帧出错，就会发一个否定帧NAK给发送方，要求发送方对NAK中指定的帧进行重传.</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221030200024907.png" /></p>
+<p>注意这里，收到2后加上缓冲的帧，直接返回ack8。</p>
+<p>选择重传协议的接收窗口尺寸 <span class="math inline">\(W_{R}\)</span>
+和发送窗口尺寸 <span class="math inline">\(W_{\mathrm{T}}\)</span>
+都大于 1 ,一次可以发送或接收多个帧。 在选择重传协议中,
+接收窗口和发送窗口的大小是相同的, 且最大值都为序号范围的一半, 采用 n
+比特对帧编号, 则需要满足: $W_{}=W_{R }=2^{(n-1)} $ 。</p>
+<blockquote>
+<p>因为如果不满足该条件, 即窗口大小大于序号范围一半,
+当一个或多个确认帧丢失时, 发送方就会超时重传之前的数据帧,
+但接收方无法分辨是新的数据帧还是重传的数据帧。</p>
+</blockquote>
+<p>选择重传协议可以避免重复传送那些本已正确到达接收端的数据帧，所需缓冲区的数目等于窗口的大小。</p>
+<p><strong>信道的效率，也称信道利用率</strong>。可从不同的角度来定义信道的效率，这里给出一种从时间角度的定义:信道效率是对发送方而言的，是指发送方在一个发送周期的时间内，有效地发送数据所需要的时间占整个发送周期的比率。</p>
+<p>发送方从开始发送数据到收到第一个确认帧为止，称为一个发送周期设为T，发送方在这个周期内共发送L比特的数据，发送方的数据传输速率为C，则发送方用于发送有效数据的时间为L/C，在这种情况下，信道的利用率为(L/C)/T。</p>
+<p><strong>信道吞吐率=信道利用率×发送方的发送速率。</strong></p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
@@ -2606,6 +3025,269 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 <p>例如，曼彻斯特编码方法将数据比特“1”编码成“高-低”电平对，将数据比特“0”编码成“低-高”电平对，而“高-高”电平对和“低-低”电平对在数据比特中是违规的（即没有采用)。可以<strong>借用这些违规编码序列来定界帧的起始和终止</strong>。局域网IEEE
 802标准就采用了这种方法。</p>
 <p>违规编码法不需要采用任何填充技术，便能实现数据传输的透明性，但它只适用于采用冗余编码的特殊编码环境。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之ALOHA协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BALOHA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2
+id="计算机网络随机访问介质访问控制之aloha协议">计算机网络：随机访问介质访问控制之ALOHA协议</h2>
+<p>在随机访问协议中，不采用集中控制方式解决发送信息的次序问题，所有用户能根据自己的意愿随机地发送信息，占用信道全部速率。在总线形网络中，当有两个或多个用户同时发送信息时，就会产生帧的冲突（碰撞，相互干扰)，导致所有冲突用户的发送均以失败告终。为了解决随机接入发生的碰撞，每个用户需要按照一定的规则反复地重传它的帧，直到该帧无碰撞地通过。</p>
+<p>这些规则就是随机访问介质访问控制协议，常用的协议有ALOHA
+协议、CSMA协议、CSMA/CD
+协议和CSMA/CA协议等，它们的核心思想都是:胜利者通过争用获得信道，从而获得信息的发送权。因此，随机访问介质访问控制协议又称<strong>争用型协议</strong>。随机介质访问控制实质上是<strong>一种将广播信道转化为点到点信道的行为</strong>。</p>
+<span id="more"></span>
+<h3 id="aloha协议">ALOHA协议</h3>
+<p>夏威夷大学早期研制的随机接入系统称为ALOHA,它是Additive Link On-line
+HAwaii system的缩写。ALOHA 协议分为纯ALOHA协议和时隙ALOHA协议两种。</p>
+<ol type="1">
+<li><p>纯ALOHA 协议
+纯ALOHA协议的基本思想是，当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果在一段时间内未收到确认，那么该站点就认为传输过程中发生了冲突。发送站点需要等待一段时间后再发送数据，直至发送成功。</p>
+<p>每个站均自由地发送数据帧。为简化问题，不考虑由信道不良而产生的误码，并假定所有站发送的帧都是定长的，帧的长度不用比特而用发送这个帧所需的时间来表示，用T0表示这段时间。</p>
+<p>当站1发送帧1时，其他站都未发送数据，所以站1的发送必定是成功的。但随后站2和站N-1发送的帧2和帧3在时间上重叠了一些(即发生了碰撞)。碰撞的结果是，碰撞双方（有时也可能是多方）所发送的数据出现了差错，因而都须进行重传。但是发生碰撞的各站并不能马上进行重传，因为这样做必然会继续发生碰撞。纯ALOHA系统采用的重传策略是<strong>让各站等待一段随机的时间，然后再进行重传</strong>。若再次发生碰撞，则需要再等待一段随机的时间，直到重传成功为止。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102214207554.png" /></p>
+<p>纯ALOHA 网络的吞吐量很低。</p></li>
+<li><p>时隙ALOHA协议</p>
+<p>时隙ALOHA
+协议把所有各站在时间上同步起来,并将时间划分为一段段等长的时隙(Slot),规定只能在每个时隙开始时才能发送一个帧。从
+而避免了用户发送数据的随意性，减少了数据产生冲突的可能性，提高了信道的利用率。时隙ALOHA网络比纯ALOHA网络的吞吐量大了1倍。时隙的长度T使得每个帧正好在一个时隙内发送完毕。每个帧在到达后，一般都要在缓存中等待一段小于T的时间，然后才能发送出去。在一个时隙内有两个或两个以上的帧到达时，在下一个时隙将产生碰撞。碰撞后重传与上面类似。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103181417412.png" /></p></li>
+</ol>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之CSMA/CA协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMACA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2
+id="计算机网络随机访问介质访问控制之csmaca协议">计算机网络：随机访问介质访问控制之CSMA/CA协议</h2>
+<p>CSMA/CD协议已成功应用于使用有线连接的局域网，但在无线局域网环境下，却不能简单地搬用CSMA/CD协议，特别是碰撞检测部分。主要有两个原因:</p>
+<p>1）接收信号的强度往往会远小于发送信号的强度，且在无线介质上信号强度的动态变化范围很大，因此若要实现碰撞检测，则硬件上的花费就会过大。
+2）在无线通信中，并非所有的站点都能够听见对方，即存在“隐蔽站”问题。</p>
+<p>为此，802.11标准定义了广泛<strong>应用于无线局域网的CSMA/CA
+协议</strong>，它对CSMA/CD协议进行了修改，把碰撞检测改为<strong>碰撞避免（Collision
+Avoidance，CA)</strong>。“碰撞避免”并不是指协议可以完全避免碰撞，而是指<strong>协议的设计要尽量降低碰撞发生的概率</strong>。由于802.11无线局域网不使用碰撞检测，一旦站点开始发送一个帧，就会完全地发送该帧，但碰撞存在时仍然发送整个数据帧(尤其是长数据帧）会严重降低网络的效率，因此要采用碰撞避免技术降低碰撞的可能性。</p>
+<span id="more"></span>
+<p>由于无线信道的通信质量远不如有线信道，802.11使用链路层确认/重传（ARQ）方案，即<strong>站点每通过无线局域网发送完一帧，就要在收到对方的确认帧后才能继续发送下一帧。</strong></p>
+<p>为了尽量避免碰撞，802.11规定，所有的站完成发送后，必须再等待一段很短的时间（继续监听）才能发送下一帧。这段时间称为<strong>帧间间隔（InterFrame
+Space，IFS)</strong>。帧间间隔的长短取决于该站要发送的帧的类型。802.11使用了3种IFS:</p>
+<ol type="1">
+<li><p>SIFS（短IFS):
+最短的IFS，用来分隔属于一次对话的各帧，使用SIFS的帧类型有ACK帧、CTS帧、分片后的数据帧，以及所有回答AP探询的帧等。</p></li>
+<li><p>PIFS（点协调IFS):中等长度的IFS，在PCF操作中使用。</p></li>
+<li><p>DIFS（分布式协调IFS):最长的IFS，用于异步帧竞争访问的时延。</p></li>
+</ol>
+<p>CSMA/CA
+的退避算法和CSMA/CD的稍有不同。信道从忙态变为空闲态时，任何一个站要发送数据帧，不仅都要等待一个时间间隔，而且要进入争用窗口，计算随机退避时间以便再次试图接入信道，因此降低了碰撞发生的概率。当且仅当检测到信道空闲且这个数据帧是要发送的第一个数据帧时，才不使用退避算法。其他所有情况都必须使用退避算法，具体为:①在发送第一个帧前检测到信道忙;
+②每次重传; ③每次成功发送后要发送下一帧。</p>
+<p>CSMA/CA算法归纳:</p>
+<ol type="1">
+<li>若站点最初有数据要发送（而不是发送不成功再进行重传)，且检测到信道空闲，在等待时间DIFS后，就发送整个数据帧。</li>
+<li>否则，站点执行CSMA/CA退避算法，选取一个随机回退值。一旦检测到信道忙，退避计时器就保持不变。只要信道空闲，退避计时器就进行倒计时。</li>
+<li>当退避计时器减到0时（这时信道只可能是空闲的)，站点就发送整个帧并等待确认。</li>
+<li>发送站若收到确认，就知道已发送的帧被目的站正确接收。这时如果要发送第二帧，就要从步骤2）开始。</li>
+<li>若发送站在规定时间内没有收到确认帧ACK（由重传计时器控制)，就必须重传该帧，再次使用CSMA/CA
+协议争用该信道，直到收到确认，或经过若干次重传失败后放弃发送。</li>
+</ol>
+<p>处理隐蔽站问题:RTS和CTS</p>
+<p>站A和B都在AP的覆盖范围内，但A和B相距较远，彼此都听不见对方。当A和B检测到信道空闲时，都向AP发送数据，导致碰撞的发生，这就是隐蔽站问题。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103192554973.png" /></p>
+<p>为了避免该问题，802.11允许发送站对信道进行预约。源站要发送数据帧之前先广播一个很短的请求发送<strong>RTS（Request
+To
+Send）控制帧</strong>，它包括源地址、目的地址和这次通信（含相应的确认帧）所持续的时间，该帧能被其范围内包括AP在内的所有站点听到。</p>
+<p>若信道空闲，则AP广播一个<strong>允许发送CTS (Clear To
+Send）控制帧</strong>，它包括这次通信所需的持续时间（从RTS帧复制),
+该帧也能被其范围内包括A和B在内的所有站点听到。B和其他站听到CTS后，在CTS帧中指明的时间内将抑制发送。<strong>CTS帧有两个目的:①给源站明确的发送许可;②指示其他站点在预约期内不要发送。</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103192923728.png" /></p>
+<p>使用RTS和CTS帧会使网络的通信效率有所下降，但这两种帧都很短，与数据帧相比开销不算大。相反，若不使用这种控制帧，一旦发生碰撞而导致数据帧重发，则浪费的时间更多。信道预约不是强制性规定，各站可以自己决定使用或不使用信道预约。只有当数据帧长度超过某一数值时，使用RTS和CTS帧才比较有利。</p>
+<p>CSMA/CD 与CSMA/CA主要有如下区别:</p>
+<p>1）CSMA/CD可以检测冲突，但无法避免;
+CSMA/CA发送数据的同时不能检测信道上有无冲突，本结点处没有冲突并不意味着在接收结点处就没有冲突，只能尽量避免。</p>
+<p>2）传输介质不同。CSMA/CD用于总线形以太网，CSMA/CA用于无线局域网802.11a/b/g/n等。</p>
+<p>3）检测方式不同。CSMA/CD通过电缆中的电压变化来检测;
+而CSMA/CA采用能量检测、载波检测和能量载波混合检测三种检测信道空闲的方式。</p>
+<p>总结: <strong>CSMA/CA
+协议的基本思想是在发送数据时先广播告知其他结点，让其他结点在某段时间内不要发送数据，以免出现碰撞。CSMA/CD协议的基本思想是发送前侦听，边发送边侦听，一旦出现碰撞马上停止发送。</strong></p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之CSMA/CD协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMACD%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2
+id="计算机网络随机访问介质访问控制之csmacd协议">计算机网络：随机访问介质访问控制之CSMA/CD协议</h2>
+<h3 id="csmacd协议">CSMA/CD协议</h3>
+<p><strong>载波侦听多路访问/碰撞检测(Carrier Sense Multiple Access with
+Collision Detection, CSMA/CD)
+协议是CSMA协议的改进方案，适用于总线形网络或半双工网络环境。</strong>“载波侦听”就是发送前先侦听，即每个站在发送数据之前先要检测一下总线上是否有其他站点正在发送数据，若有则暂时不发送数据，等待信道变为空闲时再发送。“碰撞检测”就是边发送边侦听，即适配器边发送数据边检测信道上信号电压的变化情况，以便判断自己在发送数据时其他站点是否也在发送数据。</p>
+<span id="more"></span>
+<p>CSMA/CD的工作流程可简单概括为“<strong>先听后发，边听边发，冲突停发，随机重发</strong>”。</p>
+<p>1）适配器从网络层获得一个分组，封装成以太网帧，放入适配器的缓存，准备发送。</p>
+<p>2）如果适配器侦听到信道空闲，那么它开始发送该帧。如果适配器侦听到信道忙，那么它持续侦听直至信道上没有信号能量，然后开始发送该帧。</p>
+<p>3）在发送过程中，适配器持续检测信道。若一直未检测到碰撞，则顺利地把这个帧发送完毕。若检测到碰撞，则中止数据的发送，<strong>并发送一个拥塞信号</strong>，以让所有用户都知道。</p>
+<p>4）在中止发送后，适配器就执行指数退避算法，等待一段随机时间后返回到步骤2)。</p>
+<p>电磁波在总线上的传播速率总是有限的，因此，当某个时刻发送站检测到信道空闲时，此时信道并不一定是空闲的。设<span
+class="math inline">\(\tau\)</span>为单程传播时延。在t=0时，A发送数据。在t=
+<span class="math inline">\(\tau\)</span> - <span
+class="math inline">\(\delta\)</span>时，A发送的数据还未到达B，由于B检测到信道空闲而发送数据。经过时间<span
+class="math inline">\(\delta\)</span>/2后，即在t=<span
+class="math inline">\(\tau\)</span>-<span
+class="math inline">\(\delta\)</span>/2时，A发送的数据和B发送的数据发生碰撞，但这时A和B都不知道。在t=<span
+class="math inline">\(\tau\)</span>时，B检测到碰撞,于是停止发送数据。在t
+= 2<span class="math inline">\(\tau\)</span>-<span
+class="math inline">\(\delta\)</span>时，A检测到碰撞，也停止发送数据。显然，CSMA/CD
+中的站不可能同时进行发送和接收，因此采用CSMA/CD协议的以太网只能进行半双工通信。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103184111196.png" /></p>
+<p>站A在发送帧后至多经过时间2<span
+class="math inline">\(\tau\)</span>(端到端传播时延的2倍）就能知道所发送的帧有没有发生碰撞（当<span
+class="math inline">\(\delta\)</span>→0时)。因此<strong>把以太网端到端往返时间2<span
+class="math inline">\(\tau\)</span>称为争用期（又称冲突窗口或碰撞窗口)</strong>。</p>
+<p>每个站在自己发送数据之后的一小段时间内，存在发生碰撞的可能性，只有经过争用期这段时间还未检测到碰撞时，才能确定这次发送不会发生碰撞。</p>
+<p>为了确保发送站在发送数据的同时能检测到可能存在的碰撞，需要在发送完帧之前就能收到自己发送出去的数据，即<strong>帧的传输时延至少要两倍于信号在总线中的传播时延</strong>，所以CSMA/CD总线网中的<strong>所有数据帧都必须要大于一个最小帧长</strong>。任何站点收到帧长小于最小帧长的帧时，就把它当作无效帧立即丢弃。</p>
+<p><strong>最小帧长的计算公式为: 最小帧长=总线传播时延×数据传输速率×2 =
+争用期×数据传输速率</strong></p>
+<p>如果只发送小于最小帧长的帧，那么需要在MAC子层中于<strong>数据字段的后面加入一个整数字节的填充字段</strong>，以保证以太网的
+MAC帧的长度不小于最小帧长。</p>
+<p>除检测冲突外，CSMA/CD还能从冲突中恢复。一旦发生了冲突，参与冲突的两个站点紧接着再次发送是没有意义的，会导致无休止的冲突。CSMA/CD
+采用二进制指数退避算法来解决碰撞问题。算法精髓如下:</p>
+<ol type="1">
+<li>确定基本退避时间, 一般取两倍的总线端到端传播时延 $ 2 $
+(即争用期)。</li>
+<li>定义参数 k , 它等于重传次数, 但 k 不超过 10 , 即 k= min [ 重传次数,
+10]。当重传次数不超过 10 时, k 等于重传次数; 当重传次数大于 10 时,
+<strong>k 就不再增大而一直等于 10</strong>。</li>
+<li>从离散的整数集合 $$ 中随机取出一个数 r , 重传所需要退避的时间就是 r
+倍的基本退避时间, 即 $2 r $ 。</li>
+<li>当重传达 16 次仍不能成功时, 说明网络太拥挤,
+认为此帧永远无法正确发出,
+<strong>抛弃此帧并向高层报告出错</strong>。</li>
+</ol>
+<p>使用截断二进制指数退避算法可使重传需要推迟的平均时间随重传次数的增大而增大
+(这也称<strong>动态退避</strong>), 因而能降低发生碰撞的概率,
+有利于整个系统的稳定。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之CSMA协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h3 id="csma协议">CSMA协议</h3>
+<p>时隙ALOHA系统的效率虽然是纯ALOHA系统的两倍，但每个站点都是随心所欲地发送数据的，即使其他站点正在发送也照发不误，因此发送碰撞的概率很大。</p>
+<p>若<strong>每个站点在发送前都先侦听一下共用信道，发现信道空闲后再发送</strong>，则就会大大降低冲突的可能，从而提高信道的利用率，<strong>载波侦听多路访问(Carrier
+Sense Multiple
+Access，CSMA）协议</strong>依据的正是这一思想。CSMA协议是在ALOHA协议基础上提出的一种改进协议，它与ALOHA协议的主要区别是多了一个载波侦听装置。</p>
+<p>根据侦听方式和侦听到信道忙后的处理方式不同，CSMA协议分为三种。</p>
+<span id="more"></span>
+<h4 id="坚持csma">1-坚持CSMA</h4>
+<p><strong>一个结点要发送数据时，首先侦听信道;如果信道空闲，那么立即发送数据;如果信道忙，那么等待，同时继续侦听直至信道空闲;如果发生冲突，那么随机等待一段时间后，再重新开始侦听信道。</strong></p>
+<p>“1-坚持”的含义是:侦听到信道忙后，继续坚持侦听信道;
+侦听到信道空闲后，发送帧的概率为1，即立刻发送数据。
+传播延迟对1-坚持CSMA协议的性能影响较大。</p>
+<blockquote>
+<p>结点A开始发送数据时，结点B也正好有数据要发送，但这时结点A发出数据的信号还未到达结点B，结点B侦听到信道空闲，于是立即发送数据，结果必然导致冲突。</p>
+</blockquote>
+<p>即使不考虑延迟，1-坚持CSMA协议也可能产生冲突。</p>
+<blockquote>
+<p>例如，结点A正在发送数据时，结点B和C也准备发送数据，侦听到信道忙，于是坚持侦听，结果当结点A一发送完毕，结点B和C就会立即发送数据，同样导致冲突。</p>
+</blockquote>
+<h4 id="非坚持csma">非坚持CSMA</h4>
+<p>一个结点要发送数据时，首先侦听信道; 如果信道空闲，那么立即发送数据;
+如果信道忙，那么放弃侦听，等待一个随机的时间后再重复上述过程。</p>
+<p>非坚持CSMA协议在侦听到信道忙后就放弃侦听,因此降低了多个结点等待信道空闲后同时发送数据导致冲突的概率，但也会增加数据在网络中的平均延迟。可见，信道利用率的提高是以增加数据在网络中的延迟时间为代价的。</p>
+<h4 id="p-坚持csma">p-坚持CSMA</h4>
+<p>p-坚持CSMA (P-persistent
+CSMA）用于时分信道，其基本思想是:<strong>一个结点要发送数据时，首先侦听信道;如果信道忙，就持续侦听"，直至信道空闲;
+如果信道空闲，那么以概率 p 发送数据，以概率1-p推迟到下一个时隙;
+如果在下一个时隙信道仍然空闲，那么仍以概率p发送数据，以概率1-p推迟到下一个时隙;
+这个过程一直持续到数据发送成功或因其他结点发送数据而检测到信道忙为止，若是后者，则等待下一个时隙再重新开始侦听。</strong></p>
+<p>p-坚持CSMA 在检测到信道空闲后，以概率p发送数据，以概率1-p
+推迟到下一个时隙，其目的是<strong>降低1-坚持CSMA协议中多个结点检测到信道空闲后同时发送数据的冲突概率</strong>;
+采用坚持“侦听”的目的是，<strong>试图克服非坚持CSMA协议中由于随机等待而造成的延迟时间较长的缺点</strong>。因此，p-坚持CSMA
+协议是非坚持CSMA协议和1-坚持CSMA协议的折中方案。</p>
+<h4 id="比较">比较</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103182629325.png" /></p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之令牌传递协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8B%E4%BB%A4%E7%89%8C%E4%BC%A0%E9%80%92%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2
+id="计算机网络随机访问介质访问控制之令牌传递协议">计算机网络：随机访问介质访问控制之令牌传递协议</h2>
+<p><strong>在轮询访问中，用户不能随机地发送信息，而要通过一个集中控制的监控站，以循环方式轮询每个结点，再决定信道的分配。</strong>当某结点使用信道时，其他结点都不能使用信道。典型的轮询访问介质访问控制协议是令牌传递协议，它主要用在令牌环局域网中。</p>
+<span id="more"></span>
+<p>在令牌传递协议中，<strong>一个令牌（Token）沿着环形总线在各结点计算机间依次传递</strong>。令牌是一个特殊的MAC
+控制帧，它<strong>本身并不包含信息，仅控制信道的使用</strong>，确保同一时刻只有一个站点独占信道。<strong>当环上的一个站点希望传送帧时，必须等待令牌。一旦收到令牌，站点便可启动发送帧</strong>。帧中包括目的站点地址，以标识哪个站点应接收此帧。站点只有取得令牌后才能发送数据帧，因此令牌环网不会发生碰撞。<strong>站点在发送完一帧后，应释放令牌</strong>，以便让其他站使用。由于令牌在网环上是按顺序依次传递的，因此对所有入网计算机而言，访问权是公平的。
+当计算机都不需要发送数据时，令牌就在环形网上游荡，而需要发送数据的计算机只有在拿到该令牌后才能发送数据帧，因此不会发送冲突（因为令牌只有一个)
+。</p>
+<p>令牌环网中令牌和数据的传递过程如下:</p>
+<ol type="1">
+<li>网络空闲时，环路中只有令牌帧在循环传递。</li>
+<li>令牌传递到有数据要发送的站点时，该站点就修改令牌中的一个标志位，并在令牌中附加自己需要传输的数据，将令牌变成一个数据帧，然后将这个数据帧发送出去。</li>
+<li>数据帧沿着环路传输，接收到的站点一边转发数据，一边查看帧的目的地址。如果目的地址和自己的地址相同，那么接收站就复制该数据帧以便进一步处理。</li>
+<li>数据帧沿着环路传输，直到到达该帧的源站点，源站点收到自己发出去的帧后便不再转发。同时，通过检验返回的帧来查看数据传输过程中是否出错，若有错则重传。</li>
+<li>源站点传送完数据后，重新产生一个令牌，并传递给下一站点，以交出信道控制权。在令牌传递网络中，传输介质的物理拓扑不必是一个环，但是为了把对介质访问的许可从一个设备传递到另一个设备，<strong>令牌在设备间的传递通路逻辑上必须是一个环</strong>。</li>
+</ol>
+<p>轮询介质访问控制非常适合负载很高的广播信道。<strong>所谓负载很高的信道，是指多个结点在同一时刻发送数据概率很大的信道。</strong>可以想象，如果这样的广播信道采用随机介质访问控制，那么发生冲突的概率将会很大，而采用轮询介质访问控制则可以很好地满足各结点间的通信需求。</p>
+<p>轮询介质访问控制既不共享时间,也不共享空间,它<strong>实际上是在随机介质访问控制的基础上，限定了有权力发送数据的结点只能有一个。</strong></p>
+<p>即使是广播信道也可通过介质访问控制机制使广播信道逻辑上变为点对点的信道，所以说数据链路层研究的是“点到点”之间的通信。</p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
