@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.1 线性分组码(n,k)定义 线性分组码是由 (n, k) 形式表示。编码器将一个 k 比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n 比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 , 称为二进制编码。 k-bit 信息形成 \(2^k\) 不同的信息序列 , 称为 k 元组。 n-bit 可以形成 \(2^n\) 个不同序列，称为">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="信息论与编码：线性分组码与性能参数">
+<meta property="og:url" content="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="1.1 线性分组码(n,k)定义 线性分组码是由 (n, k) 形式表示。编码器将一个 k 比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n 比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 , 称为二进制编码。 k-bit 信息形成 \(2^k\) 不同的信息序列 , 称为 k 元组。 n-bit 可以形成 \(2^n\) 个不同序列，称为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-27T02:51:40.370Z">
+<meta property="article:modified_time" content="2022-11-27T02:51:19.477Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="Information Theory">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/","path":"Basic-knowledge/信息论与编码：线性分组码与性能参数/","title":"信息论与编码：线性分组码与性能参数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息论与编码：线性分组码与性能参数 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">43</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81nk%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">1.1 线性分组码(n,k)定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">1.2 信道编码性能参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">1.3基本线性分组码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a.%E5%A5%87%E5%81%B6%E7%9B%91%E7%9D%A3%E7%A0%81"><span class="nav-number">3.1.</span> <span class="nav-text">a.奇偶监督码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b.%E6%81%92%E6%AF%94%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">b.恒比码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c.%E6%B1%89%E6%98%8E%E7%A0%81"><span class="nav-number">3.3.</span> <span class="nav-text">c.汉明码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6%E7%B1%BB%E5%9E%8B%E5%AF%B9%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-number">4.</span> <span class="nav-text">1.4
+差错控制类型对信道编码的要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81%E4%B8%BB%E8%A6%81%E6%B6%89%E5%8F%8A%E7%9A%84%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86%E6%9C%89%E9%99%90%E5%9F%9F%E8%BF%90%E7%AE%97%E7%9F%A9%E9%98%B5%E8%BF%90%E7%AE%97"><span class="nav-number">5.</span> <span class="nav-text">1.5信道编码主要涉及的数学知识：有限域运算、矩阵运算</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息论与编码：线性分组码与性能参数 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息论与编码：线性分组码与性能参数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-27 10:51:40" itemprop="dateCreated datePublished" datetime="2022-11-27T10:51:40+08:00">2022-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="线性分组码nk定义">1.1 线性分组码(n,k)定义</h3>
+<p>线性分组码是由 (n, k) 形式表示。编码器将一个 k
+比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n
+比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 ,
+称为二进制编码。</p>
+<p>k-bit 信息形成 <span class="math inline">\(2^k\)</span>
+不同的信息序列 , 称为 k 元组。 n-bit 可以形成 <span
+class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
+<p>(n，k）分组码输出的长度为n的序列称为<strong>码字</strong>。所有这些码字的集合称为该线性分组码的<strong>码组</strong>。
+因为n&gt;k，故编码时需按某种规则加入r=n-k个监督（校验）码元。</p>
+<p>对于分组码(n,k),定义</p>
+<ul>
+<li><strong>编码效率: k/n</strong></li>
+<li><strong>编码冗余度:(n-k)/n</strong></li>
+</ul>
+<p>线性分组码的几个重要概念</p>
+<ul>
+<li><p><strong>码距（汉明距离）</strong>：两个码组中<strong>对应位置上具有不同二进制码元的位数</strong></p></li>
+<li><p><strong>码重（汉明重量）</strong>：线性分组码中，将码字（组）中<strong>所含
+1 的数目</strong>定义为码字(组)的重量</p></li>
+<li><p>编码信道：研究信道编码和译码的信道模型</p>
+<ul>
+<li>二元码、硬判决时，建模为 BSC （二元对称）信道</li>
+<li>软判决时，建模为 AWGN 信道</li>
+<li>软判决与硬判决译码（简单理解：译码器输入比特的选取）</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h3 id="信道编码性能参数">1.2 信道编码性能参数</h3>
+<p>主要的性能参数有 <strong>差错概率、编码增益、检纠错能力</strong>
+。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113108110.png" /></p>
+<p>编码增益 ：给定差错概率下，通过编码所能实现的比特信噪比$
+𝑬_𝒃/𝑵_𝟎$的减少量。</p>
+<ul>
+<li><strong>检错能力 l: <span class="math inline">\(d_{\text {min }}
+\geq l+1\)</span></strong></li>
+<li><strong>纠错能力 t: <span class="math inline">\(d_{\min } \geq 2
+t+1\)</span></strong></li>
+<li><strong>检错 l 纠错 t: <span class="math inline">\(d_{\text {min }}
+\geq l+t+1\)</span></strong></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113140034.png" /></p>
+<h3 id="基本线性分组码">1.3基本线性分组码</h3>
+<h4 id="a.奇偶监督码">a.奇偶监督码</h4>
+<ul>
+<li><p>码字由 n 个码元组成， n 1 个信息码元，另一码元为奇（偶）监督码元
+(n, n-1 )奇偶监督码.</p></li>
+<li><p><strong>码率: (n-1)/ n</strong></p>
+<p><span class="math inline">\(\begin{array} \quad C=\left(C_{n-1},
+C_{n-2}, \ldots, C_{1}, C_{0}\right) \Rightarrow C_{n-1} \oplus C_{n-2}
+\oplus \ldots \oplus C_{1} \oplus C_{0} \\ \end{array}\)</span></p>
+<p>=0 (偶校验)or 1(奇校验)</p>
+<p>可检测到<strong>奇数</strong>个错误图样,
+如果错误个数为偶数则无法检测。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113540154.png" /></p></li>
+</ul>
+<h4 id="b.恒比码">b.恒比码</h4>
+<ul>
+<li>每个码组中 1 和 0 的个数保持恒定，因而比值恒定。我国电传通信中 5
+中取 3 码 每个 5bit 码组中必须含有 3 个 1和2 个 0），总数共有<span
+class="math inline">\(C_{5}^{3}=C_{5}^{2}=10\)</span>种来表示十进制数。</li>
+</ul>
+<h4 id="c.汉明码">c.汉明码</h4>
+<ul>
+<li>能纠正<strong>单个随机错误</strong>的线性分组码</li>
+</ul>
+<h3 id="差错控制类型对信道编码的要求">1.4
+差错控制类型对信道编码的要求</h3>
+<ol type="1">
+<li>ARQ （检错重发 自动请求重发）</li>
+</ol>
+<ul>
+<li>适用于非实时数据传输系统</li>
+<li>要求信道编码具有检错功能</li>
+</ul>
+<p>利用奇偶校验比特来检错重发。接收端不纠正错误，只是简单的要求发射机重发数据。此时，发射端与接收端间的对话需要双向链路反馈信道
+。</p>
+<p><strong>自动重发请求 (ARQ)</strong>: 三种类型</p>
+<p>1)停止——等待 ARQ （半双工） 2)具有回拉功能的连续 ARQ （全双工）
+3)具有选择性重发功能的连续 ARQ （全双工）</p>
+<p>ARQ的主要优点是
+，<strong>错误检测设备要比纠错设备简单得多，只需要少量的冗余。</strong></p>
+<p>ARQ只适用于发生错误时需要重发的情况。</p>
+<p>2.FEC （前向纠错)</p>
+<ul>
+<li><strong>适用于实时通信系统中</strong></li>
+<li><strong>要求信道编码具有纠错功能</strong></li>
+<li>比ARQ 优越的方面
+<ol type="1">
+<li>没有可用的反向信道或 ARQ 延迟过长。</li>
+<li>重发策略无法简单的实现。</li>
+<li>没有纠正的错误数目需要过多的重传。</li>
+</ol></li>
+</ul>
+<p>3.HEC （混合纠错 ARQ+FEC）</p>
+<p>即能检错又能纠错</p>
+<p>首先收端进行检错，如错误在纠错范围内则纠正，否则请求重传。</p>
+<h3
+id="信道编码主要涉及的数学知识有限域运算矩阵运算">1.5信道编码主要涉及的数学知识：有限域运算、矩阵运算</h3>
+<ul>
+<li><p>有限域初步知识： Galois 域——迦罗华域</p></li>
+<li><p><strong>有限域：指有限个元素的集合，可按规则进行代数四则运算，且运算结果仍属于集合中的有限元素。</strong></p></li>
+<li><p>对于二元域，记为 GF(2)，其内码元满足模二运算。</p></li>
+<li><p>二元扩展域 GF(<span class="math inline">\(2^n\)</span>)——由 GF(2)
+元素的一切长度为 n的序列组成的集合（二进制数组的集合）。</p></li>
+<li><p>设 $ , ^{} G F(2^{n}), G F(2)$ , 即<span
+class="math inline">\(\alpha\)</span>取0或1。</p>
+<p>加法: <span
+class="math inline">\(\mathbf{x}+\mathbf{x}^{\prime}=\left(x_{n-1}
+\oplus x_{n-1}^{\prime}, x_{n-2} \oplus x_{n-2}^{\prime}, \ldots, x_{1}
+\oplus x_{1}^{\prime}, x_{0} \oplus x_{0}^{\prime}\right)\)</span></p>
+<p>乘法: $x=(x_{n-1}, x_{n-2}, , x_{1}, x_{0}) $</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Information-Theory/" rel="tag"><i class="fa fa-tag"></i> Information Theory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/" rel="prev" title="信息论与编码：信道的定义和分类">
+                  <i class="fa fa-chevron-left"></i> 信息论与编码：信道的定义和分类
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/" rel="next" title="信息论与编码：恒参信道特性">
+                  信息论与编码：恒参信道特性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

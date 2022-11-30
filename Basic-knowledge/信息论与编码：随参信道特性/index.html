@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="随参信道的传输特性主要依赖于传输媒质特性，以电离层反射信道、对流层散射信道为主要代表。 随参信道是一种信道传输特性随时间随机快速变化的信道， 包括陆地移动信道，短波电离层反射信道、超短波微波对流层散射信道、超短波视距绕射信道。 随参信道的传输媒介具有以下三个特点：  对信号的衰耗（衰减）随时间而变； 传输的时延随时间而变； 会产生多径传播的效果。  多径传播 ：指由发射点出发的">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="信息论与编码：随参信道特性">
+<meta property="og:url" content="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="随参信道的传输特性主要依赖于传输媒质特性，以电离层反射信道、对流层散射信道为主要代表。 随参信道是一种信道传输特性随时间随机快速变化的信道， 包括陆地移动信道，短波电离层反射信道、超短波微波对流层散射信道、超短波视距绕射信道。 随参信道的传输媒介具有以下三个特点：  对信号的衰耗（衰减）随时间而变； 传输的时延随时间而变； 会产生多径传播的效果。  多径传播 ：指由发射点出发的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-29T01:28:55.851Z">
+<meta property="article:modified_time" content="2022-11-29T01:28:46.083Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="Information Theory">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/","path":"Basic-knowledge/信息论与编码：随参信道特性/","title":"信息论与编码：随参信道特性"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息论与编码：随参信道特性 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">43</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.</span> <span class="nav-text">随参信道数学模型的建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E5%AF%B9%E4%BF%A1%E5%8F%B7%E4%BC%A0%E8%BE%93%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">2.</span> <span class="nav-text">随参信道对信号传输的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E5%9D%A6%E6%80%A7%E8%A1%B0%E8%90%BD%E5%8F%8A%E9%A2%91%E7%8E%87%E9%80%89%E6%8B%A9%E6%80%A7%E8%A1%B0%E8%90%BD"><span class="nav-number">2.1.</span> <span class="nav-text">平坦性衰落及频率选择性衰落</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E5%9D%A6%E6%80%A7%E8%A1%B0%E8%90%BD"><span class="nav-number">2.2.</span> <span class="nav-text">1.平坦性衰落</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#rayleigh-%E5%88%86%E5%B8%83"><span class="nav-number">2.2.1.</span> <span class="nav-text">Rayleigh 分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#rice-%E5%88%86%E5%B8%83"><span class="nav-number">2.2.2.</span> <span class="nav-text">Rice 分布</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E9%80%89%E6%8B%A9%E6%80%A7%E8%A1%B0%E8%90%BD"><span class="nav-number">2.3.</span> <span class="nav-text">2.频率选择性衰落</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%BE%84%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%9A%84%E6%97%B6%E5%BB%B6%E6%89%A9%E5%B1%95%E4%B8%8E%E7%9B%B8%E5%B9%B2%E5%B8%A6%E5%AE%BD"><span class="nav-number">3.</span> <span class="nav-text">多径随参信道的时延扩展与相干带宽</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%9A%84%E5%A4%9A%E5%BE%84%E6%97%B6%E5%BB%B6%E7%89%B9%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">随参信道的多径时延特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%BE%84%E4%BF%A1%E9%81%93%E7%9A%84%E9%A2%91%E5%9F%9F%E7%89%B9%E6%80%A7"><span class="nav-number">3.2.</span> <span class="nav-text">多径信道的频域特性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E4%BF%A1%E9%81%93%E7%9A%84%E5%A4%9A%E6%99%AE%E5%8B%92%E6%89%A9%E5%B1%95%E5%8F%8A%E7%9B%B8%E5%B9%B2%E6%97%B6%E9%97%B4"><span class="nav-number">4.</span> <span class="nav-text">移动信道的多普勒扩展及相干时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%99%AE%E5%8B%92%E6%89%A9%E5%B1%95"><span class="nav-number">4.1.</span> <span class="nav-text">1.多普勒扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E9%81%93%E7%9A%84%E7%9B%B8%E5%B9%B2%E6%97%B6%E9%97%B4-tc-%E5%92%8C%E5%A4%9A%E6%99%AE%E5%8B%92%E9%A2%91%E7%8E%87%E6%89%A9%E5%B1%95"><span class="nav-number">4.2.</span> <span class="nav-text">2.信道的相干时间 Tc
+和多普勒频率扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%99%AE%E5%8B%92%E6%89%A9%E5%B1%95%E5%AF%B9%E8%A1%B0%E8%90%BD%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.3.</span> <span class="nav-text">3.多普勒扩展对衰落的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%E8%80%83%E8%99%91%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%9A%84%E5%A4%9A%E5%BE%84%E6%97%B6%E5%BB%B6%E6%89%A9%E5%B1%95%E5%8F%8A%E5%A4%9A%E6%99%AE%E5%8B%92%E6%89%A9%E5%B1%95%E5%AF%B9%E8%A1%B0%E8%90%BD%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">4.4.</span> <span class="nav-text">4.同时考虑随参信道的多径时延扩展及多普勒扩展对衰落的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%97%E8%A1%B0%E8%90%BD%E7%9A%84%E6%96%B9%E6%A1%88"><span class="nav-number">4.5.</span> <span class="nav-text">5.抗衰落的方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息论与编码：随参信道特性 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息论与编码：随参信道特性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-29 09:28:55" itemprop="dateCreated datePublished" datetime="2022-11-29T09:28:55+08:00">2022-11-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>随参信道的传输特性主要依赖于传输媒质特性，以电离层反射信道、对流层散射信道为主要代表。
+<strong>随参信道是一种信道传输特性随时间随机快速变化的信道</strong>，
+包括陆地移动信道，短波电离层反射信道、超短波微波对流层散射信道、超短波视距绕射信道。</p>
+<p>随参信道的传输媒介具有以下三个特点：</p>
+<ul>
+<li>对信号的衰耗（衰减）随时间而变；</li>
+<li>传输的时延随时间而变；</li>
+<li>会产生多径传播的效果。</li>
+</ul>
+<p><strong>多径传播</strong>
+：指由发射点出发的电波可能经过多条路径到达接收点。每条路径对信号的衰减和时延都随电离层或对流层等传输媒质的变化而变化，接收信号将是衰减和时延随时间变化的各路径信号的叠加与合成。
+<span class="math display">\[
+h(t)=\sum_{i=1}^{L} \mu_{i}(t) \delta\left[t-\tau_{i}(t)\right]
+\]</span></p>
+<h3 id="随参信道数学模型的建立">随参信道数学模型的建立</h3>
+<p>设发送信号为 <span class="math inline">\(s(t)=A
+\sum_{n=-\infty}^{\infty} d_{n} g(t-n T) \cos 2 \pi f_{c} c t\)</span>,
+<span class="math inline">\(A\)</span> 信号幅度, <span
+class="math inline">\(d_{n}\)</span> 信息码元, <span
+class="math inline">\(g(t)\)</span> 信息码元波形, <span
+class="math inline">\(f_{c}\)</span> 载波频率。</p>
+<span id="more"></span>
+<p>令 <span class="math inline">\(b(t)=\sum_{n=-\infty}^{\infty} d_{n}
+g(t-n T)\)</span> , 则 <span class="math inline">\(s(t)=A b(t) \cos 2
+\pi f_{c} t\)</span> 。经过多径信道 <span
+class="math inline">\(h(t)=\sum_{i=1}^{L} u_{i}(t)
+\delta\left(t-\tau_{i}(t)\right)\)</span> , 接收信号为 <span
+class="math display">\[
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos \left(2
+\pi f_{c} t+\varphi_{i}(t)\right)
+\]</span> $ u_{i}(t)$ 第 i 条路径的衰落因子, <span
+class="math inline">\(\tau_{i}(t)\)</span> 为第 i 条路径的传输时延。</p>
+<p>令 <span class="math inline">\(\varphi_{i}(t)=-2 \pi f_{c}
+\tau_{i}(t)\)</span> , 则有 <span class="math display">\[
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos \left(2
+\pi f_{c}\left(t-\tau_{i}(t)\right)\right)
+\]</span> 一般情况 <span class="math inline">\(u_{i}(t)\)</span> 、
+<span class="math inline">\(\tau_{i}(t)\)</span> 较载波 <span
+class="math inline">\(\cos \left(2 \pi f_{c} t\right)\)</span>
+变化缓慢得多, <span class="math inline">\(r(t)\)</span> 可视为窄带过程,
+又可表示为 <span class="math display">\[
+\begin{array}{c}
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos
+\varphi_{i}(t) \cos 2 \pi f_{c} t \\
+-A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \sin
+\varphi_{i}(t) \sin 2 \pi f_{c} t
+\end{array}
+\]</span> 即为随参信道的数学模型,
+利用它可以分析随参信道对信号传输的影响。</p>
+<h3 id="随参信道对信号传输的影响">随参信道对信号传输的影响</h3>
+<h4 id="平坦性衰落及频率选择性衰落">平坦性衰落及频率选择性衰落</h4>
+<h4 id="平坦性衰落">1.平坦性衰落</h4>
+<p>满足: <span class="math inline">\(\left|\tau_{i}(t)\right|_{\max }
+\ll T\)</span>, $T $ 为码元周期, 且 <span
+class="math inline">\(\left|\tau_{i}(t)\right|_{\max } \sim 1 /
+f_{c}\)</span> $b(t-_{i}(t)) b(t-), i=1,2, , L $, 其中 <span
+class="math inline">\(\overline{\tau(t)}\)</span> 为 <span
+class="math inline">\(\tau_{i}(t)\)</span> 的数学期望。 <span
+class="math display">\[
+\begin{aligned}
+r(t) &amp;=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos
+\varphi_{i}(t) \cos 2 \pi f_{c} t-A \sum_{i=1}^{L} u_{i}(t)
+b\left(t-\tau_{i}(t)\right) \sin \varphi_{i}(t) \sin 2 \pi f_{c} t \\
+&amp;=A b(t-\overline{\tau(t)})\left[x_{c}(t) \cos 2 \pi f_{c}
+t-x_{s}(t) \sin 2 \pi f_{c} t\right]=A b(t-\overline{\tau(t)}) v(t) \cos
+\left(2 \pi f_{c} t+\varphi(t)\right) \\
+&amp;=\operatorname{Re}\left[A b(t-\overline{\tau(t)}) v(t) e^{j\left(2
+\pi f_{c} t+\varphi(t)\right)}\right]
+\end{aligned}
+\]</span> 其中 $ v(t)$ 为 $ r(t)$ 的随机包络, $(t) $ 为 $ r(t)$
+的随机相位。 <span class="math display">\[
+\begin{aligned}
+x_{c}(t) &amp;=\sum_{i=1}^{L} u_{i}(t) \cos \varphi_{i}(t) \\
+x_{s}(t) &amp;=\sum_{i=1}^{L} u_{i}(t) \sin \varphi_{i}(t) \\
+v(t) &amp;=\sqrt{x_{c}^{2}(t)+x_{s}^{2}(t)} \\
+\varphi(t) &amp;=\arctan \left(\frac{x_{s}(t)}{x_{c}(t)}\right)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+r(t)=\operatorname{Re}\left[A b(t-\overline{\tau(t)}) v(t) e^{j\left(2
+\pi f_{c} t+\varphi(t)\right)}\right]
+\]</span></p>
+<p>多径传输和信道特性的变化导致<strong>接收信号幅度随机变化,
+载波相位随机变化, 而基带信号 <span
+class="math inline">\(\boldsymbol{b}(t)\)</span>
+波形变化不大</strong>。—<strong>平坦性衰落</strong></p>
+<p>多径传输引起的复包络 <span class="math inline">\(v(t) e^{j
+\varphi(t)}\)</span> 对基带信号而言相当于乘性千扰。</p>
+<p>经不同路径到达接收端的不同信号的相关性很小，且根据中心极限定理,
+当路径数很大时, 多径信号的概率分布趋于高斯分布, 即 $x_{s} $ ， <span
+class="math inline">\(x_{c}\)</span> 服从高斯分布，从而 v(t)
+的概率分布为瑞利（Rayleigh）分布, 相位 <span
+class="math inline">\(\varphi(t)\)</span> 为均匀分布。另外,
+如果接收信号中还包括一路直射信号 ,
+则信号的包络分布为广义瑞利分布或者莱斯 (Rice) 分布。</p>
+<h5 id="rayleigh-分布">Rayleigh 分布</h5>
+<p><span class="math display">\[
+f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}
+\]</span></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211226253.png"
+alt="image-20221118211226253" />
+<figcaption aria-hidden="true">image-20221118211226253</figcaption>
+</figure>
+<h5 id="rice-分布">Rice 分布</h5>
+<p><span class="math display">\[
+f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}+c^{2}}{2 \sigma^{2}}}
+I_{0}\left(\frac{c x}{\sigma^{2}}\right)
+\]</span></p>
+<p>其中 c 为直射 (视距) 信号的峰值, <span
+class="math inline">\(I_{0}(\cdot)\)</span> 为第一类 0 阶修正贝塞尔函数
+。定义 <span class="math inline">\(K=\frac{c^{2}}{2 \sigma^{2}}\)</span>
+, 表示主信号功率与多径分量功率之比, <span
+class="math inline">\(\mathbf{K}=\mathbf{0}\)</span>
+时（即不存在视距分量), Rice分布等效为 Rayleigh分布。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211411207.png"
+alt="image-20221118211411207" />
+<figcaption aria-hidden="true">image-20221118211411207</figcaption>
+</figure>
+<h4 id="频率选择性衰落">2.频率选择性衰落</h4>
+<p>若信道时延 <span class="math inline">\(\left|\tau_{i}(t)\right|_{\max
+}&gt;T\)</span> , 则 <span
+class="math inline">\(\boldsymbol{b}\left(\boldsymbol{t}-\boldsymbol{\tau}_{\boldsymbol{i}}(\boldsymbol{t})\right)\)</span>
+不能近似为 <span
+class="math inline">\(\boldsymbol{b}(\boldsymbol{t}-\overline{\boldsymbol{\tau}(\boldsymbol{t})})\)</span>
+。</p>
+<p>干扰可存在于不同码元。</p>
+<p>不同路径的不同信息码元之间会产生很大的相互干扰，称为<strong>码间干扰</strong>或者符号间千扰,
+产生严重波形失真, 引起很大误码, 影响通信质量。</p>
+<p><strong>接收信号以及其信息信号的幅度和相位都将产生畸变</strong>;
+<strong>频率域上看, 即不同频率分量受到不同程度的衰落,
+称为频率选择性衰落。</strong></p>
+<p>绿色矩形代表码元，红色为信道：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211801112.png" /></p>
+<p>分别为平坦与频率选择性衰落。</p>
+<h3
+id="多径随参信道的时延扩展与相干带宽">多径随参信道的时延扩展与相干带宽</h3>
+<p>此两参量
+阐明在什么条件下信号通过随参信道传输会引起平坦性或频率选择性衰落</p>
+<h4 id="随参信道的多径时延特性">随参信道的多径时延特性</h4>
+<p>均方根时延扩展 (时延扩展)： <span class="math display">\[
+\sigma_{\tau}=\sqrt{\overline{\tau^{2}}-(\bar{\tau})^{2}}
+\]</span> 最大时延差: <span class="math inline">\(\tau_{\max }\)</span>
+。</p>
+<h4 id="多径信道的频域特性">多径信道的频域特性</h4>
+<p>以二径信道模型为例: <span class="math inline">\(s(t)=A \cos 2 \pi f
+t\)</span> ,经过二径信道传输, 有 <span class="math inline">\(r(t)=A \cos
+2 \pi f t+A \cos 2 \pi f(t-\tau) =A \cos 2 \pi f t+A \cos (2 \pi f
+t+\phi), \phi=-2 \pi f \tau\)</span> 。 两径矢量之和为向量 <span
+class="math inline">\(\vec{B}\)</span> , 信道输出 <span
+class="math inline">\(r(t)\)</span> 的幅度和相位与二径信号的相位差 <span
+class="math inline">\(\phi=-2 \pi f \tau\)</span> 有关; 若时延差 <span
+class="math inline">\(\tau\)</span> 为常数,则对不同频率 f, <span
+class="math inline">\(\phi=-2 \pi f \tau\)</span> 不同。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118212248973.png" /></p>
+<blockquote>
+<p>当 <span class="math inline">\(\phi=0,2 \pi, 4 \pi, \ldots,
+r(t)\)</span> 的幅度 <span class="math inline">\(|\vec{B}|\)</span>
+最大为 <span class="math inline">\(2 A\)</span> , 当 <span
+class="math inline">\(\boldsymbol{\phi}=\boldsymbol{\pi}, 3 \pi, 5 \pi
+\ldots\)</span> , 幅度 <span class="math inline">\(|\vec{B}|\)</span>
+最小为 "0."</p>
+</blockquote>
+<p>信道的传输特性: <span class="math inline">\(H(f)=1+e^{-j 2 \pi f
+\tau}\)</span> , 其幅频特性 <span class="math inline">\(|H(f)|=2|\cos
+(\pi f \tau)|\)</span> 。</p>
+<p><strong>时延差的倒数称为信道的相干带宽 <span
+class="math inline">\(B_{c}=1 / \tau\)</span> 。</strong></p>
+<p>若信号带宽 $B&lt;B_{c} $ 信号通过信道失真可忽略; 若 <span
+class="math inline">\(B \geq B_{c}\)</span> 信号通过信道失真很大。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118212529107.png" /></p>
+<p>对于多径信道, 可用时延扩展近似求出信道 的相干带宽</p>
+<p><span class="math inline">\(B_{c} \approx
+\frac{1}{\sigma_{\tau}}\)</span></p>
+<p><strong>当信号带宽 <span class="math inline">\(B&gt;B_{c}\)</span> ,
+信号遭受频率选择性衰落, 引起码间干扰; 当 <span class="math inline">\(B
+\ll B_{c}\)</span> 时, 信号遭受平坦衰落。</strong></p>
+<h3
+id="移动信道的多普勒扩展及相干时间">移动信道的多普勒扩展及相干时间</h3>
+<h4 id="多普勒扩展">1.多普勒扩展</h4>
+<p>移动通信中, 移动台与基站间的相对运动,
+会使接收信号的载频发生多普勒频移。 对于频率为 <span
+class="math inline">\(f_{c}\)</span> 的单频信号, 受多普勒频移,
+其频谱范围约为 <span class="math inline">\(\left(f_{c}-f_{m},
+f_{c}+f_{m}\right)\)</span> 。其中 <span
+class="math inline">\(f_{m}=\frac{v}{\lambda}=\frac{v f_{c}}{c}\)</span>
+为<strong>最大多普勒频移</strong> (v 移动速度, <span
+class="math inline">\(\lambda\)</span> 载波波长, c 光速)。</p>
+<p>设发射信号为频率是 <span class="math inline">\(f_{c}\)</span>
+的正弦波, 到达移动台的路径与移动台运动方向夹角为 <span
+class="math inline">\(\theta\)</span> , 则多普勒频移<span
+class="math inline">\(f_{d}=f_{m} \cos \theta\)</span> 。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213047640.png" /></p>
+<p>图中X&amp;Y 代表移动台。</p>
+<h4 id="信道的相干时间-tc-和多普勒频率扩展">2.信道的相干时间 Tc
+和多普勒频率扩展</h4>
+<p>定义最大多普勒频移 <span class="math inline">\(f_{m}\)</span>
+的倒数为信道的相干时间 <span class="math inline">\(T_{c}\)</span>, <span
+class="math inline">\(T_{c}=1 / f_{m}\)</span> 。
+它<strong>反映信道冲激响应对所传输的信号产生快衰或慢衰的影响</strong>。</p>
+<p>定义最大多普勒频率 $ B_{D}=f_{m}$ 为多普勒频率扩展。</p>
+<h4 id="多普勒扩展对衰落的影响">3.多普勒扩展对衰落的影响</h4>
+<p><strong>快衰落信道</strong>: <span
+class="math inline">\(T_{s}&gt;T_{c}\)</span> 或信号的符号速率 <span
+class="math inline">\(R_{s}&lt;B_{D}\)</span> ,
+即<strong>信道相干时间小于信号码元周期</strong>（符号间隔
+），因而在信号符号间隔时间内, 信道冲激响应快速变化,
+使信号产生失真——<strong>快衰落信道</strong>或称为<strong>时间选择性衰落</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213425783.png" /></p>
+<p><strong>慢衰落信道</strong>: <span
+class="math inline">\(T_{s}&lt;&lt;T_{c}\)</span> 或 <span
+class="math inline">\(R_{s}&gt;&gt;B_{D}\)</span> ,
+即<strong>信号码元周期（符号间隔）远小于信道相干时间</strong>，或<strong>信号符号速率远大于信道的多普勒频率扩展,</strong>
+则<strong>信道冲激响应变化速率低于信号符号速率</strong>,
+在信号符号间隔时间内信道冲激响应基本不变, 此时信号遭受慢衰落。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213643831.png" /></p>
+<p>注意：
+快、慢衰落信道的时变特性与所传信号的速率有关，不涉及传输距离、路径损耗等</p>
+<h4
+id="同时考虑随参信道的多径时延扩展及多普勒扩展对衰落的影响">4.同时考虑随参信道的多径时延扩展及多普勒扩展对衰落的影响</h4>
+<ul>
+<li><strong>多径时延扩展会引起随参信道平坦性衰落或频率选择性衰落</strong>。</li>
+<li>在平坦性衰落信道下，由于多普勒扩展又可分为<strong>平坦性快衰落和平坦性慢衰落</strong>；</li>
+<li>在频率选择性衰落信道下，由于多普勒扩展，可以分为<strong>频率选择性快衰落与频率选择性慢衰落</strong>。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213848069.png" /></p>
+<h4 id="抗衰落的方案">5.抗衰落的方案</h4>
+<p>衰落<strong>影响通信质量</strong>，会<strong>使信噪比下降</strong>，或<strong>引起码间干扰</strong>，甚至<strong>造成突发错误</strong>引起通信中断。</p>
+<p>常用的抗衰落方法：<strong>扩频多径分离技术、交织技术、纠错码的编译码技术、自适应信道均衡器、分集接收技术</strong>等
+。</p>
+<h2 id="总结">总结</h2>
+<p>多径传播对信号传输的影响：</p>
+<ul>
+<li>产生瑞利型衰落：从波形上看，幅度恒定频率单一的载波信号变成了包络和相位受到调制的窄带信号。</li>
+<li>引起频率弥散：从频谱上看，单个频率变成了窄带频谱</li>
+<li>造成频率选择性衰落：信号频谱中某些分量被衰落， <span
+class="math inline">\(B&gt; B c\)</span> 。</li>
+<li>为减小选择性衰落，要限制数字信号的传输速率，实际上等于限制了数字信号的频谱宽度，即信号频带必须小于相关带宽。</li>
+</ul>
+<p>综合考虑无线信道的衰落 ，分为 <strong>大尺度衰落 和
+小尺度衰落</strong> 。</p>
+<p>1.大尺度衰落：由大型障碍物遮挡而引起的阴影效应和接收机与发射机之间的距离差导致接收信号强度的变化称为大尺度衰落，具体可以分为<strong>路径损耗和阴影衰落</strong>。</p>
+<p>2.小尺度衰落主要描述的是信号强度在很短时间内发生剧烈快速波动的现象，体现在信号的幅值和相位变化。小尺度衰落可以分为<strong>多径效应和多普勒频移</strong>。<strong>随参信道特性属于小尺度衰落。</strong></p>
+<p>参考文献：</p>
+<ul>
+<li><p>樊昌信, 曹丽娜 .通信原理(第7版)
+[M]．北京：国防工业出版社，2012.</p></li>
+<li><p>John G. Proakis .Communication systems engineering [M]．Upper
+Saddle River, N.J：Prentice Hall，2002.</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Information-Theory/" rel="tag"><i class="fa fa-tag"></i> Information Theory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/" rel="prev" title="信息论与编码：恒参信道特性">
+                  <i class="fa fa-chevron-left"></i> 信息论与编码：恒参信道特性
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%89%B9%E7%82%B9/" rel="next" title="嵌入式系统概述及特点">
+                  嵌入式系统概述及特点 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

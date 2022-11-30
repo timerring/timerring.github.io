@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Data Communication and Computer Networks</title>
-    <url>/learn/Data%20Communication%20and%20Computer%20Networks/</url>
+    <url>/Learn/Data%20Communication%20and%20Computer%20Networks/</url>
     <content><![CDATA[<h1 id="data-communication-and-computer-networks">Data Communication and
 Computer Networks</h1>
 <h2 id="chapter-1-introduction">Chapter 1 Introduction</h2>
@@ -462,7 +462,7 @@ Primitives(服务原语)</h4>
 of Services toProtocols</h4>
 ]]></content>
       <categories>
-        <category>learn</category>
+        <category>Learn</category>
       </categories>
       <tags>
         <tag>Computer Networks</tag>
@@ -702,6 +702,72 @@ href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
       </tags>
   </entry>
   <entry>
+    <title>OpenCV 图像处理：常用绘图函数</title>
+    <url>/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221025104224496.png" /></p>
+<h2 id="opencv中的绘图函数">opencv中的绘图函数</h2>
+<h3 id="线段绘制">1.线段绘制</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.line( img, pts, color thickness，linetype）</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>img ：待绘制图像</p>
+<p>color ：形状的颜色，元组如 (255,0,0)</p>
+<p>pts ：起点和终点坐标</p>
+<p>thickness：线条的粗细。 1 为填充，默认值是 1</p>
+<p>linetype：线条的类型 8 型或 cv2.LINE_AA, 默认值为 8 型</p>
+<span id="more"></span>
+<p>例程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line">cv2.imshow(<span class="string">&quot;black&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(<span class="string">&quot;black&quot;</span>)</span><br><span class="line"><span class="comment"># 绘制一条线宽为5的线段</span></span><br><span class="line">cv2.line(img,(<span class="number">0</span>,<span class="number">0</span>),(<span class="number">200</span>,<span class="number">500</span>),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+<h3 id="矩形绘制">2.矩形绘制</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.rectangle(img, pts, color, thickness, linetype)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>img ：待绘制图像</p>
+<p>pts：左上角和右下角坐标点</p>
+<p>color：形状的颜色，元组如 255,0,0</p>
+<p>thickness：线条的粗细。 -1 为填充，默认值是 1</p>
+<p>linetype：线条的类型，使用默认值即可</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个绿色边框的矩形，参数2：左上角坐标，参数3：右下角坐标</span></span><br><span class="line">cv2.rectangle(img,(<span class="number">384</span>,<span class="number">0</span>),(<span class="number">510</span>,<span class="number">128</span>),(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+<h3 id="圆椭圆绘制">3.圆,椭圆绘制</h3>
+<h4 id="圆绘制">圆绘制</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.circle(img, pts, radius, color, thickness, linetype)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>img ：待绘制图像。 pts：圆心。 radius：半径。 color：颜色。
+thickness：线条的粗细。 -1 为填充，默认值是 1 。
+linetype：线条的类型，使用默认值即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个填充红色的圆，参数2：圆心坐标，参数3：半径</span></span><br><span class="line">cv2.circle(img,(<span class="number">447</span>,<span class="number">63</span>), <span class="number">63</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="椭圆绘制">椭圆绘制</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.ellipse()</span><br></pre></td></tr></table></figure>
+<p>参数说明： 参数2 ：椭圆中心（x,y） 参数3：x/y 轴的长度 参数4：angle
+椭圆的旋转角度 参数5：startAngle 椭圆的起始角度 参数6：endAngle
+椭圆的结束角度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中心画一个填充的半圆</span></span><br><span class="line">cv2.ellipse(img, (<span class="number">256</span>, <span class="number">256</span>), (<span class="number">100</span>, <span class="number">50</span>), <span class="number">0</span>, <span class="number">30</span>, <span class="number">180</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+<h3 id="多边形绘制">4.多边形绘制</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.polylines(img, pts, isClosed, color, thickness, lineType)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<p>参数1：img 图像，表示你要在哪张图像上画线 参数2：pts
+，表示的是点对，形式如下 参数3：isClosed ，布尔型 True
+表示的是线段闭合， False 表示的是仅保留线段。 参数4：color
+，线段颜色，格式是 R,G,B ）值 参数5：thickness,
+数值型，线宽度，默认值为1 1 则会填充整个图形； 参数6：lineType
+，线型;</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义四个顶点坐标</span></span><br><span class="line">pts = np.array([[<span class="number">10</span>, <span class="number">5</span>],  [<span class="number">50</span>, <span class="number">10</span>], [<span class="number">70</span>, <span class="number">20</span>], [<span class="number">20</span>, <span class="number">30</span>]])</span><br><span class="line"><span class="built_in">print</span>(pts)</span><br><span class="line"><span class="comment"># 顶点个数：4，矩阵变成4*1*2维</span></span><br><span class="line">pts = pts.reshape((-<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(pts)</span><br><span class="line"><span class="comment">#绘制椭圆</span></span><br><span class="line">cv2.polylines(img, [pts], <span class="literal">False</span>, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+<h3 id="添加文字">5.添加文字</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.putText()</span><br></pre></td></tr></table></figure>
+<p>参数2 ：要添加的文本 参数3 ：文字的起始坐标（左下角为起点） 参数4
+：字体 参数5 ：文字大小（缩放比例） 参数6 ：颜色 参数7 ：线条宽度 参数8
+：线条形状</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加文字</span></span><br><span class="line">font=cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">cv2.putText(img,<span class="string">&#x27;OpenCV&#x27;</span>,(<span class="number">50</span>,<span class="number">200</span>), font, <span class="number">3</span>,(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+<h3 id="综合图像绘制">6.综合图像绘制</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制一条线宽为5的线段</span></span><br><span class="line">cv2.line(img,(<span class="number">0</span>,<span class="number">0</span>),(<span class="number">511</span>,<span class="number">511</span>),(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个绿色边框的矩形，参数2：左上角坐标，参数3：右下角坐标</span></span><br><span class="line">cv2.rectangle(img,(<span class="number">384</span>,<span class="number">0</span>),(<span class="number">510</span>,<span class="number">128</span>),(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个填充红色的圆，参数2：圆心坐标，参数3：半径</span></span><br><span class="line">cv2.circle(img,(<span class="number">447</span>,<span class="number">63</span>), <span class="number">63</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中心画一个填充的半圆</span></span><br><span class="line">cv2.ellipse(img, (<span class="number">256</span>, <span class="number">256</span>), (<span class="number">100</span>, <span class="number">50</span>), <span class="number">0</span>, <span class="number">0</span>, <span class="number">180</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制多边形</span></span><br><span class="line">pts=np.array([[<span class="number">10</span>,<span class="number">5</span>],[<span class="number">20</span>,<span class="number">30</span>],[<span class="number">70</span>,<span class="number">20</span>],[<span class="number">50</span>,<span class="number">10</span>]], np.int32)</span><br><span class="line">pts=pts.reshape((-<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">cv2.polylines(img,[pts], <span class="literal">True</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里 reshape 的第一个参数为-1, 表明这一维的长度是根据后面的维度的计算出来的。</span></span><br><span class="line"><span class="comment">#添加文字</span></span><br><span class="line">font=cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">cv2.putText(img,<span class="string">&#x27;OpenCV&#x27;</span>,(<span class="number">10</span>,<span class="number">500</span>), font, <span class="number">4</span>,(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>OpenCV</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Opencv 图像处理：图像基础操作与灰度转化</title>
     <url>/Image-Processing/Opencv%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E4%B8%8E%E7%81%B0%E5%BA%A6%E8%BD%AC%E5%8C%96/</url>
     <content><![CDATA[<h2 id="图像属性">图像属性</h2>
@@ -812,72 +878,6 @@ id="删除窗口cv2.destrovallwindows">删除窗口cv2.destrovAllWindows()</h4>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2 </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">img = cv2.imread(<span class="string">&quot;test2.png&quot;</span>, cv2.IMREAD_COLOR)</span><br><span class="line">cv2.imshow(<span class="string">&quot;Opencv_win&quot;</span>, img)</span><br><span class="line"><span class="comment"># 用opencv自带的方法转</span></span><br><span class="line">img_cv_method = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line"><span class="comment"># 用numpy转，img[:,:,::-1]列左右翻转</span></span><br><span class="line">img_numpy_method = img[:,:,::-<span class="number">1</span>] <span class="comment"># 本来是BGR 现在逆序，变成RGB</span></span><br><span class="line"><span class="comment"># 用matplot画图</span></span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>)<span class="comment"># 划分一个1行3列的空间</span></span><br><span class="line">plt.imshow(img_cv_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">plt.imshow(img_numpy_method)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.savefig(<span class="string">&quot;./plt.png&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">cv2.imwrite(<span class="string">&quot;opencv.png&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
 <p><img
 src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221023181757142.png" /></p>
-]]></content>
-      <categories>
-        <category>Image Processing</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV 图像处理：常用绘图函数</title>
-    <url>/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221025104224496.png" /></p>
-<h2 id="opencv中的绘图函数">opencv中的绘图函数</h2>
-<h3 id="线段绘制">1.线段绘制</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.line( img, pts, color thickness，linetype）</span><br></pre></td></tr></table></figure>
-<p>参数说明</p>
-<p>img ：待绘制图像</p>
-<p>color ：形状的颜色，元组如 (255,0,0)</p>
-<p>pts ：起点和终点坐标</p>
-<p>thickness：线条的粗细。 1 为填充，默认值是 1</p>
-<p>linetype：线条的类型 8 型或 cv2.LINE_AA, 默认值为 8 型</p>
-<span id="more"></span>
-<p>例程</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line">cv2.imshow(<span class="string">&quot;black&quot;</span>, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(<span class="string">&quot;black&quot;</span>)</span><br><span class="line"><span class="comment"># 绘制一条线宽为5的线段</span></span><br><span class="line">cv2.line(img,(<span class="number">0</span>,<span class="number">0</span>),(<span class="number">200</span>,<span class="number">500</span>),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
-<h3 id="矩形绘制">2.矩形绘制</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.rectangle(img, pts, color, thickness, linetype)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p>img ：待绘制图像</p>
-<p>pts：左上角和右下角坐标点</p>
-<p>color：形状的颜色，元组如 255,0,0</p>
-<p>thickness：线条的粗细。 -1 为填充，默认值是 1</p>
-<p>linetype：线条的类型，使用默认值即可</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个绿色边框的矩形，参数2：左上角坐标，参数3：右下角坐标</span></span><br><span class="line">cv2.rectangle(img,(<span class="number">384</span>,<span class="number">0</span>),(<span class="number">510</span>,<span class="number">128</span>),(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
-<h3 id="圆椭圆绘制">3.圆,椭圆绘制</h3>
-<h4 id="圆绘制">圆绘制</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.circle(img, pts, radius, color, thickness, linetype)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p>img ：待绘制图像。 pts：圆心。 radius：半径。 color：颜色。
-thickness：线条的粗细。 -1 为填充，默认值是 1 。
-linetype：线条的类型，使用默认值即可。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个填充红色的圆，参数2：圆心坐标，参数3：半径</span></span><br><span class="line">cv2.circle(img,(<span class="number">447</span>,<span class="number">63</span>), <span class="number">63</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="椭圆绘制">椭圆绘制</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.ellipse()</span><br></pre></td></tr></table></figure>
-<p>参数说明： 参数2 ：椭圆中心（x,y） 参数3：x/y 轴的长度 参数4：angle
-椭圆的旋转角度 参数5：startAngle 椭圆的起始角度 参数6：endAngle
-椭圆的结束角度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中心画一个填充的半圆</span></span><br><span class="line">cv2.ellipse(img, (<span class="number">256</span>, <span class="number">256</span>), (<span class="number">100</span>, <span class="number">50</span>), <span class="number">0</span>, <span class="number">30</span>, <span class="number">180</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
-<h3 id="多边形绘制">4.多边形绘制</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cv2.polylines(img, pts, isClosed, color, thickness, lineType)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<p>参数1：img 图像，表示你要在哪张图像上画线 参数2：pts
-，表示的是点对，形式如下 参数3：isClosed ，布尔型 True
-表示的是线段闭合， False 表示的是仅保留线段。 参数4：color
-，线段颜色，格式是 R,G,B ）值 参数5：thickness,
-数值型，线宽度，默认值为1 1 则会填充整个图形； 参数6：lineType
-，线型;</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义四个顶点坐标</span></span><br><span class="line">pts = np.array([[<span class="number">10</span>, <span class="number">5</span>],  [<span class="number">50</span>, <span class="number">10</span>], [<span class="number">70</span>, <span class="number">20</span>], [<span class="number">20</span>, <span class="number">30</span>]])</span><br><span class="line"><span class="built_in">print</span>(pts)</span><br><span class="line"><span class="comment"># 顶点个数：4，矩阵变成4*1*2维</span></span><br><span class="line">pts = pts.reshape((-<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(pts)</span><br><span class="line"><span class="comment">#绘制椭圆</span></span><br><span class="line">cv2.polylines(img, [pts], <span class="literal">False</span>, (<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>))</span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
-<h3 id="添加文字">5.添加文字</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.putText()</span><br></pre></td></tr></table></figure>
-<p>参数2 ：要添加的文本 参数3 ：文字的起始坐标（左下角为起点） 参数4
-：字体 参数5 ：文字大小（缩放比例） 参数6 ：颜色 参数7 ：线条宽度 参数8
-：线条形状</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加文字</span></span><br><span class="line">font=cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">cv2.putText(img,<span class="string">&#x27;OpenCV&#x27;</span>,(<span class="number">50</span>,<span class="number">200</span>), font, <span class="number">3</span>,(<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
-<h3 id="综合图像绘制">6.综合图像绘制</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张黑色的背景图</span></span><br><span class="line">img=np.zeros((<span class="number">512</span>,<span class="number">512</span>,<span class="number">3</span>), np.uint8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制一条线宽为5的线段</span></span><br><span class="line">cv2.line(img,(<span class="number">0</span>,<span class="number">0</span>),(<span class="number">511</span>,<span class="number">511</span>),(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个绿色边框的矩形，参数2：左上角坐标，参数3：右下角坐标</span></span><br><span class="line">cv2.rectangle(img,(<span class="number">384</span>,<span class="number">0</span>),(<span class="number">510</span>,<span class="number">128</span>),(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 画一个填充红色的圆，参数2：圆心坐标，参数3：半径</span></span><br><span class="line">cv2.circle(img,(<span class="number">447</span>,<span class="number">63</span>), <span class="number">63</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在图中心画一个填充的半圆</span></span><br><span class="line">cv2.ellipse(img, (<span class="number">256</span>, <span class="number">256</span>), (<span class="number">100</span>, <span class="number">50</span>), <span class="number">0</span>, <span class="number">0</span>, <span class="number">180</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制多边形</span></span><br><span class="line">pts=np.array([[<span class="number">10</span>,<span class="number">5</span>],[<span class="number">20</span>,<span class="number">30</span>],[<span class="number">70</span>,<span class="number">20</span>],[<span class="number">50</span>,<span class="number">10</span>]], np.int32)</span><br><span class="line">pts=pts.reshape((-<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>))</span><br><span class="line">cv2.polylines(img,[pts], <span class="literal">True</span>, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里 reshape 的第一个参数为-1, 表明这一维的长度是根据后面的维度的计算出来的。</span></span><br><span class="line"><span class="comment">#添加文字</span></span><br><span class="line">font=cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">cv2.putText(img,<span class="string">&#x27;OpenCV&#x27;</span>,(<span class="number">10</span>,<span class="number">500</span>), font, <span class="number">4</span>,(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">winname = <span class="string">&#x27;example&#x27;</span></span><br><span class="line">cv2.namedWindow(winname)</span><br><span class="line">cv2.imshow(winname, img)</span><br><span class="line">cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">cv2.destroyWindow(winname)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Image Processing</category>
@@ -1299,95 +1299,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
       </tags>
   </entry>
   <entry>
-    <title>PyTorch 张量的拼接、切分、索引</title>
-    <url>/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<h3 id="一张量拼接与切分">一、张量拼接与切分</h3>
-<h4 id="torch.cat">1.1 torch.cat</h4>
-<p>功能：将张量按维度dim 进行拼接</p>
-<ul>
-<li><p><strong>tensors</strong> : 张量序列</p></li>
-<li><p><strong>dim</strong>： 要拼接的维度</p></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">   t_0 = torch.cat([t, t], dim=<span class="number">0</span>)</span><br><span class="line">   t_1 = torch.cat([t, t, t], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;t_0:&#123;&#125; shape:&#123;&#125;\nt_1:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_0, t_0.shape, t_1, t_1.shape))</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_0:tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]) shape:torch.Size([4, 3])</span><br><span class="line">t_1:tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1.],</span><br><span class="line">        [1., 1., 1., 1., 1., 1., 1., 1., 1.]]) shape:torch.Size([2, 9])</span><br></pre></td></tr></table></figure>
-<p>（2，3） -&gt; （2，6）</p>
-<p>这里的dim维度与axis相同，0代表列，1代表行。</p>
-<h4 id="torch.stack">1.2 torch.stack</h4>
-<p>功能：在新创建的维度 dim 上进行拼接（会拓宽原有的张量维度）</p>
-<ul>
-<li><strong>tensors</strong>：张量序列</li>
-<li><strong>dim</strong>：要拼接的维度</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006220254589.png" /></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">t_stack = torch.stack([t, t, t], dim=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nt_stack:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_stack, t_stack.shape))</span><br></pre></td></tr></table></figure>
-<p>可见，它在新的维度上进行了拼接。</p>
-<p>参数[t, t, t]的意思就是在第n个维度上拼接成这个样子。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_stack:tensor([[[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]],</span><br><span class="line"></span><br><span class="line">        [[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]]]) shape:torch.Size([2, 3, 3])</span><br><span class="line"># 在第二维度上进行了拼接</span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="torch.chunk">1.3 torch.chunk</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006222011511.png" /></p>
-<p>功能：将张量按维度 dim 进行平均切分</p>
-<p>返回值：张量列表</p>
-<p>注意事项：若不能整除，最后一份张量小于其他张量。</p>
-<ul>
-<li>input : 要切分的张量</li>
-<li>chunks 要切分的份数</li>
-<li>dim 要切分的维度</li>
-</ul>
-<p>code</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cut into 3</span></span><br><span class="line">a = torch.ones((<span class="number">2</span>, <span class="number">7</span>))  <span class="comment"># 7</span></span><br><span class="line">list_of_tensors = torch.chunk(a, dim=<span class="number">1</span>, chunks=<span class="number">3</span>)   <span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
-<p>可知，切分是7/3向上取整，每份是3，最后剩下的维度直接输出即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
-<h4 id="torch.split">1.4 torch.split</h4>
-<p><code>torch.split(Tensor, split_size_or_sections, dim)</code></p>
-<p>功能：将张量按维度 dim 进行切分</p>
-<p>返回值：张量列表</p>
-<ul>
-<li>tensor : 要切分的张量</li>
-<li>split_size_or_sections 为 int 时，表示 每一份的长度；为 list 时，按
-list 元素切分</li>
-<li>dim 要切分的维度</li>
-</ul>
-<p>code：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">list_of_tensors = torch.split(t, [<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>], dim=<span class="number">1</span>)  <span class="comment"># [2 , 1, 2]</span></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
-<p>是按照指定长度list进行切分的。注意list中长度总和必须为原张量在改维度的大小，不然会报错。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
-<h3 id="二张量索引">二、张量索引</h3>
-<h4 id="torch.index_select">2.1 torch.index_select</h4>
-<p><code>torch.index_select(input, dim, index, out=None)</code></p>
-<p>功能：在维度dim 上，按 index 索引数据</p>
-<p>返回值：依index 索引数据拼接的张量</p>
-<ul>
-<li>input : 要索引的张量</li>
-<li>dim 要索引的维度</li>
-<li>index 要索引数据的序号</li>
-</ul>
-<p>code：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">idx = torch.tensor([<span class="number">0</span>, <span class="number">2</span>], dtype=torch.long)    <span class="comment"># if float will report an error</span></span><br><span class="line">t_select = torch.index_select(t, dim=<span class="number">0</span>, index=idx)</span><br><span class="line"><span class="built_in">print</span>(idx)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nt_select:\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t, t_select))</span><br></pre></td></tr></table></figure>
-<p>可见idx是一个存储序号的张量，而torch.index_select通过该张量索引原tensor并且拼接返回。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([0, 2])</span><br><span class="line">t:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [2, 5, 8]])</span><br></pre></td></tr></table></figure>
-<h4 id="torch.masked_select">2.2 torch.masked_select</h4>
-<p>功能：按mask 中的 True 进行索引</p>
-<p>返回值：一维张量(无法确定true的个数，因此也就无法显示原来的形状，因此这里返回一维张量)</p>
-<ul>
-<li>input : 要索引的张量</li>
-<li>mask 与 input 同形状的布尔类型张量</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">mask = t.le(<span class="number">5</span>)  <span class="comment"># ge is mean greater than or equal/   gt: greater than  le  lt</span></span><br><span class="line">t_select = torch.masked_select(t, mask)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select:\n&#123;&#125; &quot;</span>.<span class="built_in">format</span>(t, mask, t_select))</span><br></pre></td></tr></table></figure>
-<p>通过掩码来索引。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">mask:</span><br><span class="line">tensor([[ True,  True,  True],</span><br><span class="line">        [ True, False,  True],</span><br><span class="line">        [ True,  True, False]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([4, 5, 0, 5, 1, 2, 5]) </span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Frame</category>
-        <category>PyTorch</category>
-      </categories>
-      <tags>
-        <tag>PyTorch</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PyTorch 计算图与动态图机制</title>
     <url>/Frame/PyTorch/PyTorch%20%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E5%8A%A8%E6%80%81%E5%9B%BE%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h2 id="计算图">计算图</h2>
@@ -1467,6 +1378,95 @@ alt="image-20221007144319338" />
 <figcaption aria-hidden="true">image-20221007144319338</figcaption>
 </figure></li>
 </ul>
+]]></content>
+      <categories>
+        <category>Frame</category>
+        <category>PyTorch</category>
+      </categories>
+      <tags>
+        <tag>PyTorch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PyTorch 张量的拼接、切分、索引</title>
+    <url>/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<h3 id="一张量拼接与切分">一、张量拼接与切分</h3>
+<h4 id="torch.cat">1.1 torch.cat</h4>
+<p>功能：将张量按维度dim 进行拼接</p>
+<ul>
+<li><p><strong>tensors</strong> : 张量序列</p></li>
+<li><p><strong>dim</strong>： 要拼接的维度</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">   t_0 = torch.cat([t, t], dim=<span class="number">0</span>)</span><br><span class="line">   t_1 = torch.cat([t, t, t], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;t_0:&#123;&#125; shape:&#123;&#125;\nt_1:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_0, t_0.shape, t_1, t_1.shape))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_0:tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]) shape:torch.Size([4, 3])</span><br><span class="line">t_1:tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1.],</span><br><span class="line">        [1., 1., 1., 1., 1., 1., 1., 1., 1.]]) shape:torch.Size([2, 9])</span><br></pre></td></tr></table></figure>
+<p>（2，3） -&gt; （2，6）</p>
+<p>这里的dim维度与axis相同，0代表列，1代表行。</p>
+<h4 id="torch.stack">1.2 torch.stack</h4>
+<p>功能：在新创建的维度 dim 上进行拼接（会拓宽原有的张量维度）</p>
+<ul>
+<li><strong>tensors</strong>：张量序列</li>
+<li><strong>dim</strong>：要拼接的维度</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006220254589.png" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">t_stack = torch.stack([t, t, t], dim=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nt_stack:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_stack, t_stack.shape))</span><br></pre></td></tr></table></figure>
+<p>可见，它在新的维度上进行了拼接。</p>
+<p>参数[t, t, t]的意思就是在第n个维度上拼接成这个样子。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">t_stack:tensor([[[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]],</span><br><span class="line"></span><br><span class="line">        [[1., 1., 1.],</span><br><span class="line">         [1., 1., 1.],</span><br><span class="line">         [1., 1., 1.]]]) shape:torch.Size([2, 3, 3])</span><br><span class="line"># 在第二维度上进行了拼接</span><br><span class="line">Process finished with exit code 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="torch.chunk">1.3 torch.chunk</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006222011511.png" /></p>
+<p>功能：将张量按维度 dim 进行平均切分</p>
+<p>返回值：张量列表</p>
+<p>注意事项：若不能整除，最后一份张量小于其他张量。</p>
+<ul>
+<li>input : 要切分的张量</li>
+<li>chunks 要切分的份数</li>
+<li>dim 要切分的维度</li>
+</ul>
+<p>code</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># cut into 3</span></span><br><span class="line">a = torch.ones((<span class="number">2</span>, <span class="number">7</span>))  <span class="comment"># 7</span></span><br><span class="line">list_of_tensors = torch.chunk(a, dim=<span class="number">1</span>, chunks=<span class="number">3</span>)   <span class="comment"># 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
+<p>可知，切分是7/3向上取整，每份是3，最后剩下的维度直接输出即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
+<h4 id="torch.split">1.4 torch.split</h4>
+<p><code>torch.split(Tensor, split_size_or_sections, dim)</code></p>
+<p>功能：将张量按维度 dim 进行切分</p>
+<p>返回值：张量列表</p>
+<ul>
+<li>tensor : 要切分的张量</li>
+<li>split_size_or_sections 为 int 时，表示 每一份的长度；为 list 时，按
+list 元素切分</li>
+<li>dim 要切分的维度</li>
+</ul>
+<p>code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">list_of_tensors = torch.split(t, [<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>], dim=<span class="number">1</span>)  <span class="comment"># [2 , 1, 2]</span></span><br><span class="line"><span class="keyword">for</span> idx, t <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_of_tensors):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第&#123;&#125;个张量：&#123;&#125;, shape is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(idx+<span class="number">1</span>, t, t.shape))</span><br></pre></td></tr></table></figure>
+<p>是按照指定长度list进行切分的。注意list中长度总和必须为原张量在改维度的大小，不然会报错。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第1个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第2个张量：tensor([[1., 1., 1.],</span><br><span class="line">        [1., 1., 1.]]), shape is torch.Size([2, 3])</span><br><span class="line">第3个张量：tensor([[1.],</span><br><span class="line">        [1.]]), shape is torch.Size([2, 1])</span><br></pre></td></tr></table></figure>
+<h3 id="二张量索引">二、张量索引</h3>
+<h4 id="torch.index_select">2.1 torch.index_select</h4>
+<p><code>torch.index_select(input, dim, index, out=None)</code></p>
+<p>功能：在维度dim 上，按 index 索引数据</p>
+<p>返回值：依index 索引数据拼接的张量</p>
+<ul>
+<li>input : 要索引的张量</li>
+<li>dim 要索引的维度</li>
+<li>index 要索引数据的序号</li>
+</ul>
+<p>code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">idx = torch.tensor([<span class="number">0</span>, <span class="number">2</span>], dtype=torch.long)    <span class="comment"># if float will report an error</span></span><br><span class="line">t_select = torch.index_select(t, dim=<span class="number">0</span>, index=idx)</span><br><span class="line"><span class="built_in">print</span>(idx)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nt_select:\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t, t_select))</span><br></pre></td></tr></table></figure>
+<p>可见idx是一个存储序号的张量，而torch.index_select通过该张量索引原tensor并且拼接返回。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([0, 2])</span><br><span class="line">t:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [2, 5, 8]])</span><br></pre></td></tr></table></figure>
+<h4 id="torch.masked_select">2.2 torch.masked_select</h4>
+<p>功能：按mask 中的 True 进行索引</p>
+<p>返回值：一维张量(无法确定true的个数，因此也就无法显示原来的形状，因此这里返回一维张量)</p>
+<ul>
+<li>input : 要索引的张量</li>
+<li>mask 与 input 同形状的布尔类型张量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t = torch.randint(<span class="number">0</span>, <span class="number">9</span>, size=(<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">mask = t.le(<span class="number">5</span>)  <span class="comment"># ge is mean greater than or equal/   gt: greater than  le  lt</span></span><br><span class="line">t_select = torch.masked_select(t, mask)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;t:\n&#123;&#125;\nmask:\n&#123;&#125;\nt_select:\n&#123;&#125; &quot;</span>.<span class="built_in">format</span>(t, mask, t_select))</span><br></pre></td></tr></table></figure>
+<p>通过掩码来索引。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tensor([[4, 5, 0],</span><br><span class="line">        [5, 7, 1],</span><br><span class="line">        [2, 5, 8]])</span><br><span class="line">mask:</span><br><span class="line">tensor([[ True,  True,  True],</span><br><span class="line">        [ True, False,  True],</span><br><span class="line">        [ True,  True, False]])</span><br><span class="line">t_select:</span><br><span class="line">tensor([4, 5, 0, 5, 1, 2, 5]) </span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Frame</category>
@@ -2032,44 +2032,58 @@ alt="image-20221004172743410" />
       </tags>
   </entry>
   <entry>
-    <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
-    <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
-    <content><![CDATA[<h4
-id="resolve-error-failed-to-push-some-refs-to-httpsgithub.com">Resolve
-error: failed to push some refs to 'https://github.com/</h4>
-<p>报错：</p>
+    <title>信息论与编码：信道的定义和分类</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[<p>信道是任何一种通信系统中必不可少的组成部分。任何一个通信系统都可以视为由发送，信道与接收三部分组成。信道通常指以传输媒介为基础的信号通道。</p>
+<p>信号在信道中传输，可能遇到的影响主要有<strong>信道加性噪声</strong>
+、 <strong>信号幅度衰减</strong>和<strong>相位失真</strong> 、
+<strong>信道特性的非线性</strong>
+、<strong>带宽限制</strong>和<strong>多径失真</strong>等。</p>
 <blockquote>
-<p>! [rejected] main -&gt; main (fetch first) error: failed to push some
-refs to 'https://github.com/XXX.git'</p>
+<p>实际通信系统中，通过调整通信系统参数可以减小信道对信号失真的影响，但由于传输媒介的物理特性和实际通信系统中所采用的电子元器件的限制，使系统参数的调整范围受到限制，导致了在<strong>任何一通信系统中可靠的信息传输速率的大小是受限的</strong>。</p>
 </blockquote>
-<p>原因：远程库和本地库不一致。通常出现在初始化仓库有readme而本地没有等情况。</p>
-<p>提示：git的提示同上。</p>
-<blockquote>
-<p>hint: Updates were rejected because the remote contains work that you
-do</p>
-<p>hint: not have locally. This is usually caused by another repository
-pushing</p>
-<p>hint: to the same ref. You may want to first integrate the remote
-changes</p>
-<p>hint: (e.g., 'git pull ...') before pushing again.</p>
-<p>hint: See the 'Note about fast-forwards' in 'git push --help' for
-details.</p>
-</blockquote>
-<p>解决方法： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure> 原理：</p>
-<p>把远程库中的更新合并到本地库中，–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。然后再进行push即可。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221021145647861.png" /></p>
+<p>信道可以分为：狭义信道和广义信道</p>
+<h3 id="狭义信道"><strong>狭义信道</strong></h3>
+<p>仅指传输媒介，可分为 <strong>有线信道 和 无线信道</strong> 两类。</p>
 <span id="more"></span>
-<p><code>git pull -–rebase origin master</code>
-操作，意为先取消commit记录，并且把它们临时保存为补丁(patch)(这些补丁在”.git/rebase”目录中)，之后同步远程库到本地，最后合并补丁到本地库之中。</p>
-<p>注意：距离上次push提交至今，在本地库commit的记录均暂存为patch。</p>
+<ul>
+<li><p>有线信道：包括架空明线、对称电缆、同轴电缆和光导纤维</p></li>
+<li><p>无线信道：包括地波传播、短波电离层反射、超短波或微波无线电视距传输、卫星中继以及各种散射信道等。</p></li>
+<li><p>按传输媒质的变化特性，狭义信道又可分为：</p>
+<ul>
+<li><p><strong>恒参信道</strong>
+：<strong>传输媒质性质稳定</strong>从而使得信道特性稳定。如，通常有线信道、卫星中继等。</p></li>
+<li><p><strong>随参信道</strong>
+：<strong>传输媒质性质的随机变化</strong>从而使得信道特性也随机变化。如，短波电离层反射、超短波、微波信道。</p></li>
+</ul></li>
+</ul>
+<p>通信波段与常用传输媒质</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118172609909.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118172624598.png" /></p>
+<h3 id="广义信道">广义信道</h3>
+<p>除了传输媒质外还包括相关的转换设备，如发送设备、接收设备、天线、调制解调器等等。这种范围扩大了的信道称为广义信道。</p>
+<p>可分为： 调制信道 和 7编码信道</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118183730365.png" /></p>
+<p><strong>调制信道</strong>
+：从研究调制与解调的角度定义。其范围<strong>从调制器的输出端到解调器的输入端</strong>。</p>
+<p><strong>编码信道</strong>
+：从研究编码和解码的角度定义。其范围<strong>从编码器的输出端到解码器的输入端</strong>。广义信道一般分为：连续信道和离散信道</p>
+<p>参考文献：</p>
+<ul>
+<li><p>樊昌信, 曹丽娜 .通信原理(第7版)
+[M]．北京：国防工业出版社，2012.</p></li>
+<li><p>John G. Proakis .Communication systems engineering [M]．Upper
+Saddle River, N.J：Prentice Hall，2002.</p></li>
+</ul>
 ]]></content>
       <categories>
-        <category>Git</category>
-        <category>Resolve Error</category>
+        <category>Basic knowledge</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Information Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -2132,6 +2146,605 @@ class="math inline">\(10^9\)</span></p>
       </categories>
       <tags>
         <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Resolve error failed to push some refs to &#39;https://github.com/</title>
+    <url>/Resolve-Error/Resolve%20error%20failed%20to%20push%20some%20refs%20to%20&#39;httpsgithub/</url>
+    <content><![CDATA[<h4
+id="resolve-error-failed-to-push-some-refs-to-httpsgithub.com">Resolve
+error: failed to push some refs to 'https://github.com/</h4>
+<p>报错：</p>
+<blockquote>
+<p>! [rejected] main -&gt; main (fetch first) error: failed to push some
+refs to 'https://github.com/XXX.git'</p>
+</blockquote>
+<p>原因：远程库和本地库不一致。通常出现在初始化仓库有readme而本地没有等情况。</p>
+<p>提示：git的提示同上。</p>
+<blockquote>
+<p>hint: Updates were rejected because the remote contains work that you
+do</p>
+<p>hint: not have locally. This is usually caused by another repository
+pushing</p>
+<p>hint: to the same ref. You may want to first integrate the remote
+changes</p>
+<p>hint: (e.g., 'git pull ...') before pushing again.</p>
+<p>hint: See the 'Note about fast-forwards' in 'git push --help' for
+details.</p>
+</blockquote>
+<p>解决方法： <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure> 原理：</p>
+<p>把远程库中的更新合并到本地库中，–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。然后再进行push即可。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221021145647861.png" /></p>
+<span id="more"></span>
+<p><code>git pull -–rebase origin master</code>
+操作，意为先取消commit记录，并且把它们临时保存为补丁(patch)(这些补丁在”.git/rebase”目录中)，之后同步远程库到本地，最后合并补丁到本地库之中。</p>
+<p>注意：距离上次push提交至今，在本地库commit的记录均暂存为patch。</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+        <category>Resolve Error</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信息论与编码：信道的数学模型</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h3 id="广义信道的数学模型">广义信道的数学模型</h3>
+<p>连续信道模型 和 离散信道模型</p>
+<h3 id="连续信道的数学模型">连续信道的数学模型</h3>
+<p>广义信道中的<strong>调制信道</strong>属于连续信道。我们所关心的是信号经过信道所得到的输出信号，信道内部的变化过程并不重要。可以用描述一定输入、输出关系的方框来表示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191150839.png" /></p>
+<p>连续信道具有以下一些特征：</p>
+<ul>
+<li>可以有一对或者多对输入端和输出端；</li>
+<li>大多数信道都为线性，也就是满足线性叠加原理；</li>
+<li>信号通过此类信道具有固定或者时变延迟，以及固定或时变的损耗和衰落；</li>
+<li>信道中不可避免的会引入噪声，即使没有输入信号，也会有噪声输出。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191338106.png" /></p>
+<p>连续信道一般可以看作一个输出端叠加有噪声的时变线性网络，输入输出关系如下：
+<span class="math display">\[
+r(t)=f\left[s_{i}(t)\right]+n(t)
+\]</span> <span id="more"></span></p>
+<p>其中: $ s_{i}(t)$ 是输入的连续信号, <span
+class="math inline">\(r(t)\)</span> 是信道总的输出, <span
+class="math inline">\(n(t)\)</span> 是加性噪声; <span
+class="math inline">\(n(t)\)</span> 独立于 <span
+class="math inline">\(s_{i}(t)\)</span> 。 <span
+class="math inline">\(s_{o}(t)=f\left[s_{i}(t)\right]\)</span>
+实际反映了物理信道的特性, <span
+class="math inline">\(f\left[s_{i}(t)\right]\)</span>
+可以表示成<strong>信道单位冲激响应与输入信号的卷积</strong>, 也即 <span
+class="math inline">\(f\left[s_{i}(t)\right. ]\)</span>反映信道的特性,
+可以表示为: <span class="math display">\[
+s_{0}(t)=f\left[s_{i}(t)\right]=h(t) * s_{i}(t) \&amp;
+\boldsymbol{S}_{\boldsymbol{o}}(\boldsymbol{f})=\boldsymbol{H}(\boldsymbol{f})
+\boldsymbol{S}_{\boldsymbol{i}}(\boldsymbol{f})
+\]</span> $ H(f) $依赖于信道的特性, 可以看成是乘性千扰。</p>
+<p>讨论： 1）连续信道对信号的干扰主要有两种 <strong>乘性干扰
+ℎ(𝑡)和加性干扰 𝑛(𝑡)</strong>，分析信道对信号的具体影响，只要了解 ℎ(𝑡)与
+𝑛(𝑡)的特性即可。 2）分析乘性干扰
+ℎ(𝑡)的影响时，可以把连续信道分成两大类：</p>
+<ul>
+<li>恒参信道，即
+ℎ(𝑡)随时间缓变或者不变；通常将架空明线、电缆、光导纤维、超短波及微波视距传播、卫星中继等看作恒参信道。</li>
+<li>是随参信道，即
+ℎ(𝑡)随机快变化。短波电离层反射信道、各种散射信道、超短波移动通信信道等可以视为随参信道。</li>
+</ul>
+<h3 id="离散信道数学模型">离散信道数学模型</h3>
+<p>广义信道中的编码信道就是一种离散信道（数字信道）。离散信道的输入变量
+X 、输出变量 Y 均为为离散信号（数字信号）。信道的特性可用信道转移概率
+<span
+class="math inline">\(𝑃(𝒚|𝒙)\)</span>（条件概率）来描述。主要研究离散信号在信道中传输的特征。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118192112630.png" /></p>
+<h3 id="半连续信道">半连续信道</h3>
+<p>输入变量 X 和输出变量 Y 一个为连续信号，一个为离散信号。如下图所示的
+AWGN 信道，输入是二进制对极信号，输出是叠加了高斯白噪声的连续信号。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118192251278.png" /></p>
+<p>参考文献：</p>
+<ul>
+<li><p>樊昌信, 曹丽娜 .通信原理(第7版)
+[M]．北京：国防工业出版社，2012.</p></li>
+<li><p>John G. Proakis .Communication systems engineering [M]．Upper
+Saddle River, N.J：Prentice Hall，2002.</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>Information Theory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信息论与编码：恒参信道特性</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="信息论与编码恒参信道特性">信息论与编码：恒参信道特性</h2>
+<p>恒参信道
+：信道特性不随时间变化或者变化很缓慢，信道特性主要由传输媒介所决定，如传输媒介基本不随时间变化，则它构成的信道属于恒参信道。</p>
+<p>若信道的冲激响应为 ℎ(𝑡)，信道输入为 𝑥(𝑡)，则信道的输出为<span
+class="math inline">\(𝑦(𝑡)=𝑥(𝑡)∗ℎ(𝑡)+𝑛(𝑡)\)</span>,其中𝑛(𝑡)为加性高斯白噪声，双边功率谱密度为<span
+class="math inline">\(\frac{N_{0}}{2}\)</span>W/Hz。</p>
+<h3 id="无失真信道满足的条件">无失真信道满足的条件</h3>
+<p>设信道输入信号为𝑥(𝑡)，输出信号为 𝑦(𝑡)，信道传输函数为 𝐻(𝑓) 。</p>
+<p>若满足： <span class="math display">\[
+y(t)=\alpha x\left(t-t_{0}\right)  \alpha \in R, t_{0}&gt;0
+\]</span> 则称信道为理想的无失真信道。</p>
+<p>若信道无失真, 有<span class="math inline">\(H(f)=\alpha e^{-j 2 \pi f
+t_{0}}\)</span>, 即<span class="math inline">\(|H(f)|=\alpha \quad
+\angle H(f)=\varphi(f)=-2 \pi f t_{0}\)</span></p>
+<span id="more"></span>
+<h3 id="时延特性">时延特性</h3>
+<p><span class="math display">\[
+\tau(f)=-\frac{\varphi(f)}{2 \pi f}=t_{0}, f&gt;0
+\]</span></p>
+<h3 id="群时延特性">群时延特性</h3>
+<p><span class="math display">\[
+\tau_{\mathrm{G}}(f)=-\frac{1}{2 \pi} \frac{d \varphi(f)}{d f}=t_{0},
+f&gt;0
+\]</span></p>
+<h3 id="带通信号的复包络无失真">带通信号的复包络无失真</h3>
+<p>若带通系统的等效基带系统能使输入输出的复包络满足无失真关系，即 <span
+class="math display">\[
+y_{L}(t)=K x_{L}\left(t-t_{0}\right)
+\]</span> 其中 K 是任意常数, 则称此带通系统对复包络无失真。
+复包络无失真要求: <span class="math display">\[
+\begin{aligned}
+H(f)=&amp;\left\{\begin{array}{c}
+H_{L}\left(f-f_{c}\right), f&gt;0 \\
+H_{L}^{*}\left(-f-f_{c}\right), f&lt;0
+\end{array}=\left\{\begin{array}{l}
+a e^{-j\left(2 \pi f t_{0}-\theta\right), f&gt;0} \\
+a e^{-j\left(2 \pi f t_{0}+\theta\right), f&lt;0}
+\end{array}\right.\right.\\
+&amp; \angle H(f)=\varphi(f)=-2 \pi f t_{0}+\theta, f&gt;0 \\
+&amp; \tau_{\mathrm{G}}(f)=-\frac{1}{2 \pi} \frac{d \varphi(f)}{d
+f}=t_{0}, f&gt;0
+\end{aligned}
+\]</span> 例如最经典的希尔伯特变换器: <span class="math display">\[
+\begin{array}{c}
+H(f)=-j \operatorname{sgn}(f)=\left\{\begin{array}{ll}
+e^{-j \frac{\pi}{2}}, &amp; f&gt;0 \\
+e^{j \frac{\pi}{2}}, &amp; f&lt;0
+\end{array}\right. \\
+\angle H(f)=\varphi(f)=-\frac{\pi}{2}, f&gt;0 \\
+\tau_{\mathrm{G}}(f)=-\frac{1}{2 \pi} \frac{d \varphi(f)}{d f}=0, f&gt;0
+\end{array}
+\]</span> 带通信号 <span class="math display">\[
+x(t)=m(t) \cos 2 \pi f_{c} t-s(t) \sin 2 \pi f_{c} t \rightarrow
+x_{L}(t)=m(t)+j s(t)
+\]</span> 经过Hilbert 变换器后有 <span class="math display">\[
+\begin{array}{l}
+\hat{x}(t)=s(t) \cos 2 \pi f_{c} t+m(t) \sin 2 \pi f_{c} t \rightarrow
+\hat{x}_{L}(t)=s(t)-j m(t) \\
+=-j x_{L}(t)
+\end{array}
+\]</span></p>
+<h3 id="信道不理想对输出信号的影响">信道不理想对输出信号的影响</h3>
+<ul>
+<li><strong>幅频失真</strong>：信号中不同频率分量分别受到信道不同的衰减。它对模拟通信影响较大，导致信号波形畸变，输出信噪比降低。</li>
+<li><strong>相频失真</strong>（群时延失真）：信号中不同频率的分量受到信道不同的时延。它对数字通信影响较大，会引起严重的码间干扰，造成误码。</li>
+<li><strong>时延特性为常数时，信号传输不引起信号的波形失真；群时延特性为常数时，信号传输不引起信号复包络的失真。</strong></li>
+</ul>
+<p>参考文献：</p>
+<ul>
+<li><p>樊昌信, 曹丽娜 .通信原理(第7版)
+[M]．北京：国防工业出版社，2012.</p></li>
+<li><p>John G. Proakis .Communication systems engineering [M]．Upper
+Saddle River, N.J：Prentice Hall，2002.</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>Information Theory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信息论与编码：线性分组码与性能参数</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[<h3 id="线性分组码nk定义">1.1 线性分组码(n,k)定义</h3>
+<p>线性分组码是由 (n, k) 形式表示。编码器将一个 k
+比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n
+比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 ,
+称为二进制编码。</p>
+<p>k-bit 信息形成 <span class="math inline">\(2^k\)</span>
+不同的信息序列 , 称为 k 元组。 n-bit 可以形成 <span
+class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
+<p>(n，k）分组码输出的长度为n的序列称为<strong>码字</strong>。所有这些码字的集合称为该线性分组码的<strong>码组</strong>。
+因为n&gt;k，故编码时需按某种规则加入r=n-k个监督（校验）码元。</p>
+<p>对于分组码(n,k),定义</p>
+<ul>
+<li><strong>编码效率: k/n</strong></li>
+<li><strong>编码冗余度:(n-k)/n</strong></li>
+</ul>
+<p>线性分组码的几个重要概念</p>
+<ul>
+<li><p><strong>码距（汉明距离）</strong>：两个码组中<strong>对应位置上具有不同二进制码元的位数</strong></p></li>
+<li><p><strong>码重（汉明重量）</strong>：线性分组码中，将码字（组）中<strong>所含
+1 的数目</strong>定义为码字(组)的重量</p></li>
+<li><p>编码信道：研究信道编码和译码的信道模型</p>
+<ul>
+<li>二元码、硬判决时，建模为 BSC （二元对称）信道</li>
+<li>软判决时，建模为 AWGN 信道</li>
+<li>软判决与硬判决译码（简单理解：译码器输入比特的选取）</li>
+</ul></li>
+</ul>
+<span id="more"></span>
+<h3 id="信道编码性能参数">1.2 信道编码性能参数</h3>
+<p>主要的性能参数有 <strong>差错概率、编码增益、检纠错能力</strong>
+。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113108110.png" /></p>
+<p>编码增益 ：给定差错概率下，通过编码所能实现的比特信噪比$
+𝑬_𝒃/𝑵_𝟎$的减少量。</p>
+<ul>
+<li><strong>检错能力 l: <span class="math inline">\(d_{\text {min }}
+\geq l+1\)</span></strong></li>
+<li><strong>纠错能力 t: <span class="math inline">\(d_{\min } \geq 2
+t+1\)</span></strong></li>
+<li><strong>检错 l 纠错 t: <span class="math inline">\(d_{\text {min }}
+\geq l+t+1\)</span></strong></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113140034.png" /></p>
+<h3 id="基本线性分组码">1.3基本线性分组码</h3>
+<h4 id="a.奇偶监督码">a.奇偶监督码</h4>
+<ul>
+<li><p>码字由 n 个码元组成， n 1 个信息码元，另一码元为奇（偶）监督码元
+(n, n-1 )奇偶监督码.</p></li>
+<li><p><strong>码率: (n-1)/ n</strong></p>
+<p><span class="math inline">\(\begin{array} \quad C=\left(C_{n-1},
+C_{n-2}, \ldots, C_{1}, C_{0}\right) \Rightarrow C_{n-1} \oplus C_{n-2}
+\oplus \ldots \oplus C_{1} \oplus C_{0} \\ \end{array}\)</span></p>
+<p>=0 (偶校验)or 1(奇校验)</p>
+<p>可检测到<strong>奇数</strong>个错误图样,
+如果错误个数为偶数则无法检测。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118113540154.png" /></p></li>
+</ul>
+<h4 id="b.恒比码">b.恒比码</h4>
+<ul>
+<li>每个码组中 1 和 0 的个数保持恒定，因而比值恒定。我国电传通信中 5
+中取 3 码 每个 5bit 码组中必须含有 3 个 1和2 个 0），总数共有<span
+class="math inline">\(C_{5}^{3}=C_{5}^{2}=10\)</span>种来表示十进制数。</li>
+</ul>
+<h4 id="c.汉明码">c.汉明码</h4>
+<ul>
+<li>能纠正<strong>单个随机错误</strong>的线性分组码</li>
+</ul>
+<h3 id="差错控制类型对信道编码的要求">1.4
+差错控制类型对信道编码的要求</h3>
+<ol type="1">
+<li>ARQ （检错重发 自动请求重发）</li>
+</ol>
+<ul>
+<li>适用于非实时数据传输系统</li>
+<li>要求信道编码具有检错功能</li>
+</ul>
+<p>利用奇偶校验比特来检错重发。接收端不纠正错误，只是简单的要求发射机重发数据。此时，发射端与接收端间的对话需要双向链路反馈信道
+。</p>
+<p><strong>自动重发请求 (ARQ)</strong>: 三种类型</p>
+<p>1)停止——等待 ARQ （半双工） 2)具有回拉功能的连续 ARQ （全双工）
+3)具有选择性重发功能的连续 ARQ （全双工）</p>
+<p>ARQ的主要优点是
+，<strong>错误检测设备要比纠错设备简单得多，只需要少量的冗余。</strong></p>
+<p>ARQ只适用于发生错误时需要重发的情况。</p>
+<p>2.FEC （前向纠错)</p>
+<ul>
+<li><strong>适用于实时通信系统中</strong></li>
+<li><strong>要求信道编码具有纠错功能</strong></li>
+<li>比ARQ 优越的方面
+<ol type="1">
+<li>没有可用的反向信道或 ARQ 延迟过长。</li>
+<li>重发策略无法简单的实现。</li>
+<li>没有纠正的错误数目需要过多的重传。</li>
+</ol></li>
+</ul>
+<p>3.HEC （混合纠错 ARQ+FEC）</p>
+<p>即能检错又能纠错</p>
+<p>首先收端进行检错，如错误在纠错范围内则纠正，否则请求重传。</p>
+<h3
+id="信道编码主要涉及的数学知识有限域运算矩阵运算">1.5信道编码主要涉及的数学知识：有限域运算、矩阵运算</h3>
+<ul>
+<li><p>有限域初步知识： Galois 域——迦罗华域</p></li>
+<li><p><strong>有限域：指有限个元素的集合，可按规则进行代数四则运算，且运算结果仍属于集合中的有限元素。</strong></p></li>
+<li><p>对于二元域，记为 GF(2)，其内码元满足模二运算。</p></li>
+<li><p>二元扩展域 GF(<span class="math inline">\(2^n\)</span>)——由 GF(2)
+元素的一切长度为 n的序列组成的集合（二进制数组的集合）。</p></li>
+<li><p>设 $ , ^{} G F(2^{n}), G F(2)$ , 即<span
+class="math inline">\(\alpha\)</span>取0或1。</p>
+<p>加法: <span
+class="math inline">\(\mathbf{x}+\mathbf{x}^{\prime}=\left(x_{n-1}
+\oplus x_{n-1}^{\prime}, x_{n-2} \oplus x_{n-2}^{\prime}, \ldots, x_{1}
+\oplus x_{1}^{\prime}, x_{0} \oplus x_{0}^{\prime}\right)\)</span></p>
+<p>乘法: $x=(x_{n-1}, x_{n-2}, , x_{1}, x_{0}) $</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>Information Theory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信息论与编码：随参信道特性</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E9%9A%8F%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/</url>
+    <content><![CDATA[<p>随参信道的传输特性主要依赖于传输媒质特性，以电离层反射信道、对流层散射信道为主要代表。
+<strong>随参信道是一种信道传输特性随时间随机快速变化的信道</strong>，
+包括陆地移动信道，短波电离层反射信道、超短波微波对流层散射信道、超短波视距绕射信道。</p>
+<p>随参信道的传输媒介具有以下三个特点：</p>
+<ul>
+<li>对信号的衰耗（衰减）随时间而变；</li>
+<li>传输的时延随时间而变；</li>
+<li>会产生多径传播的效果。</li>
+</ul>
+<p><strong>多径传播</strong>
+：指由发射点出发的电波可能经过多条路径到达接收点。每条路径对信号的衰减和时延都随电离层或对流层等传输媒质的变化而变化，接收信号将是衰减和时延随时间变化的各路径信号的叠加与合成。
+<span class="math display">\[
+h(t)=\sum_{i=1}^{L} \mu_{i}(t) \delta\left[t-\tau_{i}(t)\right]
+\]</span></p>
+<h3 id="随参信道数学模型的建立">随参信道数学模型的建立</h3>
+<p>设发送信号为 <span class="math inline">\(s(t)=A
+\sum_{n=-\infty}^{\infty} d_{n} g(t-n T) \cos 2 \pi f_{c} c t\)</span>,
+<span class="math inline">\(A\)</span> 信号幅度, <span
+class="math inline">\(d_{n}\)</span> 信息码元, <span
+class="math inline">\(g(t)\)</span> 信息码元波形, <span
+class="math inline">\(f_{c}\)</span> 载波频率。</p>
+<span id="more"></span>
+<p>令 <span class="math inline">\(b(t)=\sum_{n=-\infty}^{\infty} d_{n}
+g(t-n T)\)</span> , 则 <span class="math inline">\(s(t)=A b(t) \cos 2
+\pi f_{c} t\)</span> 。经过多径信道 <span
+class="math inline">\(h(t)=\sum_{i=1}^{L} u_{i}(t)
+\delta\left(t-\tau_{i}(t)\right)\)</span> , 接收信号为 <span
+class="math display">\[
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos \left(2
+\pi f_{c} t+\varphi_{i}(t)\right)
+\]</span> $ u_{i}(t)$ 第 i 条路径的衰落因子, <span
+class="math inline">\(\tau_{i}(t)\)</span> 为第 i 条路径的传输时延。</p>
+<p>令 <span class="math inline">\(\varphi_{i}(t)=-2 \pi f_{c}
+\tau_{i}(t)\)</span> , 则有 <span class="math display">\[
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos \left(2
+\pi f_{c}\left(t-\tau_{i}(t)\right)\right)
+\]</span> 一般情况 <span class="math inline">\(u_{i}(t)\)</span> 、
+<span class="math inline">\(\tau_{i}(t)\)</span> 较载波 <span
+class="math inline">\(\cos \left(2 \pi f_{c} t\right)\)</span>
+变化缓慢得多, <span class="math inline">\(r(t)\)</span> 可视为窄带过程,
+又可表示为 <span class="math display">\[
+\begin{array}{c}
+r(t)=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos
+\varphi_{i}(t) \cos 2 \pi f_{c} t \\
+-A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \sin
+\varphi_{i}(t) \sin 2 \pi f_{c} t
+\end{array}
+\]</span> 即为随参信道的数学模型,
+利用它可以分析随参信道对信号传输的影响。</p>
+<h3 id="随参信道对信号传输的影响">随参信道对信号传输的影响</h3>
+<h4 id="平坦性衰落及频率选择性衰落">平坦性衰落及频率选择性衰落</h4>
+<h4 id="平坦性衰落">1.平坦性衰落</h4>
+<p>满足: <span class="math inline">\(\left|\tau_{i}(t)\right|_{\max }
+\ll T\)</span>, $T $ 为码元周期, 且 <span
+class="math inline">\(\left|\tau_{i}(t)\right|_{\max } \sim 1 /
+f_{c}\)</span> $b(t-_{i}(t)) b(t-), i=1,2, , L $, 其中 <span
+class="math inline">\(\overline{\tau(t)}\)</span> 为 <span
+class="math inline">\(\tau_{i}(t)\)</span> 的数学期望。 <span
+class="math display">\[
+\begin{aligned}
+r(t) &amp;=A \sum_{i=1}^{L} u_{i}(t) b\left(t-\tau_{i}(t)\right) \cos
+\varphi_{i}(t) \cos 2 \pi f_{c} t-A \sum_{i=1}^{L} u_{i}(t)
+b\left(t-\tau_{i}(t)\right) \sin \varphi_{i}(t) \sin 2 \pi f_{c} t \\
+&amp;=A b(t-\overline{\tau(t)})\left[x_{c}(t) \cos 2 \pi f_{c}
+t-x_{s}(t) \sin 2 \pi f_{c} t\right]=A b(t-\overline{\tau(t)}) v(t) \cos
+\left(2 \pi f_{c} t+\varphi(t)\right) \\
+&amp;=\operatorname{Re}\left[A b(t-\overline{\tau(t)}) v(t) e^{j\left(2
+\pi f_{c} t+\varphi(t)\right)}\right]
+\end{aligned}
+\]</span> 其中 $ v(t)$ 为 $ r(t)$ 的随机包络, $(t) $ 为 $ r(t)$
+的随机相位。 <span class="math display">\[
+\begin{aligned}
+x_{c}(t) &amp;=\sum_{i=1}^{L} u_{i}(t) \cos \varphi_{i}(t) \\
+x_{s}(t) &amp;=\sum_{i=1}^{L} u_{i}(t) \sin \varphi_{i}(t) \\
+v(t) &amp;=\sqrt{x_{c}^{2}(t)+x_{s}^{2}(t)} \\
+\varphi(t) &amp;=\arctan \left(\frac{x_{s}(t)}{x_{c}(t)}\right)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+r(t)=\operatorname{Re}\left[A b(t-\overline{\tau(t)}) v(t) e^{j\left(2
+\pi f_{c} t+\varphi(t)\right)}\right]
+\]</span></p>
+<p>多径传输和信道特性的变化导致<strong>接收信号幅度随机变化,
+载波相位随机变化, 而基带信号 <span
+class="math inline">\(\boldsymbol{b}(t)\)</span>
+波形变化不大</strong>。—<strong>平坦性衰落</strong></p>
+<p>多径传输引起的复包络 <span class="math inline">\(v(t) e^{j
+\varphi(t)}\)</span> 对基带信号而言相当于乘性千扰。</p>
+<p>经不同路径到达接收端的不同信号的相关性很小，且根据中心极限定理,
+当路径数很大时, 多径信号的概率分布趋于高斯分布, 即 $x_{s} $ ， <span
+class="math inline">\(x_{c}\)</span> 服从高斯分布，从而 v(t)
+的概率分布为瑞利（Rayleigh）分布, 相位 <span
+class="math inline">\(\varphi(t)\)</span> 为均匀分布。另外,
+如果接收信号中还包括一路直射信号 ,
+则信号的包络分布为广义瑞利分布或者莱斯 (Rice) 分布。</p>
+<h5 id="rayleigh-分布">Rayleigh 分布</h5>
+<p><span class="math display">\[
+f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}}{2 \sigma^{2}}}
+\]</span></p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211226253.png"
+alt="image-20221118211226253" />
+<figcaption aria-hidden="true">image-20221118211226253</figcaption>
+</figure>
+<h5 id="rice-分布">Rice 分布</h5>
+<p><span class="math display">\[
+f(x)=\frac{x}{\sigma^{2}} e^{-\frac{x^{2}+c^{2}}{2 \sigma^{2}}}
+I_{0}\left(\frac{c x}{\sigma^{2}}\right)
+\]</span></p>
+<p>其中 c 为直射 (视距) 信号的峰值, <span
+class="math inline">\(I_{0}(\cdot)\)</span> 为第一类 0 阶修正贝塞尔函数
+。定义 <span class="math inline">\(K=\frac{c^{2}}{2 \sigma^{2}}\)</span>
+, 表示主信号功率与多径分量功率之比, <span
+class="math inline">\(\mathbf{K}=\mathbf{0}\)</span>
+时（即不存在视距分量), Rice分布等效为 Rayleigh分布。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211411207.png"
+alt="image-20221118211411207" />
+<figcaption aria-hidden="true">image-20221118211411207</figcaption>
+</figure>
+<h4 id="频率选择性衰落">2.频率选择性衰落</h4>
+<p>若信道时延 <span class="math inline">\(\left|\tau_{i}(t)\right|_{\max
+}&gt;T\)</span> , 则 <span
+class="math inline">\(\boldsymbol{b}\left(\boldsymbol{t}-\boldsymbol{\tau}_{\boldsymbol{i}}(\boldsymbol{t})\right)\)</span>
+不能近似为 <span
+class="math inline">\(\boldsymbol{b}(\boldsymbol{t}-\overline{\boldsymbol{\tau}(\boldsymbol{t})})\)</span>
+。</p>
+<p>干扰可存在于不同码元。</p>
+<p>不同路径的不同信息码元之间会产生很大的相互干扰，称为<strong>码间干扰</strong>或者符号间千扰,
+产生严重波形失真, 引起很大误码, 影响通信质量。</p>
+<p><strong>接收信号以及其信息信号的幅度和相位都将产生畸变</strong>;
+<strong>频率域上看, 即不同频率分量受到不同程度的衰落,
+称为频率选择性衰落。</strong></p>
+<p>绿色矩形代表码元，红色为信道：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118211801112.png" /></p>
+<p>分别为平坦与频率选择性衰落。</p>
+<h3
+id="多径随参信道的时延扩展与相干带宽">多径随参信道的时延扩展与相干带宽</h3>
+<p>此两参量
+阐明在什么条件下信号通过随参信道传输会引起平坦性或频率选择性衰落</p>
+<h4 id="随参信道的多径时延特性">随参信道的多径时延特性</h4>
+<p>均方根时延扩展 (时延扩展)： <span class="math display">\[
+\sigma_{\tau}=\sqrt{\overline{\tau^{2}}-(\bar{\tau})^{2}}
+\]</span> 最大时延差: <span class="math inline">\(\tau_{\max }\)</span>
+。</p>
+<h4 id="多径信道的频域特性">多径信道的频域特性</h4>
+<p>以二径信道模型为例: <span class="math inline">\(s(t)=A \cos 2 \pi f
+t\)</span> ,经过二径信道传输, 有 <span class="math inline">\(r(t)=A \cos
+2 \pi f t+A \cos 2 \pi f(t-\tau) =A \cos 2 \pi f t+A \cos (2 \pi f
+t+\phi), \phi=-2 \pi f \tau\)</span> 。 两径矢量之和为向量 <span
+class="math inline">\(\vec{B}\)</span> , 信道输出 <span
+class="math inline">\(r(t)\)</span> 的幅度和相位与二径信号的相位差 <span
+class="math inline">\(\phi=-2 \pi f \tau\)</span> 有关; 若时延差 <span
+class="math inline">\(\tau\)</span> 为常数,则对不同频率 f, <span
+class="math inline">\(\phi=-2 \pi f \tau\)</span> 不同。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118212248973.png" /></p>
+<blockquote>
+<p>当 <span class="math inline">\(\phi=0,2 \pi, 4 \pi, \ldots,
+r(t)\)</span> 的幅度 <span class="math inline">\(|\vec{B}|\)</span>
+最大为 <span class="math inline">\(2 A\)</span> , 当 <span
+class="math inline">\(\boldsymbol{\phi}=\boldsymbol{\pi}, 3 \pi, 5 \pi
+\ldots\)</span> , 幅度 <span class="math inline">\(|\vec{B}|\)</span>
+最小为 "0."</p>
+</blockquote>
+<p>信道的传输特性: <span class="math inline">\(H(f)=1+e^{-j 2 \pi f
+\tau}\)</span> , 其幅频特性 <span class="math inline">\(|H(f)|=2|\cos
+(\pi f \tau)|\)</span> 。</p>
+<p><strong>时延差的倒数称为信道的相干带宽 <span
+class="math inline">\(B_{c}=1 / \tau\)</span> 。</strong></p>
+<p>若信号带宽 $B&lt;B_{c} $ 信号通过信道失真可忽略; 若 <span
+class="math inline">\(B \geq B_{c}\)</span> 信号通过信道失真很大。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118212529107.png" /></p>
+<p>对于多径信道, 可用时延扩展近似求出信道 的相干带宽</p>
+<p><span class="math inline">\(B_{c} \approx
+\frac{1}{\sigma_{\tau}}\)</span></p>
+<p><strong>当信号带宽 <span class="math inline">\(B&gt;B_{c}\)</span> ,
+信号遭受频率选择性衰落, 引起码间干扰; 当 <span class="math inline">\(B
+\ll B_{c}\)</span> 时, 信号遭受平坦衰落。</strong></p>
+<h3
+id="移动信道的多普勒扩展及相干时间">移动信道的多普勒扩展及相干时间</h3>
+<h4 id="多普勒扩展">1.多普勒扩展</h4>
+<p>移动通信中, 移动台与基站间的相对运动,
+会使接收信号的载频发生多普勒频移。 对于频率为 <span
+class="math inline">\(f_{c}\)</span> 的单频信号, 受多普勒频移,
+其频谱范围约为 <span class="math inline">\(\left(f_{c}-f_{m},
+f_{c}+f_{m}\right)\)</span> 。其中 <span
+class="math inline">\(f_{m}=\frac{v}{\lambda}=\frac{v f_{c}}{c}\)</span>
+为<strong>最大多普勒频移</strong> (v 移动速度, <span
+class="math inline">\(\lambda\)</span> 载波波长, c 光速)。</p>
+<p>设发射信号为频率是 <span class="math inline">\(f_{c}\)</span>
+的正弦波, 到达移动台的路径与移动台运动方向夹角为 <span
+class="math inline">\(\theta\)</span> , 则多普勒频移<span
+class="math inline">\(f_{d}=f_{m} \cos \theta\)</span> 。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213047640.png" /></p>
+<p>图中X&amp;Y 代表移动台。</p>
+<h4 id="信道的相干时间-tc-和多普勒频率扩展">2.信道的相干时间 Tc
+和多普勒频率扩展</h4>
+<p>定义最大多普勒频移 <span class="math inline">\(f_{m}\)</span>
+的倒数为信道的相干时间 <span class="math inline">\(T_{c}\)</span>, <span
+class="math inline">\(T_{c}=1 / f_{m}\)</span> 。
+它<strong>反映信道冲激响应对所传输的信号产生快衰或慢衰的影响</strong>。</p>
+<p>定义最大多普勒频率 $ B_{D}=f_{m}$ 为多普勒频率扩展。</p>
+<h4 id="多普勒扩展对衰落的影响">3.多普勒扩展对衰落的影响</h4>
+<p><strong>快衰落信道</strong>: <span
+class="math inline">\(T_{s}&gt;T_{c}\)</span> 或信号的符号速率 <span
+class="math inline">\(R_{s}&lt;B_{D}\)</span> ,
+即<strong>信道相干时间小于信号码元周期</strong>（符号间隔
+），因而在信号符号间隔时间内, 信道冲激响应快速变化,
+使信号产生失真——<strong>快衰落信道</strong>或称为<strong>时间选择性衰落</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213425783.png" /></p>
+<p><strong>慢衰落信道</strong>: <span
+class="math inline">\(T_{s}&lt;&lt;T_{c}\)</span> 或 <span
+class="math inline">\(R_{s}&gt;&gt;B_{D}\)</span> ,
+即<strong>信号码元周期（符号间隔）远小于信道相干时间</strong>，或<strong>信号符号速率远大于信道的多普勒频率扩展,</strong>
+则<strong>信道冲激响应变化速率低于信号符号速率</strong>,
+在信号符号间隔时间内信道冲激响应基本不变, 此时信号遭受慢衰落。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213643831.png" /></p>
+<p>注意：
+快、慢衰落信道的时变特性与所传信号的速率有关，不涉及传输距离、路径损耗等</p>
+<h4
+id="同时考虑随参信道的多径时延扩展及多普勒扩展对衰落的影响">4.同时考虑随参信道的多径时延扩展及多普勒扩展对衰落的影响</h4>
+<ul>
+<li><strong>多径时延扩展会引起随参信道平坦性衰落或频率选择性衰落</strong>。</li>
+<li>在平坦性衰落信道下，由于多普勒扩展又可分为<strong>平坦性快衰落和平坦性慢衰落</strong>；</li>
+<li>在频率选择性衰落信道下，由于多普勒扩展，可以分为<strong>频率选择性快衰落与频率选择性慢衰落</strong>。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118213848069.png" /></p>
+<h4 id="抗衰落的方案">5.抗衰落的方案</h4>
+<p>衰落<strong>影响通信质量</strong>，会<strong>使信噪比下降</strong>，或<strong>引起码间干扰</strong>，甚至<strong>造成突发错误</strong>引起通信中断。</p>
+<p>常用的抗衰落方法：<strong>扩频多径分离技术、交织技术、纠错码的编译码技术、自适应信道均衡器、分集接收技术</strong>等
+。</p>
+<h2 id="总结">总结</h2>
+<p>多径传播对信号传输的影响：</p>
+<ul>
+<li>产生瑞利型衰落：从波形上看，幅度恒定频率单一的载波信号变成了包络和相位受到调制的窄带信号。</li>
+<li>引起频率弥散：从频谱上看，单个频率变成了窄带频谱</li>
+<li>造成频率选择性衰落：信号频谱中某些分量被衰落， <span
+class="math inline">\(B&gt; B c\)</span> 。</li>
+<li>为减小选择性衰落，要限制数字信号的传输速率，实际上等于限制了数字信号的频谱宽度，即信号频带必须小于相关带宽。</li>
+</ul>
+<p>综合考虑无线信道的衰落 ，分为 <strong>大尺度衰落 和
+小尺度衰落</strong> 。</p>
+<p>1.大尺度衰落：由大型障碍物遮挡而引起的阴影效应和接收机与发射机之间的距离差导致接收信号强度的变化称为大尺度衰落，具体可以分为<strong>路径损耗和阴影衰落</strong>。</p>
+<p>2.小尺度衰落主要描述的是信号强度在很短时间内发生剧烈快速波动的现象，体现在信号的幅值和相位变化。小尺度衰落可以分为<strong>多径效应和多普勒频移</strong>。<strong>随参信道特性属于小尺度衰落。</strong></p>
+<p>参考文献：</p>
+<ul>
+<li><p>樊昌信, 曹丽娜 .通信原理(第7版)
+[M]．北京：国防工业出版社，2012.</p></li>
+<li><p>John G. Proakis .Communication systems engineering [M]．Upper
+Saddle River, N.J：Prentice Hall，2002.</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>Information Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -2382,6 +2995,91 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220
       </tags>
   </entry>
   <entry>
+    <title>算法基础：单链表图解及模板总结</title>
+    <url>/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8D%95%E9%93%BE%E8%A1%A8%E5%9B%BE%E8%A7%A3%E5%8F%8A%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="静态链表">静态链表</h2>
+<p>如果说用结构体+指针的方式实现链表和栈的话，每次需要new一个新节点，非常慢。笔试题链表大小在10万级别，因此笔试题一般不会采用这种动态链表的方式。通常采用数组模拟链表的方式，这种方式更快。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> val;</span><br><span class="line">	Node *next;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Node</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="链表与邻接表">链表与邻接表</h2>
+<h2 id="邻接表">邻接表</h2>
+<p>邻接表的head[i]存储的是节点i所有的临边。实际上就是一个单链表。</p>
+<h3 id="用数组模拟单链表">用数组模拟单链表</h3>
+<p>单链表里常用的是邻接表。邻接表主要用来存储图和数。</p>
+<p>双链表常用来优化某些问题。</p>
+<p>链表的结构通常如下所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221017182739361.png" /></p>
+<p>每一个节点中通常存储两个数，分别是节点值（val）和指向下一个节点的指针（next）。通常如下：</p>
+<ul>
+<li>val ：e[N]</li>
+<li>next ：ne[N]</li>
+</ul>
+<p>两者通过索引下标相联系。</p>
+<span id="more"></span>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221017183223725.png" /></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// head 表示头节点的下标</span></span><br><span class="line"><span class="comment">// e[i] 表示节点i的值</span></span><br><span class="line"><span class="comment">// ne[i] 表示节点i的next指针是多少</span></span><br><span class="line"><span class="comment">// idx存储当前用到了哪个点</span></span><br><span class="line"><span class="type">int</span> head, e[N], ne[N], idx;</span><br></pre></td></tr></table></figure>
+<h4 id="初始化操作">初始化操作</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插入头节点">插入头节点</h4>
+<p>基本思路如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221017211027847.png" /></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将x插到头结点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_to_head</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 把插入的值x存在idx中</span></span><br><span class="line">    e[idx] = x;</span><br><span class="line">    <span class="comment">// 让当前的idx的next指针与头节点指向一致</span></span><br><span class="line">    ne[idx] = head;</span><br><span class="line">    <span class="comment">// head指向新节点idx</span></span><br><span class="line">    head = idx;</span><br><span class="line">    idx ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里也可以将代码压缩一下，更加简洁</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将x插到头结点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_to_head</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x, ne[idx] = head, head = idx, idx ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="插入下标为k的后面">插入下标为k的后面</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将x插入下标为k的后面</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> k, <span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x, ne[idx] = ne[k], ne[k] = idx, idx ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然也可以进一步化简，将<code>ne[k] = idx, idx ++;</code>化简为<code>ne[k] = idx++</code>。</p>
+<h4 id="删除操作">删除操作</h4>
+<p>将下标为k的点后面的点删除：只需要指针跳过该点即可。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221017211610701.png" /></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// k的指向等于它下一个的节点的指向</span></span><br><span class="line">    ne[k] = ne[ne[k]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="例题单链表">例题：单链表</h4>
+<p>实现一个单链表，链表初始为空，支持三种操作：</p>
+<ol type="1">
+<li>向链表头插入一个数；</li>
+<li>删除第 k 个插入的数后面的数；</li>
+<li>在第 k 个插入的数后插入一个数。</li>
+</ol>
+<p>现在要对该链表进行 M
+次操作，进行完所有操作后，从头到尾输出整个链表。</p>
+<p><strong>注意</strong>:题目中第 k 个插入的数并不是指当前链表的第 k
+个数。例如操作过程中一共插入了 n 个数，则按照插入的时间顺序，这 n
+个数依次为：第 1 个插入的数，第 2 个插入的数，…第 n 个插入的数。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 M，表示操作次数。</p>
+<p>接下来 M 行，每行包含一个操作命令，操作命令可能为以下几种：</p>
+<ol type="1">
+<li><code>H x</code>，表示向链表头插入一个数 x。</li>
+<li><code>D k</code>，表示删除第 k 个插入的数后面的数（当 k 为 0
+时，表示删除头结点）。</li>
+<li><code>I k x</code>，表示在第 k 个插入的数后面插入一个数 x（此操作中
+k 均大于 0）。</li>
+</ol>
+<p><strong>输出格式</strong></p>
+<p>共一行，将整个链表从头到尾输出。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤M≤100000 所有操作保证合法。</p>
+<p><strong>输入样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10</span><br><span class="line">H 9</span><br><span class="line">I 1 1</span><br><span class="line">D 1</span><br><span class="line">D 0</span><br><span class="line">H 6</span><br><span class="line">I 3 6</span><br><span class="line">I 4 5</span><br><span class="line">I 4 5</span><br><span class="line">I 3 4</span><br><span class="line">D 6</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6 4 6 5</span><br></pre></td></tr></table></figure>
+<h5 id="code">code</h5>
+<p>此题需要注意的是，题目要求在第k个节点上进行操作，而第k个节点的下标是k-1。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head, idx, e[M], ne[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;</span><br><span class="line">    idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_to_head</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x, ne[idx] = head, head = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> k, <span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = x, ne[idx] = ne[k], ne[k] = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ne[k] = ne[ne[k]];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> m;</span><br><span class="line">    cin &gt;&gt; m;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(m --)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> k, x;</span><br><span class="line">        <span class="type">char</span> op;</span><br><span class="line">        </span><br><span class="line">        cin &gt;&gt; op;</span><br><span class="line">        <span class="keyword">if</span>(op == <span class="string">&#x27;H&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cin &gt;&gt; x;</span><br><span class="line">            <span class="built_in">add_to_head</span>(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(op == <span class="string">&#x27;D&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cin &gt;&gt; k;</span><br><span class="line">            <span class="keyword">if</span>(!k)head = ne[head];</span><br><span class="line">            <span class="built_in">remove</span>(k - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cin &gt;&gt; k &gt;&gt; x;</span><br><span class="line">            <span class="built_in">add</span>(k - <span class="number">1</span>, x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = head; i != <span class="number">-1</span>; i = ne[i]) cout &lt;&lt; e[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="单链表模板总结">单链表模板总结</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// head存储链表头，e[]存储节点的值，ne[]存储节点的next指针，idx表示当前用到了哪个节点</span></span><br><span class="line"><span class="type">int</span> head, e[N], ne[N], idx;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = <span class="number">-1</span>;</span><br><span class="line">    idx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在链表头插入一个数a</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[idx] = a, ne[idx] = head, head = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将头结点删除，需要保证头结点存在</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">remove</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    head = ne[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Basic algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法基础：区间合并算法及模板应用</title>
     <url>/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h1 id="区间合并">区间合并</h1>
@@ -2437,92 +3135,115 @@ class="math inline">\(10^9\)</span></p>
       </tags>
   </entry>
   <entry>
-    <title>算法基础：差分算法及模板应用</title>
-    <url>/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="一维差分">一维差分</h2>
-<p>差分思想和前缀和是相反的。</p>
-<p>首先我们先定义数组a, 其中a[1],a[2]...a[n]作为前缀和。</p>
-<p>然后构造数组b，b[1],b[2]...b[n]为差分数组。其中通过差分数组的前缀和来表示a数组，即a[n]
-= b[1] + b[2]+...+b[n]。</p>
-<p>一维差分数组的构造也很简单，即a[1] = b[1], b[2] = a[2] - a[1], b[n] =
-a[n] - a[n-1]；</p>
-<p>注意：刚开始时可以初始化数组a,b全部为0，输入a数组后；在构造时，只需要将b[1]看做在[1,
-1]区间上加上a[1]; b[2] 看作在[2, 2]区间上加上a[2]；</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg:对于b[1]:</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">0</span> + a[<span class="number">1</span>];</span><br><span class="line">b[<span class="number">2</span>] = <span class="number">0</span> - a[<span class="number">1</span>]; 	<span class="comment">//最终：b[1] = a[1]</span></span><br><span class="line"><span class="comment">//对于b[2]:</span></span><br><span class="line">b[<span class="number">2</span>] = b[<span class="number">2</span>] + a[<span class="number">2</span>];  <span class="comment">//==&gt; 最终：b[2] = a[2] - a[1]</span></span><br><span class="line">b[<span class="number">3</span>] = b[<span class="number">3</span>] - b[<span class="number">2</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>差分数组的好处是可以简化运算，例如想要给一个区间 [l,r]
-上的数组加一个常数c，原始的方法是依次加上c，这样的时间复杂度是O(n)的。但是如果采用差分数组的话，可以大大降低时间复杂度到O(1)。</p>
-<p>由于a[n] = b[1] + b[2]+...+b[n]，因此只需要将b[l] = b[l] + c
-即可，这样l之后的数字会依次加上常数c，而在 b[r]处，将b[r+1] = b[r+1] - c
-，这样r之后的数组又会恢复原值，仅需要处理这两个边界的差分数组即可，时间复杂度大大降低。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220915162819362.png" /></p>
+    <title>嵌入式系统概述及特点</title>
+    <url>/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%89%B9%E7%82%B9/</url>
+    <content><![CDATA[<p>什么是嵌入式系统？</p>
+<p>嵌入式系统（Embedded
+Systems）是指：“<strong>嵌入到对象体系中的、用于执行独立功能的专用计算机系统</strong>”。定义为以应用为中心，以微电子技术、控制技术、计算机技术和通讯技术为基础，强调硬件软件的协同性与整合性，软件硬件可剪裁的，适应应用系统对功能、可靠性、成本、体积、功耗和应用环境有等严格要求的专用计算机系统。</p>
+<p><strong>嵌入式系统的嵌入式本质就是将一个计算机嵌入到一个对象体系中去。</strong></p>
+<p>从广义上讲，<strong>凡是带有微处理器的专用硬件系统都可以称为嵌入式系统</strong>，如各类单片机和DSP系统。这些系统在完成较为单一的专业功能时具有简洁高效的特点。但他们的软件的能力有限。</p>
+<p>复杂的嵌入式系统采用<strong>嵌入式微处理器，具有自己的操作系统</strong>，具有特定功能，用于特定的场合。</p>
 <span id="more"></span>
-<h3 id="例题差分">例题：差分</h3>
-<p>输入一个长度为 n 的整数序列。</p>
-<p>接下来输入 m 个操作，每个操作包含三个整数 l,r,c，表示将序列中 [l,r]
-之间的每个数加上 c。</p>
-<p>请你输出进行完所有操作后的序列。</p>
-<p><strong>输入格式</strong></p>
-<p>第一行包含两个整数 n 和 m。</p>
-<p>第二行包含 n 个整数，表示整数序列。</p>
-<p>接下来 m 行，每行包含三个整数 l，r，c表示一个操作。</p>
-<p><strong>输出格式</strong></p>
-<p>共一行，包含 n 个整数，表示最终序列。</p>
-<p><strong>数据范围</strong></p>
-<p>1≤n,m≤100000, 1≤l≤r≤n, −1000≤c≤1000,
-−1000≤整数序列中元素的值≤1000</p>
-<p><strong>输入样例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6 3</span><br><span class="line">1 2 2 1 2 1</span><br><span class="line">1 3 1</span><br><span class="line">3 5 1</span><br><span class="line">1 6 1</span><br></pre></td></tr></table></figure>
-<p><strong>输出样例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 5 3 4 2</span><br></pre></td></tr></table></figure>
-<h4 id="代码模板">代码模板</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> m,n;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r , <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[l] += c;</span><br><span class="line">    b[r+<span class="number">1</span>] -= c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="comment">//插入的方式形成b[i]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">insert</span>(i, i, a[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l, r ,c;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;l, &amp;r, &amp;c);</span><br><span class="line">        <span class="built_in">insert</span>(l, r, c);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) b[i] += b[i - <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二维差分">二维差分</h2>
-<p>将a[i][j]表示为一个差分数列b[i][j]的和即可。如下所示：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919221638474.png" /></p>
-<p>基本思路：给其中的一个子矩阵加上一个值。矩阵以外的减去一个值即可。</p>
-<p>可列公式表示各个范围如下：</p>
-<p><span class="math inline">\(b[x_1][y_1] += C;\)</span></p>
-<p><span class="math inline">\(b[x_1][y_2 + 1] -= C;\)</span></p>
-<p><span class="math inline">\(b[x_2 + 1][y_1] += C;\)</span></p>
-<p>$b[x_2 + 1][y_2 + 1] += C; $</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919222657158.png" /></p>
-<p>由上面范围，可以求得最终要算的小正方形的面积公式：</p>
-<p><span class="math inline">\(S = b[x_1][y_1] - b[x_1][y_2 + 1]- b[x_2
-+ 1][y_1] + b[x_2 + 1][y_2 + 1]\)</span></p>
-<p>矩阵的初始化；</p>
-<p>假定a[i][j] = 0,b[i][j]
-=0,然后读取数组a，只需要对b进行插入即可。b[i][j]相当于从(i,j)到(i,j)插入一个a[i][j]形成的。</p>
-<p>最后求a[i][j]只需要求解b[i][j]的前缀和即可。</p>
-<h3 id="例题差分矩阵">例题：差分矩阵</h3>
-<p>输入一个 n 行 m 列的整数矩阵，再输入 q 个操作，每个操作包含五个整数
-x1,y1,x2,y2,c，其中 (x1,y1) 和
-(x2,y2)表示一个子矩阵的左上角坐标和右下角坐标。</p>
-<p>每个操作都要将选中的子矩阵中的每个元素的值加上 c。</p>
-<p>请你将进行完所有操作后的矩阵输出。</p>
-<p><strong>输入格式</strong></p>
-<p>第一行包含整数 n,m,q</p>
-<p>接下来 n 行，每行包含 m 个整数，表示整数矩阵。</p>
-<p>接下来 q 行，每行包含 5 个整数 x1,y1,x2,y2,c表示一个操作。</p>
-<p><strong>输出格式</strong></p>
-<p>共 n 行，每行 m 个整数，表示所有操作进行完毕后的最终矩阵。</p>
-<p><strong>数据范围</strong></p>
-<p>1≤n,m≤1000 1≤q≤100000 1≤x1≤x2≤n 1≤y1≤y2≤m −1000≤c≤1000
-−1000≤矩阵内元素的值≤1000</p>
-<p><strong>输入样例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 3</span><br><span class="line">1 2 2 1</span><br><span class="line">3 2 2 1</span><br><span class="line">1 1 1 1</span><br><span class="line">1 1 2 2 1</span><br><span class="line">1 3 2 3 2</span><br><span class="line">3 1 3 4 1</span><br></pre></td></tr></table></figure>
-<p><strong>输出样例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 3 4 1</span><br><span class="line">4 3 4 1</span><br><span class="line">2 2 2 2</span><br></pre></td></tr></table></figure>
-<h4 id="代码模板-1">代码模板</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N =<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[N][N],b[N][N];</span><br><span class="line"><span class="type">int</span> n, m ,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[x1][y1] += c;</span><br><span class="line">    b[x2 + <span class="number">1</span>][y1] -= c;</span><br><span class="line">    b[x1][y2 +<span class="number">1</span>] -= c;</span><br><span class="line">    b[x2 +<span class="number">1</span>][y2+<span class="number">1</span>] +=c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;q);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i][j]);</span><br><span class="line">            </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">insert</span>(i, j, i, j, a[i][j]);</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">while</span>( q-- )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x1, x2, y1, y2, c;</span><br><span class="line">        cin &gt;&gt; x1 &gt;&gt; y1&gt;&gt; x2 &gt;&gt; y2 &gt;&gt; c;</span><br><span class="line">        <span class="built_in">insert</span>(x1,y1, x2, y2, c);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//求前缀和</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        b[i][j] += b[i<span class="number">-1</span>][j] +b[i][j<span class="number">-1</span>] -b[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i][j]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="嵌入式系统的历史与发展">嵌入式系统的历史与发展</h3>
+<p>1.始于微型机时代的嵌入式系统</p>
+<p>（1）单片机开创了嵌入式系统独立发展之路</p>
+<p>（2）单片机的技术发展史</p>
+<p>单片机诞生于20世纪70年代末，经历了SCM(Smart Controller Module
+)、MCU、SoC三大阶段。</p>
+<p>2.现代计算机技术的两大分支</p>
+<ul>
+<li><strong>通用计算机系统</strong></li>
+<li><strong>嵌入式计算机系统</strong></li>
+</ul>
+<h3 id="嵌入式系统的分类">嵌入式系统的分类</h3>
+<p>根据不同的标准，嵌入式系统有不同的分类方法。</p>
+<p>（1）嵌入式系统按形态可分为</p>
+<ul>
+<li>设备级（工控机）</li>
+<li>板级（单板、模块）</li>
+<li>芯片级（MCU — Micro Control Unit 、SoC — System onChip ）</li>
+</ul>
+<p>因此，有些人把嵌入式处理器当作嵌入式系统，但由于嵌入式系统是一个嵌入式计算机系统，因此，<strong>只有将嵌入式处理器构成一个计算机系统，并作为嵌入式应</strong>
+<strong>用时，这样的计算机系统才可称作嵌入式系统。</strong></p>
+<p>（2）按嵌入式微处理器的位数分类</p>
+<ul>
+<li>4位</li>
+<li>8位</li>
+<li>16位</li>
+<li>32位</li>
+<li>64位…….</li>
+</ul>
+<p>其中，4位、8位、16位嵌入式系统已经获得了大量应用，<strong>32位嵌入式系统</strong>正成为主流发展趋势。而一些高度负责和要求高速处理的嵌入式系统已经开始使用64位嵌入式微处理器。</p>
+<p>（3）按软件实时性需求分类</p>
+<ul>
+<li>非实时系统（如PDA）</li>
+<li>软实时系统（如消费类产品）</li>
+<li>硬实时系统（如工业实时控制系统）</li>
+</ul>
+<p><strong>实时系统</strong>是一个能够在<strong>指定时间内</strong>完成系统功能并对外部或内部事件做出响应的系统；</p>
+<p>实时逻辑的正确性不仅依赖于计算结果的正确性还取决于输出结果的时间。</p>
+<p><strong>实时系统分类</strong></p>
+<ul>
+<li>强实时系统, 其系统响应时间在毫秒或微秒级。</li>
+<li>一般实时系统,
+其系统响应时间在几秒的数量级上,其实时性的要求比强实时系统要差一些。</li>
+<li>弱实时系统,
+其系统响应时间约为数十秒或更长。这种系统的响应时间可能随系统负载的轻重而变化。</li>
+</ul>
+<p>根据<strong>实时时间的确定性的强弱</strong>，可将<strong>嵌入式系统</strong>分为<strong>硬实时、软实时系统</strong>：</p>
+<ul>
+<li>硬实时：系统对系统响应时间有严格的要求，如果系统响应时间不能满足，就要引起系统崩溃或致命的错误。(如工业现场控制）</li>
+<li>软实时：系统对系统响应时间有要求，但是如果系统响应时间不能满足，不会导致系统出现致命的错误或崩溃。（如多媒体应用系统）</li>
+</ul>
+<p><strong>实时系统的特性：</strong></p>
+<ul>
+<li><strong>实时性</strong>：系统产生的结果在时间上有严格的要求，只有符合时间要求产生的结果才是正确的；</li>
+<li><strong>并行性</strong>：如果系统有多个输入时，要求系统具有并行处理能力，能同时响应多个输入信号。</li>
+<li><strong>可预测性</strong>：结果产生时间和产生范围都是可预测的。</li>
+<li><strong>可靠性</strong>：即系统的正确性和健壮性。</li>
+<li><strong>专用性</strong>：不同应用的实时系统在结构设计上都是不同的。</li>
+</ul>
+<p>（3）按嵌入式系统的复杂程度分类</p>
+<ul>
+<li>小型嵌入式系统</li>
+<li>中型嵌入式系统</li>
+<li>复杂嵌入式系统</li>
+</ul>
+<h2 id="嵌入式系统的特点">嵌入式系统的特点</h2>
+<p>嵌入式系统特别强调“<strong>量身定做</strong>”的原则，开发人员往往需要针对某一种特殊用途开发出一个截然不同的嵌入式系统来，所以我们很难不经过“大量”修改而直接将一个嵌入式系统全套用到其他的嵌入式产品上去。</p>
+<p><strong>“嵌入性”、“专用性”与“计算机系统”</strong>是<strong>嵌入式系统的三个基本要素</strong>。对象系统则是指嵌入式系统所嵌入的宿主系统。嵌入式系统的特点是由三个基本要素衍生出来的。不同的嵌入式系统其特点会有所差异。</p>
+<ul>
+<li><p>与“嵌入性”的相关特点：由于是嵌入到对象系统中，必须满足对象系统的环境要求，如物理环境（小型）、电气/环境（可靠）、成本（价廉）等要求。</p></li>
+<li><p>与“专用性”的相关特点：软、硬件的裁剪性；满足对象要求的最小软、硬件配置等。</p></li>
+<li><p>与“计算机系统”的相关特点：具有计算机的一般特点，有CPU、存储器、IO接口、通信接口、人机接口等各种硬件组件。计算机的具体功能由软件来实现。可以具有操作系统。</p></li>
+</ul>
+<p>嵌入式系统的硬件组成如下：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221107115754270.png"
+alt="嵌入式系统的硬件组成" />
+<figcaption aria-hidden="true">嵌入式系统的硬件组成</figcaption>
+</figure>
+<p>嵌入式处理器种类有1000多种，流行的体系结构有30多个系列，数据总线宽度从8位到32位，处理速度为0.1——2000MIPS（MIPS——每秒百万条指令）</p>
+<p>与通用的计算机系统化相比，嵌入式系统具有以下显著特点。</p>
+<ul>
+<li><strong>系统内核小</strong></li>
+<li><strong>专用性强</strong></li>
+<li><strong>运行环境差异大</strong></li>
+<li><strong>可靠性要求高</strong></li>
+<li><strong>系统精简和高实时性操作系统</strong></li>
+<li><strong>具有固化在非易失性存储器中的代码</strong></li>
+<li><strong>嵌入式系统开发工作和环境</strong></li>
+</ul>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
 ]]></content>
       <categories>
-        <category>Algorithm</category>
+        <category>Learn</category>
+        <category>Embedded System</category>
       </categories>
       <tags>
-        <tag>Basic algorithm</tag>
+        <tag>ARM</tag>
       </tags>
   </entry>
   <entry>
@@ -2615,6 +3336,95 @@ class="math inline">\(−10000≤c≤10000\)</span></p>
 <p>注意是在同一个数组中操作的，但是可以保证去重数组长度始终小于等于原数组。最后返回a[0]
 ~ a[j - 1]即可。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt;::<span class="function">iterator <span class="title">unique</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; a.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!i || a[i] != a[i - <span class="number">1</span>])</span><br><span class="line">            a[j++] = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 在a[0] ~ a[j - 1]有所有a中不重复的数</span></span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">begin</span>() + j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Basic algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法基础：差分算法及模板应用</title>
+    <url>/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="一维差分">一维差分</h2>
+<p>差分思想和前缀和是相反的。</p>
+<p>首先我们先定义数组a, 其中a[1],a[2]...a[n]作为前缀和。</p>
+<p>然后构造数组b，b[1],b[2]...b[n]为差分数组。其中通过差分数组的前缀和来表示a数组，即a[n]
+= b[1] + b[2]+...+b[n]。</p>
+<p>一维差分数组的构造也很简单，即a[1] = b[1], b[2] = a[2] - a[1], b[n] =
+a[n] - a[n-1]；</p>
+<p>注意：刚开始时可以初始化数组a,b全部为0，输入a数组后；在构造时，只需要将b[1]看做在[1,
+1]区间上加上a[1]; b[2] 看作在[2, 2]区间上加上a[2]；</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg:对于b[1]:</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">0</span> + a[<span class="number">1</span>];</span><br><span class="line">b[<span class="number">2</span>] = <span class="number">0</span> - a[<span class="number">1</span>]; 	<span class="comment">//最终：b[1] = a[1]</span></span><br><span class="line"><span class="comment">//对于b[2]:</span></span><br><span class="line">b[<span class="number">2</span>] = b[<span class="number">2</span>] + a[<span class="number">2</span>];  <span class="comment">//==&gt; 最终：b[2] = a[2] - a[1]</span></span><br><span class="line">b[<span class="number">3</span>] = b[<span class="number">3</span>] - b[<span class="number">2</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>差分数组的好处是可以简化运算，例如想要给一个区间 [l,r]
+上的数组加一个常数c，原始的方法是依次加上c，这样的时间复杂度是O(n)的。但是如果采用差分数组的话，可以大大降低时间复杂度到O(1)。</p>
+<p>由于a[n] = b[1] + b[2]+...+b[n]，因此只需要将b[l] = b[l] + c
+即可，这样l之后的数字会依次加上常数c，而在 b[r]处，将b[r+1] = b[r+1] - c
+，这样r之后的数组又会恢复原值，仅需要处理这两个边界的差分数组即可，时间复杂度大大降低。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220915162819362.png" /></p>
+<span id="more"></span>
+<h3 id="例题差分">例题：差分</h3>
+<p>输入一个长度为 n 的整数序列。</p>
+<p>接下来输入 m 个操作，每个操作包含三个整数 l,r,c，表示将序列中 [l,r]
+之间的每个数加上 c。</p>
+<p>请你输出进行完所有操作后的序列。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含两个整数 n 和 m。</p>
+<p>第二行包含 n 个整数，表示整数序列。</p>
+<p>接下来 m 行，每行包含三个整数 l，r，c表示一个操作。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，包含 n 个整数，表示最终序列。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n,m≤100000, 1≤l≤r≤n, −1000≤c≤1000,
+−1000≤整数序列中元素的值≤1000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">6 3</span><br><span class="line">1 2 2 1 2 1</span><br><span class="line">1 3 1</span><br><span class="line">3 5 1</span><br><span class="line">1 6 1</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 5 3 4 2</span><br></pre></td></tr></table></figure>
+<h4 id="代码模板">代码模板</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> m,n;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r , <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[l] += c;</span><br><span class="line">    b[r+<span class="number">1</span>] -= c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    <span class="comment">//插入的方式形成b[i]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">insert</span>(i, i, a[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l, r ,c;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;l, &amp;r, &amp;c);</span><br><span class="line">        <span class="built_in">insert</span>(l, r, c);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) b[i] += b[i - <span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二维差分">二维差分</h2>
+<p>将a[i][j]表示为一个差分数列b[i][j]的和即可。如下所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919221638474.png" /></p>
+<p>基本思路：给其中的一个子矩阵加上一个值。矩阵以外的减去一个值即可。</p>
+<p>可列公式表示各个范围如下：</p>
+<p><span class="math inline">\(b[x_1][y_1] += C;\)</span></p>
+<p><span class="math inline">\(b[x_1][y_2 + 1] -= C;\)</span></p>
+<p><span class="math inline">\(b[x_2 + 1][y_1] += C;\)</span></p>
+<p>$b[x_2 + 1][y_2 + 1] += C; $</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220919222657158.png" /></p>
+<p>由上面范围，可以求得最终要算的小正方形的面积公式：</p>
+<p><span class="math inline">\(S = b[x_1][y_1] - b[x_1][y_2 + 1]- b[x_2
++ 1][y_1] + b[x_2 + 1][y_2 + 1]\)</span></p>
+<p>矩阵的初始化；</p>
+<p>假定a[i][j] = 0,b[i][j]
+=0,然后读取数组a，只需要对b进行插入即可。b[i][j]相当于从(i,j)到(i,j)插入一个a[i][j]形成的。</p>
+<p>最后求a[i][j]只需要求解b[i][j]的前缀和即可。</p>
+<h3 id="例题差分矩阵">例题：差分矩阵</h3>
+<p>输入一个 n 行 m 列的整数矩阵，再输入 q 个操作，每个操作包含五个整数
+x1,y1,x2,y2,c，其中 (x1,y1) 和
+(x2,y2)表示一个子矩阵的左上角坐标和右下角坐标。</p>
+<p>每个操作都要将选中的子矩阵中的每个元素的值加上 c。</p>
+<p>请你将进行完所有操作后的矩阵输出。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含整数 n,m,q</p>
+<p>接下来 n 行，每行包含 m 个整数，表示整数矩阵。</p>
+<p>接下来 q 行，每行包含 5 个整数 x1,y1,x2,y2,c表示一个操作。</p>
+<p><strong>输出格式</strong></p>
+<p>共 n 行，每行 m 个整数，表示所有操作进行完毕后的最终矩阵。</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n,m≤1000 1≤q≤100000 1≤x1≤x2≤n 1≤y1≤y2≤m −1000≤c≤1000
+−1000≤矩阵内元素的值≤1000</p>
+<p><strong>输入样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3 4 3</span><br><span class="line">1 2 2 1</span><br><span class="line">3 2 2 1</span><br><span class="line">1 1 1 1</span><br><span class="line">1 1 2 2 1</span><br><span class="line">1 3 2 3 2</span><br><span class="line">3 1 3 4 1</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 3 4 1</span><br><span class="line">4 3 4 1</span><br><span class="line">2 2 2 2</span><br></pre></td></tr></table></figure>
+<h4 id="代码模板-1">代码模板</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N =<span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[N][N],b[N][N];</span><br><span class="line"><span class="type">int</span> n, m ,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2, <span class="type">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    b[x1][y1] += c;</span><br><span class="line">    b[x2 + <span class="number">1</span>][y1] -= c;</span><br><span class="line">    b[x1][y2 +<span class="number">1</span>] -= c;</span><br><span class="line">    b[x2 +<span class="number">1</span>][y2+<span class="number">1</span>] +=c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;q);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i][j]);</span><br><span class="line">            </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">            <span class="built_in">insert</span>(i, j, i, j, a[i][j]);</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">while</span>( q-- )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x1, x2, y1, y2, c;</span><br><span class="line">        cin &gt;&gt; x1 &gt;&gt; y1&gt;&gt; x2 &gt;&gt; y2 &gt;&gt; c;</span><br><span class="line">        <span class="built_in">insert</span>(x1,y1, x2, y2, c);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//求前缀和</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        b[i][j] += b[i<span class="number">-1</span>][j] +b[i][j<span class="number">-1</span>] -b[i<span class="number">-1</span>][j<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j&lt;= m; j++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, b[i][j]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Algorithm</category>
@@ -2793,68 +3603,29 @@ MAC地址。</li>
       </tags>
   </entry>
   <entry>
-    <title>计算机网络：信道划分介质访问控制</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BF%A1%E9%81%93%E5%88%92%E5%88%86%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</url>
-    <content><![CDATA[<h2
-id="计算机网络信道划分介质访问控制">计算机网络：信道划分介质访问控制</h2>
-<p>介质访问控制所要完成的主要任务是：<strong>为使用介质的每个结点隔离来自同一信道上其他结点所传送的信号，以协调活动结点的传输。</strong></p>
-<p>用来决定广播信道中<strong>信道分配的协议</strong>属于<strong>数据链路层的一个子层</strong>，称为介质访问控制(Medium
-Access Control，MAC)子层。</p>
-<p>常见的介质访问控制方法有<strong>信道划分</strong>介质访问控制、<strong>随机访问</strong>介质访问控制和<strong>轮询访问</strong>介质访问控制。其中前者是静态划分信道的方法，而后两者是动态分配信道的方法。</p>
+    <title>计算机网络：VLAN基本概念与原理</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AVLAN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<p>一个以太网是一个广播域，当一个以太网包含的计算机太多时，往往会导致:</p>
+<p>以太网中出现大量的广播帧，特别是经常使用的<strong>ARP 和
+DHCP</strong>协议。</p>
+<p>一个单位的不同部门共享一个局域网，对信息保密和安全不利。</p>
+<p>通过虚拟局域网（Virtual
+LAN)，可以把一个较大的局域网分割成一些较小的与地理位置无关的逻辑上的VLAN，而每个VLAN是一个较小的广播域。</p>
+<p>802.3ac标准定义了支持VLAN的以太网帧格式的扩展。它<strong>在以太网帧中插入一个4字节的标识符(插入在源地址字段和类型字段之间)，称为VLAN标签</strong>，用来指明发送该帧的计算机属于哪个虚拟局域网。插入VLAN标签的帧称为802.1Q帧。由于VLAN帧的首部增加了4字节，因此以太网的最大帧长从原来的1518字节变为1522字节。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103221931597.png" /></p>
 <span id="more"></span>
-<h3 id="信道划分介质访问控制">信道划分介质访问控制</h3>
-<p>把时域和频域资源合理地分配给网络上的设备。</p>
-<p>多路复用技术把多个信号组合在一条物理信道上进行传输，使多个计算机或终端设备共享信道资源，提高了信道的利用率。</p>
+<p>VLAN标签的前两个字节置为0x8100，表示这是一个802.1Q帧。在
+VLAN标签的后两个字节中，前4位没有用，后12位是该VLAN的标识符VID，它唯一标识了该802.1Q帧属于哪个
+VLAN。12位的VID可识别4096个不同的VLAN。插入VID后，802.1Q帧的FCS必须重新计算。</p>
+<p>交换机1连接了7台计算机，该局域网划分为两个虚拟局域网VLAN-10和VLAN-20，这里的10和20就是802.1Q帧中的VID字段的值，由交换机管理员设定。<strong>各主机并不知道自己的
+VID值（但交换机必须知道)</strong>，主机与交换机之间交互的都是标准以太网帧。<strong>一个VLAN的范围可以跨越不同的交换机，前提是所用的交换机能够识别和处理VLAN</strong>。这两个<strong>VLAN虽然都跨越了两个交换机，但各自都是一个广播域</strong>。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203631379.png" /></p>
-<p>信道划分的实质就是通过分时、分频、分码等方法把原来的一条广播信道，逻辑上分为多条用于两个结点之间通信的互不干扰的子信道，实际上就是把广播信道转变为点对点信道。</p>
-<h4 id="频分多路复用fdm">频分多路复用（FDM)</h4>
-<p>频分多路复用是一种将多路基带信号调制到不同频率载波上，再叠加形成一个复合信号的多路复用技术。</p>
-<p>每个子信道分配的带宽可不相同，但它们的总和必须不超过信道的总带宽。在实际应用中，为了防止子信道之间的干扰,相邻信道之间需要加入“保护频带”。</p>
-<p>频分多路复用的优点在于充分利用了传输介质的带宽，系统效率较高。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203857513.png" /></p>
-<h4 id="时分多路复用tdm">时分多路复用(TDM)</h4>
-<p>时分多路复用是将一条物理信道按时间分成若干时间片，轮流地分配给多个信号使用。这样，利用每个信号在时间上的交叉，就可以在一条物理信道上传输多个信号。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203953562.png" /></p>
-<p>TDM的信道的利用率一般不高。</p>
-<p>统计时分多路复用(STDM，又称异步时分多路复用）是 TDM
-的一种改进，它采用
-STDM帧，STDM帧并不固定分配时隙，而按需动态地分配时隙，当终端有数据要传送时，才会分配到时间片，因此可以提高线路的利用率。</p>
-<h4 id="波分多路复用wdm">波分多路复用(WDM)</h4>
-<p>波分多路复用即<strong>光的频分多路复用</strong>，它在一根光纤中传输多种不同波长（频率）的光信号，由于波长（频率）不同，各路光信号互不干扰，最后再用波长分解复用器将各路波长分解出来。由于光波处于频谱的高频段，有很高的带宽，因而可以实现多路的波分复用。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102204518000.png" /></p>
-<h4 id="码分多路复用cdm">码分多路复用(CDM)</h4>
-<p>码分多路复用是采用不同的编码来区分各路原始信号的一种复用方式。与FDM和TDM不同，它既共享信道的频率，又共享时间。</p>
-<p>实际上，更常用的名词是<strong>码分多址(Code Division Multiple
-Access，CDMA)</strong>，其原理是每个比特时间再划分成m个短的时间槽，称为码片(Chip)，通常m的值是64或128，下例中为简单起见，设m为8。每个站点被指派一个唯一的m位码片序列。发送1时，站点发送它的码片序列;
-发送0时，站点发送该码片序列的反码。当两个或多个站点同时发送时，各路数据在信道中线性相加。为从信道中分离出各路信号，要求各个站点的码片序列相互正交。</p>
-<p>简单理解就是，A站向C站发出的信号用一个向量来表示，B站向C站发出的信号用另一个向量来表示，两个向量要求相互正交。向量中的分量，就是所谓的码片。</p>
-<p>下面举例说明CDMA的原理。</p>
-<p>假如站点A的码片序列被指派为00011011，则A站发送00011011就表示发送比特1，发送11100100就表示发送比特0。为了方便，按惯例将码片中的0写为-1，将1写为+1，因此A站的码片序列是-1-1
--1+1+1 -1+1+1。</p>
-<p>令向量S表示A站的码片向量，令T表示B站的码片向量。两个不同站的码片序列正交，即向量S和T的规格化内积（Inner
-Product）为0: <span class="math display">\[
-\boldsymbol{S} \cdot \boldsymbol{T} \equiv \frac{1}{m} \sum_{i=1}^{m}
-S_{i} T_{i}=0
-\]</span>
-任何一个码片向量和该码片向量自身的规格化内积都是1，任何一个码片向量和该码片反码的向量的规格化内积是-1，如
-<span class="math display">\[
-S \cdot S=\frac{1}{m} \sum_{i=1}^{m} S_{i} S_{i}=\frac{1}{m}
-\sum_{i=1}^{m} S_{i}^{2}=\frac{1}{m} \sum_{i=1}^{m}(\pm 1)^{2}=1
-\]</span> 令向量T为(-1-1+1 -1+1+1 +1 -1)。</p>
-<p>当A站向C站发送数据1时，就发送了向量（-1-1-1+1+1-1+1+1
-)。当B站向C站发送数据0时，就发送了向量（+1+1 -1 +1 -1 -1
--1+1)。两个向量到了公共信道上就进行叠加，实际上就是线性相加，得到 S - T
-=(0 0 -2 2 0 -2 0 2)</p>
-<p>到达C站后，进行数据分离，如果要得到来自A站的数据，C站就必须知道A站的码片序列，让S与S-T进行规格化内积。</p>
-<p>根据叠加原理，其他站点的信号都在内积的结果中被过滤掉了，内积的相关项都是0，而只剩下A站发送的信号。得到S*(S-T)=1,
-所以A站发出的数据是1。</p>
-<p>同理，如果要得到来自B站的数据，那么T*(S-T) = -1
-因此从B站发送过来的信号向量是一个反码向量，代表0。</p>
-<p>规格化内积是线性代数中的内容，它是在得到两个向量的内积后再除以向量的分量的个数。码分多路复用技术具有频谱利用率高、抗干扰能力强、保密性强、语音质量好等优点。</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103222436933.png" /></p>
+<p>假定A向B发送帧，交换机1根据帧首部的目的MAC地址，识别B属于本交换机管理的VLAN-10，因此就像在普通以太网中那样直接转发帧。</p>
+<p>假定A向E发送帧，交换机1必须把帧转发到交换机2，但在转发前，要插入VLAN标签，否则交换机2不知道应把帧转发给哪个VLAN。因此在交换机端口之间的链路上传送的帧是802.1Q帧。交换机2在向E转发帧之前，要拿走已插入的VLAN标签，因此E收到的帧是A发送的标准以太网帧，而不是802.1Q帧。</p>
+<p>如果A向C发送帧，那么情况就复杂了，因为这是在不同网络之间的通信，虽然A和C都连接到同一个交换机，但是它们已经处在不同的网络中（VLAN-10和VLAN-20)，需要通过上层的路由器来解决，也可以在交换机中嵌入专用芯片来进行转发，这样就在交换机中实现了第3层的转发功能。</p>
+<p><strong>虚拟局域网只是局域网给用户提供的一种服务，并不是一种新型局域网。</strong></p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
@@ -2944,6 +3715,82 @@ MAC帧格式仍然是802.3标准规定的。保持最短帧长不变，但将一
       </tags>
   </entry>
   <entry>
+    <title>计算机网络：信道划分介质访问控制</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BF%A1%E9%81%93%E5%88%92%E5%88%86%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</url>
+    <content><![CDATA[<h2
+id="计算机网络信道划分介质访问控制">计算机网络：信道划分介质访问控制</h2>
+<p>介质访问控制所要完成的主要任务是：<strong>为使用介质的每个结点隔离来自同一信道上其他结点所传送的信号，以协调活动结点的传输。</strong></p>
+<p>用来决定广播信道中<strong>信道分配的协议</strong>属于<strong>数据链路层的一个子层</strong>，称为介质访问控制(Medium
+Access Control，MAC)子层。</p>
+<p>常见的介质访问控制方法有<strong>信道划分</strong>介质访问控制、<strong>随机访问</strong>介质访问控制和<strong>轮询访问</strong>介质访问控制。其中前者是静态划分信道的方法，而后两者是动态分配信道的方法。</p>
+<span id="more"></span>
+<h3 id="信道划分介质访问控制">信道划分介质访问控制</h3>
+<p>把时域和频域资源合理地分配给网络上的设备。</p>
+<p>多路复用技术把多个信号组合在一条物理信道上进行传输，使多个计算机或终端设备共享信道资源，提高了信道的利用率。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203631379.png" /></p>
+<p>信道划分的实质就是通过分时、分频、分码等方法把原来的一条广播信道，逻辑上分为多条用于两个结点之间通信的互不干扰的子信道，实际上就是把广播信道转变为点对点信道。</p>
+<h4 id="频分多路复用fdm">频分多路复用（FDM)</h4>
+<p>频分多路复用是一种将多路基带信号调制到不同频率载波上，再叠加形成一个复合信号的多路复用技术。</p>
+<p>每个子信道分配的带宽可不相同，但它们的总和必须不超过信道的总带宽。在实际应用中，为了防止子信道之间的干扰,相邻信道之间需要加入“保护频带”。</p>
+<p>频分多路复用的优点在于充分利用了传输介质的带宽，系统效率较高。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203857513.png" /></p>
+<h4 id="时分多路复用tdm">时分多路复用(TDM)</h4>
+<p>时分多路复用是将一条物理信道按时间分成若干时间片，轮流地分配给多个信号使用。这样，利用每个信号在时间上的交叉，就可以在一条物理信道上传输多个信号。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102203953562.png" /></p>
+<p>TDM的信道的利用率一般不高。</p>
+<p>统计时分多路复用(STDM，又称异步时分多路复用）是 TDM
+的一种改进，它采用
+STDM帧，STDM帧并不固定分配时隙，而按需动态地分配时隙，当终端有数据要传送时，才会分配到时间片，因此可以提高线路的利用率。</p>
+<h4 id="波分多路复用wdm">波分多路复用(WDM)</h4>
+<p>波分多路复用即<strong>光的频分多路复用</strong>，它在一根光纤中传输多种不同波长（频率）的光信号，由于波长（频率）不同，各路光信号互不干扰，最后再用波长分解复用器将各路波长分解出来。由于光波处于频谱的高频段，有很高的带宽，因而可以实现多路的波分复用。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102204518000.png" /></p>
+<h4 id="码分多路复用cdm">码分多路复用(CDM)</h4>
+<p>码分多路复用是采用不同的编码来区分各路原始信号的一种复用方式。与FDM和TDM不同，它既共享信道的频率，又共享时间。</p>
+<p>实际上，更常用的名词是<strong>码分多址(Code Division Multiple
+Access，CDMA)</strong>，其原理是每个比特时间再划分成m个短的时间槽，称为码片(Chip)，通常m的值是64或128，下例中为简单起见，设m为8。每个站点被指派一个唯一的m位码片序列。发送1时，站点发送它的码片序列;
+发送0时，站点发送该码片序列的反码。当两个或多个站点同时发送时，各路数据在信道中线性相加。为从信道中分离出各路信号，要求各个站点的码片序列相互正交。</p>
+<p>简单理解就是，A站向C站发出的信号用一个向量来表示，B站向C站发出的信号用另一个向量来表示，两个向量要求相互正交。向量中的分量，就是所谓的码片。</p>
+<p>下面举例说明CDMA的原理。</p>
+<p>假如站点A的码片序列被指派为00011011，则A站发送00011011就表示发送比特1，发送11100100就表示发送比特0。为了方便，按惯例将码片中的0写为-1，将1写为+1，因此A站的码片序列是-1-1
+-1+1+1 -1+1+1。</p>
+<p>令向量S表示A站的码片向量，令T表示B站的码片向量。两个不同站的码片序列正交，即向量S和T的规格化内积（Inner
+Product）为0: <span class="math display">\[
+\boldsymbol{S} \cdot \boldsymbol{T} \equiv \frac{1}{m} \sum_{i=1}^{m}
+S_{i} T_{i}=0
+\]</span>
+任何一个码片向量和该码片向量自身的规格化内积都是1，任何一个码片向量和该码片反码的向量的规格化内积是-1，如
+<span class="math display">\[
+S \cdot S=\frac{1}{m} \sum_{i=1}^{m} S_{i} S_{i}=\frac{1}{m}
+\sum_{i=1}^{m} S_{i}^{2}=\frac{1}{m} \sum_{i=1}^{m}(\pm 1)^{2}=1
+\]</span> 令向量T为(-1-1+1 -1+1+1 +1 -1)。</p>
+<p>当A站向C站发送数据1时，就发送了向量（-1-1-1+1+1-1+1+1
+)。当B站向C站发送数据0时，就发送了向量（+1+1 -1 +1 -1 -1
+-1+1)。两个向量到了公共信道上就进行叠加，实际上就是线性相加，得到 S - T
+=(0 0 -2 2 0 -2 0 2)</p>
+<p>到达C站后，进行数据分离，如果要得到来自A站的数据，C站就必须知道A站的码片序列，让S与S-T进行规格化内积。</p>
+<p>根据叠加原理，其他站点的信号都在内积的结果中被过滤掉了，内积的相关项都是0，而只剩下A站发送的信号。得到S*(S-T)=1,
+所以A站发出的数据是1。</p>
+<p>同理，如果要得到来自B站的数据，那么T*(S-T) = -1
+因此从B站发送过来的信号向量是一个反码向量，代表0。</p>
+<p>规格化内积是线性代数中的内容，它是在得到两个向量的内积后再除以向量的分量的个数。码分多路复用技术具有频谱利用率高、抗干扰能力强、保密性强、语音质量好等优点。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络：局域网的基本概念和体系结构</title>
     <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<p><strong>局域网（Local Area Network，LAN )
@@ -2989,29 +3836,51 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
       </tags>
   </entry>
   <entry>
-    <title>计算机网络：广域网的基本概念</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<p>广域网通常是指<strong>覆盖范围很广（远超一个城市的范围）的长距离网络</strong>。广域网是因特网的核心部分，其任务是长距离运送主机所发送的数据。连接广域网各结点交换机的链路都是<strong>高速链路</strong>，它可以是长达几千千米的光缆线路，也可以是长达几万千米的点对点卫星链路。因此广域网首要考虑的问题是<strong>通信容量必须足够大</strong>，以便支持日益增长的通信量。</p>
-<p>广域网不等于互联网，互联网可以连接不同类型的网络（既可以连接局域网，又可以连接广域网)，通常使用路由器来连接。局域网可以通过广域网与另一个相隔很远的局域网通信。</p>
+    <title>计算机网络：数据链路层功能</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<h2 id="计算机网络数据链路层功能">计算机网络：数据链路层功能</h2>
+<p>数据链路层在物理层提供服务的基础上向网络层提供服务，其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104092553497.png" /></p>
-<p>结点交换机和路由器都用来转发分组，它们的工作原理也类似。</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104084140517.png" /></p>
 <span id="more"></span>
-<ul>
-<li><strong>结点交换机在单个网络中转发分组，</strong></li>
-<li><strong>路由器在多个网络构成的互联网中转发分组</strong></li>
-</ul>
-<p>广域网由一些结点交换机及连接这些交换机的链路组成。<strong>结点交换机的功能是将分组存储并转发</strong>。结点之间都是点到点连接，但为了提高网络的可靠性，通常一个结点交换机往往与多个结点交换机相连。</p>
-<p>从层次上考虑，广域网和局域网的区别很大，因为<strong>局域网使用的协议主要在数据链路层（还有少量在物理层)，而广域网使用的协议主要在网络层</strong>。</p>
-<blockquote>
-<p>如果网络中的两个结点要进行数据交换，那么结点除要给出数据外，还要给数据“包装”上一层控制信息，用于实现检错纠错等功能。如果这层控制信息是数据链路层协议的控制信息，那么就称使用了数据链路层协议，如果这层控制信息是网络层的控制信息，那么就称使用了网络层协议。</p>
-</blockquote>
-<h3 id="广域网与局域网的比较">广域网与局域网的比较</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104093158146.png" /></p>
-<p>广域网中的一个重要问题是<strong>路由选择和分组转发</strong>。路由选择协议负责搜索分组从某个结点到目的结点的最佳传输路由，以便构造路由表，然后从路由表再构造出转发分组的转发表。<strong>分组是通过转发表进行转发的</strong>。</p>
-<p>常见的两种广域网数据链路层协议是PPP协议和
-HDLC协议。PPP目前使用得最广泛。</p>
+<h3 id="为网络层提供服务">1.为网络层提供服务</h3>
+<p>对网络层而言，数据链路层的基本任务是将源机器中来自网络层的数据传输到目标机器的网络层。</p>
+<ol type="1">
+<li><p><strong>无确认的无连接服务</strong>。源机器发送数据帧时不需先建立链路连接，目的机器收到数据帧时不需发回确认。对丢失的帧，数据链路层不负责重发而交给上层处理。</p>
+<p>适用于实时通信或误码率较低的通信信道，如以太网。</p></li>
+<li><p><strong>有确认的无连接服务</strong>。源机器发送数据帧时不需先建立链路连接，但目的机器收到数据帧时必须发回确认。源机器在所规定的时间内未收到确定信号时，就重传丢失的帧，以提高传输的可靠性。</p>
+<p>该服务适用于误码率较高的通信信道，如无线通信。</p></li>
+<li><p><strong>有确认的面向连接服务</strong>。帧传输过程分为三个阶段:建立数据链路、传输帧、释放数据链路。</p>
+<p>目的机器对收到的每帧都要给出确认，源机器收到确认后才能发送下一帧，因而该服务的可靠性最高。该服务适用于通信要求（可靠性、实时性）较高的场合。</p>
+<p>注意:有连接就一定要有确认，不存在无确认的面向连接的服务。</p></li>
+</ol>
+<h3 id="链路管理">2.链路管理</h3>
+<p>数据链路层连接的建立、维持和释放过程称为链路管理，它主要用于面向连接的服务。</p>
+<p>链路两端的结点要进行通信，必须首先确认对方已处于就绪状态，并交换一些必要的信息以对帧序号初始化，然后才能建立连接，传输过程中维持连接，传输完毕后释放连接。</p>
+<p>在多个站点共享同一物理信道的情况下（如在局域网中）如何在要求通信的站点间分配和管理信道也属于数据链路层管理的范畴。</p>
+<h3 id="帧定界帧同步与透明传输">3.帧定界、帧同步与透明传输</h3>
+<p>两台主机之间传输信息时，必须将网络层的分组封装成帧，以帧的格式进行传送。<strong>将一段数据的前后分别添加首部和尾部，就构成了帧。</strong></p>
+<p>帧长=数据部分的长度+首部长度+尾部长度。</p>
+<p><strong>首部和尾部中控制信息的一个重要作用是确定帧的界限，即帧定界。</strong></p>
+<p><strong>帧同步指的是接收方应能从接收到的二进制比特流中区分出帧的起始与终止。</strong>如在
+HDLC协议中，用标识位F(O1111110）来标识帧的开始和结束。通信过程中，检测到帧标识位F即认为是帧的开始，然后一旦检测到帧标识位F即表示帧的结束。</p>
+<p>为了提高帧的传输效率，应当使帧的数据部分的长度尽可能地大于首部和尾部的长度，但每种数据链路层协议都规定了<strong>帧的数据部分的长度上限——==最大传送单元（MTU)==</strong>。</p>
+<p>透明传输就是不管所传数据是什么样的比特组合，都应当能在链路上传送，因为可能会有数据组合与帧定界符相同。</p>
+<h3 id="流量控制">4.流量控制</h3>
+<p>由于收发双方各自的工作速率和缓存空间的差异，可能出现发送方的发送能力大于接收方的接收能力的现象，如若此时不适当限制发送方的发送速率（即链路上的信息流量)，前面来不及接收的帧将会被后面不断发送来的帧“淹没"，造成帧的丢失而出错。</p>
+<p><strong>流量控制：限制发送方的数据流量，使其发送速率不超过接收方的接收能力。</strong></p>
+<p>对于数据链路层来说，控制的是相邻两结点之间数据链路上的流量，而对于运输层来说，控制的则是从源端到目的端之间的流量。</p>
+<h3 id="差错控制">5.差错控制</h3>
+<p>由于信道噪声等各种原因，帧在传输过程中可能会出现错误。<strong>用以使发送方确定接收方是否正确收到由其发送的数据的方法称为差错控制。通常，这些错误可分为位错和帧错。</strong></p>
+<p>位错指帧中某些位出现了差错。通常采用循环冗余校验(CRC）方式发现位错，通过自动重传请求(Automatic
+Repeat reQuest，ARQ）方式来重传出错的帧。</p>
+<p>具体做法是:让发送方将要发送的数据帧附加一定的CRC冗余检错码一并发送，接收方则根据检错码对数据帧进行错误检测，若发现错误则丢弃，发送方超时重传该数据帧。这种差错控制方法称为<strong>ARQ法</strong>。ARQ法只需返回很少的控制信息就可有效地确认所发数据帧是否被正确接收。</p>
+<p><strong>帧错指帧的丢失、重复或失序等错误。</strong>在<strong>数据链路层引入定时器（保证不丢失，超时重发）和编号机制（保证不会重复接收）</strong>，能保证每一帧最终都能有且仅有一次正确地交付给目的结点。</p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
 ]]></content>
       <categories>
         <category>Basic knowledge</category>
@@ -3124,34 +3993,89 @@ class="math inline">\(S_{3} S_{2} S_{1}=001\)</span> , 说明第 1 位出错,
       </tags>
   </entry>
   <entry>
-    <title>计算机网络：VLAN基本概念与原理</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AVLAN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<p>一个以太网是一个广播域，当一个以太网包含的计算机太多时，往往会导致:</p>
-<p>以太网中出现大量的广播帧，特别是经常使用的<strong>ARP 和
-DHCP</strong>协议。</p>
-<p>一个单位的不同部门共享一个局域网，对信息保密和安全不利。</p>
-<p>通过虚拟局域网（Virtual
-LAN)，可以把一个较大的局域网分割成一些较小的与地理位置无关的逻辑上的VLAN，而每个VLAN是一个较小的广播域。</p>
-<p>802.3ac标准定义了支持VLAN的以太网帧格式的扩展。它<strong>在以太网帧中插入一个4字节的标识符(插入在源地址字段和类型字段之间)，称为VLAN标签</strong>，用来指明发送该帧的计算机属于哪个虚拟局域网。插入VLAN标签的帧称为802.1Q帧。由于VLAN帧的首部增加了4字节，因此以太网的最大帧长从原来的1518字节变为1522字节。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103221931597.png" /></p>
+    <title>计算机网络：数据链路层设备</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87/</url>
+    <content><![CDATA[<h3 id="网桥的基本概念">网桥的基本概念</h3>
+<p>两个或多个以太网通过网桥连接后，就成为一个覆盖范围更大的以太网，而<strong>原来的每个以太网就称为一个网段</strong>。<strong>网桥工作在链路层的MAC子层，可以使以太网各网段成为隔离开的碰撞域(
+又称冲突域
+)</strong>。如果把网桥换成工作在物理层的转发器，那么就没有这种过滤通信量的功能。由于各网段相对独立，因此一个网段的故障不会影响到另一个网段的运行。<strong>网桥必须具有路径选择的功能</strong>，接收到帧后，要决定正确的路径，将该帧转送到相应的目的局域网站点。</p>
+<p>网络1和网络2通过网桥连接后，网桥接收网络1发送的数据帧，检查数据帧中的地址，如果是网络2的地址，那么就转发给网络2:如果是网络1的地址，那么就将其丢弃，<strong>因为源站和目的站处在同一个网段，目的站能够直接收到这个帧而不需要借助网桥转发</strong>。</p>
+<h3 id="局域网交换机">局域网交换机</h3>
+<h4 id="交换机的原理和特点">交换机的原理和特点</h4>
+<p><strong>局域网交换机，又称以太网交换机</strong>，从本质上说，<strong>以太网交换机是一个多端口的网桥，它工作在数据链路层</strong>。交换机能经济地将网络分成小的冲突域，为每个工作站<strong>提供更高的带宽</strong>。以太网交换机的原理是，它检测从以太端口来的数据帧的源和目的地的MAC（介质访问层）地址，然后与系统内部的动态查找表进行比较，若数据帧的源MAC地址不在查找表中，则将该地址加入查找表，并将数据帧发送给相应的目的端口。</p>
 <span id="more"></span>
-<p>VLAN标签的前两个字节置为0x8100，表示这是一个802.1Q帧。在
-VLAN标签的后两个字节中，前4位没有用，后12位是该VLAN的标识符VID，它唯一标识了该802.1Q帧属于哪个
-VLAN。12位的VID可识别4096个不同的VLAN。插入VID后，802.1Q帧的FCS必须重新计算。</p>
-<p>交换机1连接了7台计算机，该局域网划分为两个虚拟局域网VLAN-10和VLAN-20，这里的10和20就是802.1Q帧中的VID字段的值，由交换机管理员设定。<strong>各主机并不知道自己的
-VID值（但交换机必须知道)</strong>，主机与交换机之间交互的都是标准以太网帧。<strong>一个VLAN的范围可以跨越不同的交换机，前提是所用的交换机能够识别和处理VLAN</strong>。这两个<strong>VLAN虽然都跨越了两个交换机，但各自都是一个广播域</strong>。</p>
+<p>以太网交换机对工作站是透明的，因此管理开销低廉，简化了网络结点的增加、移动和网络变化的操作。利用以太网交换机还可以方便地实现<strong>虚拟局域网VLAN，VLAN不仅可以隔离冲突域，而且可以隔离广播域</strong>。</p>
+<p>对于传统10Mb/s
+的共享式以太网，若共有N个用户，则每个用户占有的平均带宽只有总带宽(10Mb/s)的1/N。在使用以太网交换机时，虽然在每个端口到主机的带宽还是10Mb/s，但由于一个用户在通信时是独占而不是和其他网络用户共享传输媒体的带宽，因此拥有N个端口的交换机的总容量为N×10Mb/s。这正是交换机的最大优点。</p>
+<p>以太网交换机的特点：</p>
+<ol type="1">
+<li>以太网交换机的<strong>每个端口都直接与单台主机相连</strong>（比较：网桥的端口往往连接到一个网段)，并且一般都工作在全双工方式。</li>
+<li>以太网交换机能同时连通多对端口，使每对相互通信的主机都能像独占通信媒体那样，<strong>无碰撞地传输数据</strong>。</li>
+<li>以太网交换机是一种<strong>即插即用</strong>设备，其内部的帧的转发表是通过<strong>自学习算法</strong>自动地逐渐建立起来的。</li>
+<li>以太网交换机由于使用<strong>专用的交换结构芯片</strong>，交换速率较高。</li>
+<li>以太网交换机<strong>独占传输媒体的带宽</strong>。</li>
+</ol>
+<p>以太网交换机主要采用两种交换模式:</p>
+<ol type="1">
+<li><strong>直通式交换机</strong>，只检查帧的目的地址，这使得帧在接收后几乎能马上被传出去。这种方式速度快，但缺乏智能性和安全性，也无法支持具有不同速率的端口的交换。</li>
+<li><strong>存储转发式交换机</strong>，先将接收到的帧缓存到高速缓存器中，并检查数据是否正确，确认无误后通过查找表转换成输出端口将该帧发送出去。如果发现帧有错，那么就将其丢弃。优点是<strong>可靠性高</strong>，并能支持不同速率端口间的转换，缺点是<strong>延迟较大</strong>。</li>
+</ol>
+<p>以太网交换机一般都具有多种速率的端口，例如可以具有10Mb/s、100Mb/s和1Gb/s的端口的各种组合，因此大大方便了各种不同情况的用户。</p>
+<h4 id="交换机的自学习功能">交换机的自学习功能</h4>
+<p>决定一个帧是应该转发到某个接口还是应该将其丢弃称为过滤。</p>
+<p>决定一个帧应该被移动到哪个接口称为转发。</p>
+<p>交换机的过滤和转发借助于交换表（switch
+table）完成。交换表中的一个表项至少包含:</p>
+<ol type="1">
+<li>一个MAC地址</li>
+<li>连通该MAC地址的交换机接口</li>
+</ol>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103222436933.png" /></p>
-<p>假定A向B发送帧，交换机1根据帧首部的目的MAC地址，识别B属于本交换机管理的VLAN-10，因此就像在普通以太网中那样直接转发帧。</p>
-<p>假定A向E发送帧，交换机1必须把帧转发到交换机2，但在转发前，要插入VLAN标签，否则交换机2不知道应把帧转发给哪个VLAN。因此在交换机端口之间的链路上传送的帧是802.1Q帧。交换机2在向E转发帧之前，要拿走已插入的VLAN标签，因此E收到的帧是A发送的标准以太网帧，而不是802.1Q帧。</p>
-<p>如果A向C发送帧，那么情况就复杂了，因为这是在不同网络之间的通信，虽然A和C都连接到同一个交换机，但是它们已经处在不同的网络中（VLAN-10和VLAN-20)，需要通过上层的路由器来解决，也可以在交换机中嵌入专用芯片来进行转发，这样就在交换机中实现了第3层的转发功能。</p>
-<p><strong>虚拟局域网只是局域网给用户提供的一种服务，并不是一种新型局域网。</strong></p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104112735968.png" /></p>
+<blockquote>
+<p>A先向B发送一帧，从接口1进入交换机。交换机收到帧后，查找交换表，找不到MAC地址为B的表项。然后，交换机将该帧的源地址A和接口1写入交换表，并向除接口1外的所有接口广播这个帧（该帧就是从接口1进入的，因此不应该将它再从接口1转发出去)。C和D丢弃该帧，因为目的地址不对。只有B才收下这个目的地址正确的帧。交换表中写入(
+A,1）后，以后从任何接口收到目的地址为A的帧，都应该从接口1转发出去。这是因为，既然A发出的帧从接口1进入交换机，那么从接口1转发出去的帧也应能到达A。</p>
+<p>接下来，假定B通过接口3向A发送一帧，交换机查找交换表后，发现有表项(A，1)，将该帧从接口1转发给A。显然，此时已经没有必要再广播收到的帧。将该帧的源地址B和接口3写入交换表，表明以后如有发送给B的帧，应该从接口3转发出去。</p>
+</blockquote>
+<p>经过一段时间，只要主机C和D也向其他主机发送帧，交换机就会把C和D及对应的接口号写入交换表。这样，转发给任何主机的帧，都能很快地在交换表中找到相应的转发接口。</p>
+<p>考虑到交换机所连的主机会随时变化，这就需要更新交换表中的表项。为此，交换表中的<strong>每个表项都设有一定的有效时间，过期的表项会自动删除</strong>。这就保证了交换表中的数据符合当前网络的实际状况。这种自学习方法使得交换机能够即插即用，而不必人工进行配置。</p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
 W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
 <p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：广域网的基本概念</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p>广域网通常是指<strong>覆盖范围很广（远超一个城市的范围）的长距离网络</strong>。广域网是因特网的核心部分，其任务是长距离运送主机所发送的数据。连接广域网各结点交换机的链路都是<strong>高速链路</strong>，它可以是长达几千千米的光缆线路，也可以是长达几万千米的点对点卫星链路。因此广域网首要考虑的问题是<strong>通信容量必须足够大</strong>，以便支持日益增长的通信量。</p>
+<p>广域网不等于互联网，互联网可以连接不同类型的网络（既可以连接局域网，又可以连接广域网)，通常使用路由器来连接。局域网可以通过广域网与另一个相隔很远的局域网通信。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104092553497.png" /></p>
+<p>结点交换机和路由器都用来转发分组，它们的工作原理也类似。</p>
+<span id="more"></span>
+<ul>
+<li><strong>结点交换机在单个网络中转发分组，</strong></li>
+<li><strong>路由器在多个网络构成的互联网中转发分组</strong></li>
+</ul>
+<p>广域网由一些结点交换机及连接这些交换机的链路组成。<strong>结点交换机的功能是将分组存储并转发</strong>。结点之间都是点到点连接，但为了提高网络的可靠性，通常一个结点交换机往往与多个结点交换机相连。</p>
+<p>从层次上考虑，广域网和局域网的区别很大，因为<strong>局域网使用的协议主要在数据链路层（还有少量在物理层)，而广域网使用的协议主要在网络层</strong>。</p>
+<blockquote>
+<p>如果网络中的两个结点要进行数据交换，那么结点除要给出数据外，还要给数据“包装”上一层控制信息，用于实现检错纠错等功能。如果这层控制信息是数据链路层协议的控制信息，那么就称使用了数据链路层协议，如果这层控制信息是网络层的控制信息，那么就称使用了网络层协议。</p>
+</blockquote>
+<h3 id="广域网与局域网的比较">广域网与局域网的比较</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104093158146.png" /></p>
+<p>广域网中的一个重要问题是<strong>路由选择和分组转发</strong>。路由选择协议负责搜索分组从某个结点到目的结点的最佳传输路由，以便构造路由表，然后从路由表再构造出转发分组的转发表。<strong>分组是通过转发表进行转发的</strong>。</p>
+<p>常见的两种广域网数据链路层协议是PPP协议和
+HDLC协议。PPP目前使用得最广泛。</p>
 ]]></content>
       <categories>
         <category>Basic knowledge</category>
@@ -3217,46 +4141,68 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
       </tags>
   </entry>
   <entry>
-    <title>计算机网络：数据链路层功能</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<h2 id="计算机网络数据链路层功能">计算机网络：数据链路层功能</h2>
-<p>数据链路层在物理层提供服务的基础上向网络层提供服务，其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104084140517.png" /></p>
+    <title>计算机网络：电路、报文与分组交换</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%94%B5%E8%B7%AF%E3%80%81%E6%8A%A5%E6%96%87%E4%B8%8E%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/</url>
+    <content><![CDATA[<h3 id="电路交换">1.电路交换</h3>
+<p>在进行数据传输前，两个结点之间必须先建立一条专用（双方独占）的物理通信路径（由通信双方之间的交换设备和链路逐段连接而成)，该路径可能经过许多中间结点。这一路径在整个数据传输期间一直被独占，直到通信结束后才被释放。因此，电路交换技术分为三个阶段:连接建立、数据传输和连接释放。</p>
+<p>电路交换的关键点是：在数据传输的过程中，用户始终占用端到端的固定传输带宽。</p>
 <span id="more"></span>
-<h3 id="为网络层提供服务">1.为网络层提供服务</h3>
-<p>对网络层而言，数据链路层的基本任务是将源机器中来自网络层的数据传输到目标机器的网络层。</p>
+<h4 id="优点">优点</h4>
 <ol type="1">
-<li><p><strong>无确认的无连接服务</strong>。源机器发送数据帧时不需先建立链路连接，目的机器收到数据帧时不需发回确认。对丢失的帧，数据链路层不负责重发而交给上层处理。</p>
-<p>适用于实时通信或误码率较低的通信信道，如以太网。</p></li>
-<li><p><strong>有确认的无连接服务</strong>。源机器发送数据帧时不需先建立链路连接，但目的机器收到数据帧时必须发回确认。源机器在所规定的时间内未收到确定信号时，就重传丢失的帧，以提高传输的可靠性。</p>
-<p>该服务适用于误码率较高的通信信道，如无线通信。</p></li>
-<li><p><strong>有确认的面向连接服务</strong>。帧传输过程分为三个阶段:建立数据链路、传输帧、释放数据链路。</p>
-<p>目的机器对收到的每帧都要给出确认，源机器收到确认后才能发送下一帧，因而该服务的可靠性最高。该服务适用于通信要求（可靠性、实时性）较高的场合。</p>
-<p>注意:有连接就一定要有确认，不存在无确认的面向连接的服务。</p></li>
+<li>通信时延小。</li>
+<li>有序传输。</li>
+<li>没有冲突。</li>
+<li>适用范围广。电路交换既适用于传输模拟信号，又适用于传输数字信号。</li>
+<li>实时性强。</li>
+<li>控制简单。电路交换的交换设备（交换机等）及控制均较简单。</li>
 </ol>
-<h3 id="链路管理">2.链路管理</h3>
-<p>数据链路层连接的建立、维持和释放过程称为链路管理，它主要用于面向连接的服务。</p>
-<p>链路两端的结点要进行通信，必须首先确认对方已处于就绪状态，并交换一些必要的信息以对帧序号初始化，然后才能建立连接，传输过程中维持连接，传输完毕后释放连接。</p>
-<p>在多个站点共享同一物理信道的情况下（如在局域网中）如何在要求通信的站点间分配和管理信道也属于数据链路层管理的范畴。</p>
-<h3 id="帧定界帧同步与透明传输">3.帧定界、帧同步与透明传输</h3>
-<p>两台主机之间传输信息时，必须将网络层的分组封装成帧，以帧的格式进行传送。<strong>将一段数据的前后分别添加首部和尾部，就构成了帧。</strong></p>
-<p>帧长=数据部分的长度+首部长度+尾部长度。</p>
-<p><strong>首部和尾部中控制信息的一个重要作用是确定帧的界限，即帧定界。</strong></p>
-<p><strong>帧同步指的是接收方应能从接收到的二进制比特流中区分出帧的起始与终止。</strong>如在
-HDLC协议中，用标识位F(O1111110）来标识帧的开始和结束。通信过程中，检测到帧标识位F即认为是帧的开始，然后一旦检测到帧标识位F即表示帧的结束。</p>
-<p>为了提高帧的传输效率，应当使帧的数据部分的长度尽可能地大于首部和尾部的长度，但每种数据链路层协议都规定了<strong>帧的数据部分的长度上限——==最大传送单元（MTU)==</strong>。</p>
-<p>透明传输就是不管所传数据是什么样的比特组合，都应当能在链路上传送，因为可能会有数据组合与帧定界符相同。</p>
-<h3 id="流量控制">4.流量控制</h3>
-<p>由于收发双方各自的工作速率和缓存空间的差异，可能出现发送方的发送能力大于接收方的接收能力的现象，如若此时不适当限制发送方的发送速率（即链路上的信息流量)，前面来不及接收的帧将会被后面不断发送来的帧“淹没"，造成帧的丢失而出错。</p>
-<p><strong>流量控制：限制发送方的数据流量，使其发送速率不超过接收方的接收能力。</strong></p>
-<p>对于数据链路层来说，控制的是相邻两结点之间数据链路上的流量，而对于运输层来说，控制的则是从源端到目的端之间的流量。</p>
-<h3 id="差错控制">5.差错控制</h3>
-<p>由于信道噪声等各种原因，帧在传输过程中可能会出现错误。<strong>用以使发送方确定接收方是否正确收到由其发送的数据的方法称为差错控制。通常，这些错误可分为位错和帧错。</strong></p>
-<p>位错指帧中某些位出现了差错。通常采用循环冗余校验(CRC）方式发现位错，通过自动重传请求(Automatic
-Repeat reQuest，ARQ）方式来重传出错的帧。</p>
-<p>具体做法是:让发送方将要发送的数据帧附加一定的CRC冗余检错码一并发送，接收方则根据检错码对数据帧进行错误检测，若发现错误则丢弃，发送方超时重传该数据帧。这种差错控制方法称为<strong>ARQ法</strong>。ARQ法只需返回很少的控制信息就可有效地确认所发数据帧是否被正确接收。</p>
-<p><strong>帧错指帧的丢失、重复或失序等错误。</strong>在<strong>数据链路层引入定时器（保证不丢失，超时重发）和编号机制（保证不会重复接收）</strong>，能保证每一帧最终都能有且仅有一次正确地交付给目的结点。</p>
+<h4 id="缺点">缺点</h4>
+<ol type="1">
+<li>建立连接时间长。</li>
+<li>线路独占，使用效率低。</li>
+<li>灵活性差。只要在通信双方建立的通路中的任何一点出了故障，就必须重新拨号建立新
+的连接，这对十分紧急和重要的通信是很不利的。</li>
+<li>难以规格化。电路交换时，数据直达，不同类型、不同规格、不同速率的终端很难相互进行通信，也难以在通信过程中进行差错控制。</li>
+</ol>
+<p>注意，电路建立后，除源结点和目的结点外，<strong>电路上的任何结点都采取“直通方式”接收数据和发送数据，即不会存在存储转发所耗费的时间。</strong></p>
+<h3 id="报文交换">2.报文交换</h3>
+<p>数据交换的单位是报文，报文携带有目标地址、源地址等信息。报文交换<strong>在交换结点</strong>采用的是<strong>存储转发</strong>的传输方式。</p>
+<h4 id="优点-1">优点</h4>
+<ol type="1">
+<li>无须建立连接。不需要预先建立专用线路，不存在建立连接时延，用户可以随时发送报文。</li>
+<li>动态分配线路。当发送方把报文交给交换设备时，交换设备先存储整个报文，然后选择一条合适的空闲线路，将报文发送出去。</li>
+<li>提高线路可靠性。</li>
+<li>提高线路利用率。</li>
+<li>提供多目标服务。一个报文可以同时发送给多个目的地址。</li>
+</ol>
+<h4 id="缺点-1">缺点</h4>
+<ol type="1">
+<li>由于数据进入交换结点后要经历存储、转发这一过程，因此会引起转发时延（包括接收、报文、检验正确性、排队、发送时间等)。</li>
+<li>报文交换对报文的大小没有限制，这就要求网络结点需要有较大的缓存空间。</li>
+</ol>
+<h3 id="分组交换">3.分组交换</h3>
+<p>也采用存储转发方式，解决了大报文传输的问题。</p>
+<p>分组交换限制了每次传送的数据块大小的上限，把大的数据块划分为合理的小数据块，再加上一些必要的控制信息（如源地址、目的地址和编号信息等)，构成分组（Packet)
+。网络结点根据控制信息把分组送到下一个结点，下一个结点接收到分组后，暂时保存并排队等待传输，然后根据分组控制信息选择它的下一个结点，直到到达目的结点。</p>
+<h4 id="优点-2">优点</h4>
+<ol type="1">
+<li>无建立时延。</li>
+<li>线路利用率高。</li>
+<li>简化了存储管理（相对于报文交换)。因为分组的长度固定，相应的缓冲区的大小也固定，在交换结点中存储器的管理通常被简化为对缓冲区的管理，相对比较容易。</li>
+<li>加速传输。分组是逐个传输的，可以使后一个分组的存储操作与前一个分组的转发操作并行，这种流水线方式减少了报文的传输时间。此外，传输一个分组所需的缓冲区比传输一次报文所需的缓冲区小得多，这样因缓冲区不足而等待发送的概率及时间也必然少得多。</li>
+<li>减少了出错概率和重发数据量。因为分组较短，其出错概率必然减小，所以每次重发的数据量也就大大减少，这样不仅提高了可靠性，也减少了传输时延。</li>
+</ol>
+<h4 id="缺点-2">缺点</h4>
+<ol type="1">
+<li><p>存在传输时延。</p></li>
+<li><p>需要传输额外的信息量。每个小数据块都要加上源地址、目的地址和分组编号等信息，从而构成分组，因此使得传送的信息量增大了5%~10%，<strong>一定程度上降低了通信效率，增加了处理的时间</strong>，使控制复杂，时延增加。</p></li>
+<li><p>当分组交换采用数据报服务时，可能会出现失序、丢失或重复分组，分组到达目的结点时，要对分组按编号进行排序等工作，因此很麻烦。若采用虚电路服务，虽无失序问题，但有呼叫建立、数据传输和虚电路释放三个过程。</p></li>
+</ol>
+<h3 id="应用">应用</h3>
+<p>采用电路：传送的数据量很大且其传送时间远大于呼叫时间时，采用电路交换较为合适。</p>
+<p>分组交换：端到端的通路由多段链路组成时，适合于计算机之间的突发式数据通信。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221029215035155.png" /></p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
@@ -3377,142 +4323,6 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
       </tags>
   </entry>
   <entry>
-    <title>计算机网络：数据链路层设备</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87/</url>
-    <content><![CDATA[<h3 id="网桥的基本概念">网桥的基本概念</h3>
-<p>两个或多个以太网通过网桥连接后，就成为一个覆盖范围更大的以太网，而<strong>原来的每个以太网就称为一个网段</strong>。<strong>网桥工作在链路层的MAC子层，可以使以太网各网段成为隔离开的碰撞域(
-又称冲突域
-)</strong>。如果把网桥换成工作在物理层的转发器，那么就没有这种过滤通信量的功能。由于各网段相对独立，因此一个网段的故障不会影响到另一个网段的运行。<strong>网桥必须具有路径选择的功能</strong>，接收到帧后，要决定正确的路径，将该帧转送到相应的目的局域网站点。</p>
-<p>网络1和网络2通过网桥连接后，网桥接收网络1发送的数据帧，检查数据帧中的地址，如果是网络2的地址，那么就转发给网络2:如果是网络1的地址，那么就将其丢弃，<strong>因为源站和目的站处在同一个网段，目的站能够直接收到这个帧而不需要借助网桥转发</strong>。</p>
-<h3 id="局域网交换机">局域网交换机</h3>
-<h4 id="交换机的原理和特点">交换机的原理和特点</h4>
-<p><strong>局域网交换机，又称以太网交换机</strong>，从本质上说，<strong>以太网交换机是一个多端口的网桥，它工作在数据链路层</strong>。交换机能经济地将网络分成小的冲突域，为每个工作站<strong>提供更高的带宽</strong>。以太网交换机的原理是，它检测从以太端口来的数据帧的源和目的地的MAC（介质访问层）地址，然后与系统内部的动态查找表进行比较，若数据帧的源MAC地址不在查找表中，则将该地址加入查找表，并将数据帧发送给相应的目的端口。</p>
-<span id="more"></span>
-<p>以太网交换机对工作站是透明的，因此管理开销低廉，简化了网络结点的增加、移动和网络变化的操作。利用以太网交换机还可以方便地实现<strong>虚拟局域网VLAN，VLAN不仅可以隔离冲突域，而且可以隔离广播域</strong>。</p>
-<p>对于传统10Mb/s
-的共享式以太网，若共有N个用户，则每个用户占有的平均带宽只有总带宽(10Mb/s)的1/N。在使用以太网交换机时，虽然在每个端口到主机的带宽还是10Mb/s，但由于一个用户在通信时是独占而不是和其他网络用户共享传输媒体的带宽，因此拥有N个端口的交换机的总容量为N×10Mb/s。这正是交换机的最大优点。</p>
-<p>以太网交换机的特点：</p>
-<ol type="1">
-<li>以太网交换机的<strong>每个端口都直接与单台主机相连</strong>（比较：网桥的端口往往连接到一个网段)，并且一般都工作在全双工方式。</li>
-<li>以太网交换机能同时连通多对端口，使每对相互通信的主机都能像独占通信媒体那样，<strong>无碰撞地传输数据</strong>。</li>
-<li>以太网交换机是一种<strong>即插即用</strong>设备，其内部的帧的转发表是通过<strong>自学习算法</strong>自动地逐渐建立起来的。</li>
-<li>以太网交换机由于使用<strong>专用的交换结构芯片</strong>，交换速率较高。</li>
-<li>以太网交换机<strong>独占传输媒体的带宽</strong>。</li>
-</ol>
-<p>以太网交换机主要采用两种交换模式:</p>
-<ol type="1">
-<li><strong>直通式交换机</strong>，只检查帧的目的地址，这使得帧在接收后几乎能马上被传出去。这种方式速度快，但缺乏智能性和安全性，也无法支持具有不同速率的端口的交换。</li>
-<li><strong>存储转发式交换机</strong>，先将接收到的帧缓存到高速缓存器中，并检查数据是否正确，确认无误后通过查找表转换成输出端口将该帧发送出去。如果发现帧有错，那么就将其丢弃。优点是<strong>可靠性高</strong>，并能支持不同速率端口间的转换，缺点是<strong>延迟较大</strong>。</li>
-</ol>
-<p>以太网交换机一般都具有多种速率的端口，例如可以具有10Mb/s、100Mb/s和1Gb/s的端口的各种组合，因此大大方便了各种不同情况的用户。</p>
-<h4 id="交换机的自学习功能">交换机的自学习功能</h4>
-<p>决定一个帧是应该转发到某个接口还是应该将其丢弃称为过滤。</p>
-<p>决定一个帧应该被移动到哪个接口称为转发。</p>
-<p>交换机的过滤和转发借助于交换表（switch
-table）完成。交换表中的一个表项至少包含:</p>
-<ol type="1">
-<li>一个MAC地址</li>
-<li>连通该MAC地址的交换机接口</li>
-</ol>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104112735968.png" /></p>
-<blockquote>
-<p>A先向B发送一帧，从接口1进入交换机。交换机收到帧后，查找交换表，找不到MAC地址为B的表项。然后，交换机将该帧的源地址A和接口1写入交换表，并向除接口1外的所有接口广播这个帧（该帧就是从接口1进入的，因此不应该将它再从接口1转发出去)。C和D丢弃该帧，因为目的地址不对。只有B才收下这个目的地址正确的帧。交换表中写入(
-A,1）后，以后从任何接口收到目的地址为A的帧，都应该从接口1转发出去。这是因为，既然A发出的帧从接口1进入交换机，那么从接口1转发出去的帧也应能到达A。</p>
-<p>接下来，假定B通过接口3向A发送一帧，交换机查找交换表后，发现有表项(A，1)，将该帧从接口1转发给A。显然，此时已经没有必要再广播收到的帧。将该帧的源地址B和接口3写入交换表，表明以后如有发送给B的帧，应该从接口3转发出去。</p>
-</blockquote>
-<p>经过一段时间，只要主机C和D也向其他主机发送帧，交换机就会把C和D及对应的接口号写入交换表。这样，转发给任何主机的帧，都能很快地在交换表中找到相应的转发接口。</p>
-<p>考虑到交换机所连的主机会随时变化，这就需要更新交换表中的表项。为此，交换表中的<strong>每个表项都设有一定的有效时间，过期的表项会自动删除</strong>。这就保证了交换表中的数据符合当前网络的实际状况。这种自学习方法使得交换机能够即插即用，而不必人工进行配置。</p>
-<p>参考资料：</p>
-<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
-<p>James F.Kurose，Keith
-W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
-<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
-]]></content>
-      <categories>
-        <category>Basic knowledge</category>
-      </categories>
-      <tags>
-        <tag>computer network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络：电路、报文与分组交换</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%94%B5%E8%B7%AF%E3%80%81%E6%8A%A5%E6%96%87%E4%B8%8E%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2/</url>
-    <content><![CDATA[<h3 id="电路交换">1.电路交换</h3>
-<p>在进行数据传输前，两个结点之间必须先建立一条专用（双方独占）的物理通信路径（由通信双方之间的交换设备和链路逐段连接而成)，该路径可能经过许多中间结点。这一路径在整个数据传输期间一直被独占，直到通信结束后才被释放。因此，电路交换技术分为三个阶段:连接建立、数据传输和连接释放。</p>
-<p>电路交换的关键点是：在数据传输的过程中，用户始终占用端到端的固定传输带宽。</p>
-<span id="more"></span>
-<h4 id="优点">优点</h4>
-<ol type="1">
-<li>通信时延小。</li>
-<li>有序传输。</li>
-<li>没有冲突。</li>
-<li>适用范围广。电路交换既适用于传输模拟信号，又适用于传输数字信号。</li>
-<li>实时性强。</li>
-<li>控制简单。电路交换的交换设备（交换机等）及控制均较简单。</li>
-</ol>
-<h4 id="缺点">缺点</h4>
-<ol type="1">
-<li>建立连接时间长。</li>
-<li>线路独占，使用效率低。</li>
-<li>灵活性差。只要在通信双方建立的通路中的任何一点出了故障，就必须重新拨号建立新
-的连接，这对十分紧急和重要的通信是很不利的。</li>
-<li>难以规格化。电路交换时，数据直达，不同类型、不同规格、不同速率的终端很难相互进行通信，也难以在通信过程中进行差错控制。</li>
-</ol>
-<p>注意，电路建立后，除源结点和目的结点外，<strong>电路上的任何结点都采取“直通方式”接收数据和发送数据，即不会存在存储转发所耗费的时间。</strong></p>
-<h3 id="报文交换">2.报文交换</h3>
-<p>数据交换的单位是报文，报文携带有目标地址、源地址等信息。报文交换<strong>在交换结点</strong>采用的是<strong>存储转发</strong>的传输方式。</p>
-<h4 id="优点-1">优点</h4>
-<ol type="1">
-<li>无须建立连接。不需要预先建立专用线路，不存在建立连接时延，用户可以随时发送报文。</li>
-<li>动态分配线路。当发送方把报文交给交换设备时，交换设备先存储整个报文，然后选择一条合适的空闲线路，将报文发送出去。</li>
-<li>提高线路可靠性。</li>
-<li>提高线路利用率。</li>
-<li>提供多目标服务。一个报文可以同时发送给多个目的地址。</li>
-</ol>
-<h4 id="缺点-1">缺点</h4>
-<ol type="1">
-<li>由于数据进入交换结点后要经历存储、转发这一过程，因此会引起转发时延（包括接收、报文、检验正确性、排队、发送时间等)。</li>
-<li>报文交换对报文的大小没有限制，这就要求网络结点需要有较大的缓存空间。</li>
-</ol>
-<h3 id="分组交换">3.分组交换</h3>
-<p>也采用存储转发方式，解决了大报文传输的问题。</p>
-<p>分组交换限制了每次传送的数据块大小的上限，把大的数据块划分为合理的小数据块，再加上一些必要的控制信息（如源地址、目的地址和编号信息等)，构成分组（Packet)
-。网络结点根据控制信息把分组送到下一个结点，下一个结点接收到分组后，暂时保存并排队等待传输，然后根据分组控制信息选择它的下一个结点，直到到达目的结点。</p>
-<h4 id="优点-2">优点</h4>
-<ol type="1">
-<li>无建立时延。</li>
-<li>线路利用率高。</li>
-<li>简化了存储管理（相对于报文交换)。因为分组的长度固定，相应的缓冲区的大小也固定，在交换结点中存储器的管理通常被简化为对缓冲区的管理，相对比较容易。</li>
-<li>加速传输。分组是逐个传输的，可以使后一个分组的存储操作与前一个分组的转发操作并行，这种流水线方式减少了报文的传输时间。此外，传输一个分组所需的缓冲区比传输一次报文所需的缓冲区小得多，这样因缓冲区不足而等待发送的概率及时间也必然少得多。</li>
-<li>减少了出错概率和重发数据量。因为分组较短，其出错概率必然减小，所以每次重发的数据量也就大大减少，这样不仅提高了可靠性，也减少了传输时延。</li>
-</ol>
-<h4 id="缺点-2">缺点</h4>
-<ol type="1">
-<li><p>存在传输时延。</p></li>
-<li><p>需要传输额外的信息量。每个小数据块都要加上源地址、目的地址和分组编号等信息，从而构成分组，因此使得传送的信息量增大了5%~10%，<strong>一定程度上降低了通信效率，增加了处理的时间</strong>，使控制复杂，时延增加。</p></li>
-<li><p>当分组交换采用数据报服务时，可能会出现失序、丢失或重复分组，分组到达目的结点时，要对分组按编号进行排序等工作，因此很麻烦。若采用虚电路服务，虽无失序问题，但有呼叫建立、数据传输和虚电路释放三个过程。</p></li>
-</ol>
-<h3 id="应用">应用</h3>
-<p>采用电路：传送的数据量很大且其传送时间远大于呼叫时间时，采用电路交换较为合适。</p>
-<p>分组交换：端到端的通路由多段链路组成时，适合于计算机之间的突发式数据通信。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221029215035155.png" /></p>
-<p>参考资料：</p>
-<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
-<p>James F.Kurose，Keith
-W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
-<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
-]]></content>
-      <categories>
-        <category>Basic knowledge</category>
-      </categories>
-      <tags>
-        <tag>computer network</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络：组帧</title>
     <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/</url>
     <content><![CDATA[<h2 id="计算机网络组帧">计算机网络：组帧</h2>
@@ -3551,47 +4361,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 <p>例如，曼彻斯特编码方法将数据比特“1”编码成“高-低”电平对，将数据比特“0”编码成“低-高”电平对，而“高-高”电平对和“低-低”电平对在数据比特中是违规的（即没有采用)。可以<strong>借用这些违规编码序列来定界帧的起始和终止</strong>。局域网IEEE
 802标准就采用了这种方法。</p>
 <p>违规编码法不需要采用任何填充技术，便能实现数据传输的透明性，但它只适用于采用冗余编码的特殊编码环境。</p>
-<p>参考资料：</p>
-<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
-<p>James F.Kurose，Keith
-W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
-<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
-]]></content>
-      <categories>
-        <category>Basic knowledge</category>
-      </categories>
-      <tags>
-        <tag>computer network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络：随机访问介质访问控制之ALOHA协议</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BALOHA%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h2
-id="计算机网络随机访问介质访问控制之aloha协议">计算机网络：随机访问介质访问控制之ALOHA协议</h2>
-<p>在随机访问协议中，不采用集中控制方式解决发送信息的次序问题，所有用户能根据自己的意愿随机地发送信息，占用信道全部速率。在总线形网络中，当有两个或多个用户同时发送信息时，就会产生帧的冲突（碰撞，相互干扰)，导致所有冲突用户的发送均以失败告终。为了解决随机接入发生的碰撞，每个用户需要按照一定的规则反复地重传它的帧，直到该帧无碰撞地通过。</p>
-<p>这些规则就是随机访问介质访问控制协议，常用的协议有ALOHA
-协议、CSMA协议、CSMA/CD
-协议和CSMA/CA协议等，它们的核心思想都是:胜利者通过争用获得信道，从而获得信息的发送权。因此，随机访问介质访问控制协议又称<strong>争用型协议</strong>。随机介质访问控制实质上是<strong>一种将广播信道转化为点到点信道的行为</strong>。</p>
-<span id="more"></span>
-<h3 id="aloha协议">ALOHA协议</h3>
-<p>夏威夷大学早期研制的随机接入系统称为ALOHA,它是Additive Link On-line
-HAwaii system的缩写。ALOHA 协议分为纯ALOHA协议和时隙ALOHA协议两种。</p>
-<ol type="1">
-<li><p>纯ALOHA 协议
-纯ALOHA协议的基本思想是，当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果在一段时间内未收到确认，那么该站点就认为传输过程中发生了冲突。发送站点需要等待一段时间后再发送数据，直至发送成功。</p>
-<p>每个站均自由地发送数据帧。为简化问题，不考虑由信道不良而产生的误码，并假定所有站发送的帧都是定长的，帧的长度不用比特而用发送这个帧所需的时间来表示，用T0表示这段时间。</p>
-<p>当站1发送帧1时，其他站都未发送数据，所以站1的发送必定是成功的。但随后站2和站N-1发送的帧2和帧3在时间上重叠了一些(即发生了碰撞)。碰撞的结果是，碰撞双方（有时也可能是多方）所发送的数据出现了差错，因而都须进行重传。但是发生碰撞的各站并不能马上进行重传，因为这样做必然会继续发生碰撞。纯ALOHA系统采用的重传策略是<strong>让各站等待一段随机的时间，然后再进行重传</strong>。若再次发生碰撞，则需要再等待一段随机的时间，直到重传成功为止。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102214207554.png" /></p>
-<p>纯ALOHA 网络的吞吐量很低。</p></li>
-<li><p>时隙ALOHA协议</p>
-<p>时隙ALOHA
-协议把所有各站在时间上同步起来,并将时间划分为一段段等长的时隙(Slot),规定只能在每个时隙开始时才能发送一个帧。从
-而避免了用户发送数据的随意性，减少了数据产生冲突的可能性，提高了信道的利用率。时隙ALOHA网络比纯ALOHA网络的吞吐量大了1倍。时隙的长度T使得每个帧正好在一个时隙内发送完毕。每个帧在到达后，一般都要在缓存中等待一段小于T的时间，然后才能发送出去。在一个时隙内有两个或两个以上的帧到达时，在下一个时隙将产生碰撞。碰撞后重传与上面类似。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103181417412.png" /></p></li>
-</ol>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
@@ -3673,6 +4442,99 @@ W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，
       </tags>
   </entry>
   <entry>
+    <title>计算机网络：随机访问介质访问控制之ALOHA协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BALOHA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h2
+id="计算机网络随机访问介质访问控制之aloha协议">计算机网络：随机访问介质访问控制之ALOHA协议</h2>
+<p>在随机访问协议中，不采用集中控制方式解决发送信息的次序问题，所有用户能根据自己的意愿随机地发送信息，占用信道全部速率。在总线形网络中，当有两个或多个用户同时发送信息时，就会产生帧的冲突（碰撞，相互干扰)，导致所有冲突用户的发送均以失败告终。为了解决随机接入发生的碰撞，每个用户需要按照一定的规则反复地重传它的帧，直到该帧无碰撞地通过。</p>
+<p>这些规则就是随机访问介质访问控制协议，常用的协议有ALOHA
+协议、CSMA协议、CSMA/CD
+协议和CSMA/CA协议等，它们的核心思想都是:胜利者通过争用获得信道，从而获得信息的发送权。因此，随机访问介质访问控制协议又称<strong>争用型协议</strong>。随机介质访问控制实质上是<strong>一种将广播信道转化为点到点信道的行为</strong>。</p>
+<span id="more"></span>
+<h3 id="aloha协议">ALOHA协议</h3>
+<p>夏威夷大学早期研制的随机接入系统称为ALOHA,它是Additive Link On-line
+HAwaii system的缩写。ALOHA 协议分为纯ALOHA协议和时隙ALOHA协议两种。</p>
+<ol type="1">
+<li><p>纯ALOHA 协议
+纯ALOHA协议的基本思想是，当网络中的任何一个站点需要发送数据时，可以不进行任何检测就发送数据。如果在一段时间内未收到确认，那么该站点就认为传输过程中发生了冲突。发送站点需要等待一段时间后再发送数据，直至发送成功。</p>
+<p>每个站均自由地发送数据帧。为简化问题，不考虑由信道不良而产生的误码，并假定所有站发送的帧都是定长的，帧的长度不用比特而用发送这个帧所需的时间来表示，用T0表示这段时间。</p>
+<p>当站1发送帧1时，其他站都未发送数据，所以站1的发送必定是成功的。但随后站2和站N-1发送的帧2和帧3在时间上重叠了一些(即发生了碰撞)。碰撞的结果是，碰撞双方（有时也可能是多方）所发送的数据出现了差错，因而都须进行重传。但是发生碰撞的各站并不能马上进行重传，因为这样做必然会继续发生碰撞。纯ALOHA系统采用的重传策略是<strong>让各站等待一段随机的时间，然后再进行重传</strong>。若再次发生碰撞，则需要再等待一段随机的时间，直到重传成功为止。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221102214207554.png" /></p>
+<p>纯ALOHA 网络的吞吐量很低。</p></li>
+<li><p>时隙ALOHA协议</p>
+<p>时隙ALOHA
+协议把所有各站在时间上同步起来,并将时间划分为一段段等长的时隙(Slot),规定只能在每个时隙开始时才能发送一个帧。从
+而避免了用户发送数据的随意性，减少了数据产生冲突的可能性，提高了信道的利用率。时隙ALOHA网络比纯ALOHA网络的吞吐量大了1倍。时隙的长度T使得每个帧正好在一个时隙内发送完毕。每个帧在到达后，一般都要在缓存中等待一段小于T的时间，然后才能发送出去。在一个时隙内有两个或两个以上的帧到达时，在下一个时隙将产生碰撞。碰撞后重传与上面类似。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103181417412.png" /></p></li>
+</ol>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络：随机访问介质访问控制之CSMA协议</title>
+    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMA%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h3 id="csma协议">CSMA协议</h3>
+<p>时隙ALOHA系统的效率虽然是纯ALOHA系统的两倍，但每个站点都是随心所欲地发送数据的，即使其他站点正在发送也照发不误，因此发送碰撞的概率很大。</p>
+<p>若<strong>每个站点在发送前都先侦听一下共用信道，发现信道空闲后再发送</strong>，则就会大大降低冲突的可能，从而提高信道的利用率，<strong>载波侦听多路访问(Carrier
+Sense Multiple
+Access，CSMA）协议</strong>依据的正是这一思想。CSMA协议是在ALOHA协议基础上提出的一种改进协议，它与ALOHA协议的主要区别是多了一个载波侦听装置。</p>
+<p>根据侦听方式和侦听到信道忙后的处理方式不同，CSMA协议分为三种。</p>
+<span id="more"></span>
+<h4 id="坚持csma">1-坚持CSMA</h4>
+<p><strong>一个结点要发送数据时，首先侦听信道;如果信道空闲，那么立即发送数据;如果信道忙，那么等待，同时继续侦听直至信道空闲;如果发生冲突，那么随机等待一段时间后，再重新开始侦听信道。</strong></p>
+<p>“1-坚持”的含义是:侦听到信道忙后，继续坚持侦听信道;
+侦听到信道空闲后，发送帧的概率为1，即立刻发送数据。
+传播延迟对1-坚持CSMA协议的性能影响较大。</p>
+<blockquote>
+<p>结点A开始发送数据时，结点B也正好有数据要发送，但这时结点A发出数据的信号还未到达结点B，结点B侦听到信道空闲，于是立即发送数据，结果必然导致冲突。</p>
+</blockquote>
+<p>即使不考虑延迟，1-坚持CSMA协议也可能产生冲突。</p>
+<blockquote>
+<p>例如，结点A正在发送数据时，结点B和C也准备发送数据，侦听到信道忙，于是坚持侦听，结果当结点A一发送完毕，结点B和C就会立即发送数据，同样导致冲突。</p>
+</blockquote>
+<h4 id="非坚持csma">非坚持CSMA</h4>
+<p>一个结点要发送数据时，首先侦听信道; 如果信道空闲，那么立即发送数据;
+如果信道忙，那么放弃侦听，等待一个随机的时间后再重复上述过程。</p>
+<p>非坚持CSMA协议在侦听到信道忙后就放弃侦听,因此降低了多个结点等待信道空闲后同时发送数据导致冲突的概率，但也会增加数据在网络中的平均延迟。可见，信道利用率的提高是以增加数据在网络中的延迟时间为代价的。</p>
+<h4 id="p-坚持csma">p-坚持CSMA</h4>
+<p>p-坚持CSMA (P-persistent
+CSMA）用于时分信道，其基本思想是:<strong>一个结点要发送数据时，首先侦听信道;如果信道忙，就持续侦听"，直至信道空闲;
+如果信道空闲，那么以概率 p 发送数据，以概率1-p推迟到下一个时隙;
+如果在下一个时隙信道仍然空闲，那么仍以概率p发送数据，以概率1-p推迟到下一个时隙;
+这个过程一直持续到数据发送成功或因其他结点发送数据而检测到信道忙为止，若是后者，则等待下一个时隙再重新开始侦听。</strong></p>
+<p>p-坚持CSMA 在检测到信道空闲后，以概率p发送数据，以概率1-p
+推迟到下一个时隙，其目的是<strong>降低1-坚持CSMA协议中多个结点检测到信道空闲后同时发送数据的冲突概率</strong>;
+采用坚持“侦听”的目的是，<strong>试图克服非坚持CSMA协议中由于随机等待而造成的延迟时间较长的缺点</strong>。因此，p-坚持CSMA
+协议是非坚持CSMA协议和1-坚持CSMA协议的折中方案。</p>
+<h4 id="比较">比较</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103182629325.png" /></p>
+<p>参考资料：</p>
+<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
+<p>James F.Kurose，Keith
+W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
+<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>computer network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络：随机访问介质访问控制之CSMA/CD协议</title>
     <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMACD%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h2
@@ -3727,58 +4589,6 @@ MAC帧的长度不小于最小帧长。</p>
 <p>使用截断二进制指数退避算法可使重传需要推迟的平均时间随重传次数的增大而增大
 (这也称<strong>动态退避</strong>), 因而能降低发生碰撞的概率,
 有利于整个系统的稳定。</p>
-<p>参考资料：</p>
-<p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
-<p>James F.Kurose，Keith
-W.Ross.计算机网络:自顶向下方法[M]．北京：机械工业出版社，2019.</p>
-<p>2023年王道计算机复习指导[M]．北京：电子工业出版社，2021.</p>
-]]></content>
-      <categories>
-        <category>Basic knowledge</category>
-      </categories>
-      <tags>
-        <tag>computer network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络：随机访问介质访问控制之CSMA协议</title>
-    <url>/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B9%8BCSMA%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h3 id="csma协议">CSMA协议</h3>
-<p>时隙ALOHA系统的效率虽然是纯ALOHA系统的两倍，但每个站点都是随心所欲地发送数据的，即使其他站点正在发送也照发不误，因此发送碰撞的概率很大。</p>
-<p>若<strong>每个站点在发送前都先侦听一下共用信道，发现信道空闲后再发送</strong>，则就会大大降低冲突的可能，从而提高信道的利用率，<strong>载波侦听多路访问(Carrier
-Sense Multiple
-Access，CSMA）协议</strong>依据的正是这一思想。CSMA协议是在ALOHA协议基础上提出的一种改进协议，它与ALOHA协议的主要区别是多了一个载波侦听装置。</p>
-<p>根据侦听方式和侦听到信道忙后的处理方式不同，CSMA协议分为三种。</p>
-<span id="more"></span>
-<h4 id="坚持csma">1-坚持CSMA</h4>
-<p><strong>一个结点要发送数据时，首先侦听信道;如果信道空闲，那么立即发送数据;如果信道忙，那么等待，同时继续侦听直至信道空闲;如果发生冲突，那么随机等待一段时间后，再重新开始侦听信道。</strong></p>
-<p>“1-坚持”的含义是:侦听到信道忙后，继续坚持侦听信道;
-侦听到信道空闲后，发送帧的概率为1，即立刻发送数据。
-传播延迟对1-坚持CSMA协议的性能影响较大。</p>
-<blockquote>
-<p>结点A开始发送数据时，结点B也正好有数据要发送，但这时结点A发出数据的信号还未到达结点B，结点B侦听到信道空闲，于是立即发送数据，结果必然导致冲突。</p>
-</blockquote>
-<p>即使不考虑延迟，1-坚持CSMA协议也可能产生冲突。</p>
-<blockquote>
-<p>例如，结点A正在发送数据时，结点B和C也准备发送数据，侦听到信道忙，于是坚持侦听，结果当结点A一发送完毕，结点B和C就会立即发送数据，同样导致冲突。</p>
-</blockquote>
-<h4 id="非坚持csma">非坚持CSMA</h4>
-<p>一个结点要发送数据时，首先侦听信道; 如果信道空闲，那么立即发送数据;
-如果信道忙，那么放弃侦听，等待一个随机的时间后再重复上述过程。</p>
-<p>非坚持CSMA协议在侦听到信道忙后就放弃侦听,因此降低了多个结点等待信道空闲后同时发送数据导致冲突的概率，但也会增加数据在网络中的平均延迟。可见，信道利用率的提高是以增加数据在网络中的延迟时间为代价的。</p>
-<h4 id="p-坚持csma">p-坚持CSMA</h4>
-<p>p-坚持CSMA (P-persistent
-CSMA）用于时分信道，其基本思想是:<strong>一个结点要发送数据时，首先侦听信道;如果信道忙，就持续侦听"，直至信道空闲;
-如果信道空闲，那么以概率 p 发送数据，以概率1-p推迟到下一个时隙;
-如果在下一个时隙信道仍然空闲，那么仍以概率p发送数据，以概率1-p推迟到下一个时隙;
-这个过程一直持续到数据发送成功或因其他结点发送数据而检测到信道忙为止，若是后者，则等待下一个时隙再重新开始侦听。</strong></p>
-<p>p-坚持CSMA 在检测到信道空闲后，以概率p发送数据，以概率1-p
-推迟到下一个时隙，其目的是<strong>降低1-坚持CSMA协议中多个结点检测到信道空闲后同时发送数据的冲突概率</strong>;
-采用坚持“侦听”的目的是，<strong>试图克服非坚持CSMA协议中由于随机等待而造成的延迟时间较长的缺点</strong>。因此，p-坚持CSMA
-协议是非坚持CSMA协议和1-坚持CSMA协议的折中方案。</p>
-<h4 id="比较">比较</h4>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103182629325.png" /></p>
 <p>参考资料：</p>
 <p>谢希仁．计算机网络（第8版）[M]．北京：电子工业出版社，2021.</p>
 <p>James F.Kurose，Keith
