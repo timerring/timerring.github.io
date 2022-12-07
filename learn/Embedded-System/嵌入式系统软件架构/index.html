@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="嵌入式系统软件  嵌入式软件：包括嵌入式操作系统及应用软件  嵌入式操作系统  嵌入式操作系统是嵌入式系统中最基本的软件，它负责分配、回收，控制和协调全部软硬件资源的并发活动，并且提供应用程序的运行环境和接口，是应用程序运行的基础。  嵌入式应用软件  嵌入式应用软件是服务于某种专用应用领域，基于某一特定的嵌入式硬件平台，用来达到用户预期任务的计算机软件。   当设计一个">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="嵌入式系统软件架构">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="嵌入式系统软件  嵌入式软件：包括嵌入式操作系统及应用软件  嵌入式操作系统  嵌入式操作系统是嵌入式系统中最基本的软件，它负责分配、回收，控制和协调全部软硬件资源的并发活动，并且提供应用程序的运行环境和接口，是应用程序运行的基础。  嵌入式应用软件  嵌入式应用软件是服务于某种专用应用领域，基于某一特定的嵌入式硬件平台，用来达到用户预期任务的计算机软件。   当设计一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-03T08:24:04.444Z">
+<meta property="article:modified_time" content="2022-12-03T08:23:26.791Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/","path":"Learn/Embedded-System/嵌入式系统软件架构/","title":"嵌入式系统软件架构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>嵌入式系统软件架构 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">49</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">嵌入式系统软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">嵌入式系统软件的层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%8A%BD%E8%B1%A1%E5%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">硬件抽象层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.</span> <span class="nav-text">嵌入式操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fwince"><span class="nav-number">2.1.</span> <span class="nav-text">嵌入式操作系统——WinCE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fvxworks"><span class="nav-number">2.2.</span> <span class="nav-text">嵌入式操作系统——VxWorks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Flinux"><span class="nav-number">2.3.</span> <span class="nav-text">嵌入式操作系统——Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8Flinux-os%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.3.1.</span> <span class="nav-text">嵌入式Linux OS的特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9Fucos"><span class="nav-number">2.4.</span> <span class="nav-text">嵌入式操作系统——uCOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-palmos"><span class="nav-number">2.5.</span> <span class="nav-text">嵌入式操作系统—— PalmOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.6.</span> <span class="nav-text">其他嵌入式操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8E%E4%B8%BA%E9%B8%BF%E8%92%99%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.7.</span> <span class="nav-text">华为鸿蒙系统</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="嵌入式系统软件架构 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          嵌入式系统软件架构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-03 16:24:04" itemprop="dateCreated datePublished" datetime="2022-12-03T16:24:04+08:00">2022-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="嵌入式系统软件">嵌入式系统软件</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128150318169.png" /></p>
+<p>嵌入式软件：包括嵌入式操作系统及应用软件</p>
+<ul>
+<li>嵌入式操作系统
+<ul>
+<li>嵌入式操作系统是嵌入式系统中最基本的软件，它<strong>负责分配、回收，控制和协调全部软硬件资源的并发活动，并且提供应用程序的运行环境和接口，是应用程序运行的基础。</strong></li>
+</ul></li>
+<li>嵌入式应用软件
+<ul>
+<li>嵌入式应用软件是<strong>服务于某种专用应用领域</strong>，基于某一特定的嵌入式硬件平台，用来达到用户预期任务的计算机软件。</li>
+</ul></li>
+</ul>
+<p>当设计一个简单的应用程序时，可以不使用操作系统，但是当设计较复杂的程序时，可能就需要一个操作系统（OS）来管理、控制内存、多任务、周边资源等等。依据系统所提供的程序界面来编写应用程序，可以大大的减少应用程序员的负担。</p>
+<span id="more"></span>
+<h3 id="嵌入式系统软件的层次结构">嵌入式系统软件的层次结构</h3>
+<p>对于使用操作系统的嵌入式系统来说，嵌入式系统软件结构一般包含三个层面：<strong>设备驱动层、实时操作系统（RTOS）、实际应用程序层</strong>。由于硬件电路的可裁减性和嵌入式系统本身的特点，其软件部分也是可裁减的。</p>
+<p>对于功能简单仅包括应用程序的嵌入式系统一般不使用操作系统，仅有应用程序和设备驱动程序。现代高性能嵌入式系统应用越来越广泛，操作系统使用成为必然发展趋势。</p>
+<p>操作系统如：Windows、Unix、Linux等，它们的运行平台在通用计算机上都是标准的。但嵌入式系统不然，嵌入式处理器多种多样，目前不下几百种，即使同一种体系的嵌入式处理器，它们的配置仍有不同。<strong>操作系统提供商为了屏蔽这些硬件平台的差异，仅仅用标准C语言把操作系统不依赖于具体硬件的共性部分实现了，而把依赖于硬件的部分（如存储器种类、外部设备的配置、地址分配等）留给用户编写，而操作系统仅仅规定了一个标准的规范。</strong></p>
+<p>用户编写的这部分代码为用户的具体硬件和标准化的操作系统之间提供了一个接口和支持平台，这部分代码称为<strong>板级支持包（Board
+Support Package，BSP） 或硬件抽象层（Hardware Abstraction
+Layer，HAL）。</strong></p>
+<p>经过不断地发展，嵌入式系统原有的3层结构逐步演化成为4层结构。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128151041975.png" /></p>
+<p>嵌入式系统的详细结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128151148669.png" /></p>
+<p>由于引入了一个中间层，屏蔽了底层硬件的多样性，操作系统不再面对具体的硬件环境，而是面对由这个中间层次所代表的、<strong>逻辑上的硬件环境</strong>，因此，把<strong>中间层次叫做硬件抽象层</strong>（Hardware
+Abstraction Layer, HAL）。</p>
+<p><strong>HAL的引入大大推动了嵌入式实时系统的通用化，从而为嵌入式系统的广泛应用提供了可能。</strong></p>
+<h4 id="硬件抽象层">硬件抽象层</h4>
+<p><strong>板级支持包（Board Support
+Package，BSP）是现有的大多数商用嵌入式操作系统实现可移植性所采用的一种方案，是硬件抽象层的一种实现。</strong></p>
+<p>BSP隔离了所支持的嵌入式操作系统与底层硬件平台之间的相关性，是嵌入式操作系统能够通用与BPS所支持的硬件平台，从而实现嵌入式操作系统的可移植性和跨平台性，以及嵌入式操作系统的通用性、复用性。</p>
+<p><strong>BSP是相对于操作系统而言的，不同的操作系统对应于不同定义形式的BSP。</strong></p>
+<blockquote>
+<p>例如，对应同一个CPU来说，要实现同样的功能，VxWorks的BSP和Linux的BSP的写法和接口定义却完全不同。</p>
+</blockquote>
+<p>因此，BSP一定要按照具体操作系统BSP的定义形式来写（BSP的编程过程大多数是在某一个成型的BSP模板上进行修改），这样才能与上层操作系统保持正确的接口，良好地支持上层操作系统。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128151822608.png" /></p>
+<h2 id="嵌入式操作系统">嵌入式操作系统</h2>
+<p>目前流行的嵌入式操作系统可以分为两类：</p>
+<ul>
+<li>从运行<strong>在个人电脑上的操作系统向下移植到嵌入式系统</strong>中，
+形成的嵌入式操作系统， 如微软公司的Windows CE 及其新版本，嵌入式Linux
+等</li>
+<li><strong>实时操作系统</strong>，如Wind River
+公司的VxWorks，ISI的pSOS，QNX 系统软件公司的QNX，ATI
+的Nucleus，中国科学院凯思集团的Hopen 嵌入式操作系统等</li>
+</ul>
+<h3 id="嵌入式操作系统wince">嵌入式操作系统——WinCE</h3>
+<p>Windows
+CE是微软开发的一个开放的、可升级的<strong>32位嵌入式操作系统</strong>，是一个基于掌上型电脑类的电子设备的操作系统。</p>
+<ul>
+<li><strong>Windows CE是精简的Windows 95</strong>。Windows
+CE的图形用户界面相当出色。其中CE中的C代表袖珍（Compact）、消费（Consumer）、通信能力（Connectivity）和伴侣（Companion）；E代表电子产品（Electronics）</li>
+<li>整体上为有限资源的平台设计的多线程、完整优先权、多任务的操作系统。它的模块化设计允许它对于从掌上电脑到专用的工业控制器的用户电子设备进行定制。<strong>操作系统的基本内核需要至少200K的ROM</strong>。</li>
+<li>Windows CE不仅继承了传统的Windows图形界面，并且在Windows
+CE平台上可以使用Windows 95/98/2000上的编程工具（如Visual Basic、Visual
+C++等）、使用同样的函数、使用同样的界面风格，使绝大多数的应用软件只需简单的修改和移植就可以在Windows
+CE平台上继续使用</li>
+<li>目前主要应用于PDA，跟微软一系列Windows系统一样，Windows
+CE也承袭了原有的缺点：<strong>耗系统资源、不稳定、效率不佳..</strong>等等。后来将整个架构重新改写后推出Windows
+CE 3.0 版，或称为Pocket PC。</li>
+</ul>
+<h3 id="嵌入式操作系统vxworks">嵌入式操作系统——VxWorks</h3>
+<p>VxWorks操作系统是美国WindRiver公司于1983年设计开发的一种<strong>嵌入式实时操作系统（RTOS）</strong>，具有良好的持续发展能力、高性能的内核以及友好的用户开发环境，在嵌入式实时操作系统领域牢牢占据着一席之地。</p>
+<p>VxWorks所具有的显著特点是：</p>
+<ul>
+<li><strong>可靠性、实时性和可裁减性。</strong></li>
+<li>它<strong>支持多种处理器</strong>，如x86、i960、Sun Sparc、Motorola
+MC68xxx、MIPS 、POWER PC等等。</li>
+</ul>
+<p>以其良好的可靠性和卓越的实时性被广泛地应用在通信、军事、航空航天等高精尖技术及实时性要求极高的领域中，如火星探测器（1997年7月4日登陆火星表面）。</p>
+<h3 id="嵌入式操作系统linux">嵌入式操作系统——Linux</h3>
+<p>Linux是一个类似于Unix的操作系统。它起源于芬兰一个名为Linus
+Torvalds的业余爱好，但是现在已经是最为流行的一款开放源代码的操作系统。</p>
+<p>Linux从1991年问世到现在，短短10几年的时间内已发展成为一个功能强大、设计完善的操作系统，伴随网络技术进步而发展起来的Linux
+OS已成为Microsoft公司Windows 的强劲对手。</p>
+<p>Linux系统不仅能够运行于PC平台，还在嵌入式系统方面大放光芒，在各种嵌入式Linux
+OS 迅速发展的状况下，Linux OS逐渐形成了可与Windows
+CE等EOS进行抗衡的局面。目前正在开发的嵌入式系统中，50%以上的项目选择Linux作为嵌入式操作系统。Linux现已成为嵌入式操作的理想选择。Linux是开放源码和免费使用的，遍布全球的众多Linux爱好者又是Linux开发的强大技术后盾。</p>
+<p><strong>嵌入式Linux(Embedded
+Linux)是指对Linux经过小型化裁剪后，能够固化在容量只有几百K字节或几兆字节的存储器芯片或单片机中，应用于特定嵌入式场合的专用Linux操作系统。</strong>嵌入式Linux的开发和研究是目前操作系统领域的一个热点。主要有<strong>RTLinux和μCLinux</strong></p>
+<ul>
+<li><p>Linux的内核小、功能强大、API丰富，系统健壮、效率高，易于定制剪裁，在价格上极具竞争力。</p></li>
+<li><p>Linux不仅支持x86 CPU，还可以支持其他数十种CPU芯片。</p></li>
+<li><p>开放原始码、模块化设计 Linux采用GPL（General Public
+License,通用公共许可证）授权，除了把原始码公开以外，任何人都可以自由使用、修改、散布，而Linux核心本身采用模块化设计，让人很容易增减功能，例如我的平台并不需要蓝牙的功能，我只要不把这项功能加入，有需要就加入，不需要就删除，由于这样的高的弹性，我们可以调校出最适合我们硬件平台的核心出来。</p>
+<p>Linux的系统内核最小只有134KB，一个带中文系统和图形用户界面的核心程序也可以做到不到1MB。</p>
+<blockquote>
+<p>相较于Unix，Windows是走封闭原始码路线，所以我们完全无法得知或修改它的核心部份。另外因为是采用GPL授权自然就没有什么权利金或保密协议的约束。</p>
+</blockquote></li>
+</ul>
+<h4 id="嵌入式linux-os的特点">嵌入式Linux OS的特点</h4>
+<ol type="1">
+<li><p>精简的内核，性能高、稳定，多任务。</p></li>
+<li><p>良好的可移植性，使得它可以适用于不同的CPU，支持多种体系结构，如X86、ARM、MIPS、ALPHA、SPARC等。</p></li>
+<li><p>能够提供完善的嵌入式GUI以及嵌入式X-Windows。</p></li>
+<li><p>提供嵌入式浏览器、邮件程序、MP3播放器、MPEG播放器、记事本等多种应用。</p></li>
+<li><p>提供完整的开发工具和SDK，同时提供PC上的开发版本。</p></li>
+<li><p>非实时专用，要想用于实时性要求高的场合需要添加实时处理模块，进行实时化处理。</p></li>
+<li><p>用户可定制，可提供图形化的定制和配置工具。</p></li>
+<li><p>支持常用嵌入式芯片的驱动，支持大量的周边硬件设备，驱动丰富。</p></li>
+<li><p>针对嵌入式的存储方案，提供实时版本和完善的嵌入式解决方案。</p></li>
+<li><p>完善的中文支持，强大的技术支持，完整的文档。</p></li>
+<li><p>开放源码，丰富的软件资源，广泛的软件开发者的支持，价格低廉，结构灵活，适用面广。</p></li>
+</ol>
+<p>μClinux</p>
+<p>μClinux是一个完全符合GNU/GPL公约的操作系统，完全开放代码。uClinux从Linux
+2.0/2.4内核派生而来，沿袭了主流Linux的绝大部分特性。它是<strong>专门针对没有MMU的CPU</strong>，并且为嵌入式系统做了许多小型化的工作。适用于没有虚拟内存或内存管理单元(MMU)的处理器，例如
+ARM7TDMI。它通常用于具有很少内存或Flash的嵌入式系统。它保留了Linux的大部分优点:稳定、良好的移植性、优秀的网络功能、完备的对各种文件系统的支持、以及标准丰富的API等。</p>
+<h3 id="嵌入式操作系统ucos">嵌入式操作系统——uCOS</h3>
+<p>μC/OS—Micro Controller O S</p>
+<p>μC/OS简介</p>
+<p>美国人Jean Labrosse 1992年完成，1998年μC/OS-II，目前的版本μC/OS -II
+V2.61。应用面覆盖了诸多领域，如照相机、医疗器械、音响设备、发动机控制、高速公路电话系统、自动提款机，甚至航空领域。</p>
+<p>是一个源码公开、可移植、可裁减、占用资源少、抢先式的实时多任务操作系统。其绝大部分源码采用ANSI
+C写的，移植性好。高校教学可免费使用。</p>
+<ul>
+<li>可移植性好 绝大部分μC/OS-II的源码是用移植性很强的ANSI
+C写的。和微处理器硬件相关的那部分是用汇编语言写的。汇编语言写的部分已经压到最低限度，使得μC/OS-II便于移植到其他微处理器上。μC/OS-II可以在绝大多数8位、16位、32位以至64位微处理器、微控制器、数字信号处理器（DSP）上运行。</li>
+<li>实时性好
+μC/OS-II采用可抢占式实时内核，任务切换速度快。并且全部μC/OS-II的函数调用与服务的执行时间具有可确定性。</li>
+<li>多任务:μC/OS-II可以管理64个任务，然而，目前这一版本保留8个给系统。应用程序最多可以有56个任务</li>
+</ul>
+<h3 id="嵌入式操作系统-palmos">嵌入式操作系统—— PalmOS</h3>
+<p>Palm
+OS是著名的网络设备制造商3COM旗下的PalmComputing掌上电脑公司的产品。</p>
+<p>Palm
+OS是一套专门为掌上电脑编写的操作系统，充分考虑到了掌上电脑内存相对较小的情况，所以Palm操作系统本身所占的内存很小，<strong>基于Palm操作系统编写的应用程序所占的空间也很小</strong>，通常只有几十KB，因此基于Palm操作系统的掌上电脑虽然只有几兆内存却可以运行众多的应用程序。</p>
+<p>Palm OS在PDA市场上占有很大的市场份额，目前主要与WIN
+CE进行激烈竞争。</p>
+<p>代表性的产品有Palm m505、Palm m500、Palm III等。</p>
+<h3 id="其他嵌入式操作系统">其他嵌入式操作系统</h3>
+<p>QNX 的QNX OS 、ISI 的pSOS
+、电子科技大学嵌入式实时教研室和科银公司联合研制开发的Delta
+OS、凯思集团自主研制开发的Hopen OS等等。</p>
+<h3 id="华为鸿蒙系统">华为鸿蒙系统</h3>
+<p>鸿蒙OS（英文：HarmonyOS）。在2019年8月9日，华为在东莞举行华为开发者大会，正式发布操作系统鸿蒙OS。</p>
+<p>鸿蒙OS是一款“面向未来”的操作系统，一款基于微内核的面向全场景的分布式操作系统，它将适配手机、平板、电视、智能汽车、可穿戴设备等多终端设备。</p>
+<blockquote>
+<p>发展历程</p>
+<p>2012年，华为开始规划自有操作系统“鸿蒙”。</p>
+<p>2019年5月24日，国家知识产权局商标局网站显示，华为已申请“华为鸿蒙”商标，申请日期是</p>
+<p>2018年8月24日，注册公告日期是2019年5月14日，专用权限期是从2019年5月14日到2029年5月13日。</p>
+<p>2019年5月17日，由某教授领导的华为操作系统团队开发了自主产权操作系统——鸿蒙。[9]</p>
+<p>2019年8月9日，华为正式发布鸿蒙系统。同时余承东也表示，鸿蒙OS实行开源。</p>
+<p>2019年8月10日，荣耀正式发布荣耀智慧屏、荣耀智慧屏Pro，搭载鸿蒙操作系统。</p>
+</blockquote>
+<p>鸿蒙OS实现模块化耦合，<strong>对应不同设备可弹性部署</strong>，鸿蒙OS有三层架构，第一层是内核，第二层是基础服务，第三层是程序框架。可用于大屏、PC、汽车等各种不同的设备上。还可以随时用在手机上，但暂时华为手机端依然优先使用安卓。</p>
+<p>自打鸿蒙操作系统注册以来，一直有种说法，认为它是安卓系统的一个分支。这是一个误解。中芯国际创始人张汝京博士分析过，鸿蒙不是安卓系统的分支或修改而来的。它是一种全新
+的、独立的操作系统。是面向未来5G物联网开发的。</p>
+<p>谷歌也有一款面向5G物联网的Fuchsia系统。但鸿蒙基于emui
+9.1版本的方舟编译器的优化版本，在性能上，要比安卓原生编译器快很多。</p>
+<blockquote>
+<p>安卓系统是用Java语言编的，这种语言简单易学。可它却有个缺点，即不能直接和系统的底层直接通信。只能在所谓的虚拟机上运行。直白地说虚拟机相当于二传手，先把安卓的应用程序装在虚拟机上，由虚拟机再传给机器的底层。</p>
+<p>二传手出问题怎么办？表现在安卓系统就是手机软件卡顿。那么，不要这个二传手是否可以直接和机器的底层直接通信呢？</p>
+<p>苹果手机用起来为什么不卡顿，就是它没有那个二传手，直接为机器底层写代码，苹果手机的软件跑起来就比安卓手机顺畅得多。</p>
+</blockquote>
+<p>鸿蒙系统加方舟编译器，就替代了虚拟机这个二传手。</p>
+<p>打造一个操作系统说难不难，基于Linux内核的话，很多大学生都可以定制一个操作系统出来，但是打造适应新时代、满足自身业务需求并且有良好生态的操作系统就没那么容易了，数十年来倒在这条路上的国内公司太多了，没有一个能够撑起一片天的。</p>
+<p>华为做系统多年前就在进行了，他们挖来了全球操作系统领域的一个大牛，而且是顶级大牛来领导OS系统内核团队。</p>
+<p>这个人就是上海交大的陈海波教授，虽然还是个年轻的80后教授，但陈海波教授在操作系统领域的突破太过耀眼了，用他自己的话说就是——截至
+2010年底，亚洲学者40年来在SOSP（操作系统原理大会，成立于1967年）上独立发表研究论文的数目仍然为零，2011年陈教授的论文被SOSP接纳，实现了中国乃至亚洲的突破。</p>
+<p>系统界的奥斯卡-- OSDI 与SOSP</p>
+<p>OSDI 是系统领域和SOSP 并驾齐驱的两个顶级会议之一。第一届OSDI 在1994
+年在Menterey, CA 召开。OSDI
+上一直不乏中国学术工作者的身影，但国内高校一直没有太强的影响力。直到2016
+年，国内高校有三篇论文同时被OSDI
+录取，其中清华大学两篇，上海交大一篇。</p>
+<p>SOSP 相比OSDI 创办的更早，第一届在1967
+年召开。上交大的陈海波老师是国内高校第一篇SOSP
+的论文作者（完成工作时是在复旦大学）。上海交大在2015，2017年的SOSP
+也各中了一篇。OSDI 和SOSP 每届只录取20 ~ 30 篇论文，平均每个方向3~4
+篇。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E6%A6%82%E8%BF%B0/" rel="prev" title="嵌入式系统硬件概述">
+                  <i class="fa fa-chevron-left"></i> 嵌入式系统硬件概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%8F%91%E5%B1%95/" rel="next" title="嵌入式系统的应用与发展">
+                  嵌入式系统的应用与发展 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

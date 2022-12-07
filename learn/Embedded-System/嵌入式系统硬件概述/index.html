@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="嵌入式系统的组成部分是嵌入式系统硬件平台、嵌入式操作系统（RTOS）和嵌入式系统应用。  嵌入式系统硬件平台 嵌入式系统硬件平台是以嵌入式处理器为核心，由存储器、I&#x2F;O单元电路、通信模块、外部设备等必要的辅助接口组成的。  嵌入式系统的详细结构">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="嵌入式系统硬件概述">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="嵌入式系统的组成部分是嵌入式系统硬件平台、嵌入式操作系统（RTOS）和嵌入式系统应用。  嵌入式系统硬件平台 嵌入式系统硬件平台是以嵌入式处理器为核心，由存储器、I&#x2F;O单元电路、通信模块、外部设备等必要的辅助接口组成的。  嵌入式系统的详细结构">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-02T01:34:33.653Z">
+<meta property="article:modified_time" content="2022-12-02T01:34:22.282Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E6%A6%82%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E6%A6%82%E8%BF%B0/","path":"Learn/Embedded-System/嵌入式系统硬件概述/","title":"嵌入式系统硬件概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>嵌入式系统硬件概述 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">49</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.</span> <span class="nav-text">嵌入式系统硬件平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">(1) 嵌入式处理器的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BE%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">(2) 嵌入式微处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mips%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">MIPS处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#powerpc%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">PowerPC处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#arm%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">ARM处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#arm%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">ARM发展历史</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#arm%E5%85%AC%E5%8F%B8%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">ARM公司介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#arm%E5%B8%82%E5%9C%BA%E4%BB%BD%E9%A2%9D"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">ARM市场份额</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8mcu"><span class="nav-number">1.2.4.</span> <span class="nav-text">嵌入式微控制器（MCU）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E5%99%A8dsp"><span class="nav-number">1.2.5.</span> <span class="nav-text">数字信号处理器（DSP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%89%87%E4%B8%8A%E7%B3%BB%E7%BB%9Fsoc"><span class="nav-number">1.2.6.</span> <span class="nav-text">嵌入式片上系统（SoC）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="嵌入式系统硬件概述 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          嵌入式系统硬件概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-02 09:34:33" itemprop="dateCreated datePublished" datetime="2022-12-02T09:34:33+08:00">2022-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>嵌入式系统的组成部分是<strong>嵌入式系统硬件平台</strong>、<strong>嵌入式操作系统（RTOS）</strong>和<strong>嵌入式系统应用</strong>。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128142839989.png" /></p>
+<h2 id="嵌入式系统硬件平台">嵌入式系统硬件平台</h2>
+<p><strong>嵌入式系统硬件平台</strong>是以<strong>嵌入式处理器</strong>为核心，由<strong>存储器、I/O单元电路、通信模块、外部设备</strong>等必要的辅助接口组成的。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128142949079.png" /></p>
+<p>嵌入式系统的详细结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221128143112614.png" /></p>
+<span id="more"></span>
+<h3 id="嵌入式处理器的分类">(1) 嵌入式处理器的分类</h3>
+<p>嵌入式处理器是嵌入式系统的硬件核心。嵌入式处理器根据它的结构和应用特点可以分成四类：</p>
+<ul>
+<li><strong>嵌入式微控制器（MicroController Unit,MCU)</strong></li>
+<li><strong>嵌入式微处理器(Embedded MicroProcessor Unit,
+EMPU）</strong></li>
+<li><strong>DSP处理器（Digital Signal Processor,DSP)</strong></li>
+<li><strong>高度集成的片上系统（System on Chip,SoC)</strong></li>
+</ul>
+<h3 id="嵌入式微处理器">(2) 嵌入式微处理器</h3>
+<p><strong>嵌入式微处理器(EMPU)</strong>是由通用计算机中的CPU演变而来的，在嵌入式应用中，<strong>只保留与嵌入式应用紧密相关的功能硬件</strong>，而去除其他冗余功能部分，并配上必要的扩展外围电路，如存储器、I/O接口，以及其他一些专用接口电路，这样，可以以最低的功耗和资源满足嵌入式应用的要求。嵌入式微处理器一般在工作温度、抗电磁干扰、可靠性等方面做了各种增强。具有体积小、重量轻、成本低、可靠性高等优点。</p>
+<p>目前主要的嵌入式微处理器有：<strong>ARM、MIPS</strong>、Aml86/88、386EX、PowerPC、68000系列。</p>
+<h4 id="mips处理器">MIPS处理器</h4>
+<p><strong>MIPS的意思是“无内部互锁流水级的微处理器”（Microprocessor
+without Interlocked Piped Stages）</strong></p>
+<p>MIPS技术公司是美国著名的芯片设计公司，成立于1984年，致力于RISC架构处理器的设计，其芯片主要应用于消费类电子（如机顶盒、游戏机、掌上电脑等）、网络通信产品（如路由器）以及汽车电子方面。MIPS的系统结构及设计理念比较先进，在设计理念上MIPS强调软硬件协同提高性能，同时<strong>简化硬件设计</strong>。</p>
+<h4 id="powerpc处理器">PowerPC处理器</h4>
+<p>PowerPC是20世纪90年代，IBM、Apple和Motorola公司联合开发成功的一种<strong>RISC架构的计算机处理器</strong>。</p>
+<p><strong>PowerPC架构的特点是可伸缩性好，方便灵活</strong>。PowerPC处理器品种很多，既有通用的处理器，又有嵌入式控制器和内核，应用范围非常广泛，从高端的服务器、工作站到桌面计算机系统，从消费类电子产品到大型通信设备，无所不包。</p>
+<p>Motorola的PowerPC系列包含Power QUICC（Quad Integrated Communications
+Controller）、Power QUICCII和Power QUICCIII三大系列几十种型号。其中 MPC
+860（属于Power QUICC）、MPC 8260（属于 Power QUICCII）、MPC
+8560（属于Power QUICCIII）
+是在通信系统设计（如移动基站、电话交换机）中最常用的三款嵌入式微处理器。</p>
+<h4 id="arm处理器">ARM处理器</h4>
+<p>ARM（Advanced RISC
+Machines），既可以认为是一个公司的名字，也可以认为是对一类微处理器的通称，还可以认为是一种技术的名字。</p>
+<h5 id="arm发展历史">ARM发展历史</h5>
+<ul>
+<li><p>ARM处理器是一种精简指令集计算机（RISC）</p></li>
+<li><p>RISC的概念源于斯坦福大学和伯克利大学在1980年前后进行的处理器研究计划。</p></li>
+<li><blockquote>
+<p>1985年4月26日，第一个ARM原型在英国剑桥的Acorn
+Computer公司诞生，由美国加州San Jose VLSI技术公司
+制造。它是第一个为商业用途开发的RISC微处理器。20世纪80年代后期，ARM很快开发成Acorn的台式机产品，形成英国的计算机教育基础。1990年成立了Advanced
+RISC Machines Limited（后来简称ARM Limited，ARM公司）</p>
+</blockquote></li>
+</ul>
+<h5 id="arm公司介绍">ARM公司介绍</h5>
+<p>英国先进RISC机器公司（Advanced RISC
+Machines，简称<strong>ARM公司</strong>）是专门从事基于RISC技术芯片设计开发的公司，作为知识产权（Intelligence
+Property，IP）供应商，本身<strong>不直接从事芯片生产</strong>，它只是<strong>提供一些高性能、低功耗、低成本和高可靠性的RISC处理器核</strong>、<strong>外围部件和系统级芯片应用解决、设计方案</strong>;
+靠转让这些设计方案的许可（License）给各合作公司生产各具特色的芯片，世界各大半导体生产商从ARM公司购买其设计的ARM微处理器核（IP核），根据各自不同的应用领域，加入适当的外围电路，从而形成自己的ARM微处理器芯片进入市场。目前，全世界有几十家大的半导体公司都使用ARM公司的授权，因此既使得ARM技术获得更多的第三方工具、制造、软件的支持，又使整个系统成本降低，使产品更容易进入市场被消费者所接受，更具有竞争力。</p>
+<p>目前，采用<strong>ARM技术知识产权（IP）核的微处理器</strong>，即我们通常所说的ARM微处理器，已遍及工业控制、消费类电子产品、通信系统、网络系统、无线系统等各类产品市场，基于ARM技术的微处理器应用约占据了<strong>32位RISC微处理器</strong>75％以上的市场份额，ARM技术正在逐步渗入到我们生活的各个方面。</p>
+<p><strong>ARM公司是一种fabless、chipless这一生产模式最为成功的典范</strong>。它所倡导的这种设计-制造-应用相互合作而构成一个产业链的半导体工业生产模式也成为一种新型的现代化的生产模式带来了革命性的成功经验。</p>
+<h5 id="arm市场份额">ARM市场份额</h5>
+<p>手机处理器90%的市场份额上网本处理器30%的市场份额。</p>
+<p>ARM处理器之于手机就像Intel处理器之于电脑</p>
+<p>使用ARM处理器的手机：</p>
+<ul>
+<li>诺基亚：N86、N95、N96、N97、N900、N8、N81、N85、X6、E50、E51、E52、E63、E66、E71、E72
+、5230XM、5320XM、5530XM、5630XM、5730XM、5800XM等。</li>
+<li>摩托罗拉：XT800、XT702、XT701、ME600、ME501、ME500、Milestone、RAZR
+V8、VE66、A1200E、A1210、A1600、A1800、A1890、U9、A810、ROKR
+EM30、EM35、ROKR E6、ROKR E8等。</li>
+<li>索爱X1、X2、M1i、X10、Satio、U8i等</li>
+<li>iPhone：iPhone 3GS、iPhone 4</li>
+</ul>
+<p>华为自主研发的麒麟处理器，同样采用Arm 的指令集架构(instruction set
+architecture, ISA)。这是因为<strong>ARM 和英特尔的x86是Android
+支持的唯二指令集架构</strong>，而Android
+是全世界最流行的移动操作系统。</p>
+<p>华为手机如果想要预装Android 操作系统，必须采用ARM
+架构的处理器，无论自主生产还是向高通采购。</p>
+<blockquote>
+<p>目前Arm
+已发布的最高版本指令集架构为ARMv8，于2011年发布，主打64位处理降低功耗，以及支持4GB以上内存。华为在2013年获得了授权，此后基于ARMv8已经生产了多个型号大量的麒麟处理器。</p>
+<p>Arm
+的内部禁令无法影响华为基于已获得授权的ARMv8指令集架构，设计和开发处理器并安装到手机上。考虑到ARMv9的发布时间暂未确定，且高通骁龙、苹果和华为麒麟的处理器技术仍在不断更新（甚至许多ARMv7
+处理器仍在服役），ARMv8 距离报废还很远。</p>
+<p>理论上，华为可以继续采用ARMv8
+指令集架构设计和生产麒麟处理器，直到本轮科技禁运解除。这意味着，Arm
+的禁令对华为至少在短期内不会起到实质效果。</p>
+</blockquote>
+<h4 id="嵌入式微控制器mcu">嵌入式微控制器（MCU）</h4>
+<p>嵌入式微控制器(MCU)俗称<strong>单片机</strong>，它将整个计算机系统集成到一块芯片中。微控制器一般以某一种微处理器内核为核心，芯片内部集成FLASH、RAM、总线逻辑、定时/计数器、I/O口、串行口、PWM、A/D、D/A等各种必要功能模块和外围部件。8051便是最著名的MCU。</p>
+<p>为控制器最大的特点是<strong>单片化、体积小、功耗低、成本低、可靠性高</strong>，片内资源比较丰富、适合于控制应用。</p>
+<h4 id="数字信号处理器dsp">数字信号处理器（DSP）</h4>
+<p>DSP对系统结构和指令进行了特殊设计，使其特别适合于数字信号处理，其<strong>计算能力和指令执行效率</strong>都比较高。特别适合于运算量较大的智能化系统中，如：语音识别、语音或图像编解码、ADSL接入、带加解密算法的键盘、虚拟现实显示、高精度工业控制系统等等。TI公司TMS320C2000/5000/6000系列DSP是该类产品中最著名的。</p>
+<h4 id="嵌入式片上系统soc">嵌入式片上系统（SoC）</h4>
+<p>片上系统（SoC）就是结合了许多功能模块，<strong>将整个嵌入式系统做在了一个芯片上的系统。</strong>ARM/MIPS/DSP或其他<strong>微处理器核</strong>加上<strong>通信接口单元</strong>（如：通用串行接口UART、USB、TCP/IP、IEEE1394、蓝牙模块接口等）<strong>构成SoC</strong>。</p>
+<p>嵌入式系统实现的<strong>最高形式是SoC</strong>，而<strong>SoC的核心技术就是IP核构件</strong>。在IP技术中把<strong>不同功能的电路模块称为IP</strong>，这些IP都是经过实际制作并证明是正确的，用户只需知道这些IP模块的功能和技术性能，便可以拿来使用。这种技术极大地简化了SoC的设计过程，缩短了设计时间。</p>
+<p><strong>SoC技术的出现表明了微电子设计由以往的IC（电路集成）向IS（系统集成）发展</strong>。面向嵌入式系统的SoC设计将是未来推动集成电路设计业发展至关重要的问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%80%E5%8F%91%E6%A6%82%E8%BF%B0/" rel="prev" title="嵌入式系统的开发概述">
+                  <i class="fa fa-chevron-left"></i> 嵌入式系统的开发概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/" rel="next" title="嵌入式系统软件架构">
+                  嵌入式系统软件架构 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
