@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">60</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">82</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9ALoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,7 +234,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">信息论与编码：线性分组码与性能参数</a>
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9ALoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">嵌入式：Load/Store之单寄存器的存取指令</a>
         </h2>
 
         <div class="post-meta-container">
@@ -245,7 +245,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-11-27 10:51:40" itemprop="dateCreated datePublished" datetime="2022-11-27T10:51:40+08:00">2022-11-27</time>
+      <time title="Created: 2022-12-21 11:22:50" itemprop="dateCreated datePublished" datetime="2022-12-21T11:22:50+08:00">2022-12-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -253,7 +253,11 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
         </span>
     </span>
 
@@ -267,36 +271,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="线性分组码nk定义">1.1 线性分组码(n,k)定义</h3>
-<p>线性分组码是由 (n, k) 形式表示。编码器将一个 k
-比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n
-比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 ,
-称为二进制编码。</p>
-<p>k-bit 信息形成 <span class="math inline">\(2^k\)</span>
-不同的信息序列 , 称为 k 元组。 n-bit 可以形成 <span
-class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
-<p>(n，k）分组码输出的长度为n的序列称为<strong>码字</strong>。所有这些码字的集合称为该线性分组码的<strong>码组</strong>。
-因为n&gt;k，故编码时需按某种规则加入r=n-k个监督（校验）码元。</p>
-<p>对于分组码(n,k),定义</p>
+          <p>ARM处理器是Load/Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。</p>
+<p>ARM的数据存取指令Load/Store是唯一用于寄存器和存储器之间进行数据传送的指令。</p>
+<p>在ARM系统中I/O操作是通过存储器映射进行寻址的，对I/O设备的操作可以和对存储器的操作一样，因此，也是使用Load/Store指令完成。</p>
+<h3 id="loadstore指令分类">Load/Store指令分类</h3>
+<p>ARM指令集中有三种基本的数据存取指令：</p>
 <ul>
-<li><strong>编码效率: k/n</strong></li>
-<li><strong>编码冗余度:(n-k)/n</strong></li>
-</ul>
-<p>线性分组码的几个重要概念</p>
-<ul>
-<li><p><strong>码距（汉明距离）</strong>：两个码组中<strong>对应位置上具有不同二进制码元的位数</strong></p></li>
-<li><p><strong>码重（汉明重量）</strong>：线性分组码中，将码字（组）中<strong>所含
-1 的数目</strong>定义为码字(组)的重量</p></li>
-<li><p>编码信道：研究信道编码和译码的信道模型</p>
-<ul>
-<li>二元码、硬判决时，建模为 BSC （二元对称）信道</li>
-<li>软判决时，建模为 AWGN 信道</li>
-<li>软判决与硬判决译码（简单理解：译码器输入比特的选取）</li>
-</ul></li>
+<li>单寄存器的存取指令（LDR，STR）：提供寄存器和存储器之间最灵活的单数据项传送方式，传送的数据可以是8位字节、16位半字或32位字。</li>
+<li>多寄存器存取指令（LDM，STM）：可有效地用于大批数据的传送。一般这些指令用于进程的进入和退出，保存和恢复工作寄存器以及拷贝存储器中一块数据。</li>
+<li>单寄存器交换指令（SWP）：用于寄存器和存储器中的数据交换。在一个指令中完成存取操作。该指令常用来完成信号量操作，而信号量是一种解决进程同步和互斥问题的机制。</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/#more" rel="contents">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9ALoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -327,7 +314,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -345,7 +332,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">信息论与编码：信道的定义和分类</a>
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">嵌入式：数据处理指令详解</a>
         </h2>
 
         <div class="post-meta-container">
@@ -356,7 +343,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-11-26 09:33:36" itemprop="dateCreated datePublished" datetime="2022-11-26T09:33:36+08:00">2022-11-26</time>
+      <time title="Created: 2022-12-20 15:22:20" itemprop="dateCreated datePublished" datetime="2022-12-20T15:22:20+08:00">2022-12-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -364,7 +351,11 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
         </span>
     </span>
 
@@ -378,20 +369,647 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>信道是任何一种通信系统中必不可少的组成部分。任何一个通信系统都可以视为由发送，信道与接收三部分组成。信道通常指以传输媒介为基础的信号通道。</p>
-<p>信号在信道中传输，可能遇到的影响主要有<strong>信道加性噪声</strong>
-、 <strong>信号幅度衰减</strong>和<strong>相位失真</strong> 、
-<strong>信道特性的非线性</strong>
-、<strong>带宽限制</strong>和<strong>多径失真</strong>等。</p>
+          <p>ARM的数据处理指令主要完成寄存器中数据的算术和逻辑运算操作：</p>
+<ul>
+<li>数据处理指令分类</li>
+<li>数据处理指令二进制编码</li>
+<li>数据处理指令表</li>
+</ul>
+<p>数据处理指令根据指令实现处理功能可分为以下六类：</p>
+<ul>
+<li>数据传送指令；</li>
+<li>算术运算指令；</li>
+<li>逻辑运算指令；</li>
+<li>比较指令；</li>
+<li>测试指令；</li>
+<li>乘法指令。</li>
+</ul>
+<h3 id="数据处理指令的特点">数据处理指令的特点</h3>
+<p>所有操作数都是32位宽，或来自寄存器或来自指令中的立即数（符号或0扩展）</p>
+<p>如果数据操作有结果，则结果为32位宽，放在一个寄存器中（有一个例外是长乘指令的结果是64位的）；</p>
+<p>ARM数据处理指令中使用“3地址模式”，即1个目的操作寄存器、1个源操作数寄存器和1个灵活的第2操作数，这个第2操作数可以使寄存器、移位后的寄存器或者立即数。如果第2操作数为寄存器Rm，它也可以进行移位（包括：逻辑移位、算术移位、循环移位），移位位数可以来自一5位立即数或也可以使一寄存器的内容。当然，这3个操作数也可以只用1个或者2个，甚至1个都不用（如测试指令TST，TEQ等）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">嵌入式：堆栈寻址、相对寻址与ARM指令总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-19 13:19:36" itemprop="dateCreated datePublished" datetime="2022-12-19T13:19:36+08:00">2022-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="堆栈寻址">堆栈寻址</h2>
+<p>堆栈是一种数据结构，按先进后出（First In Last
+Out，FILO）的方式工作，使用一个称作堆栈指针（SP）的专用寄存器（R13）指示当前的操作位置，堆栈指针总是指向栈顶。</p>
+<p>当堆栈指针指向最后压入堆栈的数据时，称为满堆栈（Full
+Stack），而当堆栈指针指向下一个将要放入数据的空位置时，称为空堆栈（Empty
+Stack）。</p>
+<p>根据堆栈的生成方式，又可以分为递增堆栈（Ascending
+Stack）和递减堆栈（Decending
+Stack），当堆栈由低地址向高地址生成时，称为递增堆栈，当堆栈由高地址向低地址生成时，称为递减堆栈。</p>
+<h3 id="堆栈工作方式">堆栈工作方式</h3>
+<p>这样就有四种类型的堆栈工作方式</p>
+<ul>
+<li>满递增堆栈：堆栈指针指向最后压入的数据，且由低地址向高地址生成。</li>
+<li>满递减堆栈：堆栈指针指向最后压入的数据，且由高地址向低地址生成。</li>
+<li>空递增堆栈：堆栈指针指向下一个将要放入数据的空位置，且由低地址向高地址生成。</li>
+<li>空递减堆栈：堆栈指针指向下一个将要放入数据的空位置，且由高地址向低地址生成</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/" class="post-title-link" itemprop="url">嵌入式：ARM间接寻址、变址寻址与多寄存器寻址</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-18 19:44:47" itemprop="dateCreated datePublished" datetime="2022-12-18T19:44:47+08:00">2022-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="寄存器间接寻址">寄存器间接寻址</h2>
+<p>寄存器间接寻址就是以寄存器中的值作为操作数的地址，而操作数本身存放在存储器中。例如以下指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR	R0，[R1]		/*R0←[R1]*/</span><br><span class="line">STR	R0，[R1]		/*[R1]←R0*/</span><br></pre></td></tr></table></figure>
+<p>第一条指令将以R1的值为地址的存储器中的数据传送到R0中。第二条指令将R0的值传送到以R1的值为地址的存储器中。</p>
+<p>ARM的数据传送指令都是基于寄存器间接寻址，即通过Load/Store完成对数据的传送操作。</p>
+<h2 id="基址加偏址寻址变址寻址">基址加偏址寻址（变址寻址）</h2>
+<p>基址变址寻址就是将寄存器（该寄存器一般称作基址寄存器）的内容与指令中给出的地址偏移量（用12位表示，不超过4KB）相加，从而得到一个操作数的有效地址。变址寻址方式常用于访问某基地址附近的地址单元。</p>
+<p>变址寻址方式可以分为：前变址（Pre-indexed）、自动变址（Auto-indexed）和后变址（Post-indexed）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/" class="post-title-link" itemprop="url">嵌入式：ARM立即寻址与寄存器寻址</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-16 23:57:46" itemprop="dateCreated datePublished" datetime="2022-12-16T23:57:46+08:00">2022-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="立即寻址">立即寻址</h2>
+<p>立即寻址也叫立即数寻址，这是一种特殊的寻址方式，操作数本身就在指令中给出，只要取出指令也就取到了操作数，这个操作数被称为立即数，对应的寻址方式也就叫做立即寻址。例如以下指令：
+<code>ADD    R0，R0，＃1        /*R0←R0＋1*/</code>
+<code>ADD    R0，R0，＃0x3f /*R0←R0＋0x3f*/</code></p>
+<p>立即数，要求以“＃”为前缀，对于以十六进制表示的立即数，还要求在“＃”后加上“0x”，对于以二进制表示的立即数，还要求在“＃”后加上“0b”
+，对于以十进制表示的立即数，还要求在“＃”后加上“0d”或者缺省 。</p>
+<h3 id="立即数的表示">立即数的表示</h3>
+<p>（1）8位立即数的表示</p>
+<ul>
+<li>8位立即数用“#”+数字直接表示。</li>
+</ul>
+<p>（2）32位立即数的表示
+由于32位立即数在指令中占用32个位，如果直接表示，则将导致ARM指令编码的长度超过32位，为了减小编码长度，32位立即数采用移位间接表示法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">嵌入式：ARM指令集分类及编码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-15 10:43:44" itemprop="dateCreated datePublished" datetime="2022-12-15T10:43:44+08:00">2022-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>ARM指令集是32位的，程序的启动都是从ARM指令集开始。主要是以下三个方面：</p>
+<ul>
+<li>指令分类及指令格式</li>
+<li>条件执行</li>
+<li>指令集编码</li>
+</ul>
+<h3 id="指令分类及指令格式">指令分类及指令格式</h3>
+<p>ARM指令使用的基本格式如下： 〈opcode〉{〈cond〉} {S}
+〈Rd〉,〈Rn〉{,〈operand2〉} &lt; &gt; 是必须项 ， {}是可选项</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221215102100900.png" /></p>
+<p>指令格式中符号说明:</p>
+<p><strong>opcode</strong>操作码；指令助记符，如ADD、STR等。
+<strong>cond</strong> 可选的条件码；执行条件，如EQ、NE等。
+<strong>S</strong>
+可选后缀；若指定“S”，则根据指令执行结果更新CPSR中的条件码。
+<strong>Rd</strong> 目标寄存器。 <strong>Rn</strong>
+存放第1操作数的寄存器。 <strong>op2</strong> 第2个操作数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84IO%E8%AE%BF%E9%97%AE%E4%B8%8E%E8%8A%AF%E7%89%87%E9%80%89%E6%8B%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84IO%E8%AE%BF%E9%97%AE%E4%B8%8E%E8%8A%AF%E7%89%87%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">嵌入式：ARM的IO访问与芯片选择</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-14 23:14:47" itemprop="dateCreated datePublished" datetime="2022-12-14T23:14:47+08:00">2022-12-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="arm的io访问">ARM的IO访问</h2>
+<p>ARM架构中的处理器核一般都没有I/O部件和模块，ARM架构处理器的I/O可通过AMBA总线来扩充。</p>
+<h3 id="存储器映射io">（1）存储器映射I/O</h3>
+<p>ARM采用了存储器映射I/O方式。即把I/O端口地址作为特殊的存储器地址。但I/O和真正的存储器有所不同：存储器的单元可以重复读多次，其值是一致的。而I/O设备的连续2次输入，其输入值可能有所不同。这些差异，会影响到存储器系统中的Cache和写缓冲作用，因此应该把存储器映射I/O单元标识为非Cache（Uncachable）和非缓冲的（Unbufferable）。在许多ARM架构系统里，I/O单元对于用户码是不可访问的，只可以通过系统管理调用（SWI）或通过C的库函数来使用这些调用。</p>
+<h3 id="直接存储器访问dma">（2）直接存储器访问DMA</h3>
+<p>在I/O数据流量比较大且中断处理比较频繁的场合，会明显影响系统的性能。因此，许多系统采用了存储器直接访问DMA
+,
+这样，I/O的数据块传送至存储器的缓冲区就不需要处理器介入。而中断也仅仅出现在出错时或缓冲器满时。</p>
+<p>一般一些高档的ARM架构处理器中具有DMA功能。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84IO%E8%AE%BF%E9%97%AE%E4%B8%8E%E8%8A%AF%E7%89%87%E9%80%89%E6%8B%A9/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87%E3%80%81%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%E5%8F%8A%E7%89%87%E4%B8%8A%E6%80%BB%E7%BA%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87%E3%80%81%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%E5%8F%8A%E7%89%87%E4%B8%8A%E6%80%BB%E7%BA%BF/" class="post-title-link" itemprop="url">嵌入式：ARM存储器组织、协处理器及片上总线</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-13 11:13:05" itemprop="dateCreated datePublished" datetime="2022-12-13T11:13:05+08:00">2022-12-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="arm存储器组织">ARM存储器组织</h2>
+<h3 id="arm存储数据类型和存储格式">ARM存储数据类型和存储格式</h3>
+<p>ARM处理器支持以下6种数据类型</p>
+<ul>
+<li>8位有符号和无符号字节。</li>
+<li>16位有符号和无符号半字，它们以两字节的边界定位。</li>
+<li>32位有符号和无符号字，它们以4字节的边界定位。</li>
+</ul>
+<p>存储器组织</p>
+<p>在以字节为单位寻址的存储器中有“小端”和“大端”两种方式存储字，这两种方式是根据最低有效字节与相邻较高有效字节相比是存放在较低的还是较高的地址来划分的，两种存储方式如图所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221213105428057.png" /></p>
+<h3 id="arm的存储器层次简介">ARM的存储器层次简介</h3>
+<ul>
+<li><p>寄存器组 :
+存储器层次的顶层，典型为32个32位寄存器，访问时间为几个ns</p></li>
+<li><p>片上RAM ：和片上寄存器组具有同级的读写速度。成本较高。</p></li>
+<li><p>片上Cache ：容量为8~32KB，访问时间大概为10ns。</p></li>
+<li><p>主存储器
+：可能在几兆到1G的动态存储器。访问时间大约50ns。</p></li>
+<li><p>硬盘：后援存储器，容量从几百兆到几十GB，访问时间为几十ms。</p>
 <blockquote>
-<p>实际通信系统中，通过调整通信系统参数可以减小信道对信号失真的影响，但由于传输媒介的物理特性和实际通信系统中所采用的电子元器件的限制，使系统参数的调整范围受到限制，导致了在<strong>任何一通信系统中可靠的信息传输速率的大小是受限的</strong>。</p>
-</blockquote>
-<p>信道可以分为：狭义信道和广义信道</p>
-<h3 id="狭义信道"><strong>狭义信道</strong></h3>
-<p>仅指传输媒介，可分为 <strong>有线信道 和 无线信道</strong> 两类。</p>
+<p>嵌入式系统通常没有硬盘，因此也不采用页方式，但是许多嵌入式系统采用cache，ARM
+CPU采用了多种Cache结构。</p>
+</blockquote></li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/#more" rel="contents">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87%E3%80%81%E5%8D%8F%E5%A4%84%E7%90%86%E5%99%A8%E5%8F%8A%E7%89%87%E4%B8%8A%E6%80%BB%E7%BA%BF/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -422,7 +1040,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -440,7 +1058,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">信息论与编码：信道的数学模型</a>
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">嵌入式：ARM的流水线技术</a>
         </h2>
 
         <div class="post-meta-container">
@@ -451,7 +1069,7 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-11-26 09:33:32" itemprop="dateCreated datePublished" datetime="2022-11-26T09:33:32+08:00">2022-11-26</time>
+      <time title="Created: 2022-12-12 16:24:52" itemprop="dateCreated datePublished" datetime="2022-12-12T16:24:52+08:00">2022-12-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -459,7 +1077,11 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
         </span>
     </span>
 
@@ -473,28 +1095,20 @@ class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="广义信道的数学模型">广义信道的数学模型</h3>
-<p>连续信道模型 和 离散信道模型</p>
-<h3 id="连续信道的数学模型">连续信道的数学模型</h3>
-<p>广义信道中的<strong>调制信道</strong>属于连续信道。我们所关心的是信号经过信道所得到的输出信号，信道内部的变化过程并不重要。可以用描述一定输入、输出关系的方框来表示。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191150839.png" /></p>
-<p>连续信道具有以下一些特征：</p>
+          <h2 id="三级流水线arm的组织">三级流水线ARM的组织</h2>
+<h3 id="arm的3级流水线介绍">ARM的3级流水线介绍</h3>
+<p>到ARM7为止的ARM处理器使用的简单3级流水线分别为</p>
 <ul>
-<li>可以有一对或者多对输入端和输出端；</li>
-<li>大多数信道都为线性，也就是满足线性叠加原理；</li>
-<li>信号通过此类信道具有固定或者时变延迟，以及固定或时变的损耗和衰落；</li>
-<li>信道中不可避免的会引入噪声，即使没有输入信号，也会有噪声输出。</li>
+<li>取指级 ：读取指令。</li>
+<li>译码级 ：对指令进行译码。占有“译码逻辑”，不占有“数据路径”。</li>
+<li>执行级
+：指令占有“数据路径”，寄存器堆栈被读取，操作数在桶式移位器中被移位，ALU产生相应的运算结果，并写回目的寄存器中。并根据需求更改状态寄存器的条件位。</li>
 </ul>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191338106.png" /></p>
-<p>连续信道一般可以看作一个输出端叠加有噪声的时变线性网络，输入输出关系如下：
-<span class="math display">\[
-r(t)=f\left[s_{i}(t)\right]+n(t)
-\]</span>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221212161522646.png" /></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/#more" rel="contents">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%8A%80%E6%9C%AF/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -525,7 +1139,7 @@ r(t)=f\left[s_{i}(t)\right]+n(t)
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8D%95%E9%93%BE%E8%A1%A8%E5%9B%BE%E8%A7%A3%E5%8F%8A%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E5%BC%82%E5%B8%B8%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -543,7 +1157,7 @@ r(t)=f\left[s_{i}(t)\right]+n(t)
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8D%95%E9%93%BE%E8%A1%A8%E5%9B%BE%E8%A7%A3%E5%8F%8A%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">算法基础：单链表图解及模板总结</a>
+          <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E5%BC%82%E5%B8%B8%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">嵌入式：ARM的异常管理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -554,7 +1168,7 @@ r(t)=f\left[s_{i}(t)\right]+n(t)
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2022-11-24 09:47:34" itemprop="dateCreated datePublished" datetime="2022-11-24T09:47:34+08:00">2022-11-24</time>
+      <time title="Created: 2022-12-11 20:15:56" itemprop="dateCreated datePublished" datetime="2022-12-11T20:15:56+08:00">2022-12-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -562,7 +1176,11 @@ r(t)=f\left[s_{i}(t)\right]+n(t)
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
         </span>
     </span>
 
@@ -576,585 +1194,18 @@ r(t)=f\left[s_{i}(t)\right]+n(t)
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="静态链表">静态链表</h2>
-<p>如果说用结构体+指针的方式实现链表和栈的话，每次需要new一个新节点，非常慢。笔试题链表大小在10万级别，因此笔试题一般不会采用这种动态链表的方式。通常采用数组模拟链表的方式，这种方式更快。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> val;</span><br><span class="line">	Node *next;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Node</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="链表与邻接表">链表与邻接表</h2>
-<h2 id="邻接表">邻接表</h2>
-<p>邻接表的head[i]存储的是节点i所有的临边。实际上就是一个单链表。</p>
-<h3 id="用数组模拟单链表">用数组模拟单链表</h3>
-<p>单链表里常用的是邻接表。邻接表主要用来存储图和数。</p>
-<p>双链表常用来优化某些问题。</p>
-<p>链表的结构通常如下所示：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221017182739361.png" /></p>
-<p>每一个节点中通常存储两个数，分别是节点值（val）和指向下一个节点的指针（next）。通常如下：</p>
-<ul>
-<li>val ：e[N]</li>
-<li>next ：ne[N]</li>
-</ul>
-<p>两者通过索引下标相联系。</p>
+          <p>在ARM体系结构中，异常中断用来处理软件中断、未定义指令陷阱及系统复位功能和外部事件，这些“不正常”事件都被划归“异常”，因为在处理器的控制机制中，它们都使用同样的流程进行异常处理。</p>
+<h2 id="arm的异常中断响应过程">ARM的异常中断响应过程</h2>
+<p>ARM处理器对异常中断的响应过程如下</p>
+<p>将CPSR的内容保存到将要执行的异常中断对应的SPSR中
+设置当前状态寄存器CPSR中的相应位</p>
+<p>将引起异常指令的下一条指令的地址保存到新的异常工作模式的R14
+给程序计数器（PC）强制赋值</p>
+<p>每个异常模式对应有两个寄存器R13_<mode>、R14_<mode>分别保存相应模式下的堆栈指针、返回地址；堆栈指针可用来定义一个存储区域保存其它用户寄存器，这样异常处理程序就可以使用这些寄存器。
+FIQ模式还有额外的专用寄存器R8_fiq～R12_fiq，使用这些寄存器可以加快快速中断的处理速度。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8D%95%E9%93%BE%E8%A1%A8%E5%9B%BE%E8%A7%A3%E5%8F%8A%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">算法基础：区间合并算法及模板应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-23 10:23:16" itemprop="dateCreated datePublished" datetime="2022-11-23T10:23:16+08:00">2022-11-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="区间合并">区间合并</h1>
-<h2 id="基本思想">基本思想</h2>
-<p>将多个区间进行合并，其中有交集的区间合为一个区间，没有交集的区间保留原状。注意，这里端点重合也算作一种交集区间。</p>
-<p>算法的图解如下：</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221014210207531.png" /></p>
-<h2 id="算法思路">算法思路</h2>
-<p>首先按照区间的左端点进行排序。</p>
-<p>然后维护一个最左侧的区间。设头节点为st，尾节点尾ed。</p>
-<p>可能会有以下三种情况：</p>
-<p>1.下一个区间在本区间中。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221014211603753.png" /></p>
-<p>则将区间更新为两个区间的并集，将尾节点设置为两区间最大的节点即可。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87/" class="post-title-link" itemprop="url">计算机网络：数据链路层设备</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-22 09:24:47" itemprop="dateCreated datePublished" datetime="2022-11-22T09:24:47+08:00">2022-11-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="网桥的基本概念">网桥的基本概念</h3>
-<p>两个或多个以太网通过网桥连接后，就成为一个覆盖范围更大的以太网，而<strong>原来的每个以太网就称为一个网段</strong>。<strong>网桥工作在链路层的MAC子层，可以使以太网各网段成为隔离开的碰撞域(
-又称冲突域
-)</strong>。如果把网桥换成工作在物理层的转发器，那么就没有这种过滤通信量的功能。由于各网段相对独立，因此一个网段的故障不会影响到另一个网段的运行。<strong>网桥必须具有路径选择的功能</strong>，接收到帧后，要决定正确的路径，将该帧转送到相应的目的局域网站点。</p>
-<p>网络1和网络2通过网桥连接后，网桥接收网络1发送的数据帧，检查数据帧中的地址，如果是网络2的地址，那么就转发给网络2:如果是网络1的地址，那么就将其丢弃，<strong>因为源站和目的站处在同一个网段，目的站能够直接收到这个帧而不需要借助网桥转发</strong>。</p>
-<h3 id="局域网交换机">局域网交换机</h3>
-<h4 id="交换机的原理和特点">交换机的原理和特点</h4>
-<p><strong>局域网交换机，又称以太网交换机</strong>，从本质上说，<strong>以太网交换机是一个多端口的网桥，它工作在数据链路层</strong>。交换机能经济地将网络分成小的冲突域，为每个工作站<strong>提供更高的带宽</strong>。以太网交换机的原理是，它检测从以太端口来的数据帧的源和目的地的MAC（介质访问层）地址，然后与系统内部的动态查找表进行比较，若数据帧的源MAC地址不在查找表中，则将该地址加入查找表，并将数据帧发送给相应的目的端口。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9APPP%E5%8D%8F%E8%AE%AE%E4%B8%8EHDLC%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9APPP%E5%8D%8F%E8%AE%AE%E4%B8%8EHDLC%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">计算机网络：PPP协议与HDLC协议</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-21 08:55:32" itemprop="dateCreated datePublished" datetime="2022-11-21T08:55:32+08:00">2022-11-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ppp协议">PPP协议</h3>
-<p>PPP (Point-to-Point
-Protocol）是<strong>使用串行线路通信的面向字节的协议</strong>，该协议应用在直接连接两个结点的链路上。设计的目的主要是用来通过拨号或专线方式建立点对点连接发送数据，<strong>使其成为各种主机、网桥和路由器</strong>之间简单连接的一种共同的解决方案。</p>
-<p>PPP协议是在SLIP
-协议的基础上发展而来的，它既可以在异步线路上传输，又可在同步线路上使用;
-不仅用于Modem链路，也用于租用的路由器到路由器的线路。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9APPP%E5%8D%8F%E8%AE%AE%E4%B8%8EHDLC%E5%8D%8F%E8%AE%AE/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">计算机网络：广域网的基本概念</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-20 09:46:05" itemprop="dateCreated datePublished" datetime="2022-11-20T09:46:05+08:00">2022-11-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>广域网通常是指<strong>覆盖范围很广（远超一个城市的范围）的长距离网络</strong>。广域网是因特网的核心部分，其任务是长距离运送主机所发送的数据。连接广域网各结点交换机的链路都是<strong>高速链路</strong>，它可以是长达几千千米的光缆线路，也可以是长达几万千米的点对点卫星链路。因此广域网首要考虑的问题是<strong>通信容量必须足够大</strong>，以便支持日益增长的通信量。</p>
-<p>广域网不等于互联网，互联网可以连接不同类型的网络（既可以连接局域网，又可以连接广域网)，通常使用路由器来连接。局域网可以通过广域网与另一个相隔很远的局域网通信。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104092553497.png" /></p>
-<p>结点交换机和路由器都用来转发分组，它们的工作原理也类似。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AVLAN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AVLAN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">计算机网络：VLAN基本概念与原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-19 09:37:35" itemprop="dateCreated datePublished" datetime="2022-11-19T09:37:35+08:00">2022-11-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一个以太网是一个广播域，当一个以太网包含的计算机太多时，往往会导致:</p>
-<p>以太网中出现大量的广播帧，特别是经常使用的<strong>ARP 和
-DHCP</strong>协议。</p>
-<p>一个单位的不同部门共享一个局域网，对信息保密和安全不利。</p>
-<p>通过虚拟局域网（Virtual
-LAN)，可以把一个较大的局域网分割成一些较小的与地理位置无关的逻辑上的VLAN，而每个VLAN是一个较小的广播域。</p>
-<p>802.3ac标准定义了支持VLAN的以太网帧格式的扩展。它<strong>在以太网帧中插入一个4字节的标识符(插入在源地址字段和类型字段之间)，称为VLAN标签</strong>，用来指明发送该帧的计算机属于哪个虚拟局域网。插入VLAN标签的帧称为802.1Q帧。由于VLAN帧的首部增加了4字节，因此以太网的最大帧长从原来的1518字节变为1522字节。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221103221931597.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AVLAN%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/" class="post-title-link" itemprop="url">计算机网络：IEEE 802.11无线局域网</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-17 13:33:52" itemprop="dateCreated datePublished" datetime="2022-11-17T13:33:52+08:00">2022-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="无线局域网的组成">1.无线局域网的组成</h3>
-<p>无线局域网可分为两大类:有固定基础设施的无线局域网和无固定基础设施的移动自组织网络。所谓“固定基础设施”，是指<strong>预先建立的、能覆盖一定地理范围的固定基站</strong>。</p>
-<h4 id="有固定基础设施无线局域网">(1)有固定基础设施无线局域网</h4>
-<p>对于有固定基础设施的无线局域网，IEEE制定了无线局域网的802.11系列协议标准，包括802.11a/b/g/n等。<strong>802.11使用星形拓扑</strong>，其<strong>中心称为接入点(Access
-Point，AP)</strong>，<strong>在MAC层使用CSMA/CA协议</strong>。使用<strong>802.11系列协议的局域网又称Wi-Fi</strong>。</p>
-<p>802.11标准规定<strong>无线局域网的最小构件是基本服务集BSS(Basic
-Service Set,
-BSS)</strong>。一个基本服务集包括一个接入点和若干移动站。各站在本
-BSS内之间的通信，或与本
-BSS外部站的通信，都<strong>必须通过本BSS的AP</strong>。上面提到的<strong>AP就是基本服务集中的基站(base
-station)</strong>。安装AP时，必须为该<strong>AP分配一个不超过32字节的服务集标识符(Service
-Set IDentifier，SSID）和一个信道</strong>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/#more" rel="contents">
+              <a class="btn" href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9A%84%E5%BC%82%E5%B8%B8%E7%AE%A1%E7%90%86/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1178,7 +1229,7 @@ Set IDentifier，SSID）和一个信道</strong>。</p>
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
@@ -1190,7 +1241,7 @@ Set IDentifier，SSID）和一个信道</strong>。</p>
 
 <div class="copyright">
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

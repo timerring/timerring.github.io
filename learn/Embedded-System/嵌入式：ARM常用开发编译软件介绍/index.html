@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="编译器介绍  1、ADS1.2 ADS（ARM Developer Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。 他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C 编译器；实时调试器；应用函数库。ADS对汇编、C&#x2F;C++、java支持的均很好，是目前最成">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="嵌入式：ARM常用开发编译软件介绍">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="编译器介绍  1、ADS1.2 ADS（ARM Developer Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。 他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C 编译器；实时调试器；应用函数库。ADS对汇编、C&#x2F;C++、java支持的均很好，是目前最成">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-27T02:58:21.355Z">
+<meta property="article:modified_time" content="2022-12-27T02:57:59.269Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/","path":"Learn/Embedded-System/嵌入式：ARM常用开发编译软件介绍/","title":"嵌入式：ARM常用开发编译软件介绍"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>嵌入式：ARM常用开发编译软件介绍 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">82</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">编译器介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ads1.2"><span class="nav-number">2.</span> <span class="nav-text">1、ADS1.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arm-realview-developer-suite-rvds"><span class="nav-number">3.</span> <span class="nav-text">2、ARM RealView Developer
+Suite (RVDS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iar-ewarm"><span class="nav-number">4.</span> <span class="nav-text">3、IAR EWARM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keil-arm-mdkarm"><span class="nav-number">5.</span> <span class="nav-text">4、KEIL ARM-MDKARM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#win-arm-gcc-arm"><span class="nav-number">6.</span> <span class="nav-text">5、WIN ARM-GCC ARM</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="嵌入式：ARM常用开发编译软件介绍 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          嵌入式：ARM常用开发编译软件介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-27 10:58:21" itemprop="dateCreated datePublished" datetime="2022-12-27T10:58:21+08:00">2022-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="编译器介绍">编译器介绍</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221227105406508.png" /></p>
+<h2 id="ads1.2">1、ADS1.2</h2>
+<p>ADS（ARM Developer
+Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。
+他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C
+编译器；实时调试器；应用函数库。ADS对汇编、C/C++、java支持的均很好，是目前最成熟的ARM开发工具。很多ARM开发软件（例如Keil）也是借用的ADS的编译器。ADS在2006年版本已经发布到2.2。但国内大部分开发者使用的均是1.2版本</p>
+<p>ADS1.2提供完整的WINDOWS界面开发环境。C编译器效率高，支持c
+以及c++。提供软件模拟仿真功能，使没有Emulators的学习者也能够熟悉ARM的指令系统。配合FFT-ICE使用，ADS1.2提供强大的实时调试跟踪功能,片内运行情况尽在掌握。ADS1.2需要硬件支持才能发挥强大功能。目前支持的硬件调试器有Multi-ICE以及兼容Multi-ICE的调试工具如FFT-ICE。</p>
+<p>版本：ADS1.2</p>
+<p>软件大小：130M</p>
+<span id="more"></span>
+<h2 id="arm-realview-developer-suite-rvds">2、ARM RealView Developer
+Suite (RVDS)</h2>
+<p>ARM RealView Developer Suite (RVDS) 是 ARM 公司继 ARM Developer
+Suite(ADS 1.2) 之后推出的新一代开发工具，是业界公认最好的 ARM
+编译器之一。</p>
+<p>它由 RealView 编译器 (RVCT) ，以及 RealView 调试器（ RV Debugger ），
+CodeWarrior 集成开发环境和 ARMulator 指令集仿真器组成。可以支持所有标准
+ARM
+架构和内核，针对特定处理器进行代码优化，有多种可以灵活配置的优化选项以取得最小的代码尺寸和最好的性能。</p>
+<p>RealView ICE主要特点：</p>
+<ul>
+<li>高性能的调试控制</li>
+<li>通过 RealView Debugger 代码下载速度可达 1300 Kbytes/ 秒</li>
+<li>高速单步执行 , 每秒可达 100</li>
+<li>支持 JTAG 调试通信通道 (DCC)</li>
+<li>支持多种 JTAG 时钟频率 , 从 2KH~50MHZ</li>
+<li>更低的 JTAG 时钟频率 ( 低于 1KHZ), 支持 ASIC 外围电路调试</li>
+<li>宽电压支持 1.0~5.0V</li>
+<li>支持多核处理器调试 , 同步控制</li>
+<li>配合 RealView Trace 模块插件可捕获支持 ETM 跟踪数据</li>
+<li>通过 JTAG 访问 ETB 跟踪数据</li>
+<li>兼容 GDB 与 KGDB 调试</li>
+<li>支持 USB1.1 与 2.0 连接</li>
+<li>支持网络连接调试 10/100baseT</li>
+<li>支持的 ARM 处理器：ARM7 TM , ARM9 TM , ARM9E TM , ARM10 TM , ARM11
+TM 和 Cortex TM</li>
+</ul>
+<p>RealView Trace 主要特性：</p>
+<ul>
+<li>非插入式的实时指令跟踪与数据跟踪，跟踪频率可高达 250MHZ ，高达 8
+百万帧深度的跟踪缓冲区（高达 4 百万帧深度的 time stamp 缓冲区）</li>
+<li>48 位 time stamp ， 10 纳秒分辨率，支持最长连续 32 天数据跟踪</li>
+<li>4/8/16 位数据宽度跟踪端口</li>
+<li>外部事件同步触发器</li>
+<li>完全可变的触发位置</li>
+<li>快速 on-the-fly 跟踪数据上传</li>
+<li>与主机共享 RealView ICE 连接</li>
+<li>支持 ETM 跟踪端口模式</li>
+<li>支持 v1.x, v2.x, v3.x for ETM7TM ETM9TM, ETM10TM 与 ETM11TM 等 ETM
+协议</li>
+<li>单边沿和双边沿时钟触发</li>
+<li>普通与多元的端口</li>
+</ul>
+<p>库创建工具</p>
+<p>内容丰富的在线文档</p>
+<p>版本：ARM RealView Developer2.2</p>
+<p>软件大小：500M</p>
+<h2 id="iar-ewarm">3、IAR EWARM</h2>
+<p>Embedded Workbench for ARM 是IAR Systems 公司为ARM
+微处理器开发的一个集成开发环境(下面简称IAR EWARM)。比较其他的ARM
+开发环境，IAR EWARM 具有入门容易、使用方便和代码紧凑等特点。</p>
+<p>EWARM
+中包含一个全软件的模拟程序(simulator)。用户不需要任何硬件支持就可以模拟各种ARM
+内核、外部设备甚至中断的软件运行环境。从中可以了解和评估IAR EWARM
+的功能和使用方法。</p>
+<p>最新版本是: IAR Embedded Workbench for ARM version 4.30。</p>
+<p>IAR EWARM 的主要特点如下：</p>
+<ul>
+<li>高度优化的IAR ARM C/C++ Compiler</li>
+<li>IAR ARM Assembler</li>
+<li>一个通用的IAR XLINK Linker</li>
+<li>IAR XAR 和XLIB 建库程序和IAR DLIB C/C++运行库</li>
+<li>功能强大的编辑器</li>
+<li>项目管理器</li>
+<li>命令行实用程序</li>
+<li>IAR C-SPY 调试器(先进的高级语言调试器)</li>
+</ul>
+<p>版本：IAR EWARM 4.40a</p>
+<p>软件大小：93M</p>
+<h2 id="keil-arm-mdkarm">4、KEIL ARM-MDKARM</h2>
+<p>Keil公司已从事MCS-51开发平台uVision著名。近年来，Keil公司也将自己的领域扩展到了ARM的开发工具，即：keil
+arm，再后来keil真的被arm收购了，他的arm开发工具这一块就是现在的MDK系列。</p>
+<p>Keil
+uVision调试器可以帮助用户准确地调试ARM器件的片内外围功能(I2C、CAN、UART、SPI、中断、I/O口、A/D转换器、D/A转换器和PWM模块等功能)。</p>
+<p>Keil MDK-ARM最新版本4.54，安装包500多兆，包括ARM的编译器和uVision
+4集成开发环境。</p>
+<p>MDK-ARM 具有四种版本：MDK-Lite、MDK 基础版、MDK 标准版和 MDK
+专业版。所有版本都提供完整的 C/C++ 开发环境，MDK
+专业版包括丰富的中间件库。</p>
+<p>Project/Target/Group/File的重叠管理模式，并可逐级设置；高度智能彩色语法显示；</p>
+<p>特点</p>
+<ul>
+<li>完全支持 ARM Cortex™-M 系列、Cortex-R4、ARM7™ 和 ARM9™ 设备</li>
+<li>行业领先的 ARM C/C++ 编译工具链</li>
+<li>µVision4 IDE、调试器和模拟环境</li>
+<li>支持来自 20 多个供应商的 1200 多种设备</li>
+<li>Keil RTX 确定性、占用空间小的实时操作系统（具有源代码）</li>
+<li>TCP/IP 网络套件提供多个协议和各种应用程序</li>
+<li>USB 设备和 USB 主机堆栈配备标准驱动程序类</li>
+<li>ULINKpro支持对正在运行的应用程序进行即时分析并记录执行的每条
+Cortex-M 指令</li>
+<li>有关程序执行的完整代码覆盖率信息</li>
+<li>执行性能分析器和性能分析器支持程序优化</li>
+<li>大量示例项目可帮您快速熟悉强大的内置功能</li>
+<li>符合 CMSIS Cortex 微控制器软件接口标准</li>
+</ul>
+<p>多种流行编译工具选择</p>
+<ul>
+<li>Keil高效率C编译器；</li>
+<li>ARM公司的ADS/RealView 编译器；</li>
+<li>GNU GCC 编译器；</li>
+<li>后续厂商的编译器。</li>
+</ul>
+<h2 id="win-arm-gcc-arm">5、WIN ARM-GCC ARM</h2>
+<p>WINARM 是一个免费的开发工具。</p>
+<p>WinARM 里面除了包含 C/C++
+编译器——GCC，汇编、连接器——Binutils，调试器——GDB等工具，也包括了通过 GDB
+使用 Wiggler JTAG 的软件——OCDRemote。所以，所需要的工具都包括在了这个
+WinARM 发行版中，就比较省心。</p>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0/" rel="prev" title="嵌入式：ARM嵌入式系统开发流程概述">
+                  <i class="fa fa-chevron-left"></i> 嵌入式：ARM嵌入式系统开发流程概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/" rel="next" title="嵌入式：ARM符号定义伪操作详解">
+                  嵌入式：ARM符号定义伪操作详解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

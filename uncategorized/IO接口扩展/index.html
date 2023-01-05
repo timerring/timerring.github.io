@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="12345title: IO接口扩展tags:- ARMcategories: - [Learn, Embedded System] I&#x2F;O接口扩展 S3C2410A共有117个多功能复用输入输出口（I&#x2F;O口），分为8组PORT A～PORT H。PORT A除了作为功能口外，它只作为输出口使用；其余的PORT B～PORT H都可以作为输入输出口使用。8组I&#x2F;O口按照其位数的不同，可分为">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="timerring&#39;s BLOG">
+<meta property="og:url" content="http://example.com/uncategorized/IO%E6%8E%A5%E5%8F%A3%E6%89%A9%E5%B1%95/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="12345title: IO接口扩展tags:- ARMcategories: - [Learn, Embedded System] I&#x2F;O接口扩展 S3C2410A共有117个多功能复用输入输出口（I&#x2F;O口），分为8组PORT A～PORT H。PORT A除了作为功能口外，它只作为输出口使用；其余的PORT B～PORT H都可以作为输入输出口使用。8组I&#x2F;O口按照其位数的不同，可分为">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-05T00:16:13.817Z">
+<meta property="article:modified_time" content="2023-01-05T00:18:56.115Z">
+<meta property="article:author" content="timerring">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/uncategorized/IO%E6%8E%A5%E5%8F%A3%E6%89%A9%E5%B1%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/uncategorized/IO%E6%8E%A5%E5%8F%A3%E6%89%A9%E5%B1%95/","path":"uncategorized/IO接口扩展/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">82</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#io%E6%8E%A5%E5%8F%A3%E6%89%A9%E5%B1%95"><span class="nav-number">1.</span> <span class="nav-text">I&#x2F;O接口扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E6%8E%A7%E5%88%B6%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">端口控制寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E5%8F%A3%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">I&#x2F;O口编程实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B1"><span class="nav-number">1.2.1.</span> <span class="nav-text">实例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B2"><span class="nav-number">1.2.2.</span> <span class="nav-text">实例2</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/uncategorized/IO%E6%8E%A5%E5%8F%A3%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-05 08:16:13" itemprop="dateCreated datePublished" datetime="2023-01-05T08:16:13+08:00">2023-01-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: IO接口扩展</span><br><span class="line">tags:</span><br><span class="line">- ARM</span><br><span class="line">categories: </span><br><span class="line">- [Learn, Embedded System]</span><br></pre></td></tr></table></figure>
+<h2 id="io接口扩展">I/O接口扩展</h2>
+<p>S3C2410A共有117个多功能复用输入输出口（I/O口），分为8组PORT A～PORT
+H。PORT A除了作为功能口外，它只作为输出口使用；其余的PORT B～PORT
+H都可以作为输入输出口使用。8组I/O口按照其位数的不同，可分为：</p>
+<ul>
+<li>1个23位的输出口（PORT A）</li>
+<li>2个11位的I/O口（PORT B 和PORT H）</li>
+<li>4个16位的I/O口（PORT C、PORT D、PORT E、PORT G）</li>
+<li>1个8位的I/O口（PORT F）</li>
+</ul>
+<span id="more"></span>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105075857842.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105075908173.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105075918351.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105075927255.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105075935329.png" /></p>
+<h3 id="端口控制寄存器">端口控制寄存器</h3>
+<p>与配置I/O口相关的寄存器包括：</p>
+<p>（1）端口控制寄存器（GPACON~GPHCON）
+S3C2410大部分引脚是复用的，在使用这些引脚之前，需要定义其中的一个功能，这个端口控制寄存器就是实现该功能的。</p>
+<p>（2）端口数据寄存器（GPADAT~GPHDAT）
+如果端口被配置为输出端口，可以将要输出的数据写入该端口数据寄存器，如果端口被配置为输入端口，可以从端口数据寄存器读取所输入的数据。</p>
+<p>（3）端口上拉寄存器（GPBUP~GPHUP）
+端口上拉寄存器控制着每个端口组的上拉寄存器的使能或禁止。0允许，1禁止。</p>
+<p>（4）MISCELLANEOUS杂项控制寄存器
+控制着USB、时钟、数据总线的端口属性。</p>
+<p>外部中断控制寄存器（EXTINTN）</p>
+<p>用来配置24个外部中断请求信号的触发方式（电平、边沿）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080012689.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080049969.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080108171.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080119090.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080130229.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080137113.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080145654.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080152436.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080159375.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080208156.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080223800.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080231107.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080238513.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080245395.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080251730.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080258308.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080305663.png" /></p>
+<h3 id="io口编程实例">I/O口编程实例</h3>
+<h4 id="实例1">实例1</h4>
+<p>输出实例：使用GPIO控制LED1～LED4，使其指示0～F的16进制数值（LED4为最高位，LED1为最低位）。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080323299.png" /></p>
+<p>程序清单</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">#<span class="keyword">include</span>  <span class="string">&quot;config.h&quot;</span></span></span><br><span class="line">   <span class="comment">/**************************************************************************************</span></span><br><span class="line"><span class="comment">   ** Function name: LED_DispNum</span></span><br><span class="line"><span class="comment">   ** Descriptions: 控制LED1～LED4显示指定16进制数值。LED4为最高位，  </span></span><br><span class="line"><span class="comment">   **                       LED1为最低为，点亮表示该位为1。      </span></span><br><span class="line"><span class="comment">   ** ** Output: 无</span></span><br><span class="line"><span class="comment">   ********************************************************************************/</span></span><br><span class="line">     <span class="type">void</span>  <span class="title function_">LED_DispNum</span><span class="params">(uint32 dat)</span>   <span class="comment">// Input: dat   显示数值(低4位有效)</span></span><br><span class="line">     &#123;</span><br><span class="line">         dat = dat &amp; <span class="number">0x0000000F</span>;     <span class="comment">// 参数过滤</span></span><br><span class="line">         <span class="comment">// 控制LED4、LED3显示(d3、d2位)</span></span><br><span class="line">         <span class="keyword">if</span>(dat &amp; <span class="number">0x08</span>) rGPHDAT = rGPHDAT | (<span class="number">0x01</span>&lt;&lt;<span class="number">6</span>); </span><br><span class="line">            <span class="keyword">else</span>  rGPHDAT = rGPHDAT &amp; (~(<span class="number">0x01</span>&lt;&lt;<span class="number">6</span>)); </span><br><span class="line">         <span class="keyword">if</span>(dat &amp; <span class="number">0x04</span>) rGPHDAT = rGPHDAT | (<span class="number">0x01</span>&lt;&lt;<span class="number">4</span>); </span><br><span class="line">           <span class="keyword">else</span>  rGPHDAT = rGPHDAT &amp; (~(<span class="number">0x01</span>&lt;&lt;<span class="number">4</span>));        </span><br><span class="line">        <span class="comment">// 控制LED2、LED1显示(d1、d0位)</span></span><br><span class="line">         rGPEDAT = (rGPEDAT &amp; (~(<span class="number">0x03</span>&lt;&lt;<span class="number">11</span>))) | ((dat&amp;<span class="number">0x03</span>) &lt;&lt; <span class="number">11</span>); </span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/******************************************************************************************</span></span><br><span class="line"><span class="comment">     ** Function name: DelayNS</span></span><br><span class="line"><span class="comment">     ** Descriptions: 长软件延时。延时时间与系统时钟有关。</span></span><br><span class="line"><span class="comment">     ** Input: dly	延时参数，值越大，延时越久</span></span><br><span class="line"><span class="comment">     ** Output: 无</span></span><br><span class="line"><span class="comment">     *************************************************************************************/</span></span><br><span class="line">    <span class="type">void</span>  <span class="title function_">DelayNS</span><span class="params">(uint32  dly)</span></span><br><span class="line">     &#123;  </span><br><span class="line">   	    uint32  i;</span><br><span class="line">         <span class="keyword">for</span>(; dly&gt;<span class="number">0</span>; dly--) </span><br><span class="line">         <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">50000</span>; i++);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>  <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;		</span><br><span class="line">    <span class="type">int</span>  i;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化I/O</span></span><br><span class="line">    rGPECON = (rGPECON &amp; (~(<span class="number">0x0F</span>&lt;&lt;<span class="number">22</span>))) | (<span class="number">0x05</span>&lt;&lt;<span class="number">22</span>);  </span><br><span class="line">      <span class="comment">// rGPECON[25:22] = 0101b，设置GPE11、GPE12为GPIO输出模式</span></span><br><span class="line">    rGPHCON = (rGPHCON &amp; (~(<span class="number">0x33</span>&lt;&lt;<span class="number">8</span>))) | (<span class="number">0x11</span>&lt;&lt;<span class="number">8</span>);    </span><br><span class="line">      <span class="comment">// rGPHCON[13:8] = 01xx01b，设置GPH4、GPH6为GPIO输出模式</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">// LED显示控制</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;                        </span><br><span class="line">        <span class="comment">// 控制LED指示0～F的16进制数值</span></span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            LED_DispNum(i);     <span class="comment">// 显示数值i</span></span><br><span class="line">            DelayNS(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">  <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="实例2">实例2</h4>
+<p>输入实例：
+S3C2410A的GPF4口（输入口）连接一个独立按键KEY1。当KEY1键按下时，GPH10口（输出口）上的蜂鸣器便发出声响，松开按键时，蜂鸣器便停止发声。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230105080418338.png" /></p>
+<p>程序清单</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">#<span class="keyword">include</span>  <span class="string">&quot;config.h&quot;</span></span></span><br><span class="line">   <span class="comment">// 定义独立按键KEY1的输入口</span></span><br><span class="line">       <span class="meta">#<span class="keyword">define</span>     KEY_CON	(1&lt;&lt;4) <span class="comment">/* GPF4口  */</span></span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 定义蜂鸣器控制口</span></span><br><span class="line">       <span class="meta">#<span class="keyword">define</span>   	BEEP   	(1&lt;&lt;10)     	<span class="comment">/* GPH10口 */</span>	</span></span><br><span class="line">       <span class="meta">#<span class="keyword">define</span>   	BEEP_MASK	(~BEEP)</span></span><br><span class="line"></span><br><span class="line">  <span class="type">int</span>  <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">   &#123;	</span><br><span class="line">        <span class="comment">// 初始化I/O</span></span><br><span class="line">         rGPFCON = (rGPFCON &amp; (~(<span class="number">0x03</span>&lt;&lt;<span class="number">8</span>)));   </span><br><span class="line">        <span class="comment">// rGPFCON[9:8] = 00b，设置GPF4为GPIO输入模式   </span></span><br><span class="line">        rGPHCON = (rGPHCON &amp; (~(<span class="number">0x01</span>&lt;&lt;<span class="number">21</span>))) | (<span class="number">0x01</span>&lt;&lt;<span class="number">20</span>);  </span><br><span class="line">        <span class="comment">//  rGPHCON[21:20] = 01b，设置GPH10为GPIO输出模式 	</span></span><br><span class="line">        rGPHDAT = rGPHDAT &amp; BEEP_MASK; </span><br><span class="line">        <span class="comment">// 初始状态按键未按下，设置GPH10=0，禁止蜂鸣器发声											    </span></span><br><span class="line">       <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="keyword">if</span>(rGPFDAT &amp; KEY_CON)  <span class="comment">// 判断GPF4是否为高电平</span></span><br><span class="line">             &#123;</span><br><span class="line">                   rGPHDAT = rGPHDAT &amp; BEEP_MASK; </span><br><span class="line">                    <span class="comment">// GPF4为高电平，按键未按下，则设置GPH10=0</span></span><br><span class="line">             &#125;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                   rGPHDAT = rGPHDAT | BEEP;       </span><br><span class="line">                    <span class="comment">// GPF4为低电平，按键已按下，则设置GPH10=1</span></span><br><span class="line">            &#125;</span><br><span class="line">          </span><br><span class="line">           DelayNS(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">  	<span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/ARM%E7%9A%84DMA%E8%AE%BE%E8%AE%A1/" rel="prev" title="ARM的DMA设计">
+                  <i class="fa fa-chevron-left"></i> ARM的DMA设计
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="汇编语言程序设计的步骤 ① 合理地分配存储器资源，将前述的目标系统‘数据结构模型’表示到各存储器单元。 ② CPU寄存器数量有限，在程序中，大多数操作都要使用寄存器；并且有的操作使用特定的寄存器（如堆栈操作使用SP&#x2F;R13等），程序中要合理分配各寄存器的用途。 用计算机语言，对数据结构模型和流程图表示的算法进行准确地描述。 ① 语法调试：排除程序中的语法错误。 ② 功能调试：保证程序">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="嵌入式：ARM汇编语言程序设计基础教程">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="汇编语言程序设计的步骤 ① 合理地分配存储器资源，将前述的目标系统‘数据结构模型’表示到各存储器单元。 ② CPU寄存器数量有限，在程序中，大多数操作都要使用寄存器；并且有的操作使用特定的寄存器（如堆栈操作使用SP&#x2F;R13等），程序中要合理分配各寄存器的用途。 用计算机语言，对数据结构模型和流程图表示的算法进行准确地描述。 ① 语法调试：排除程序中的语法错误。 ② 功能调试：保证程序">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-30T03:25:04.928Z">
+<meta property="article:modified_time" content="2022-12-30T03:24:39.601Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/","path":"Learn/Embedded-System/嵌入式：ARM汇编语言程序设计基础教程/","title":"嵌入式：ARM汇编语言程序设计基础教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>嵌入式：ARM汇编语言程序设计基础教程 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">82</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">汇编语言程序设计的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">顺序程序设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">分支程序设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">循环程序设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">子程序设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">5.1.</span> <span class="nav-text">寄存器传递参数方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%8C%BA%E5%9F%9F%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">存储区域传递参数方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">5.3.</span> <span class="nav-text">堆栈传递参数方式</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="嵌入式：ARM汇编语言程序设计基础教程 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          嵌入式：ARM汇编语言程序设计基础教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-30 11:25:04" itemprop="dateCreated datePublished" datetime="2022-12-30T11:25:04+08:00">2022-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="汇编语言程序设计的步骤">汇编语言程序设计的步骤</h2>
+<p>①
+合理地分配存储器资源，将前述的目标系统‘数据结构模型’表示到各存储器单元。</p>
+<p>②
+CPU寄存器数量有限，在程序中，大多数操作都要使用寄存器；并且有的操作使用特定的寄存器（如堆栈操作使用SP/R13等），程序中要合理分配各寄存器的用途。</p>
+<p>用计算机语言，对数据结构模型和流程图表示的算法进行准确地描述。</p>
+<p>① 语法调试：排除程序中的语法错误。</p>
+<p>② 功能调试：保证程序的逻辑功能正确性。</p>
+<p>用文档形式记录说明程序的功能、使用方法、程序结构、算法流程等每一个阶段的工作。
+把解题的方法、步骤用框图形式表示。如果问题比较复杂，那么可以逐步细化，直到每一框图可以容易编程为止。流程图不仅便于程序的编制，且对程序逻辑正确性也比较容易查找和修改。</p>
+<span id="more"></span>
+<h2 id="顺序程序设计">顺序程序设计</h2>
+<p>顺序程序是一种最简单的程序结构，也称为直线程序，它的执行自始自终按照语句的先后顺序进行。这种结构的流程图，除了有一个起始框，一个终止框外，就是若干执行框。</p>
+<p>例：试编制一程序，完成10+3的操作。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221230104929260.png" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AREA  ARMex, CODE, READONLY	; 代码段名ARMex</span><br><span class="line">ENTRY					; 程序的入口</span><br><span class="line">CODE 32</span><br><span class="line"></span><br><span class="line">start</span><br><span class="line">	MOV	R0,	#10		; 将立即数10存入寄存器R0</span><br><span class="line">	MOV	R1,	#3		; 将立即数3存入寄存器R1</span><br><span class="line">	ADD	R0,	R0,	R1	; R0 = R0 + R1</span><br><span class="line">stop</span><br><span class="line">	MOV	R0,	#0x18		; 这三条指令是ADS调试环境特约</span><br><span class="line">	LDR	R1,	=0x20026	;程序运行结束返回编译器调试环境</span><br><span class="line">	SWI		0x123456</span><br><span class="line"></span><br><span class="line">END				; 结束 </span><br></pre></td></tr></table></figure>
+<h2 id="分支程序设计">分支程序设计</h2>
+<p>许多实际问题需要根据不同的情况作出不同的处理。在程序中，针对不同的情况把不同的处理方法编制成各自的处理程序段，运行时由机器根据当时的条件自动作出判断，选择执行相应的处理程序段。这样的程序结构中，计算机不再完全按指令存储的顺序执行，称之为分支。分支程序使用转移指令B、子程序调用指令BL或带状态转移指令BX来实现。</p>
+<p>例：给定以下符号函数：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221230105136069.png" /></p>
+<p>任意给定值，假定为-25，存放在x单元，函数值存放在y单元；要求根据x中的值来确定y的值。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221230105059605.png" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> AREA symbol, CODE, READONLY ; 代码段的名字 symbol</span><br><span class="line"></span><br><span class="line"> ENTRY           ; 程序的入口</span><br><span class="line"></span><br><span class="line"> CODE32</span><br><span class="line"></span><br><span class="line">start</span><br><span class="line"></span><br><span class="line"> LDR   R0, =x ; 加载数据段中的变量x地址，存入R0</span><br><span class="line"></span><br><span class="line"> LDR   R1, =y ; 加载数据段中的变量y地址，存入R1</span><br><span class="line"></span><br><span class="line"> LDR R2, [R0] ; 加载变量x的值，存入R2</span><br><span class="line"></span><br><span class="line">compare</span><br><span class="line"></span><br><span class="line"> CMP R2, #0 ; 将R2的值与0作比较</span><br><span class="line"></span><br><span class="line"> BEQ ZERO ; 如果R2等于0，那么转向标号ZERO处</span><br><span class="line"></span><br><span class="line"> BGT PLUS ; 如果R2大于0，那么转向标号PLUS处</span><br><span class="line"></span><br><span class="line"> MOV R3, #-1 ; 否则，R2小于0，将-1存入R3中</span><br><span class="line"></span><br><span class="line"> B stop</span><br><span class="line"></span><br><span class="line">ZERO</span><br><span class="line"></span><br><span class="line"> MOV R3, #0 ; R2等于0，将0存入R3中</span><br><span class="line"></span><br><span class="line"> B stop</span><br><span class="line"></span><br><span class="line">PLUS</span><br><span class="line"></span><br><span class="line"> MOV R3, #1 ; R2大于0，将1存入R3中</span><br><span class="line"></span><br><span class="line">; 续上段代码</span><br><span class="line"></span><br><span class="line">stop </span><br><span class="line"></span><br><span class="line">  STR R3,  [R1]</span><br><span class="line"></span><br><span class="line"> MOV R0,  #0x18 </span><br><span class="line"></span><br><span class="line"> LDR R1, =0x20026</span><br><span class="line"></span><br><span class="line"> SWI 0x123456</span><br><span class="line"></span><br><span class="line">      AREA Data, DATA, READWRITE</span><br><span class="line"></span><br><span class="line">x DCD -25</span><br><span class="line"></span><br><span class="line">y DCD 0</span><br><span class="line"></span><br><span class="line">   END </span><br></pre></td></tr></table></figure>
+<h2 id="循环程序设计">循环程序设计</h2>
+<p>顺序程序和分支程序中的指令每次运行最多只执行一次。在实际应用中重复地做某些事的情况很多，这也是计算机最擅长的工作方式。重复地执行某些指令，最好用循环程序来实现。
+循环程序的结构---重复地执行同一种运算，直到某种条件满足。</p>
+<p>建立循环初始值。如设置地址指针、计数器、其他循环参数的起始值等。循环程序的主体业务代码，可以是一个顺序程序、分支程序或另一个循环程序。
+为执行下一个循环而修改某些参数，尤其循环控制变量的修改等。</p>
+<p>条件控制循环：通过判断循环终止条件是否已成立，控制循环。判断循环结束条件是否成立，决定是否继续循环。</p>
+<p>例如：计数控制循环；通过计数循环次数，判断是否已达到预定次数，控制循环。对循环结束进行适当处理；有的循环程序可以没有这部分。</p>
+<p>用计数控制循环适用于已知循环次数的循环程序设计</p>
+<p>例：从x单元开始的30个连续字单元中存放有30个无符号数，从中找出最大者送入y单元中。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221230105632642.png" /></p>
+<p>分析：</p>
+<p>根据题意，把第一个数先送入Rx寄存器，将Rx中的数与后面的29个数逐个进行比较，如果Rx中的数较小，则将该较大的数送入Rx
+；继续与余下的数据逐个比较。在比较过程中，
+Rx中始终保持较大的数，共计比较29次，则最终Rx中保留了最大数，最后把Rx中的数（最大者）送入y单元。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">	AREA  max, CODE, READONLY		; 代码段的名字 max</span><br><span class="line">	ENTRY                   			; 程序的入口</span><br><span class="line">	CODE32</span><br><span class="line">num	EQU	29                   ; 比较的次数</span><br><span class="line">start</span><br><span class="line">	LDR	R0,  =x           ; R0指向源数据块x</span><br><span class="line">	LDR	R1,  =y           ; R1指向单元y</span><br><span class="line">	LDR	R2,  =num      ; R2作为计数器</span><br><span class="line">	LDR	R3,  [R0]        ; 将源数据块x中第一个数加载到R3中</span><br><span class="line">compare</span><br><span class="line">	ADD	R0, R0,	#4       ; 每进行一次比较，将R0指针地址加4</span><br><span class="line">	LDR	R4, [R0]          ; 依次将源数据块x中下一个数加载到R4中</span><br><span class="line">	CMP	R3, R4             ; 比较R3和R4中数的大小 </span><br><span class="line">	MOVCC  R3,  R4          ; 如果R3小于R4，则将较大的数送入R3中</span><br><span class="line">	SUBS	R2,  R2,  #1       ; 计数器值减1</span><br><span class="line">	BNE	compare           ; 如果不为0，那么继续跳到compare执行</span><br><span class="line">	STREQ	R3,  [R1]          ; 如果为0，那么循环比较结束，R3是最大的数</span><br><span class="line">			       ; 并且将R3中的数加载到R1指向的单元（即y）中 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stop</span><br><span class="line">	MOV	r0, #0x18</span><br><span class="line">	LDR	r1, =0x20026		</span><br><span class="line">	SWI	0x123456        </span><br><span class="line"></span><br><span class="line">	AREA  Data, DATA, READWRITE</span><br><span class="line">x	DCD	73,59,61,34,81,107,225,231,54,43</span><br><span class="line">	DCD	100,35,1,42,222,254,34,71,100,31</span><br><span class="line">	DCD	33,119,13,44,18,147,55,244,97,3</span><br><span class="line">y	DCD	0</span><br><span class="line">	END</span><br></pre></td></tr></table></figure>
+<p>② 适用于已知循环条件的循环程序设计</p>
+<p>适用于无法确定循环次数，但知道循环结束的条件</p>
+<p>例：从自然数1开始累加，直到累加和大于1000为止，统计被累加的自然数的个数，并把统计的个数送入n单元，把累加和送入sum单元。</p>
+<p>分析：</p>
+<p>根据题意，被累加的自然数的个数事先未知，因此不能用计数方法控制循环。但题目中给定一个条件，即累加和大于1000则停止累加，因此，可以根据这一条件控制循环。我们用R3寄存器放累加和，用R4寄存器放每次取得的自然数，其中它的值也是统计自然数的个数。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221230105902531.png" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">     AREA  SUM, CODE, READONLY	; 代码段的名字 SUM</span><br><span class="line">     ENTRY                   			; 程序的入口</span><br><span class="line">     CODE32</span><br><span class="line">start</span><br><span class="line">     LDR   R0,   =n            ; 将数据段中自然数的个数n的地址加载到R0寄存器</span><br><span class="line">     LDR   R1,   =sum       ; 将数据段中自然数的累加和sum的地址加载到R1寄存器</span><br><span class="line">     LDR   R3,   =0            ; R3存放自然数的累加和</span><br><span class="line">     LDR   R4,   =0            ; R4用于循环个数的统计/每次取得的自然数</span><br><span class="line">     LDR   R5,   =1000      ; R5用于循环结束的界限值</span><br><span class="line">continue</span><br><span class="line">     ADD	R4,   R4,	    #1    ; 取下一个自然数</span><br><span class="line">     ADD	R3,   R3,	   R4    ; 累加自然数</span><br><span class="line">     CMP	R3,   R5             ; 比较累加和是否超过了1000</span><br><span class="line">     BCC	continue            ; 如果小于1000，那么跳到compare执行</span><br><span class="line">     STRCS   R3,  [R1]     ; 如果大于1000，那么将累加和存储到R1所指向的单元中</span><br><span class="line">     STRCS   R4,   [R0]    ; 如果大于1000，那么将已累加的自然数个数值存储</span><br><span class="line">		            ; 到R0所指向的单元中 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stop</span><br><span class="line">        MOV    r0, #0x18</span><br><span class="line">        LDR     r1, =0x20026			</span><br><span class="line">        SWI     0x123456 </span><br><span class="line">     		</span><br><span class="line">        AREA  Data, DATA, READWRITE</span><br><span class="line">n	DCD	0	    ; 定义累加的自然数的个数</span><br><span class="line">sum	DCD	0 	   ; 定义自然数的累加和</span><br><span class="line"></span><br><span class="line">        END</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="子程序设计">子程序设计</h2>
+<p>子程序概念</p>
+<p>如果在一个程序中的多处用到同一段程序代码，那么可以把这段共同的程序代码抽取出来，写成一个相对独立的程序段，每当需要执行这段代码时，就调用这个程序段，执行完这个程序段后，再返回原来调用它的程序。这样编写程序时，就不必重复写这段代码了，而这样的程序段称为子程序或子过程。</p>
+<p>子程序的调用与返回</p>
+<p>主程序中使用BL指令实现子程序的调用</p>
+<p>BL 子程序名</p>
+<p>在子程序结束处，使用如下指令返回到主程序中。</p>
+<p>MOV PC, LR</p>
+<p>主程序与子程序之间的参数传递</p>
+<p>主程序调用子程序时，可以向子程序传递一些参数；同样，子程序运行后也可把一些结果参数传回给主程序。主程序与子程序之间的这种信息传递称为参数传递。</p>
+<p>三种参数传递方式</p>
+<ol type="1">
+<li>寄存器传递参数方式</li>
+<li>存储区域传递参数方式</li>
+<li>堆栈传递参数方式</li>
+</ol>
+<h3 id="寄存器传递参数方式">寄存器传递参数方式</h3>
+<p><strong>例：用子程序实现内存区里的字符串拷贝功能，即将存储单元中源字符串对应拷贝到目的字符串中。</strong></p>
+<p>技术思想：主程序将待传递的数据直接写入约定的通用寄存器，在子程序中直接使用；或子程序返回后，主程序直接从约定的通用寄存器中获得子程序的结果数据。</p>
+<p>应用特点：这种方式适合于传递较少参数的应用场合。</p>
+<p>解题思路：</p>
+<p>通过设定两个地址指针，分别指向存储区中的源字符串和目的字符串；然后通过加载和存储指令（LDR和STR）的寄存器间接寻址方式，依次从源字符串读取一个字符数据，写入到目的字符串的对应字符位置中，直到遇到源字符串的结束标志’\0’为止。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">AREA    StrCopy, CODE, READONLY</span><br><span class="line">        ENTRY</span><br><span class="line">        CODE32</span><br><span class="line">start</span><br><span class="line">        LDR       R1,    =srcstr        ; R1指向数据区的源字符串</span><br><span class="line">        LDR       R0,    =dststr        ; R0指向数据区的目的字符串</span><br><span class="line">        BL          strcopy                 ; 调用子程序strcopy，完成字符串拷贝</span><br><span class="line">stop</span><br><span class="line">        MOV     R0,     #0x18	         ; 程序结束返回编译器调试环境</span><br><span class="line">        LDR      R1,     =0x20026</span><br><span class="line">        SWI        0x123456</span><br><span class="line">strcopy </span><br><span class="line">        LDRB     R2,     [R1],    #1    ; 将R1指向的单元内容加载到R2中</span><br><span class="line">        STRB      R2,     [R0],    #1    ; 将R2中的数存储到R0指向的单元中</span><br><span class="line">        CMP       R2,    #0                 ; 检查R0的值是否等于0</span><br><span class="line">        BNE        strcopy                  ; 如果不等于0，那么转到strcopy处执行 </span><br><span class="line">        MOV       PC,    LR               ; 子程序返回 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        AREA    Strings, DATA, READWRITE</span><br><span class="line">srcstr  DCB &quot;First string - source&quot;,0		; 源字符串</span><br><span class="line">dststr  DCB &quot;Second string - destination&quot;,0	; 目的字符串</span><br><span class="line">        END </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="存储区域传递参数方式">存储区域传递参数方式</h3>
+<p><strong>例：通过设置的入口参数查找函数地址表，实现选择不同的函数功能。</strong></p>
+<p>说明：本题中通过事先将函数地址存放在存储单元中，通过查找地址表的方法，实现根据“选择项（choice）”进入不同的函数体功能。</p>
+<p>技术思想：主程序和子程序约定了某一共享内存块用于参数传递，主程序在BL调用子程序前，先将要传递的参数写入到约定的存储单元，子程序可从约定的内存读取这些参数；子程序返回时，也可以使用该方式将数据传给主程序。</p>
+<p>应用特点：这种方式可以传递大批量数据。</p>
+<p>实现方法：当主程序与子程序有较多的数据需要传递时，可以通过共享内存区或传内存数据块地址方式来传递批量数据。</p>
+<p>通过伪指令ADR直接装载近距离数据块地址；</p>
+<p>通过伪指令ADRL直接装载中距离数据块地址；</p>
+<p>通过语句LDR Rd, =Label转载远距离的数据块地址；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">       AREA    Jump, CODE, READONLY</span><br><span class="line">       num     EQU     4			; 函数地址表内容的个数</span><br><span class="line">       ENTRY</span><br><span class="line">       CODE32</span><br><span class="line">start</span><br><span class="line">     LDR   R0,   =choice		; R0指向存储区的choice单元</span><br><span class="line">       LDR   R0,   [R0]		; 设置第一个参数：选择执行哪一个函数</span><br><span class="line">       MOV  R1,   #16		; 设置第1个操作数</span><br><span class="line">       MOV  R2,   #2		; 设置第2个操作数</span><br><span class="line">       BL       arithfunc		; 调用子程序arithfunc</span><br><span class="line">stop</span><br><span class="line">       MOV   R0,   #0x18		; 程序结束返回编译器调试环境</span><br><span class="line">       LDR    R1,   =0x20026</span><br><span class="line">       SWI	     0x123456</span><br><span class="line">arithfunc</span><br><span class="line">       CMP   R0,    #num                     ; 比较R0的值是否超过函数地址表的个数</span><br><span class="line">       MOVHS   PC, LR  		; 如果大于，那么就返回到标号stop处</span><br><span class="line">       ADR   R3,    JumpTable	; 将函数地址表的地址作为基地址</span><br><span class="line">       LDR    PC,   [R3, R0, LSL #2]	; 根据R0参数进入对应的子程序</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">JumpTable	; 函数地址表的入口基地址</span><br><span class="line">        DCD     	DoAdd		; 加法子程序</span><br><span class="line">        DCD	DoSub		; 减法子程序</span><br><span class="line">        DCD	DoMul		; 乘法子程序</span><br><span class="line">        DCD	DoDiv		; 除法子程序</span><br><span class="line">DoAdd</span><br><span class="line">        ADD   R0,   R1,    R2   ; R0 = R1 + R2</span><br><span class="line">        MOV   PC,   LR		; 返回</span><br><span class="line">DoSub</span><br><span class="line">        SUB    R0,	R1,    R2      	; R0 = R1 - R2</span><br><span class="line">        MOV   PC,	LR		; 返回</span><br><span class="line">DoMul	</span><br><span class="line">        MOV   R0,   R1,  LSL R2 	; R0 = R1 &lt;&lt; R2</span><br><span class="line">        MOV   PC,   LR 		; 返回</span><br><span class="line">DoDiv	</span><br><span class="line">        MOV   R0,   R1,  LSR R2      	; R0 = R1 &gt;&gt; R2</span><br><span class="line">        MOV   PC,   LR	 	; 返回		</span><br><span class="line">	  AREA  NUM, DATA, READWRITE</span><br><span class="line">choice	DCD	3           ; 0：表示选择加法子程序   1：表示选择减法子程序</span><br><span class="line">		             ; 2：表示选择乘法子程序   3：表示选择除法子程序</span><br><span class="line">        END</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="堆栈传递参数方式">堆栈传递参数方式</h3>
+<p>主程序和子程序使用同一个堆栈，主程序在BL调用子程序前，先将要传递的参数压入到堆栈中，子程序可从堆栈中读取传过来的数据；子程序返回需要向主程序传递参数时，也可使用此方法。</p>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E6%9D%82%E9%A1%B9%E6%B1%87%E7%BC%96%E5%99%A8%E4%BC%AA%E6%8C%87%E4%BB%A4/" rel="prev" title="嵌入式：杂项汇编器伪指令">
+                  <i class="fa fa-chevron-left"></i> 嵌入式：杂项汇编器伪指令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AFATPCS/" rel="next" title="嵌入式：什么是ATPCS">
+                  嵌入式：什么是ATPCS <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
