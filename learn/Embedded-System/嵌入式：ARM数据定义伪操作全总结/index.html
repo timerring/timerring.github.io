@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="定义字节存储单元伪操作DCB 定义半字存储单元伪操作DCW（DCWU） 定义字存储单元伪操作DCD（DCDU） 为单精度浮点数定义字存储单元伪操作DCFS（DCFSU） 为双精度浮点数定义字存储单元伪操作DCFD（DCFDU） 内存单元分配伪操作SPACE 定义结构化内存表首地址伪操作MAP 定义结构化内存表中数据域伪操作FIELD 定义文字池伪操作LTORG  DCB">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="ARM数据定义伪操作全总结">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="定义字节存储单元伪操作DCB 定义半字存储单元伪操作DCW（DCWU） 定义字存储单元伪操作DCD（DCDU） 为单精度浮点数定义字存储单元伪操作DCFS（DCFSU） 为双精度浮点数定义字存储单元伪操作DCFD（DCFDU） 内存单元分配伪操作SPACE 定义结构化内存表首地址伪操作MAP 定义结构化内存表中数据域伪操作FIELD 定义文字池伪操作LTORG  DCB">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-29T13:14:52.358Z">
+<meta property="article:modified_time" content="2023-01-11T13:04:54.098Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/","path":"Learn/Embedded-System/嵌入式：ARM数据定义伪操作全总结/","title":"ARM数据定义伪操作全总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ARM数据定义伪操作全总结 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">13</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dcb"><span class="nav-number">1.</span> <span class="nav-text">DCB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcwdcwu"><span class="nav-number">2.</span> <span class="nav-text">DCW(DCWU)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">2.2.</span> <span class="nav-text">功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcd%E6%88%96dcdu"><span class="nav-number">3.</span> <span class="nav-text">DCD（或DCDU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">3.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="nav-number">3.2.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.3.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcfd%E6%88%96dcfdu"><span class="nav-number">4.</span> <span class="nav-text">DCFD（或DCFDU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">4.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcfs%E6%88%96dcfsu"><span class="nav-number">5.</span> <span class="nav-text">DCFS（或DCFSU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">5.1.</span> <span class="nav-text">语法格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dcq%E6%88%96dcqu"><span class="nav-number">6.</span> <span class="nav-text">DCQ(或DCQU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-2"><span class="nav-number">6.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">6.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#space"><span class="nav-number">7.</span> <span class="nav-text">SPACE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-3"><span class="nav-number">7.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-3"><span class="nav-number">7.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">8.</span> <span class="nav-text">MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-4"><span class="nav-number">8.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-4"><span class="nav-number">8.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#field"><span class="nav-number">9.</span> <span class="nav-text">FIELD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-5"><span class="nav-number">9.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B-5"><span class="nav-number">9.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ltorg"><span class="nav-number">10.</span> <span class="nav-text">LTORG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F-6"><span class="nav-number">10.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">10.2.</span> <span class="nav-text">使用说明</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ARM数据定义伪操作全总结 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARM数据定义伪操作全总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-29 21:14:52" itemprop="dateCreated datePublished" datetime="2022-12-29T21:14:52+08:00">2022-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ol type="1">
+<li>定义字节存储单元伪操作DCB</li>
+<li>定义半字存储单元伪操作DCW（DCWU）</li>
+<li>定义字存储单元伪操作DCD（DCDU）</li>
+<li>为单精度浮点数定义字存储单元伪操作DCFS（DCFSU）</li>
+<li>为双精度浮点数定义字存储单元伪操作DCFD（DCFDU）</li>
+<li>内存单元分配伪操作SPACE</li>
+<li>定义结构化内存表首地址伪操作MAP</li>
+<li>定义结构化内存表中数据域伪操作FIELD</li>
+<li>定义文字池伪操作LTORG</li>
+</ol>
+<h2 id="dcb">DCB</h2>
+<h2 id="dcwdcwu">DCW(DCWU)</h2>
+<h3 id="格式">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCW（或DCWU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能">功能</h3>
+<p>DCW（或DCWU）伪操作用于分配一片连续的半字存储单元并用伪操作中指定的表达式初始化。其中，表达式可以为程序标号或数值表达式。用DCW分配的字存储单元是半字对齐的，而用DCWU分配的字存储单元并不严格按照半字对齐。</p>
+<h2 id="dcd或dcdu">DCD（或DCDU）</h2>
+<h3 id="格式-1">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCD（或DCDU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能-1">功能</h3>
+<p>DCD（或DCDU）伪操作用于分配一片连续的字存储单元并用伪操作中指定的表达式初始化。</p>
+<p>其表达式可以为程序标号或数值表达式。DCD也可用“&amp;”代替。用DCD分配的字存储单元是字对齐的，而用DCDU分配的字存储单元并不严格按照字对齐。</p>
+<span id="more"></span>
+<h3 id="使用示例">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Str DCB “This is a test！” </span><br><span class="line">;分配一片连续的字节存储单元并初始化。</span><br><span class="line">DataTest DCW 1，2，3 </span><br><span class="line">;分配一片连续的半字存储单元并初始化。</span><br><span class="line">DataTest DCD 4，5，6 </span><br><span class="line">;分配一片连续的字存储单元并初始化。</span><br></pre></td></tr></table></figure>
+<h2 id="dcfd或dcfdu">DCFD（或DCFDU）</h2>
+<h3 id="语法格式">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCFD （或 DCFDU ） 表达式</span><br></pre></td></tr></table></figure>
+<p>DCFD （或 DCFDU
+）伪操作用于为双精度的浮点数分配一片连续的字存储单元并用伪操作中指定的表达式初始化。每个双精度的浮点数占据两个字单元</p>
+<h3 id="使用示例-1">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FDataTest DCFD 2E115 ， -5E7 ;分配一片连续的字存储单元并初始化为指定的双精度数。</span><br></pre></td></tr></table></figure>
+<h2 id="dcfs或dcfsu">DCFS（或DCFSU）</h2>
+<h3 id="语法格式-1">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCFS （或 DCFSU ） 表达式</span><br></pre></td></tr></table></figure>
+<p>DCFS （或 DCFSU
+）伪操作用于为单精度的浮点数分配一片连续的字存储单元并用伪操作中指定的表达式初始化。每个单精度的浮点数占据一个字单元。</p>
+<h2 id="dcq或dcqu">DCQ(或DCQU）</h2>
+<h3 id="语法格式-2">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCQ （或 DCQU ） 表达式</span><br></pre></td></tr></table></figure>
+<p>DCQ （或 DCQU ）伪操作用于分配一片以 8
+个字节为单位的连续存储区域并用伪操作中指定的表达式初始化。</p>
+<h3 id="使用示例-2">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataTest DCQ 100 ;分配一片连续的存储单元并初始化为指定的值。  </span><br></pre></td></tr></table></figure>
+<h2 id="space">SPACE</h2>
+<h3 id="语法格式-3">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 SPACE  表达式</span><br></pre></td></tr></table></figure>
+<p>SPACE 伪指令用于分配一片连续的存储区域并初始化为 0
+。其中，表达式为要分配的字节数。</p>
+<p>SPACE 也可用 “ ％ ” 代替。</p>
+<h3 id="使用示例-3">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DataSpace SPACE 100 ;分配连续 100 字节的存储单元并初始化为 0 </span><br></pre></td></tr></table></figure>
+<h2 id="map">MAP</h2>
+<h3 id="语法格式-4">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MAP 表达式 &#123; ，基址寄存器 &#125;     </span><br></pre></td></tr></table></figure>
+<p>MAP 伪指令用于定义一个结构化的内存表的首地址。 MAP 也可用 “ ＾ ”
+代替。</p>
+<p>表达式可以为程序中的标号或数学表达式，基址寄存器为可选项，当基址寄存器选项不存在时，表达式的值即为内存表的首地址，当该选项存在时，内存表的首地址为表达式的值与基址寄存器的和。</p>
+<p>MAP 伪操作通常与 FIELD 伪指令配合使用来定义结构化的内存表。</p>
+<h3 id="使用示例-4">使用示例</h3>
+<p>​ MAP 0x100 ， R0 ；定义结构化内存表首地址的值为 0x100 ＋ R0 。</p>
+<h2 id="field">FIELD</h2>
+<h3 id="语法格式-5">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 FIELD 表达式     </span><br></pre></td></tr></table></figure>
+<p>FIELD 伪指令用于定义一个结构化内存表中的数据域。 FILED 也可用 “ # ”
+代替。</p>
+<p>表达式的值为当前数据域在内存表中所占的字节数。</p>
+<p>MAP 伪操作定义内存表的首地址， FIELD
+伪操作定义内存表中的各个数据域，并可以为每个数据域指定一个标号供其他的指令引用。
+注意 MAP 和 FIELD 伪指令仅用于定义数据结构，并不实际分配存储单元。</p>
+<h3 id="使用示例-5">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MAP 0x100 ;定义结构化内存表首地址的值为0x100 。     </span><br><span class="line">A FIELD 16 ;定义 A 的长度为 16 字节，位置为 0x100     </span><br><span class="line">B FIELD 32 ;定义 B 的长度为 32 字节，位置为 0x110     </span><br><span class="line">S FIELD 256 ;定义 S 的长度为 256 字节，位置为 0x130 </span><br></pre></td></tr></table></figure>
+<h2 id="ltorg">LTORG</h2>
+<p>LTORG用于声明一个数据缓冲池（也称为文字池）的开始。在使用伪操作LDR时，常常需要在适当的地方加入LTORG声明数据缓冲池，LDR加载的数据暂时放于数据缓冲池。</p>
+<h3 id="语法格式-6">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LTORG</span><br></pre></td></tr></table></figure>
+<h3 id="使用说明">使用说明</h3>
+<p>当程序中使用LDR之类的指令时，数据缓冲池的使用可能越界。为防止越界发生可以使用LTORG伪操作定义数据缓冲池。通常大的代码段可以使用多个数据缓冲池。ARM汇编编译器一般把数据缓冲池放在代码段的最后面，即下一个代码段开始之前，或者END伪操作之前。</p>
+<p>【例】显示定义文字池示例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  AREA   Example ,CODE,READONLY;  //声明一个代码段，名称为Example,属性为只读</span><br><span class="line">   Start    BL  funcl</span><br><span class="line">          ;code</span><br><span class="line"></span><br><span class="line">funcl                    //子程序</span><br><span class="line">      ;code</span><br><span class="line">       LDR  R1，=0x800    //将0X800加载到R1</span><br><span class="line">       MOV  PC，lr        //子程序结束</span><br><span class="line">       LTORG              //定义数据缓冲池</span><br><span class="line">       data   SPACE 40    //从当前开始分配40字节的内存单元并初始化为0</span><br><span class="line">     END                  //程序结束</span><br></pre></td></tr></table></figure>
+<p>0x800的值被编译器暂时放在了data[0-3]字段中。</p>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%EF%BC%9AARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/" rel="prev" title="ARM相关开发工具概述">
+                  <i class="fa fa-chevron-left"></i> ARM相关开发工具概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/ARM%20%E6%B1%87%E7%BC%96%E6%8E%A7%E5%88%B6%E4%BC%AA%E6%93%8D%E4%BD%9C/" rel="next" title="ARM 汇编控制伪操作">
+                  ARM 汇编控制伪操作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
