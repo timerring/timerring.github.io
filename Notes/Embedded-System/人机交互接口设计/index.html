@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="键盘和LED的接口原理 HA7279A是一片具有串行接口并可同时驱动8位共阴式数码管或64只独立LED的智能显示驱动芯片。该芯片同时可连接多达64键的键盘矩阵，一片即可完成LED显示及键盘接口的全部功能。 HA7279A一共有28个引脚：  RESET：复位端。通常，该端接＋5V电源； DIG0～DIG7：８个LED管的位驱动输出端； SA～SG：LED数码管的Ａ段～Ｇ段的输出端；">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="人机交互接口设计详解">
+<meta property="og:url" content="http://example.com/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="键盘和LED的接口原理 HA7279A是一片具有串行接口并可同时驱动8位共阴式数码管或64只独立LED的智能显示驱动芯片。该芯片同时可连接多达64键的键盘矩阵，一片即可完成LED显示及键盘接口的全部功能。 HA7279A一共有28个引脚：  RESET：复位端。通常，该端接＋5V电源； DIG0～DIG7：８个LED管的位驱动输出端； SA～SG：LED数码管的Ａ段～Ｇ段的输出端；">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-08T03:07:08.635Z">
+<meta property="article:modified_time" content="2023-01-11T14:41:00.760Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/","path":"Notes/Embedded-System/人机交互接口设计/","title":"人机交互接口设计详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>人机交互接口设计详解 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E5%92%8Cled%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">键盘和LED的接口原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hd7279a%E4%B8%8Es3c2410a%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">HD7279A与S3C2410A的连接原理图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E5%92%8Cled%E6%8E%A7%E5%88%B6%E7%9A%84%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">键盘和LED控制的编程实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lcd%E6%98%BE%E7%A4%BA%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">LCD显示原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lcd%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">LCD控制器概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8Elcd%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.2.</span> <span class="nav-text">嵌入式处理器与LCD的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s3c2410a%E7%9A%84lcd%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">2.3.</span> <span class="nav-text">S3C2410A的LCD控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stn-lcd"><span class="nav-number">2.3.1.</span> <span class="nav-text">（1）STN LCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tft-lcd"><span class="nav-number">2.3.2.</span> <span class="nav-text">（2）TFT LCD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lcd%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E6%A1%86%E5%9B%BE"><span class="nav-number">2.4.</span> <span class="nav-text">LCD控制器的框图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lcd%E6%8E%A5%E5%8F%A3%E4%BF%A1%E5%8F%B7"><span class="nav-number">2.5.</span> <span class="nav-text">LCD接口信号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stn-lcd%E6%8E%A7%E5%88%B6%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.6.</span> <span class="nav-text">STN LCD控制器操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vm%E7%9A%84%E5%88%87%E6%8D%A2%E9%80%9F%E7%8E%87"><span class="nav-number">2.6.1.</span> <span class="nav-text">（1）VM的切换速率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vframe-%E5%92%8Cvline%E8%84%89%E5%86%B2"><span class="nav-number">2.6.2.</span> <span class="nav-text">（2）VFRAME 和VLINE脉冲</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vclk-%E4%BF%A1%E5%8F%B7%E9%80%9F%E7%8E%87"><span class="nav-number">2.6.3.</span> <span class="nav-text">（3）VCLK 信号速率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E9%80%9F%E7%8E%87"><span class="nav-number">2.6.4.</span> <span class="nav-text">（4）帧速率</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E6%93%8D%E4%BD%9C"><span class="nav-number">2.7.</span> <span class="nav-text">视频操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E8%A1%A8"><span class="nav-number">2.7.1.</span> <span class="nav-text">（1）查找表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%81%B0%E5%BA%A6%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">2.7.2.</span> <span class="nav-text">（2）灰度模式操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A7%E5%BD%A9%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">2.7.3.</span> <span class="nav-text">（3）256级彩色模式操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A7%E5%BD%A9%E8%89%B2%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C-1"><span class="nav-number">2.7.4.</span> <span class="nav-text">（4）4096级彩色模式操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81"><span class="nav-number">2.7.5.</span> <span class="nav-text">（5）扫描模式支持</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#a4%E4%BD%8D%E5%8D%95%E6%89%AB%E6%8F%8F"><span class="nav-number">2.7.5.1.</span> <span class="nav-text">（A）4位单扫描</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b4%E4%BD%8D%E5%8F%8C%E6%89%AB%E6%8F%8F"><span class="nav-number">2.7.5.2.</span> <span class="nav-text">（B）4位双扫描</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c8%E4%BD%8D%E5%8D%95%E6%89%AB%E6%8F%8F"><span class="nav-number">2.7.5.3.</span> <span class="nav-text">（C）8位单扫描</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E6%94%BE"><span class="nav-number">2.7.6.</span> <span class="nav-text">（6）显示数据的存放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Elcd%E7%9B%B8%E5%85%B3%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">2.8.</span> <span class="nav-text">与LCD相关的寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lcd%E6%98%BE%E7%A4%BA%E7%9A%84%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.9.</span> <span class="nav-text">LCD显示的编程实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A6%E6%91%B8%E5%B1%8F%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">触摸屏工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E7%BA%BF%E7%94%B5%E9%98%BB%E8%A7%A6%E6%91%B8%E5%B1%8F%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">四线电阻触摸屏原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s3c2410a%E7%9A%84%E8%A7%A6%E6%91%B8%E5%B1%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.2.</span> <span class="nav-text">S3C2410A的触摸屏接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cpu%E4%B8%8E%E8%A7%A6%E6%91%B8%E5%B1%8F%E8%BF%9E%E6%8E%A5%E5%9B%BE"><span class="nav-number">3.3.</span> <span class="nav-text">CPU与触摸屏连接图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A6%E6%91%B8%E5%B1%8F%E7%BC%96%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.4.</span> <span class="nav-text">触摸屏编程实例</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="人机交互接口设计详解 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          人机交互接口设计详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-08 11:07:08" itemprop="dateCreated datePublished" datetime="2023-01-08T11:07:08+08:00">2023-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="键盘和led的接口原理">键盘和LED的接口原理</h2>
+<p>HA7279A是一片具有串行接口并可同时驱动8位共阴式数码管或64只独立LED的智能显示驱动芯片。该芯片同时可连接多达64键的键盘矩阵，一片即可完成LED显示及键盘接口的全部功能。</p>
+<p>HA7279A一共有28个引脚：</p>
+<ul>
+<li>RESET：复位端。通常，该端接＋5V电源；</li>
+<li>DIG0～DIG7：８个LED管的位驱动输出端；</li>
+<li>SA～SG：LED数码管的Ａ段～Ｇ段的输出端；</li>
+<li>DP：小数点的驱动输出端；</li>
+<li>RC：外接振荡元件连接端。</li>
+<li>HD7279A与微处理器仅需４条接口线:</li>
+<li>CS：片选信号（低电平有效）；</li>
+<li>DATA：串行数据端。</li>
+<li>CLK：数据串行传送的同步时钟输入端，时钟的上升沿表示数据有效。</li>
+<li>KEY:按键信号输出端。该端在无键按下时为高电平；而在有键按下时变为低电平，并一直保持到按键释放为止。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108090920172.png" /></p>
+<span id="more"></span>
+<h3
+id="hd7279a与s3c2410a的连接原理图">HD7279A与S3C2410A的连接原理图</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108090930630.png" /></p>
+<h3 id="键盘和led控制的编程实例">键盘和LED控制的编程实例</h3>
+<p>举例：通过按键来控制LED的显示。</p>
+<p>1．键盘中断的初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">KeyINT_Init</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    rGPFCON=(rGPFCON&amp;<span class="number">0xF3FF</span>)|(<span class="number">2</span>&lt;&lt;<span class="number">10</span>);</span><br><span class="line">    rGPECON=(rGPECON&amp;<span class="number">0xF3FFFFFF</span>)|(<span class="number">0x01</span>&lt;&lt;<span class="number">26</span>); <span class="comment">//设置GPE13为输出位，模拟时钟输出</span></span><br><span class="line">    rEXTINT0 &amp;= <span class="number">0xff8fffff</span>; <span class="comment">//外部中断5低电平有效</span></span><br><span class="line">    <span class="keyword">if</span> (rEINTPEND &amp; <span class="number">0x20</span>)   <span class="comment">//清除外部中断5的中断挂起位</span></span><br><span class="line">        rEINTPEND |= <span class="number">0x20</span>;</span><br><span class="line">    <span class="keyword">if</span> ((rINTPND &amp; BIT_EINT4_7))&#123;</span><br><span class="line">    	rSRCPND |= BIT_EINT4_7;</span><br><span class="line">    	rINTPND |= BIT_EINT4_7;</span><br><span class="line">    &#125;</span><br><span class="line">    rINTMSK  &amp;= ~(BIT_EINT4_7);      <span class="comment">//使用外部中断4～7</span></span><br><span class="line">    rEINTMASK &amp;= <span class="number">0xffffdf</span>;           <span class="comment">//外部中断5使能</span></span><br><span class="line">    pISR_EINT4_7 = (<span class="type">int</span>)Key_ISR;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2．书写中断服务子程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __irq <span class="title function_">Key_ISR</span><span class="params">( <span class="type">void</span> )</span>&#123; </span><br><span class="line">	<span class="type">int</span> j;</span><br><span class="line">	rINTMSK  |= BIT_ALLMSK;   <span class="comment">// 关中断</span></span><br><span class="line">	<span class="keyword">if</span> (rEINTPEND &amp; <span class="number">0x20</span>)&#123;</span><br><span class="line">  		key_number = read7279(cmd_read);<span class="comment">//读键盘指令程序</span></span><br><span class="line">  		rINTMSK  &amp;= ~(BIT_EINT4_7);</span><br><span class="line">  		<span class="keyword">switch</span>(key_number)&#123; </span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x04</span> :     key_number = <span class="number">0x08</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x05</span> :     key_number = <span class="number">0x09</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x06</span> :     key_number = <span class="number">0x0A</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x07</span> :     key_number = <span class="number">0x0B</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x08</span> :     key_number = <span class="number">0x04</span>;   <span class="keyword">break</span>; </span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x09</span> :     key_number = <span class="number">0x05</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x0A</span> :     key_number = <span class="number">0x06</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">case</span> <span class="number">0x0b</span> :     key_number = <span class="number">0x07</span>;   <span class="keyword">break</span>;</span><br><span class="line">  		  <span class="keyword">default</span>:        <span class="keyword">break</span>;</span><br><span class="line">  	     &#125;</span><br><span class="line">    	Uart_Printf(<span class="string">&quot;key is %x \n&quot;</span>, key_number);</span><br><span class="line">  	&#125;</span><br><span class="line">	rEINTPEND |= <span class="number">0x20</span>;</span><br><span class="line">	rSRCPND |= BIT_EINT4_7;</span><br><span class="line">    rINTPND |= BIT_EINT4_7;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3．主程序的主要功能是根据按键键值，向HD7279A发送不同的处理命令，程序结构如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Main</span><span class="params">()</span>&#123; </span><br><span class="line"> 	<span class="type">char</span> p;</span><br><span class="line"> 	Target_Init(); <span class="comment">//目标初始化</span></span><br><span class="line">  	<span class="keyword">while</span>(<span class="number">1</span>)&#123;  </span><br><span class="line">  	    <span class="keyword">switch</span>(key_number)&#123;</span><br><span class="line"> 	       <span class="keyword">case</span> <span class="number">0</span>:  send_byte(cmd_test); <span class="comment">//测试键</span></span><br><span class="line">  			    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">for</span>(p=<span class="number">0</span>;p&lt;<span class="number">8</span>;p++)&#123;         <span class="comment">//右移8位</span></span><br><span class="line">              		send_byte(<span class="number">0xA0</span>);</span><br><span class="line">            		send_byte(<span class="number">0xC8</span>+<span class="number">7</span>);    </span><br><span class="line">            		send_byte(p);</span><br><span class="line">                                long_delay();</span><br><span class="line">                                Delay(<span class="number">7000</span>);</span><br><span class="line">                        &#125; <span class="keyword">break</span>;</span><br><span class="line">   	       <span class="comment">//case 2到case14</span></span><br><span class="line"> 	       <span class="keyword">case</span> <span class="number">15</span>:<span class="comment">//最右两个数码管上显示15</span></span><br><span class="line">  		    write7279(decode1+<span class="number">5</span>,key_number/<span class="number">16</span>*<span class="number">8</span>);</span><br><span class="line">    	                write7279(decode1+<span class="number">4</span>,key_number &amp; <span class="number">0x0f</span>);</span><br><span class="line">  		    <span class="keyword">break</span>;</span><br><span class="line">  	       <span class="keyword">default</span>: <span class="keyword">break</span>;</span><br><span class="line">  	     &#125;</span><br><span class="line"> 	     key_number = <span class="number">0xff</span>;</span><br><span class="line"> 	     Delay(<span class="number">50</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h2 id="lcd显示原理">LCD显示原理</h2>
+<p>所谓LCD，是Liquid Crystal
+Display的缩写，即液晶显示器。LCD液晶显示器主要有两类：STN（Super Twisted
+Nematic,超扭曲向列型）和TFT（Thin Film
+Transistor，薄膜晶体管型）。对于S3C2410A的LCD控制器，同时支持STN和TFT显示器。</p>
+<p>STN与TFT的主要区别在于：</p>
+<ul>
+<li>从工作原理上看，STN主要是增大液晶分子的扭曲角，而TFT为每个像素点设置一个开关电路，做到完全单独的控制每个像素点；</li>
+<li>从品质上看，STN的亮度较暗，画面的质量较差，颜色不够丰富，播放动画时有拖尾现象,耗电量小，价格便宜；而TFT亮度高，画面质量高，颜色丰富，播放动画时清晰，耗电量大，价格高。</li>
+</ul>
+<h3 id="lcd控制器概述">LCD控制器概述</h3>
+<p>市面上出售的LCD有两种类型：</p>
+<p>一种是带有驱动控制电路的LCD显示模块，这种LCD可以方便地与各种低档单片机进行接口；</p>
+<p>另一种是LCD显示屏，没有驱动控制电路，</p>
+<p>大部分ARM处理器中都集成了LCD控制器，所以对于采用ARM处理器的系统，一般使用不带驱动电路的LCD显示屏。</p>
+<h3 id="嵌入式处理器与lcd的连接">嵌入式处理器与LCD的连接</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091210976.png" /></p>
+<h3 id="s3c2410a的lcd控制器">S3C2410A的LCD控制器</h3>
+<p>S3C2410A中的LCD控制器可支持STN和TFT两种液晶显示屏。
+LCD控制器支持单色、4级、16级灰度LCD显示，以及8位彩色（256色）、12位彩色（4096色）LCD显示。LCD控制器由REGBANK、LCDCDMA、VIDPRCS、TIMEGEN和LPC3600组成。</p>
+<h4 id="stn-lcd">（1）STN LCD</h4>
+<p>— 支持 3 种STN LCD 显示: 4-bit 双扫描, 4-bit 单扫描, 和8-bit 单扫描 —
+支持二值, 4 级灰度, 16 级灰度，256色 和 4096 色的 STN LCD —
+典型屏幕尺寸为：640×480, 320×240,
+160×160等。256色模式虚拟屏幕尺寸为：4096×1024, 2048×2048,
+1024×4096等等</p>
+<h4 id="tft-lcd">（2）TFT LCD</h4>
+<p>— 支持 1位、2位、4位和8位 调色板模式的TFT LCD 显示 —
+支持16位、24位（16M）非调色板模式的TFT LCD显示 — 典型实际屏幕尺寸为
+640×480, 320×240, 160×160等。64K 彩色模式下支持的最大虚拟屏幕尺寸为
+2048×1024</p>
+<h3 id="lcd控制器的框图">LCD控制器的框图</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091312367.png" /></p>
+<ul>
+<li>REGBANK：寄存器组，由17个寄存器和一个256×16的调色板构成，用来设置LCD控制器。</li>
+<li>LCDCDMA：专用DMA，用来自动将存储器中的视频数据传送到LCD驱动器中。无需CPU干涉。</li>
+<li>VIDPRCS：视频数据产生，用来从LCDCDMA接收视频数据，并且转换成适当的格式（如：4/8比特单扫描或4比特双扫描），然后从端口VD[23:0]
+发送到LCD驱动器。</li>
+<li>TIMEGEN: 时序产生，用来产生视频控制信号。</li>
+<li>LPC3600：定时控制生成逻辑单元。</li>
+</ul>
+<h3 id="lcd接口信号">LCD接口信号</h3>
+<p>S3C2410A中的LCD控制器一共有33个输出端口，其中24个数据信号端口，9个控制信号端口。</p>
+<ul>
+<li>VFRAME/VSYNC/STV : LCD控制器发往驱动器的帧同步信号
+，它表示新的一帧的开始。LCD控制器在一个完整的帧显示后发出该信号，开始新的一帧的显示。</li>
+<li>VLINE/HSYNC/CPV : LCD控制器发往驱动器的行同步脉冲信号
+，LCD驱动器在收到该信号后，将水平移位寄存器的内容显示到LCD屏上。LCD控制器在一整行数据全部传输到LCD驱动器后，发出一个VLINE信号。</li>
+<li>VCLK/LCD_HCLK : LCD控制器发往驱动器的像素时钟信号
+，LCD控制器在VCLK的上升沿发送数据，LCD驱动器在VCLK的下降沿采样数据。</li>
+<li>VD[23:0] : LCD 像素数据输出端口
+，也就是平时所说的RGB信号线，采用的是5：6：5的模式。</li>
+<li>VM/VDEN/TP : LCD 驱动器所使用的的AC 偏置信号
+。LCD驱动器使用该信号改变行电压和列电压的极性，进而打开或者关闭像素，使像素点显示或熄灭。VM信号可以与帧同步信号或者行同步信号进行同步。</li>
+<li>LEND/STH : 行终止信号 (TFT)/SEC TFT信号 STH</li>
+<li>LCD_PWREN : LCD 电源使能信号</li>
+<li>LCDVF0 : SEC TFT OE信号</li>
+<li>LCDVF1 : SEC TFT REV信号</li>
+<li>LCDVF2 : SEC TFT REVB信号</li>
+</ul>
+<h3 id="stn-lcd控制器操作">STN LCD控制器操作</h3>
+<p>定时发生器 (TIMEGEN)</p>
+<p>TIMEGEN产生LCD驱动器所需要的各种控制信号，如：VFRAME, VLINE, VCLK,
+和VM。 这些信号是与REGBANK 里面的寄存器LCDCON1/2/3/4/5
+的配置密切相关的。可以通过改变这些寄存器的配置使得这些控制信号能够满足各种LCD驱动器的要求。比如：</p>
+<h4 id="vm的切换速率">（1）VM的切换速率</h4>
+<p>VM 的切换速率由LCDCON1寄存器的 MMODE位和LCDCON4寄存器的MVAL
+字段来决定。如果MMODE = 0,则VM信号每帧切换一次。如果MMODE =1 ，则VM
+每MVAL[7:0]个VLINE切换一次，即：</p>
+<p>VM Rate = VLINE Rate / ( 2 * MVAL) ，如下图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091406015.png" /></p>
+<h4 id="vframe-和vline脉冲">（2）VFRAME 和VLINE脉冲</h4>
+<p>VFRAME 和VLINE脉冲的产生依赖于LCDCON2/3寄存器的HOZVAL字段和LINEVAL
+字段。这两个字段的值由LCD的显示尺寸和显示模式决定：</p>
+<p>HOZVAL = (水平显示尺寸 / 有效 VD 数据行数)- 1</p>
+<p>（在彩色显示模式水平显示尺寸= 3
+×水平像素数；在4位单扫描和4位双扫描模式，有效 VD
+数据行数为4，在8位单扫描模式，有效 VD 数据行数为8. ）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LINEVAL = (垂直显示尺寸) <span class="number">-1</span>  <span class="comment">//单扫描模式下</span></span><br><span class="line"></span><br><span class="line">LINEVAL = (垂直显示尺寸/<span class="number">2</span>) <span class="number">-1</span>  <span class="comment">//双扫描模式下 </span></span><br></pre></td></tr></table></figure>
+<h4 id="vclk-信号速率">（3）VCLK 信号速率</h4>
+<p>VCLK 信号的速率依赖于LCDCON1寄存器的CLKVAL 字段的设置。VCLK与
+CLKVAL（最小为2）的对应关系为：
+<code>VCLK(Hz)=HCLK/(CLKVAL x 2)</code></p>
+<p>如下表所示：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091421378.png"
+alt="image-20230108091421378" />
+<figcaption aria-hidden="true">image-20230108091421378</figcaption>
+</figure>
+<h4 id="帧速率">（4）帧速率</h4>
+<p>帧速率即是VFRAM 信号的频率. 帧速率与LCDCON1/2/3/4寄存器中的WLH<a
+href="VLINE脉冲宽度">1:0</a>,WDLY[1:0]
+(VLINE脉冲之后的VCLK延时长度)，HOZVAL，LINEBLANK和LINEVAL等字段，以及VCLK和HCLK有关。帧速率的计算公式为：
+<code>frame_rate(Hz) = 1/&#123;[(1/VCLK)×(HOZVAL+1)+(1/HCLK)×(A+B+(LINEBLANK×8))]×(LINEVAL+1)&#125;</code></p>
+<p>其中：</p>
+<p><code>A = 2(4+WLH)，B = 2(4+WDLY)</code></p>
+<h3 id="视频操作">视频操作</h3>
+<h4 id="查找表">（1）查找表</h4>
+<p>S3C2410
+LCD控制器支持单色、2位（4级灰度）、4位（16灰度级）、8位（256级彩色）和12位（4096级彩色）
+LCD显示。</p>
+<p>为了便于用户选择不同的显示模式， S3C2410
+LCD控制器采用了调色板。通过这个调色板，用户可以在4灰度级模式下从16级灰度中选择4级灰度，构成查找表。在256级彩色中，8位彩色由3位红（8色）、3位绿（8色）、2位蓝（4色）构成(8×8×4=
+256)，这些红绿蓝色级也是分别在自己的16级中进行选择构成查找表。在16级灰度显示模式下，不需要查找表，16个灰度级都需要。在4096级彩色中不需要查表（红、绿、蓝都是16级，
+16×16×16= 4096）。</p>
+<h4 id="灰度模式操作">（2）灰度模式操作</h4>
+<p>S3C2410
+LCD控制器支持两种灰度模块：2位（4级灰度）、4位（16灰度级）。其中，4级灰度模式使用查找表，并且该查找表和彩色中的蓝色共用BLUELUT寄存器中的BLUEVAL[15:0]。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091509673.png" /></p>
+<p>0级灰度用BLUEVAL[3:0]来表示（如：这四位的值是3，则表示用16级灰度中的3级来表示4级灰度中的0级）、
+1级灰度用BLUEVAL[7:4]来表示， 2级灰度用BLUEVAL[11:8]来表示，
+3级灰度用BLUEVAL[15:12]来表示。</p>
+<h4 id="级彩色模式操作">（3）256级彩色模式操作</h4>
+<p>S3C2410
+LCD控制器支持每像素8位的256色彩色模式。每个象素的8位有3位表示红，3位表示绿，2位表示兰，分别利用自己的查找表。各个表分别用REDLUT寄存器中的REDVAL[31:0]、GREENLUT寄存器中的GREENVAL[31:0]和BLUELUT寄存器中的BLUEVAL[15:0]作为查找表的入口。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091536032.png" /></p>
+<h4 id="级彩色模式操作-1">（4）4096级彩色模式操作</h4>
+<p>S3C2410
+LCD控制器支持每像素12位的4096色彩色模式。每个象素的12位有4位表示红，4位表示绿，4位表示兰，不再使用查找表。</p>
+<h4 id="扫描模式支持">（5）扫描模式支持</h4>
+<p>S3C2410
+LCD控制器支持3种显示：4位单扫描、4位双扫描和8位单扫描。扫描方式通过PNRMODE（LCDCON1[6:5]）来设置：</p>
+<table>
+<thead>
+<tr class="header">
+<th>PNRMODE</th>
+<th>00</th>
+<th>01</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>模式</td>
+<td>4位双扫描</td>
+<td>4位单扫描</td>
+<td>8位单扫描</td>
+<td>TFT LCD</td>
+</tr>
+</tbody>
+</table>
+<h5 id="a4位单扫描">（A）4位单扫描</h5>
+<p>从VD[3：0]1次移动4位数据，直到一帧数据移位完毕。如下图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091608184.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091615076.png" /></p>
+<h5 id="b4位双扫描">（B）4位双扫描</h5>
+<p>显示控制器分别使用两条扫描线进行数据显示，显示数据从VD[3:0]获得高扫描数据，
+VD[7:4]获得低扫描数据。如下图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091632022.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091637921.png" /></p>
+<h5 id="c8位单扫描">（C）8位单扫描</h5>
+<p>显示数据从VD[7:0]获得扫描数据，一次输入8位行数据。如下图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091648575.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091701852.png" /></p>
+<h4 id="显示数据的存放">（6）显示数据的存放</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091711842.png" /></p>
+<p>在4级灰度模式，2bit视频数据对应一个像素</p>
+<p>在16级灰度模式，4bit视频数据对应一个像素</p>
+<p>在256色彩色模式，8bit视频数据对应一个像素。8位彩色数据格式如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091720797.png" /></p>
+<p>在4096色彩色模式，12bit视频数据对应一个像素，以字为单位的彩色数据格式如下（注意：这时彩色视频数据必须3字对齐，即8像素对齐）：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091743143.png" /></p>
+<h3 id="与lcd相关的寄存器">与LCD相关的寄存器</h3>
+<ul>
+<li>LCD控制寄存器1（LCDCON1）</li>
+<li>LCD控制寄存器2（LCDCON2）</li>
+<li>LCD控制寄存器3（LCDCON3）</li>
+<li>LCD控制寄存器4（LCDCON4）</li>
+<li>LCD控制寄存器5（LCDCON5）</li>
+<li>帧缓冲起始地址寄存器1（LCDSADDR1）</li>
+<li>帧缓冲起始地址寄存器2（LCDSADDR2）</li>
+<li>帧缓冲起始地址寄存器3（LCDSADDR3）</li>
+<li>RGB查找表寄存器（REDLUT、GREENLUT 、BLUELUT ）<br />
+</li>
+<li>抖动模式寄存器（DITHMODE）</li>
+</ul>
+<h3 id="lcd显示的编程实例">LCD显示的编程实例</h3>
+<p>举例：在LCD上填充一个蓝色的矩形，并画一个红色的圆。</p>
+<p>1．定义与LCD相关的寄存器</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 	M5D(n) 		((n) &amp; 0x1fffff)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MVAL		(13)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MVAL_USED 	(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MODE_CSTN_8BIT   (0x2001)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LCD_XSIZE_CSTN 	(320)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LCD_YSIZE_CSTN 	(240)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCR_XSIZE_CSTN 	(LCD_XSIZE_CSTN*2)   <span class="comment">//虚拟屏幕大小</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCR_YSIZE_CSTN 	(LCD_YSIZE_CSTN*2) </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HOZVAL_CSTN	 (LCD_XSIZE_CSTN*3/8-1)  <span class="comment">//有效的VD数据行号是8</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LINEVAL_CSTN		(LCD_YSIZE_CSTN-1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WLH_CSTN	        (0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WDLY_CSTN		(0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LINEBLANK_CSTN		(16 &amp;0xff)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CLKVAL_CSTN		(6) 	</span></span><br><span class="line"><span class="comment">//130hz @50Mhz,WLH=16hclk,WDLY=16hclk,LINEBLANK=16*8hclk,VD=8</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LCDFRAMEBUFFER 0x33800000  <span class="comment">//帧缓冲区起始地址</span></span></span><br></pre></td></tr></table></figure>
+<p>2．初始化LCD，即对相关寄存器进行赋初值。其中参数type用于传递显示器的类型，如STN8位彩色、STN12位彩色等。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span>  <span class="title function_">LCD_Init</span><span class="params">(<span class="type">int</span> type)</span>&#123;</span><br><span class="line">      rIISPSR=(<span class="number">2</span>&lt;&lt;<span class="number">5</span>)|(<span class="number">2</span>&lt;&lt;<span class="number">0</span>); <span class="comment">//IIS_LRCK=44.1Khz @384fs,PCLK=50Mhz.</span></span><br><span class="line">      rGPHCON = rGPHCON &amp; ~(<span class="number">0xf</span>&lt;&lt;<span class="number">18</span>)|(<span class="number">0x5</span>&lt;&lt;<span class="number">18</span>);</span><br><span class="line">      <span class="keyword">switch</span>(type)&#123;</span><br><span class="line">        <span class="keyword">case</span> MODE_CSTN_8BIT:  <span class="comment">//STN8位彩色模式</span></span><br><span class="line">          frameBuffer8Bit=(U32 (*)[SCR_XSIZE_CSTN / <span class="number">4</span>])LCDFRAMEBUFFER;</span><br><span class="line">          rLCDCON1=(CLKVAL_CSTN&lt;&lt;<span class="number">8</span>)|(MVAL_USED&lt;&lt;<span class="number">7</span>)|(<span class="number">2</span>&lt;&lt;<span class="number">5</span>)|(<span class="number">3</span>&lt;&lt;<span class="number">1</span>)|<span class="number">0</span>;</span><br><span class="line">                       <span class="comment">// 8-bit单扫描，8bpp CSTN,ENVID=关闭</span></span><br><span class="line">          rLCDCON2=(<span class="number">0</span>&lt;&lt;<span class="number">24</span>)|(LINEVAL_CSTN&lt;&lt;<span class="number">14</span>)|(<span class="number">0</span>&lt;&lt;<span class="number">6</span>)|<span class="number">0</span>;</span><br><span class="line">          rLCDCON3=(WDLY_CSTN&lt;&lt;<span class="number">19</span>)|(HOZVAL_CSTN&lt;&lt;<span class="number">8</span>)|(LINEBLANK_CSTN&lt;&lt;<span class="number">0</span>);</span><br><span class="line">          rLCDCON4=(MVAL&lt;&lt;<span class="number">8</span>)|(WLH_CSTN&lt;&lt;<span class="number">0</span>);</span><br><span class="line">          rLCDCON5= <span class="number">0</span>;</span><br><span class="line">          rLCDSADDR1=(((U32)frameBuffer8Bit&gt;&gt;<span class="number">22</span>)&lt;&lt;<span class="number">21</span>)|M5D((U32)frameBuffer8Bit&gt;&gt;<span class="number">1</span>);</span><br><span class="line">          rLCDSADDR2=M5D(((U32)frameBuffer8Bit+((SCR_XSIZE_CSTN)*LCD_YSIZE_CSTN))&gt;&gt;<span class="number">1</span>);</span><br><span class="line">          rLCDSADDR3=(((SCR_XSIZE_CSTN-LCD_XSIZE_CSTN)/<span class="number">2</span>)&lt;&lt;<span class="number">11</span>)|(LCD_XSIZE_CSTN / <span class="number">2</span>);</span><br><span class="line">          rDITHMODE=<span class="number">0</span>;</span><br><span class="line">	   rREDLUT  =<span class="number">0xfdb96420</span>;</span><br><span class="line">	   rGREENLUT=<span class="number">0xfdb96420</span>;</span><br><span class="line">	   rBLUELUT =<span class="number">0xfb40</span>;</span><br><span class="line">	   <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:  <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3．书写常用的绘图函数。函数_PutCstn8Bit()实现了在LCD的（x，y）处打点的功能。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _PutCstn8Bit(U32 x,U32 y,U32 c)&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;SCR_XSIZE_CSTN&amp;&amp; y&lt;SCR_YSIZE_CSTN)</span><br><span class="line">        frameBuffer8Bit[(y)][(x)/<span class="number">4</span>]=( frameBuffer8Bit[(y)][x/<span class="number">4</span>]</span><br><span class="line">	    &amp; ~(<span class="number">0xff000000</span>&gt;&gt;((x)%<span class="number">4</span>)*<span class="number">8</span>) ) | ( (c&amp;<span class="number">0x000000ff</span>)&lt;&lt;((<span class="number">4</span><span class="number">-1</span>-((x)%<span class="number">4</span>))*<span class="number">8</span>) );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4．书写主函数，通过调用初始化函数及绘图API函数，实现在LCD上填充一个蓝色的矩形，并画一个红色的圆。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">       <span class="type">int</span> Count = <span class="number">3000</span>;</span><br><span class="line"> 	Target_Init();   <span class="comment">//硬件初始化</span></span><br><span class="line"> 	GUI_Init();      <span class="comment">//图形用户接口初始化，包括对LCD的初始化</span></span><br><span class="line">  	Set_Color(GUI_BLUE);</span><br><span class="line">  	Fill_Rect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">319</span>,<span class="number">239</span>);</span><br><span class="line">  	Delay(Count);</span><br><span class="line">  	Set_Color(GUI_RED);</span><br><span class="line">  	Draw_Circle(<span class="number">100</span>,<span class="number">100</span>,<span class="number">50</span>);</span><br><span class="line">  	Delay(Count);</span><br><span class="line">       <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h2 id="触摸屏工作原理">触摸屏工作原理</h2>
+<p>触摸屏按其工作原理的不同可分为电阻式触摸屏、表面声波触摸屏、红外式触摸屏和电容式触摸屏几种。</p>
+<p>最常见的是电阻式触摸屏，其屏体部分是一块与显示器表面非常配合的多层复合薄膜。触摸屏工作时，上下导体层相当于电阻网络。当某一层电极加上电压时，会在该网络上形成电压梯度。如有外力使得上下两层在某一点接触，则在另一层未加电压的电极上可测得接触点处的电压，从而知道接触点处的坐标。</p>
+<h3 id="四线电阻触摸屏原理">四线电阻触摸屏原理</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108091959248.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108092011956.png" /></p>
+<p>在触摸点X、Y坐标的测量过程中，测量电压与测量点的等效电路图所示，图中P为测量点</p>
+<h3 id="s3c2410a的触摸屏接口">S3C2410A的触摸屏接口</h3>
+<p>S3C2410A支持触摸屏接口，它由一个触摸屏面板、四个外部晶体管、一个外部电压源、信号AIN[7]和信号AIN[5]组成。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108092034850.png" /></p>
+<h3 id="cpu与触摸屏连接图">CPU与触摸屏连接图</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108092052483.png" /></p>
+<h3 id="触摸屏编程实例">触摸屏编程实例</h3>
+<p>举例：在触摸屏上按下的位置画一个点 。</p>
+<p>1．对与触摸屏相关的寄存器进行初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Touch_Init</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    rADCDLY   = (<span class="number">0x5000</span>);             <span class="comment">// ADC启动或间隔延时</span></span><br><span class="line">	rADCTSC   = (<span class="number">0</span>&lt;&lt;<span class="number">8</span>)|(<span class="number">1</span>&lt;&lt;<span class="number">7</span>)|(<span class="number">1</span>&lt;&lt;<span class="number">6</span>)|(<span class="number">0</span>&lt;&lt;<span class="number">5</span>)|(<span class="number">1</span>&lt;&lt;<span class="number">4</span>)|(<span class="number">0</span>&lt;&lt;<span class="number">3</span>)|(<span class="number">0</span>&lt;&lt;<span class="number">2</span>)|(<span class="number">3</span>);</span><br><span class="line">                                      <span class="comment">//设置成为等待中断模式：1101</span></span><br><span class="line">	rADCCON	= (<span class="number">1</span>&lt;&lt;<span class="number">14</span>)|(<span class="number">49</span>&lt;&lt;<span class="number">6</span>)|(<span class="number">7</span>&lt;&lt;<span class="number">3</span>)|(<span class="number">0</span>&lt;&lt;<span class="number">2</span>)|(<span class="number">1</span>&lt;&lt;<span class="number">1</span>)|(<span class="number">0</span>);</span><br><span class="line">                                      <span class="comment">//设置ADC控制寄存器</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2．对触摸屏中断进行初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">TouchINT_Init</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ((rSRCPND &amp; BIT_ADC))                <span class="comment">//清除中断挂起位</span></span><br><span class="line">    	rSRCPND |= BIT_ADC;</span><br><span class="line">    <span class="keyword">if</span> ((rINTPND &amp; BIT_ADC))</span><br><span class="line">    	rINTPND |= BIT_ADC;</span><br><span class="line">    <span class="keyword">if</span> ((rSUBSRCPND &amp; BIT_SUB_TC))</span><br><span class="line">    	rSUBSRCPND |= BIT_SUB_TC;</span><br><span class="line">    <span class="keyword">if</span> ((rSUBSRCPND &amp; BIT_SUB_ADC))</span><br><span class="line">    	rSUBSRCPND |= BIT_SUB_ADC;</span><br><span class="line">    rINTMSK &amp;= ~(BIT_ADC);      <span class="comment">//相关中断屏蔽位置0,使能中断</span></span><br><span class="line">    rINTSUBMSK &amp;= ~(BIT_SUB_TC);</span><br><span class="line">    pISR_ADC = (<span class="type">unsigned</span>)Touch_ISR;             <span class="comment">//设置中断向量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3．书写触摸屏中断服务程序，当有触笔按下时，转到中断服务程序执行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __irq  <span class="title function_">Touch_ISR</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">	<span class="type">int</span> AD_XY,yPhys,xPhys;</span><br><span class="line">	<span class="comment">//关中断</span></span><br><span class="line">	rINTMSK |= (BIT_ADC);</span><br><span class="line">	rINTSUBMSK |= (BIT_SUB_ADC | BIT_SUB_TC);	<span class="comment">// 关闭子中断(ADC和TC) </span></span><br><span class="line">	<span class="comment">//获取位置</span></span><br><span class="line">	AD_XY  = GetTouch_XY_AD();     <span class="comment">//得到阿A/D转换后的X/Y值</span></span><br><span class="line">	yPhys = (AD_XY) &amp; <span class="number">0xffff</span>;      <span class="comment">//获取Y的AD值</span></span><br><span class="line">      xPhys = (AD_XY &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xffff</span>;<span class="comment">//获取X的AD值</span></span><br><span class="line">      TOUCH_X = AD2X(xPhys);</span><br><span class="line">      TOUCH_Y = AD2Y(yPhys);</span><br><span class="line">      Touch_Show(TOUCH_X,TOUCH_Y);<span class="comment">//实现在触摸点位置画点</span></span><br><span class="line">      <span class="comment">//开中断,清空挂起位</span></span><br><span class="line">      rSUBSRCPND |= BIT_SUB_TC;</span><br><span class="line">      ClearPending(BIT_ADC);</span><br><span class="line">      rINTMSK  &amp;= ~(BIT_ADC);</span><br><span class="line">      rINTSUBMSK &amp;= ~(BIT_SUB_ADC);</span><br><span class="line">      rINTSUBMSK &amp;= ~(BIT_SUB_TC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4．书写主程序，首先对硬件及图形用户界面进行初始化，接下来通过一个while循环语句等待触摸屏中断的发生，一旦有触摸屏中断发生，则转到触摸屏中断服务程序执行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    Target_Init(); <span class="comment">//初始化硬件</span></span><br><span class="line">    GUI_Init();    <span class="comment">//初始化图形用户界面</span></span><br><span class="line">    <span class="comment">//背景填充为蓝色</span></span><br><span class="line">    Set_Color(GUI_BLUE);</span><br><span class="line">    Fill_Rect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">319</span>,<span class="number">239</span>);</span><br><span class="line">    <span class="comment">//设置当有触笔按下时，在LCD上画点的颜色为黄色</span></span><br><span class="line">    Set_Color(GUI_YELLOW);</span><br><span class="line">    <span class="comment">//等待触摸屏中断</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+<p>杨宗德. 嵌入式ARM系统原理与实例开发
+[M]．北京：北京大学出版社，2007.</p>
+<p>S3C2410 Datasheet</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Embedded-System/ARM%E5%AE%9A%E6%97%B6%E5%99%A8/" rel="prev" title="ARM定时器">
+                  <i class="fa fa-chevron-left"></i> ARM定时器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Notes/Embedded-System/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3%E9%80%9A%E4%BF%A1%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" rel="next" title="万字详解通信接口设计">
+                  万字详解通信接口设计 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
