@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JTAG仿真器 JTAG(Joint Test Action Group；联合测试行动小组)是一种国际标准测试协议（IEEE 1149.1兼容），主要用于芯片内部测试及对系统进行仿真、调试。 JTAG 技术是一种嵌入式调试技术，它在芯片内部封装了专门的测试电路 TAP （ Test Access Port ，测试访问口），通过专用的 JTAG 测试工具对内部节点进行测试。 JTAG接">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="ARM相关开发工具概述">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="JTAG仿真器 JTAG(Joint Test Action Group；联合测试行动小组)是一种国际标准测试协议（IEEE 1149.1兼容），主要用于芯片内部测试及对系统进行仿真、调试。 JTAG 技术是一种嵌入式调试技术，它在芯片内部封装了专门的测试电路 TAP （ Test Access Port ，测试访问口），通过专用的 JTAG 测试工具对内部节点进行测试。 JTAG接">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-28T03:28:59.375Z">
+<meta property="article:modified_time" content="2023-01-11T13:05:10.329Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/","path":"Learn/Embedded-System/ARM相关开发工具概述/","title":"ARM相关开发工具概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ARM相关开发工具概述 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">13</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jtag%E4%BB%BF%E7%9C%9F%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">JTAG仿真器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#j-link%E4%BB%BF%E7%9C%9F%E8%B0%83%E8%AF%95%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">J-LINK仿真调试器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#j-link-arm%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">J-Link ARM主要特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u-link%E4%BB%BF%E7%9C%9F%E8%B0%83%E8%AF%95%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">U-LINK仿真调试器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ulink2%E7%89%B9%E7%82%B9"><span class="nav-number">3.1.</span> <span class="nav-text">ULINK2特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ulink%E5%92%8Cjlink%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">3.2.</span> <span class="nav-text">ULINK和JLINK的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ads1.2%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">4.</span> <span class="nav-text">ADS1.2集成开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ads%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">使用ADS创建工程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ARM相关开发工具概述 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARM相关开发工具概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-28 11:28:59" itemprop="dateCreated datePublished" datetime="2022-12-28T11:28:59+08:00">2022-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="jtag仿真器">JTAG仿真器</h2>
+<p>JTAG(Joint Test Action
+Group；联合测试行动小组)是一种国际标准测试协议（IEEE
+1149.1兼容），主要用于芯片内部测试及对系统进行仿真、调试。</p>
+<p>JTAG 技术是一种嵌入式调试技术，它在芯片内部封装了专门的测试电路 TAP
+（ Test Access Port ，测试访问口），通过专用的 JTAG
+测试工具对内部节点进行测试。</p>
+<p>JTAG接口还常用于实现ISP（In-System
+Programmer，在系统编程），对FLASH等器件进行编程。</p>
+<p>通常所说的JTAG大致分两类，一类用于测试芯片的电气特性，检测芯片是否有问题；一类用于Debug，一般支持JTAG的CPU内都包含了这两个模块。</p>
+<p>一个含有JTAG
+Debug接口模块的CPU，只要时钟正常，就可以通过JTAG接口访问CPU的内部寄存器和挂在CPU总线上的设备，如FLASH，RAM，SOC（比如4510B，44Box，AT91M系列）内置模块的寄存器，象UART，Timers，GPIO等等的寄存器。</p>
+<p>现在多数的高级器件都支持JTAG协议，如：新型单片机如MSP430、ARM、DSP、FPGA器件等。</p>
+<p>标准的JTAG接口是4线：TMS、TCK、TDI、TDO，分别为模式选择、时钟、数据输入和数据输出线。</p>
+<p>标准的 JTAG 接口是 4 线： TMS 、 TCK 、 TDI 、 TDO
+，分别为测试模式选择、测试时钟、测试数据输入和测试数据输出。如今 JTAG
+接口的连接有两种标准，即 14 针接口和 20 针接口，其定义分别如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103453806.png" /></p>
+<p>14针的JTAG接口为老式接口。</p>
+<p>引脚信号说明</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103552738.png" /></p>
+<p>SAMSUNG ARM7 S3C44B0开发套件中的JTAG编程板电路如图</p>
+<span id="more"></span>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103623561.png" /></p>
+<p>S3C2440的官方JTAG编程板</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103650187.png" /></p>
+<h2 id="j-link仿真调试器">J-LINK仿真调试器</h2>
+<p>J-Link是SEGGER公司为支持仿真ARM内核芯片推出的采用USB接口的JTAG仿真器。</p>
+<p>配合IAR
+EWAR，ADS，KEIL，WINARM，RealView等集成开发环境支持所有ARM7/ARM9/ARM11,Cortex
+M0/M1/M3/M4, Cortex
+A4/A8/A9等内核芯片的仿真，与IAR,Keil等编译环境无缝连接，操作方便、连接方便、简单易学，是学习开发ARM最好最实用的开发工具。</p>
+<h3 id="j-link-arm主要特点">J-Link ARM主要特点</h3>
+<p>IAR EWARM集成开发环境无缝连接的JTAG仿真器。</p>
+<ul>
+<li>支持CPUs: Any ARM7/9/11, Cortex-A5/A8/A9, Cortex-M0/M1/M3/M4,
+Cortex-R4, RX610, RX621, RX62N, RX62T, RX630, RX631, RX63N。</li>
+<li>下载速度高达1 MByte/s。</li>
+<li>最高JTAG速度15 MHz。</li>
+<li>目标板电压范围1.2V –3.3V,5V兼容。</li>
+<li>自动速度识别功能。</li>
+<li>监测所有JTAG信号和目标板电压。</li>
+<li>完全即插即用。</li>
+<li>使用USB电源（但不对目标板供电）</li>
+<li>带USB连接线和20芯扁平电缆。</li>
+<li>支持多JTAG器件串行连接。</li>
+<li>标准20芯JTAG仿真插头。</li>
+<li>选配14芯JTAG仿真插头。</li>
+<li>选配用于5V目标板的适配器。</li>
+<li>带J-Link TCP/IP server，允许通过TCP/ IP网络使用J-Link。</li>
+</ul>
+<h2 id="u-link仿真调试器">U-LINK仿真调试器</h2>
+<p>Keil ULINK USB接口仿真器，是一款多功能ARM调试工具，可以通过JTAG 或
+CODS
+接口连接到目标系统，进行仿真或下载程序，目前已经成为国内主流的ARM开发工具。</p>
+<p>Keil ULINK的软件环境为Keil uVision
+Keil系列软件具有良好的调试界面，优秀的编译效果，丰富的使用资料。使其深受国内嵌入式开发工程师的喜爱。</p>
+<p>目前，ULINK已经停产，新用户推荐选择ULINK2或ULINKPro仿真器。</p>
+<p>ULINK2是ARM公司最新推出的配套RealView
+MDK使用的仿真器，是ULink仿真器的升级版本。</p>
+<p>ULINK2不仅具有ULINK仿真器的所有功能，还增加了串行调试（SWD）支持，返回时钟支持和实时代理等功能。开发工程师通过结合使用RealView
+MDK的调试器和ULINK2，可以方便的在目标硬件上进行片上调试(使用on-chip
+JTAG， SWD和 OCDS)、Flash编程.</p>
+<h3 id="ulink2特点">ULINK2特点</h3>
+<ul>
+<li>支持ARM7，ARM9， Cortex-M，8051和C166设备</li>
+<li>JTAG速度高达10MHz
+支持Cortex-M串行查看器（SWV）数据和时间跟踪，速度高达1Mbit/s（UART模式）</li>
+<li>执行、端口仿真和串行调试输出时的存储器读写实时代理</li>
+<li>与Keil μVision IDE和Debugger无缝隙集成</li>
+<li>宽目标电压，从2.7V – 5.5V可用</li>
+<li>USB供电（无须电源）</li>
+<li>使用标准Windows USB设备，即插即用安装目标连接器</li>
+</ul>
+<h3 id="ulink和jlink的比较">ULINK和JLINK的比较</h3>
+<p>ULINK是KEIL公司开发的仿真器，专用于KEIL平台下使用，ADS,IAR下不能使用</p>
+<p>JLINK是通用的开发工具，可以用于KEIL，IAR，ADS等平台速度，效率，功能均比ULINK强</p>
+<p>ULINK2的下载速度和调试速度确实没有JLINK的快。</p>
+<h2 id="ads1.2集成开发环境">ADS1.2集成开发环境</h2>
+<p>基于Windows操作系统平台的ARM ADS（ARM Developer
+Suite）软件下进行的，该软件是由ARM公司提供的专门用于ARM
+处理器应用开发和调试的综合性工具软件，目前使用的ADS1.2版本。</p>
+<p>ADS1.2主要包含CodeWarrior IDE、AXD两部分；CodeWarrior
+IDE工具主要用于工程的管理配置、源程序的编辑、编译和链接；AXD主要用于工程的下载和调试。</p>
+<p>CodeWarrior
+集成开发环境(IDE)为管理和开发项目提供了简单多样化的图形用户界面。
+用户可以使用ADS 的CodeWarrior IDE 为ARM 和Thumb
+处理器开发用C，C++，或ARM汇编语言的程序代码。通过提供下面的功能，CodeWarrior
+IDE 缩短了用户开发项目代码的周期。</p>
+<h3 id="使用ads创建工程">使用ADS创建工程</h3>
+<ul>
+<li>ARM Executabl Image：用于由ARM 指令的代码生成一个ELF
+格式的可执行映像文件；</li>
+<li>ARM Object Library：用于由ARM 指令的代码生成一个armar
+格式的目标文件库；</li>
+<li>Empty Project ：用于创建一个不包含任何库或源文件的工程；</li>
+<li>Makefile Importer Wizard ：用于将Visual C 的nmake 或 GNU make
+文件转入到CodeWarrior IDE 工程文件；</li>
+<li>Thumb ARM Executable Image：用于由ARM 指令和Thumb
+指令的混和代码生成一个可执行的ELF 格式的映像文件；</li>
+<li>Thumb Executable image：用于由Thumb 指令创建一个可执行的ELF
+格式的映像文件；</li>
+<li>Thumb Object Library ：用于由Thumb 指令的代码生成一个armar
+格式的目标文件库。</li>
+</ul>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/" rel="prev" title="ARM符号定义伪操作详解">
+                  <i class="fa fa-chevron-left"></i> ARM符号定义伪操作详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/" rel="next" title="ARM数据定义伪操作全总结">
+                  ARM数据定义伪操作全总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

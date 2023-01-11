@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ARM处理器是Load&#x2F;Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。 ARM的数据存取指令Load&#x2F;Store是唯一用于寄存器和存储器之间进行数据传送的指令。 在ARM系统中I&#x2F;O操作是通过存储器映射进行寻址的，对I&#x2F;O设备的操作可以和对存储器的操作一样，因此，也是使用Load&#x2F;">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Load&#x2F;Store之单寄存器的存取指令">
+<meta property="og:url" content="http://example.com/Learn/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="ARM处理器是Load&#x2F;Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。 ARM的数据存取指令Load&#x2F;Store是唯一用于寄存器和存储器之间进行数据传送的指令。 在ARM系统中I&#x2F;O操作是通过存储器映射进行寻址的，对I&#x2F;O设备的操作可以和对存储器的操作一样，因此，也是使用Load&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-21T03:22:50.389Z">
+<meta property="article:modified_time" content="2023-01-11T13:05:59.144Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="ARM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Learn/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Learn/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/","path":"Learn/Embedded-System/LoadStore之单寄存器的存取指令/","title":"Load/Store之单寄存器的存取指令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Load/Store之单寄存器的存取指令 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">13</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#loadstore%E6%8C%87%E4%BB%A4%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">Load&#x2F;Store指令分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.</span> <span class="nav-text">单寄存器的存取指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%95%E5%AD%97%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E5%AD%97%E8%8A%82%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、单字和无符号字节的数据传送指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.2.</span> <span class="nav-text">指令说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%B1%87%E7%BC%96%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">指令汇编格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%8A%E5%AD%97%E5%92%8C%E6%9C%89%E7%AC%A6%E5%8F%B7%E5%AD%97%E8%8A%82%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.4.</span> <span class="nav-text">2、半字和有符号字节的数据传送指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E6%B1%87%E7%BC%96%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">1.1.5.</span> <span class="nav-text">指令汇编格式</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Load/Store之单寄存器的存取指令 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Load/Store之单寄存器的存取指令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-21 11:22:50" itemprop="dateCreated datePublished" datetime="2022-12-21T11:22:50+08:00">2022-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Learn/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>ARM处理器是Load/Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。</p>
+<p>ARM的数据存取指令Load/Store是唯一用于寄存器和存储器之间进行数据传送的指令。</p>
+<p>在ARM系统中I/O操作是通过存储器映射进行寻址的，对I/O设备的操作可以和对存储器的操作一样，因此，也是使用Load/Store指令完成。</p>
+<h3 id="loadstore指令分类">Load/Store指令分类</h3>
+<p>ARM指令集中有三种基本的数据存取指令：</p>
+<ul>
+<li>单寄存器的存取指令（LDR，STR）：提供寄存器和存储器之间最灵活的单数据项传送方式，传送的数据可以是8位字节、16位半字或32位字。</li>
+<li>多寄存器存取指令（LDM，STM）：可有效地用于大批数据的传送。一般这些指令用于进程的进入和退出，保存和恢复工作寄存器以及拷贝存储器中一块数据。</li>
+<li>单寄存器交换指令（SWP）：用于寄存器和存储器中的数据交换。在一个指令中完成存取操作。该指令常用来完成信号量操作，而信号量是一种解决进程同步和互斥问题的机制。</li>
+</ul>
+<span id="more"></span>
+<h4 id="单寄存器的存取指令">单寄存器的存取指令</h4>
+<p>单寄存器存取指令是ARM在寄存器和存储器间传送单个字节和字的最灵活方式。根据传送数据的类型不同，单个寄存器存取指令又可以分为以下两类：</p>
+<ul>
+<li>单字和无符号字节的数据传送指令</li>
+<li>半字和有符号字节的数据传送指令</li>
+</ul>
+<h5
+id="单字和无符号字节的数据传送指令">1、单字和无符号字节的数据传送指令</h5>
+<p>这一类数据传送指令的编码格式如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221221105808315.png" /></p>
+<h5 id="指令说明">指令说明</h5>
+<p>基址寄存器加上或减去一个无符号立即数或者
+寄存器偏移量构成存储器访问地址。
+当从存储器读取一个无符号字节数据时，需要将它用0扩展到32位，然后放置到目的寄存器中。
+当从一个寄存器向存储器写一个字节的数据时，写的是寄存器的低8位。
+前变址的寻址模式使用计算出的地址作为存储器地址进行数据存取操作，然后，当要求回写（W=1）（即自动变址方式），将基址寄存器更新为计算出的地址值。
+后变址的寻址模式用未修改的基址寄存器来传送数据，然后将基址寄存器更新为计算出的地址，而不管W位如何。</p>
+<h5 id="指令汇编格式">指令汇编格式</h5>
+<p>前变址格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR|STR &#123;&lt;cond&gt;&#125; &#123;B&#125; Rd， [Rn， &lt;offset&gt;] &#123;!&#125;</span><br></pre></td></tr></table></figure>
+<p>​
+其中B表示是按字节传送，缺省时按字传送，offset可能是±12位立即数，或者±Rm{<shift>},这里shift包括移位方式和移位位数，移位位数只能是5位立即数，而不能再来自于寄存器Rs。根据有无{!}选择是否回写（自动变址）。
+后变址格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR|STR &#123;&lt;cond&gt;&#125; &#123;B&#125; &#123;T&#125; Rd， [Rn]，&lt;offset&gt;</span><br></pre></td></tr></table></figure>
+<p>​
+其中T标志只能在非用户模式（即特权模式）下使用，作用是选择用户角度的存储器访问。
+相对PC的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR|STR &#123;&lt;cond&gt;&#125; &#123;B&#125; Rd， LABEL </span><br></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LDR  R8,[R10]   ;R8←[R10]</span><br><span class="line">LDRNE R1,[R5,#960]!  ;(有条件地）R1←[R5+960],R5 ←R5+960</span><br><span class="line">STR  R2,[R9,#consta-struc] ;consta-struc是常量表达式，范围为-4095~4095</span><br><span class="line">STRB R0，[R3，-R8，ASR #2] ；R0→[R3-R8÷4],存储R0的最低有效字节，但R3和R8的内容不变</span><br><span class="line">LDR  R1，localdata   ;加载一个字，该字位于标号localdata所在地址。（相对PC形式）</span><br><span class="line">LDR  R0,[R1],R2,LSL #2 ;将地址为R1的内存单元数据读取到R0中，然后R1←R1+R2*4</span><br><span class="line">LDRB R0，[R2，#3] ；将内存单元（R2+3）中的字节数据读到R0中，R0的高24位被设置为0</span><br><span class="line">LDR  R1，[R0，-R2，LSL #2] ；将R0-R2*4地址处的数据读出，保存到R1中，R0，R2的值保持不变。</span><br><span class="line">STR  R0,[R7],#-8   ;将R0的内容存到R7中地址对应的内存中，R7←R7-8</span><br></pre></td></tr></table></figure>
+<p>在编程中，常使用相对PC的形式将R0中的一个字存到外设UART，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR    R1，UARTADD</span><br><span class="line">STR     R0，[R1]</span><br></pre></td></tr></table></figure>
+<p>​ 或者，使用相对PC形式将外设UART数据读到R0 ，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR    R1，UARTADD</span><br><span class="line">LDR    R0，[R1]</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<p>这里UARTADD标号在附近4KB范围之内。</p>
+<p>使用PC作为基址时，得到的传送地址为当前指令地址加8字节；PC不能用作偏移寄存器，也不能用于任何自动变址寻址模式（包括后变址模式）。</p>
+<p>把一个字读到PC可以使程序转移到读取的地址，从而实现程序跳转。但应避免将一个字节读取到PC。应尽量避免把PC存储到存储器，因为不同处理器可能会产生不同的结果。</p>
+<p>只要不使用自动变址，Rd=Rn是可以的，但在一般情况下，Rd、Rn和Rm应是不同的。</p>
+<h5
+id="半字和有符号字节的数据传送指令">2、半字和有符号字节的数据传送指令</h5>
+<p>有符号的字节或半字的传送用“符号位”扩展到32位。无符号半字的传送用0扩展到32位。这类数据传送的二进制编码如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221221110135392.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221221110151511.png" /></p>
+<p>立即数偏移量只能8位之内。 寄存器偏移量不可移位得到。
+S、H用于定义所传送的数据类型。</p>
+<table>
+<thead>
+<tr class="header">
+<th>S</th>
+<th>H</th>
+<th>数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>有符号字节</strong></td>
+</tr>
+<tr class="even">
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>无符号半字</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>有符号半字</strong></td>
+</tr>
+</tbody>
+</table>
+<h5 id="指令汇编格式-1">指令汇编格式</h5>
+<p>这一类数据传送指令的汇编格式如下：</p>
+<p>前变址格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR|STR&#123; &lt;cond&gt;&#125; H|SH|SB  Rd，  [Rn， &lt;offest&gt;]&#123;!&#125;</span><br></pre></td></tr></table></figure>
+<p>后变址格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LDR|STR &#123;&lt;cond&gt;&#125; H|SH|SB  Rd，  [Rn]， &lt;offest&gt; </span><br></pre></td></tr></table></figure>
+<p>式中<offset>是#±&lt;8位立即数&gt;或#±Rm；H|SH|SB选择传送数据类型；其它部分的汇编器格式与传送字和无符号字节相同。所有半字传送应使用半字对齐的地址。</p>
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LDREQSH  R11,[R6];(有条件地） R11←[R6],加载16位半字，有符号扩展到32位</span><br><span class="line">LDRH R1,[R0,#20]! ；R1←[R0+20],加载16位半字，0扩展到32位</span><br><span class="line">STRH  R4,[R3，R2] ;R4→[R3+R2],存储最低的有效半字到R3+R2</span><br><span class="line">LDRSB R0，const ；加载位于标号const地址的字节，有符号扩展</span><br><span class="line">LDRH  R6，[R2]，#2 ;将R2地址上的半字数据读出到R6，高16位用0扩展，R2=R2+2</span><br><span class="line">LDRSH  R1,[R9];将R9地址上的半字数据读取到R1中，高16位用符号位扩展</span><br><span class="line">STRNEH  R0，[R2，#960] ；(有条件地）将R0的内容送到（R2+960）的内存中，R2=R2+960</span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p>孟祥莲．嵌入式系统原理及应用教程（第2版）[M]．北京：清华大学出版社，2017.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" rel="prev" title="数据处理指令详解">
+                  <i class="fa fa-chevron-left"></i> 数据处理指令详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Learn/Embedded-System/ARM%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" rel="next" title="ARM多寄存器存取指令详解">
+                  ARM多寄存器存取指令详解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
