@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">93</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,18 +153,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -207,6 +207,535 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%20%E6%B1%87%E7%BC%96%E6%8E%A7%E5%88%B6%E4%BC%AA%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%20%E6%B1%87%E7%BC%96%E6%8E%A7%E5%88%B6%E4%BC%AA%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">ARM 汇编控制伪操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-29 21:14:52" itemprop="dateCreated datePublished" datetime="2022-12-29T21:14:52+08:00">2022-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol type="1">
+<li>IF、ELSE、ENDIF条件编译伪操作</li>
+<li>WHILE、WEND条件编译伪操作</li>
+<li>MACRO、MEND宏定义伪操作</li>
+<li>MEXIT宏退出伪操作</li>
+</ol>
+<h2 id="ifelseendif">IF、ELSE、ENDIF</h2>
+<h3 id="语法格式">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IF 逻辑表达式     </span><br><span class="line">指令序列 1     </span><br><span class="line">ELSE     </span><br><span class="line">指令序列 2     </span><br><span class="line">ENDIF     </span><br></pre></td></tr></table></figure>
+<p>IF 、 ELSE 、 ENDIF
+伪操作能根据条件的成立与否决定是否执行某个指令序列。当 IF
+后面的逻辑表达式为真，则执行指令序列 1 ，否则执行指令序列 2 。其中，
+ELSE 及指令序列 2 可以没有，此时，当 IF
+后面的逻辑表达式为真，则执行指令序列 1 ，否则继续执行后面的指令。</p>
+<p>IF 、 ELSE 、 ENDIF 伪操作可以嵌套使用。</p>
+<h3 id="使用示例">使用示例</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GBLL Test ;声明一个全局的逻辑变量，变量名为 Test……     </span><br><span class="line">IF Test = TRUE     </span><br><span class="line">指令序列 1     </span><br><span class="line">ELSE     </span><br><span class="line">指令序列 2     </span><br><span class="line">ENDIF  </span><br></pre></td></tr></table></figure>
+<h2 id="whilewend">WHILE、WEND</h2>
+<h3 id="语法格式-1">语法格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">WHILE 逻辑表达式     </span><br><span class="line">  指令序列     </span><br><span class="line">  WEND     </span><br></pre></td></tr></table></figure>
+<p>WHILE 、 WEND
+伪操作能根据条件的成立与否决定是否循环执行某个指令序列。当 WHILE
+后面的逻辑表达式为真，则执行指令序列，该指令序列执行完毕后，再判断逻辑表达式的值，若为真则继续执行，一直到逻辑表达式的值为假。</p>
+<p>WHILE 、 WEND 伪指令可以嵌套使用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%20%E6%B1%87%E7%BC%96%E6%8E%A7%E5%88%B6%E4%BC%AA%E6%93%8D%E4%BD%9C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ARM数据定义伪操作全总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-29 21:14:52" itemprop="dateCreated datePublished" datetime="2022-12-29T21:14:52+08:00">2022-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol type="1">
+<li>定义字节存储单元伪操作DCB</li>
+<li>定义半字存储单元伪操作DCW（DCWU）</li>
+<li>定义字存储单元伪操作DCD（DCDU）</li>
+<li>为单精度浮点数定义字存储单元伪操作DCFS（DCFSU）</li>
+<li>为双精度浮点数定义字存储单元伪操作DCFD（DCFDU）</li>
+<li>内存单元分配伪操作SPACE</li>
+<li>定义结构化内存表首地址伪操作MAP</li>
+<li>定义结构化内存表中数据域伪操作FIELD</li>
+<li>定义文字池伪操作LTORG</li>
+</ol>
+<h2 id="dcb">DCB</h2>
+<h2 id="dcwdcwu">DCW(DCWU)</h2>
+<h3 id="格式">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCW（或DCWU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能">功能</h3>
+<p>DCW（或DCWU）伪操作用于分配一片连续的半字存储单元并用伪操作中指定的表达式初始化。其中，表达式可以为程序标号或数值表达式。用DCW分配的字存储单元是半字对齐的，而用DCWU分配的字存储单元并不严格按照半字对齐。</p>
+<h2 id="dcd或dcdu">DCD（或DCDU）</h2>
+<h3 id="格式-1">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCD（或DCDU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能-1">功能</h3>
+<p>DCD（或DCDU）伪操作用于分配一片连续的字存储单元并用伪操作中指定的表达式初始化。</p>
+<p>其表达式可以为程序标号或数值表达式。DCD也可用“&amp;”代替。用DCD分配的字存储单元是字对齐的，而用DCDU分配的字存储单元并不严格按照字对齐。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">ARM相关开发工具概述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-28 11:28:59" itemprop="dateCreated datePublished" datetime="2022-12-28T11:28:59+08:00">2022-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="jtag仿真器">JTAG仿真器</h2>
+<p>JTAG(Joint Test Action
+Group；联合测试行动小组)是一种国际标准测试协议（IEEE
+1149.1兼容），主要用于芯片内部测试及对系统进行仿真、调试。</p>
+<p>JTAG 技术是一种嵌入式调试技术，它在芯片内部封装了专门的测试电路 TAP
+（ Test Access Port ，测试访问口），通过专用的 JTAG
+测试工具对内部节点进行测试。</p>
+<p>JTAG接口还常用于实现ISP（In-System
+Programmer，在系统编程），对FLASH等器件进行编程。</p>
+<p>通常所说的JTAG大致分两类，一类用于测试芯片的电气特性，检测芯片是否有问题；一类用于Debug，一般支持JTAG的CPU内都包含了这两个模块。</p>
+<p>一个含有JTAG
+Debug接口模块的CPU，只要时钟正常，就可以通过JTAG接口访问CPU的内部寄存器和挂在CPU总线上的设备，如FLASH，RAM，SOC（比如4510B，44Box，AT91M系列）内置模块的寄存器，象UART，Timers，GPIO等等的寄存器。</p>
+<p>现在多数的高级器件都支持JTAG协议，如：新型单片机如MSP430、ARM、DSP、FPGA器件等。</p>
+<p>标准的JTAG接口是4线：TMS、TCK、TDI、TDO，分别为模式选择、时钟、数据输入和数据输出线。</p>
+<p>标准的 JTAG 接口是 4 线： TMS 、 TCK 、 TDI 、 TDO
+，分别为测试模式选择、测试时钟、测试数据输入和测试数据输出。如今 JTAG
+接口的连接有两种标准，即 14 针接口和 20 针接口，其定义分别如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103453806.png" /></p>
+<p>14针的JTAG接口为老式接口。</p>
+<p>引脚信号说明</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221228103552738.png" /></p>
+<p>SAMSUNG ARM7 S3C44B0开发套件中的JTAG编程板电路如图</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">ARM符号定义伪操作详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-28 11:28:59" itemprop="dateCreated datePublished" datetime="2022-12-28T11:28:59+08:00">2022-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2
+id="arm汇编语言的伪操作宏指令与伪指令">ARM汇编语言的伪操作、宏指令与伪指令</h2>
+<p>ARM汇编语言源程序中语句一般由指令、伪操作、宏指令和伪指令组成
+伪操作是ARM汇编语言程序里的一些特殊指令助记符，它的作用主要是为完成汇编程序做各种准备工作，在源程序进行汇编时由汇编程序处理，而不是在计算机运行期间由机器执行。</p>
+<p>宏指令是一段独立的程序代码，可以插在源程序中，它通过伪操作来定义。宏在被使用之前必须提前定义好，宏之间可以互相调用，也可以自己递归调用。通过直接书写宏名来使用宏，并根据宏指令的格式设置相应的输入参数。宏定义本身不会产生代码，只是在调用它时把宏体插入到源程序中。</p>
+<p>伪指令也是ARM汇编语言程序里的特殊指令助记符，也不在处理器运行期间由机器执行，它们在汇编时将被合适的机器指令代替成ARM或Thumb指令,从而实现真正指令操作。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">ARM常用开发编译软件介绍</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-27 10:58:21" itemprop="dateCreated datePublished" datetime="2022-12-27T10:58:21+08:00">2022-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="编译器介绍">编译器介绍</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221227105406508.png" /></p>
+<h2 id="ads1.2">1、ADS1.2</h2>
+<p>ADS（ARM Developer
+Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。
+他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C
+编译器；实时调试器；应用函数库。ADS对汇编、C/C++、java支持的均很好，是目前最成熟的ARM开发工具。很多ARM开发软件（例如Keil）也是借用的ADS的编译器。ADS在2006年版本已经发布到2.2。但国内大部分开发者使用的均是1.2版本</p>
+<p>ADS1.2提供完整的WINDOWS界面开发环境。C编译器效率高，支持c
+以及c++。提供软件模拟仿真功能，使没有Emulators的学习者也能够熟悉ARM的指令系统。配合FFT-ICE使用，ADS1.2提供强大的实时调试跟踪功能,片内运行情况尽在掌握。ADS1.2需要硬件支持才能发挥强大功能。目前支持的硬件调试器有Multi-ICE以及兼容Multi-ICE的调试工具如FFT-ICE。</p>
+<p>版本：ADS1.2</p>
+<p>软件大小：130M</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -712,512 +1241,8 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">ARM多寄存器存取指令详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-22 10:43:49" itemprop="dateCreated datePublished" datetime="2022-12-22T10:43:49+08:00">2022-12-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>多寄存器传送指令可以用一条指令将16个可见寄存器（R0~R15）的任意子集合（或全部）存储到存储器或从存储器中读取数据到该寄存器集合中。如：可将寄存器列表保存到堆栈，也可将寄存器列表从堆栈中恢复。
-这种指令有两个特殊用法：
-（1）允许操作系统加载或存储用户模式寄存器来保护或恢复用户处理状态。
-（2）作为异常处理返回的一部分，完成从SPSR中恢复CPSR。<br />
-这种指令与单寄存器存取指令相比，多寄存器数据存取可用的寻址模式更加有限。</p>
-<h2 id="多寄存器存取指令的二进制编码">多寄存器存取指令的二进制编码</h2>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221222103443219.png" /></p>
-<p>二进制编码的低16位对应R15~R0的寄存器列表。</p>
-<p>存储器地址可以通过基址寄存器Rn和寻址模式的定义来实现，在传送一个字前或后基址将增加或减少。如果W=1，则支持自动变址，则当指令完成时，基址寄存器将增加或减少所传送的字节数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Load/Store之单寄存器的存取指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-21 11:22:50" itemprop="dateCreated datePublished" datetime="2022-12-21T11:22:50+08:00">2022-12-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ARM处理器是Load/Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。</p>
-<p>ARM的数据存取指令Load/Store是唯一用于寄存器和存储器之间进行数据传送的指令。</p>
-<p>在ARM系统中I/O操作是通过存储器映射进行寻址的，对I/O设备的操作可以和对存储器的操作一样，因此，也是使用Load/Store指令完成。</p>
-<h3 id="loadstore指令分类">Load/Store指令分类</h3>
-<p>ARM指令集中有三种基本的数据存取指令：</p>
-<ul>
-<li>单寄存器的存取指令（LDR，STR）：提供寄存器和存储器之间最灵活的单数据项传送方式，传送的数据可以是8位字节、16位半字或32位字。</li>
-<li>多寄存器存取指令（LDM，STM）：可有效地用于大批数据的传送。一般这些指令用于进程的进入和退出，保存和恢复工作寄存器以及拷贝存储器中一块数据。</li>
-<li>单寄存器交换指令（SWP）：用于寄存器和存储器中的数据交换。在一个指令中完成存取操作。该指令常用来完成信号量操作，而信号量是一种解决进程同步和互斥问题的机制。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">数据处理指令详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-20 15:22:20" itemprop="dateCreated datePublished" datetime="2022-12-20T15:22:20+08:00">2022-12-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ARM的数据处理指令主要完成寄存器中数据的算术和逻辑运算操作：</p>
-<ul>
-<li>数据处理指令分类</li>
-<li>数据处理指令二进制编码</li>
-<li>数据处理指令表</li>
-</ul>
-<p>数据处理指令根据指令实现处理功能可分为以下六类：</p>
-<ul>
-<li>数据传送指令；</li>
-<li>算术运算指令；</li>
-<li>逻辑运算指令；</li>
-<li>比较指令；</li>
-<li>测试指令；</li>
-<li>乘法指令。</li>
-</ul>
-<h3 id="数据处理指令的特点">数据处理指令的特点</h3>
-<p>所有操作数都是32位宽，或来自寄存器或来自指令中的立即数（符号或0扩展）</p>
-<p>如果数据操作有结果，则结果为32位宽，放在一个寄存器中（有一个例外是长乘指令的结果是64位的）；</p>
-<p>ARM数据处理指令中使用“3地址模式”，即1个目的操作寄存器、1个源操作数寄存器和1个灵活的第2操作数，这个第2操作数可以使寄存器、移位后的寄存器或者立即数。如果第2操作数为寄存器Rm，它也可以进行移位（包括：逻辑移位、算术移位、循环移位），移位位数可以来自一5位立即数或也可以使一寄存器的内容。当然，这3个操作数也可以只用1个或者2个，甚至1个都不用（如测试指令TST，TEQ等）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">堆栈寻址、相对寻址与ARM指令总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-19 13:19:36" itemprop="dateCreated datePublished" datetime="2022-12-19T13:19:36+08:00">2022-12-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="堆栈寻址">堆栈寻址</h2>
-<p>堆栈是一种数据结构，按先进后出（First In Last
-Out，FILO）的方式工作，使用一个称作堆栈指针（SP）的专用寄存器（R13）指示当前的操作位置，堆栈指针总是指向栈顶。</p>
-<p>当堆栈指针指向最后压入堆栈的数据时，称为满堆栈（Full
-Stack），而当堆栈指针指向下一个将要放入数据的空位置时，称为空堆栈（Empty
-Stack）。</p>
-<p>根据堆栈的生成方式，又可以分为递增堆栈（Ascending
-Stack）和递减堆栈（Decending
-Stack），当堆栈由低地址向高地址生成时，称为递增堆栈，当堆栈由高地址向低地址生成时，称为递减堆栈。</p>
-<h3 id="堆栈工作方式">堆栈工作方式</h3>
-<p>这样就有四种类型的堆栈工作方式</p>
-<ul>
-<li>满递增堆栈：堆栈指针指向最后压入的数据，且由低地址向高地址生成。</li>
-<li>满递减堆栈：堆栈指针指向最后压入的数据，且由高地址向低地址生成。</li>
-<li>空递增堆栈：堆栈指针指向下一个将要放入数据的空位置，且由低地址向高地址生成。</li>
-<li>空递减堆栈：堆栈指针指向下一个将要放入数据的空位置，且由高地址向低地址生成</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/" class="post-title-link" itemprop="url">ARM间接寻址、变址寻址与多寄存器寻址</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-18 19:44:47" itemprop="dateCreated datePublished" datetime="2022-12-18T19:44:47+08:00">2022-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="寄存器间接寻址">寄存器间接寻址</h2>
-<p>寄存器间接寻址就是以寄存器中的值作为操作数的地址，而操作数本身存放在存储器中。例如以下指令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR	R0，[R1]		/*R0←[R1]*/</span><br><span class="line">STR	R0，[R1]		/*[R1]←R0*/</span><br></pre></td></tr></table></figure>
-<p>第一条指令将以R1的值为地址的存储器中的数据传送到R0中。第二条指令将R0的值传送到以R1的值为地址的存储器中。</p>
-<p>ARM的数据传送指令都是基于寄存器间接寻址，即通过Load/Store完成对数据的传送操作。</p>
-<h2 id="基址加偏址寻址变址寻址">基址加偏址寻址（变址寻址）</h2>
-<p>基址变址寻址就是将寄存器（该寄存器一般称作基址寄存器）的内容与指令中给出的地址偏移量（用12位表示，不超过4KB）相加，从而得到一个操作数的有效地址。变址寻址方式常用于访问某基地址附近的地址单元。</p>
-<p>变址寻址方式可以分为：前变址（Pre-indexed）、自动变址（Auto-indexed）和后变址（Post-indexed）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

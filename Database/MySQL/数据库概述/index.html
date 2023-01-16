@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数据库概述 数据库 持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应用，数据持久化意味着将内存中的数据保存到硬盘上加以”固化”，而持久化的实现过程大多通过各种关系数据库来完成。 持久化的主要作用是将内存中的数据存储在关系型数据库中，当然也可以存储在磁盘文件、XML数据文件中。 数据库与数据库管理系统 数据库的相关概念 DB 数">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="数据库概述">
+<meta property="og:url" content="http://example.com/Database/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="数据库概述 数据库 持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应用，数据持久化意味着将内存中的数据保存到硬盘上加以”固化”，而持久化的实现过程大多通过各种关系数据库来完成。 持久化的主要作用是将内存中的数据存储在关系型数据库中，当然也可以存储在磁盘文件、XML数据文件中。 数据库与数据库管理系统 数据库的相关概念 DB 数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-16T04:01:33.470Z">
+<meta property="article:modified_time" content="2023-01-16T04:00:39.262Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Database/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Database/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/","path":"Database/MySQL/数据库概述/","title":"数据库概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库概述 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">93</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">数据库概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.</span> <span class="nav-text">数据库与数据库管理系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据库的相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#db"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">DB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dbms"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">DBMS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">SQL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据库与数据库管理系统的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%8E%92%E5%90%8Ddbms"><span class="nav-number">1.2.3.</span> <span class="nav-text">常见的数据库管理系统排名(DBMS)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.4.</span> <span class="nav-text">常见的数据库简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#oracle"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">Oracle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sql-server"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">SQL Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#db2"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">DB2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#postgresql"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">PostgreSQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sqlite"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">SQLite</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#informix"><span class="nav-number">1.2.4.6.</span> <span class="nav-text">informix</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">MySQL介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2%E5%9B%BE"><span class="nav-number">1.3.2.</span> <span class="nav-text">发展历史图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rdbms%E4%B8%8E%E9%9D%9Erdbms"><span class="nav-number">1.4.</span> <span class="nav-text">RDBMS与非RDBMS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93rdbms"><span class="nav-number">1.4.1.</span> <span class="nav-text">关系型数据库(RDBMS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">优势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%9Erdbms"><span class="nav-number">1.4.2.</span> <span class="nav-text">非关系型数据库(非RDBMS)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%AE%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">键值型数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">文档型数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">搜索引擎数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">列式数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">图形数据库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E5%88%99"><span class="nav-number">1.5.</span> <span class="nav-text">关系型数据库设计规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%AE%B0%E5%BD%95%E5%AD%97%E6%AE%B5"><span class="nav-number">1.5.1.</span> <span class="nav-text">表、记录、字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%9A%84%E5%85%B3%E8%81%94%E5%85%B3%E7%B3%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">表的关联关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94one-to-one"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">一对一关联（one-to-one）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BBone-to-many"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">一对多关系（one-to-many）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9Amany-to-many"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">多对多（many-to-many）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E5%BC%95%E7%94%A8self-reference"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">自我引用(Self reference)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">面试题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Database/MySQL/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库概述 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-16 12:01:33" itemprop="dateCreated datePublished" datetime="2023-01-16T12:01:33+08:00">2023-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="数据库概述">数据库概述</h1>
+<h2 id="数据库">数据库</h2>
+<p>持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应用，数据持久化意味着将内存中的数据保存到硬盘上加以”固化”，而持久化的实现过程大多通过各种关系数据库来完成。</p>
+<p>持久化的主要作用是将<strong>内存中的数据存储在关系型数据库中</strong>，当然也可以存储在磁盘文件、XML数据文件中。</p>
+<h2 id="数据库与数据库管理系统">数据库与数据库管理系统</h2>
+<h3 id="数据库的相关概念">数据库的相关概念</h3>
+<h4 id="db">DB</h4>
+<p>数据库（Database）</p>
+<p>即存储数据的“仓库”，其本质是一个文件系统。它保存了一系列有组织的数据。</p>
+<h4 id="dbms">DBMS</h4>
+<p>数据库管理系统（Database Management System）</p>
+<p>是一种操纵和管理数据库的大型软件，用于建立、使用和维护数据库，对数据库进行统一管理和控制。用户通过数据库管理系统访问数据库中表内的数据。</p>
+<h4 id="sql">SQL</h4>
+<p>结构化查询语言（Structured Query
+Language）专门用来与数据库通信的语言。</p>
+<span id="more"></span>
+<h3 id="数据库与数据库管理系统的关系">数据库与数据库管理系统的关系</h3>
+<p>数据库管理系统(DBMS)可以管理多个数据库</p>
+<ul>
+<li>一般开发人员会针对每一个应用创建一个数据库。</li>
+<li>为保存应用中实体的数据，一般会在数据库创建多个表，以保存程序中实体用户的数据。</li>
+</ul>
+<p>数据库管理系统、数据库和表的关系如图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114151306036.png" /></p>
+<h3
+id="常见的数据库管理系统排名dbms">常见的数据库管理系统排名(DBMS)</h3>
+<p>2022年数据库的欢迎程度数据统计结果如下：（数据来源：https://db-engines.com/en/ranking）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114152212383.png" /></p>
+<p>相应的走势图如下：（数据来源：https://db-engines.com/en/ranking_trend）</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114152311530.png" /></p>
+<h3 id="常见的数据库简介">常见的数据库简介</h3>
+<h4 id="oracle">Oracle</h4>
+<p>商用（收费）数据库软件</p>
+<h4 id="sql-server">SQL Server</h4>
+<p>SQL Server 是微软开发的大型商业数据库，诞生于 1989
+年。C#、.net等语言常使用，与WinNT完全集成，也可以很好地与Microsoft
+BackOffice产品集成。</p>
+<h4 id="db2">DB2</h4>
+<p>IBM公司的数据库产品, 收费。常应用在银行系统中。</p>
+<h4 id="postgresql">PostgreSQL</h4>
+<p>PostgreSQL
+的稳定性极强，最符合SQL标准，开放源码，具备商业级DBMS质量。PG对数据量大的文本以及SQL处理较快。</p>
+<h4 id="sqlite">SQLite</h4>
+<p><strong>嵌入式的小型数据库</strong>，应用在手机端。
+零配置，SQlite3不用安装，不用配置，不用启动，关闭或者配置数据库实例。当系统崩溃后不用做任何恢复操作，再下次使用数据库的时候自动恢复。</p>
+<h4 id="informix">informix</h4>
+<p>IBM公司出品，取自Information
+和Unix的结合，它是<strong>第一个被移植到Linux上的商业数据库产品</strong>。仅运行于unix/linux平台，命令行操作。
+性能较高，支持集群，适应于安全性要求极高的系统，尤其是银行，证券系统的应用。</p>
+<h2 id="mysql介绍">MySQL介绍</h2>
+<h3 id="概述">概述</h3>
+<p>MySQL是一个<strong>开放源代码的关系型数据库管理系统</strong>，由瑞典MySQL
+AB（创始人Michael Widenius）公司1995年开发。2008被Sun
+收购，2009年Sun被Oracle 收购。MySQL 的创造者担心 MySQL
+有闭源的风险，创建MySQL 的分支项目 MariaDB。</p>
+<p>MySQL采用了<code>GPL（GNU General Public License）</code> 协议。</p>
+<p>MySQL支持大型数据库，支持5000万条记录的数据仓库，32位系统表文件最大可支持4GB
+，64位系统支持最大的表文件为8TB 。</p>
+<p>MySQL可以允许运行于多个系统上，并且支持多种语言。这些编程语言包括C、C++、Python、Java、Perl、PHP和Ruby等。</p>
+<h3 id="发展历史图">发展历史图</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114153456830.png" /></p>
+<p>MySQL从5.7版本直接跳跃发布了8.0版本，在功能上做了显著的改进与增强，开发者对MySQL的源代码进行了重构，最突出的一点是对MySQL
+Optimizer优化器进行了改进。</p>
+<h2 id="rdbms与非rdbms">RDBMS与非RDBMS</h2>
+<h3 id="关系型数据库rdbms">关系型数据库(RDBMS)</h3>
+<p>例如：<code>Oracle</code>、<code>MySQL</code> 和
+<code>SQL Server</code>等等。</p>
+<p>这种类型的数据库是最古老的数据库类型，关系型数据库模型是把复杂的数据结构归结为简单的<code>二元关系</code>（即二维表格形式）。</p>
+<p><strong>关系型数据库以行(row) 和列(column)
+的形式存储数据，以便于用户理解。这一系列的行和列被称为表(table)
+，一组表组成了一个库(database)。</strong></p>
+<p>表与表之间的数据记录有关系(relationship)。关系型数据库，就是建立在关系模型基础上的数据库。<strong>SQL
+就是关系型数据库的查询语言</strong>。</p>
+<h4 id="优势">优势</h4>
+<p><strong>复杂查询</strong>：可以用SQL语句方便的在一个表以及多个表之间做非常复杂的数据查询。</p>
+<p><strong>事务支持</strong>：使得对于安全性能很高的数据访问要求得以实现。</p>
+<h3 id="非关系型数据库非rdbms">非关系型数据库(非RDBMS)</h3>
+<p>非关系型数据库，可看成传统关系型数据库的功能阉割版本，基于键值对存储数据，不需要经过SQL层的解析，
+性能非常高。同时，通过减少不常用的功能，进一步提高性能。</p>
+<h4 id="键值型数据库">键值型数据库</h4>
+<p>键值型数据库通过 Key-Value 键值的方式来存储数据，其中 Key 和 Value
+可以是简单的对象，也可以是复杂的对象。Key
+作为唯一的标识符，优点是查找速度快，在这方面明显优于关系型数据库，缺点是无法像关系型数据库一样使用条件过滤（比如
+WHERE），如果你不知道去哪里找数据，就要遍历所有的键，这就会消耗大量的计算。</p>
+<p><strong>键值型数据库典型的使用场景是作为<code>内存缓存</code>。<code>Redis</code>
+是最流行的键值型数据库。</strong></p>
+<h4 id="文档型数据库">文档型数据库</h4>
+<p>此类数据库可存放并获取文档，可以是XML、JSON等格式。在数据库中文档作为处理信息的基本单位，一个文档就相当于一条记录。文档数据库所存放的文档，就相当于键值数据库所存放的“值”。</p>
+<p>MongoDB是最流行的文档型数据库。此外，还有CouchDB等。</p>
+<h4 id="搜索引擎数据库">搜索引擎数据库</h4>
+<p>虽然关系型数据库采用了索引提升检索效率，但是针对全文索引效率却较低。搜索引擎数据库是应用在搜索引擎领域的数据存储形式，由于搜索引擎会爬取大量的数据，并以特定的格式进行存储，这样在检索的时候才能保证性能最优。核心原理是“倒排索引”。</p>
+<p>典型产品：Solr、Elasticsearch、Splunk 等。</p>
+<h4 id="列式数据库">列式数据库</h4>
+<p>列式数据库是相对于行式存储的数据库，Oracle、MySQL、SQL Server
+等数据库都是采用的行式存储（Row-based），而列式数据库是将数据按照列存储到数据库中，这样做的好处是可以大量降低系统的I/O，适合于分布式文件系统，不足在于功能相对有限。</p>
+<p>典型产品：HBase等。</p>
+<h4 id="图形数据库">图形数据库</h4>
+<p>图形数据库，利用了图这种数据结构存储了实体（对象）之间的关系。图形数据库最典型的例子就是社交网络中人与人的关系，数据模型主要是以节点和边（关系）来实现，特点在于能高效地解决复杂的关系问题。</p>
+<p>典型产品：Neo4J、InfoGrid等。</p>
+<p>有些情况下，使用<code>性能更高</code>、<code>成本更低</code>的非关系型数据库是更明智的选择。比如：日志收集、排行榜、定时器等。</p>
+<h2 id="关系型数据库设计规则">关系型数据库设计规则</h2>
+<p>关系型数据库的典型数据结构就是 <code>数据表</code>
+，这些数据表的组成都是结构化的（Structured）。</p>
+<p>一个数据库中可以有多个表，每个表都有一个名字，用来标识自己。表名具有唯一性。</p>
+<h3 id="表记录字段">表、记录、字段</h3>
+<p>E-R（entity-relationship，实体-联系）模型中有三个主要概念是：
+<strong>实体集</strong>、<strong>属性</strong>、<strong>联系集</strong>。</p>
+<ul>
+<li>一个实体集（class）对应于数据库中的一个表（table）</li>
+<li>一个实体（instance）则对应于数据库表中的一行（row），也称为一条记录（record）。</li>
+<li>一个属性（attribute）对应于数据库表中的一列（column），也称为一个字段（field）。</li>
+</ul>
+<p>ORM思想 (Object Relational Mapping)体现</p>
+<ul>
+<li>数据库中的一个表 &lt;---&gt; Java或Python中的一个类</li>
+<li>表中的一条数据 &lt;---&gt; 类中的一个对象（或实体）</li>
+<li>表中的一个列 &lt;----&gt; 类中的一个字段、属性(field)</li>
+</ul>
+<h3 id="表的关联关系">表的关联关系</h3>
+<p>表与表之间的数据记录有关系(relationship)。现实世界中的各种实体以及实体之间的各种联系均用关系模型来表示。</p>
+<p>四种：一对一关联、一对多关联、多对多关联、自我引用</p>
+<h4 id="一对一关联one-to-one">一对一关联（one-to-one）</h4>
+<p>在实际的开发中应用不多，因为一对一可以创建成一张表。</p>
+<p>两种建表原则：</p>
+<ul>
+<li>外键唯一：主表的主键和从表的外键（唯一），形成主外键关系，外键唯一。</li>
+<li>外键是主键：主表的主键和从表的主键，形成主外键关系。</li>
+</ul>
+<h4 id="一对多关系one-to-many">一对多关系（one-to-many）</h4>
+<p>一对多建表原则：在从表(多方)创建一个字段，字段作为外键指向主表(一方)的主键</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114155835243.png" /></p>
+<h4 id="多对多many-to-many">多对多（many-to-many）</h4>
+<p>要表示多对多关系，必须创建第三个表，该表通常称为<code>联接表</code>，它将多对多关系划分为两个一对多关系。将这两个表的主键都插入到第三个表中。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114155916878.png" /></p>
+<h4 id="自我引用self-reference">自我引用(Self reference)</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230114160132538.png" /></p>
+<h2 id="面试题">面试题</h2>
+<p>1.谈谈了解的常见的数据库</p>
+<p>答：Oracle、MySQl、SQL Server、DB2、PGSQL；Redis、MongoDB、ES等等</p>
+<p>2.谈谈你对MySQL历史、特点的理解</p>
+<p>答：</p>
+<ul>
+<li>历史：
+<ul>
+<li>由瑞典的MySQL AB 公司创立，1995开发出的MySQL</li>
+<li>2008年，MySQL被SUN公司收购</li>
+<li>2009年，Oracle收购SUN公司，进而Oracle就获取了MySQL</li>
+<li>2016年，MySQL8.0.0版本推出</li>
+</ul></li>
+<li>特点：
+<ul>
+<li>开源的、关系型的数据库</li>
+<li>支持千万级别数据量的存储，大型的数据库</li>
+</ul></li>
+</ul>
+<p>3.说说你对DB、DBMS、SQL的理解</p>
+<p>答：</p>
+<ul>
+<li>DB：database，看做是数据库文件。</li>
+<li>DBMS：数据库管理系统。</li>
+</ul>
+<p><strong>MySQL数据库服务器中安装了MySQL DBMS, 使用MySQL DBMS
+来管理和操作DB，使用的是SQL语言。</strong></p>
+<p>4.你知道哪些非关系型数据库？</p>
+<ul>
+<li>键值型数据库：Redis</li>
+<li>文档型数据库：MongoDB</li>
+<li>搜索引擎数据库：ES、Solr</li>
+<li>列式数据库：HBase</li>
+<li>图形数据库：InfoGrid</li>
+</ul>
+<p>5.表与表的记录之间存在哪些关联关系？</p>
+<ul>
+<li>ORM思想：Object-Relational
+Mapping，它的作用是在关系型数据库和对象之间作一个映射，这样，我们在具体的操作数据库的时候，就不需要再去和复杂的SQL语句打交道，只要像平时操作对象一样操作它就可以了。表，数据，字段。</li>
+<li>表与表的记录之间的关系：一对一关系、一对多关系、多对多关系、自关联。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"><i class="fa fa-tag"></i> MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%A1%E8%AF%BA%E5%9B%BE%E5%8C%96%E7%AE%80%E6%B3%95/" rel="prev" title="逻辑函数的卡诺图化简法">
+                  <i class="fa fa-chevron-left"></i> 逻辑函数的卡诺图化简法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E7%9A%84%E8%AE%BE%E8%AE%A1/" rel="next" title="组合逻辑电路的设计">
+                  组合逻辑电路的设计 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

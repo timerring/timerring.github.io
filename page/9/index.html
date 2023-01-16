@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">88</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">14</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">93</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,18 +153,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -207,6 +207,499 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E5%8F%98%E6%8D%A2%E3%80%81%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E5%8F%8A%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E5%8F%98%E6%8D%A2%E3%80%81%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E5%8F%8A%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="post-title-link" itemprop="url">PyTorch 张量的变换、数学运算及线性回归</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-30 10:23:22" itemprop="dateCreated datePublished" datetime="2022-10-30T10:23:22+08:00">2022-10-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="张量变换">张量变换</h3>
+<h4 id="torch.reshape">1.torch.reshape</h4>
+<p><code>torch.reshape(input,shape)</code></p>
+<p>功能：变换张量形状</p>
+<p>注意事项：当张量在内存中是连续时，新张量与 input 共享数据内存</p>
+<ul>
+<li>input : 要变换的张量</li>
+<li>shape 新张量的形状</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E5%8F%98%E6%8D%A2%E3%80%81%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97%E5%8F%8A%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">PyTorch 张量的拼接、切分、索引</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-29 09:42:24" itemprop="dateCreated datePublished" datetime="2022-10-29T09:42:24+08:00">2022-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="一张量拼接与切分">一、张量拼接与切分</h3>
+<h4 id="torch.cat">1.1 torch.cat</h4>
+<p>功能：将张量按维度dim 进行拼接</p>
+<ul>
+<li><p><strong>tensors</strong> : 张量序列</p></li>
+<li><p><strong>dim</strong>： 要拼接的维度</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">t = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">   t_0 = torch.cat([t, t], dim=<span class="number">0</span>)</span><br><span class="line">   t_1 = torch.cat([t, t, t], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;t_0:&#123;&#125; shape:&#123;&#125;\nt_1:&#123;&#125; shape:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(t_0, t_0.shape, t_1, t_1.shape))</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Frame/PyTorch/PyTorch%20%E5%BC%A0%E9%87%8F%E7%9A%84%E6%8B%BC%E6%8E%A5%E3%80%81%E5%88%87%E5%88%86%E3%80%81%E7%B4%A2%E5%BC%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Frame/PyTorch/PyTorch%EF%BC%9A%E4%BA%86%E8%A7%A3Tensor(%E5%BC%A0%E9%87%8F)%E5%8F%8A%E5%85%B6%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Frame/PyTorch/PyTorch%EF%BC%9A%E4%BA%86%E8%A7%A3Tensor(%E5%BC%A0%E9%87%8F)%E5%8F%8A%E5%85%B6%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">PyTorch：了解Tensor(张量)及其创建方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-28 18:16:25" itemprop="dateCreated datePublished" datetime="2022-10-28T18:16:25+08:00">2022-10-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="认识张量">认识张量</h2>
+<p>张量是一个多维数组 ，它是标量、向量、矩阵的高维拓展。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006162704476.png" /></p>
+<p>比如说对于一张图片，它是3维张量，其中RGB就是其第三维张量。</p>
+<h3 id="tensor与-variable">Tensor与 Variable</h3>
+<p>Variable是Pytorch的0.4.0版本之前的一个重要的数据结构，但是从0.4.0开始，它已经并入了Tensor中了。</p>
+<p>Variable是 torch.autograd 中的数据类型，主要用于封装Tensor
+，进行自动求导。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221006163343217.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Frame/PyTorch/PyTorch%EF%BC%9A%E4%BA%86%E8%A7%A3Tensor(%E5%BC%A0%E9%87%8F)%E5%8F%8A%E5%85%B6%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Frame/PyTorch/Pytorch%E3%80%81CUDA%E5%92%8CcuDNN%E7%9A%84%E5%AE%89%E8%A3%85%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3win11%EF%BC%88%E8%A7%A3%E5%86%B3%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Frame/PyTorch/Pytorch%E3%80%81CUDA%E5%92%8CcuDNN%E7%9A%84%E5%AE%89%E8%A3%85%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3win11%EF%BC%88%E8%A7%A3%E5%86%B3%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">Pytorch、CUDA和cuDNN的安装图文详解win11(解决版本匹配问题)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-27 13:27:12" itemprop="dateCreated datePublished" datetime="2022-10-27T13:27:12+08:00">2022-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Frame/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>可能出现的问题：</p>
+<ul>
+<li>CUDA和cuDNN版本不匹配</li>
+<li>CUDA和Pytorch版本不匹配</li>
+<li>cuDNN和Pytorch版本不匹配</li>
+<li>显卡不支持CUDA该版本</li>
+<li>已经装完部分，发现版本不匹配准备卸载。</li>
+</ul>
+<p>说在前面的话！</p>
+<ol type="1">
+<li>在ubuntu系统下，可以尝试装多个cuda版本，然后通过conda安装对应的Pytorch版本。通过软连接的方式来实现cuda版本的切换。<strong>但是，在win系统下，最好是用相同的支持版本，以免不匹配。</strong>不用纠结是否向下兼容等等问题，最优的方法就是安装相同的版本。</li>
+<li>对于CUDA的版本，我推荐用以往的稳定版本，就是指目前还在一直维护的比较旧的版本，原因有很多：
+<ul>
+<li>比较旧的版本有强大的社区支持，可以方便地找到前人总结地bug解决方案，而不是遇到最新问题时能力不够导致的一筹莫展。</li>
+<li>较旧的版本至今仍在维护，说明其仍有很大的价值，用户基数很多，能确保开发的流畅与稳定。</li>
+<li>由于学术界和工业界都喜欢用比较稳定的版本来搭建模型，因此如果想要复现论文，或是pull别人的代码修改，较新的版本很有可能会出现错误。</li>
+</ul></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Frame/PyTorch/Pytorch%E3%80%81CUDA%E5%92%8CcuDNN%E7%9A%84%E5%AE%89%E8%A3%85%E5%9B%BE%E6%96%87%E8%AF%A6%E8%A7%A3win11%EF%BC%88%E8%A7%A3%E5%86%B3%E7%89%88%E6%9C%AC%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%EF%BC%89/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">OpenCV 图像处理：常用绘图函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-10-26 11:36:34" itemprop="dateCreated datePublished" datetime="2022-10-26T11:36:34+08:00">2022-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221025104224496.png" /></p>
+<h2 id="opencv中的绘图函数">opencv中的绘图函数</h2>
+<h3 id="线段绘制">1.线段绘制</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.line( img, pts, color thickness，linetype）</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<p>img ：待绘制图像</p>
+<p>color ：形状的颜色，元组如 (255,0,0)</p>
+<p>pts ：起点和终点坐标</p>
+<p>thickness：线条的粗细。 1 为填充，默认值是 1</p>
+<p>linetype：线条的类型 8 型或 cv2.LINE_AA, 默认值为 8 型</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Image-Processing/OpenCV%20%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%EF%BC%9A%E5%B8%B8%E7%94%A8%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -727,304 +1220,8 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">位运算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-20 13:05:38" itemprop="dateCreated datePublished" datetime="2022-10-20T13:05:38+08:00">2022-10-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="位运算">位运算</h1>
-<p>位运算常用操作：</p>
-<h2
-id="查看整数n的二进制表示中第k位是几">查看整数n的二进制表示中第k位是几。</h2>
-<p>eg: <span class="math inline">\(n = 15 = (1111)_2\)</span></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220928224656481.png" /></p>
-<p>具体步骤：</p>
-<ol type="1">
-<li>先把第k位数字移动到最后一位( n &gt;&gt; k )</li>
-<li>看个位是几 (x &amp; 1)</li>
-</ol>
-<blockquote>
-<p>注意：右移本身就是一个二进制层面的操作过程。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Algorithm/%E4%BD%8D%E8%BF%90%E7%AE%97/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Learn/Data%20Communication%20and%20Computer%20Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Learn/Data%20Communication%20and%20Computer%20Networks/" class="post-title-link" itemprop="url">Data Communication and Computer Networks</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-19 21:39:22" itemprop="dateCreated datePublished" datetime="2022-10-19T21:39:22+08:00">2022-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Learn/" itemprop="url" rel="index"><span itemprop="name">Learn</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="data-communication-and-computer-networks">Data Communication and
-Computer Networks</h1>
-<h2 id="chapter-1-introduction">Chapter 1 Introduction</h2>
-<h3 id="define">1.1 Define</h3>
-<p>Define“ data communication ”</p>
-<p>Define“Computer Networks”</p>
-<p>Explain Components of Computer Networks(Hardware)</p>
-<h4 id="what-is-data-communication">What is data communication?</h4>
-<ul>
-<li>数据通信是指<strong>信源发出的信息流</strong>按照一定的<strong>通信协议</strong>通过信道形成数据流传送到信宿的过程。</li>
-<li>数据通信是为了实现数据终端之间，或数据终端与计算机之间，或计算机之间的信息交互而产生的一种通信技术。</li>
-<li>数据通信是计算机通信的一部分。<strong>数据通信更关注数据的传输，计算机通信更关注数据的交互。</strong></li>
-<li>但是技术发展到今天，人们往往认为 data communication=computer
-communication</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220922103842007.png"
-alt="image-20220922103842007" />
-<figcaption aria-hidden="true">image-20220922103842007</figcaption>
-</figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Learn/Data%20Communication%20and%20Computer%20Networks/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Competition/Kaggle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Competition/Kaggle/" class="post-title-link" itemprop="url">Kaggle</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-19 20:59:10" itemprop="dateCreated datePublished" datetime="2022-10-19T20:59:10+08:00">2022-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Competition/" itemprop="url" rel="index"><span itemprop="name">Competition</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="kaggle">Kaggle</h1>
-<h3 id="数据竞赛介绍">数据竞赛介绍</h3>
-<p>数据竞赛特点：</p>
-<ul>
-<li>实践性强</li>
-<li>评估指标量化</li>
-<li>体会真实场景下的算法迭代优化过程</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Competition/Kaggle/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
