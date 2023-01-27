@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="硬件描述语言HDL(Hardware Description Language ) 类似于高级程序设计语言. 它是一种以文本形式来描述数字系统硬件的结构和行为的语言, 用它可以表示逻辑电路图、逻辑表达式，复杂数字逻辑系统的逻辑功能。用HDL编写设计说明文档易于存储和修改，并能被计算机识别和处理. HDL是高层次自动化设计的起点和基础.目前， IEEE推出两种标准：VHDL和Verilog">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="硬件描述语言简介">
+<meta property="og:url" content="http://example.com/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="硬件描述语言HDL(Hardware Description Language ) 类似于高级程序设计语言. 它是一种以文本形式来描述数字系统硬件的结构和行为的语言, 用它可以表示逻辑电路图、逻辑表达式，复杂数字逻辑系统的逻辑功能。用HDL编写设计说明文档易于存储和修改，并能被计算机识别和处理. HDL是高层次自动化设计的起点和基础.目前， IEEE推出两种标准：VHDL和Verilog">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-26T09:40:09.508Z">
+<meta property="article:modified_time" content="2023-01-27T02:51:47.455Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/","path":"Notes/Hardware/FPGA：硬件描述语言简介/","title":"硬件描述语言简介"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>硬件描述语言简介 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">104</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vhdl%E7%9A%84%E8%B5%B7%E6%BA%90%E4%B8%8E%E5%8F%91%E5%B1%95"><span class="nav-number">1.</span> <span class="nav-text">(1) VHDL的起源与发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#verilog-hdl%E7%9A%84%E8%B5%B7%E6%BA%90%E4%B8%8E%E5%8F%91%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">(2) Verilog HDL的起源与发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">3.</span> <span class="nav-text">(3) 两种语言的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%8A%9Bcapability"><span class="nav-number">3.0.1.</span> <span class="nav-text">能力（capability）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bdata-type"><span class="nav-number">3.0.2.</span> <span class="nav-text">数据类型（data type）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%93%E5%AD%A6%E6%80%A7easiest-to-learn"><span class="nav-number">3.0.3.</span> <span class="nav-text">易学性（easiest to learn）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%88-%E7%8E%87"><span class="nav-number">3.0.4.</span> <span class="nav-text">效 率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vhdl%E8%AF%AD%E8%A8%80%E7%9A%84%E6%96%B0%E8%BF%9B%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">（4）VHDL语言的新进展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#verilog-hdl%E8%AF%AD%E8%A8%80%E7%9A%84%E6%96%B0%E8%BF%9B%E5%B1%95"><span class="nav-number">5.</span> <span class="nav-text">（5）Verilog HDL语言的新进展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%BC%96%E7%A8%8B%E9%80%BB%E8%BE%91%E5%99%A8%E4%BB%B6%E5%8F%8A%E5%85%B6%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="nav-number">6.</span> <span class="nav-text">可编程逻辑器件及其发展趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pld%E7%9A%84%E9%9B%86%E6%88%90%E5%BA%A6%E5%88%86%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">PLD的集成度分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8Dspld%E5%99%A8%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">8.</span> <span class="nav-text">四种SPLD器件的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82pldcpld%E4%B8%8Efpga"><span class="nav-number">9.</span> <span class="nav-text">复杂PLD(CPLD与FPGA)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pld%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-number">10.</span> <span class="nav-text">PLD的基本原理与结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpld%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-number">11.</span> <span class="nav-text">CPLD的原理与结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fpga%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-number">12.</span> <span class="nav-text">FPGA的原理与结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E8%A1%A8%E5%8E%9F%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">查找表原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fpga%E5%99%A8%E4%BB%B6%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">14.</span> <span class="nav-text">FPGA器件的内部结构示意图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B8%E5%9E%8Bfpga%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">15.</span> <span class="nav-text">典型FPGA的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#altera%E7%9A%84cyclone-iv%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">16.</span> <span class="nav-text">Altera的Cyclone IV器件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%BC%96%E7%A8%8B%E7%89%B9%E7%82%B9%E5%88%86%E7%B1%BB"><span class="nav-number">17.</span> <span class="nav-text">按编程特点分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%BC%96%E7%A8%8B%E5%85%83%E4%BB%B6%E5%92%8C%E7%BC%96%E7%A8%8B%E5%B7%A5%E8%89%BA%E5%88%86%E7%B1%BB"><span class="nav-number">18.</span> <span class="nav-text">按编程元件和编程工艺分类</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="硬件描述语言简介 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          硬件描述语言简介
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-26 17:40:09" itemprop="dateCreated datePublished" datetime="2023-01-26T17:40:09+08:00">2023-01-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>硬件描述语言HDL(Hardware Description Language )
+类似于高级程序设计语言.
+它是一种以文本形式来描述数字系统硬件的结构和行为的语言,
+用它可以表示逻辑电路图、逻辑表达式，复杂数字逻辑系统的逻辑功能。用HDL编写设计说明文档易于存储和修改，并能被计算机识别和处理.</p>
+<p>HDL是高层次自动化设计的起点和基础.目前，
+IEEE推出两种标准：VHDL和Verilog HDL</p>
+<h2 id="vhdl的起源与发展">(1) VHDL的起源与发展</h2>
+<p>Very high speed integrated Hardware Description Language
+(VHDL)它是70年代末和80年代初，起源于美国国防部提出的超高速集成电路VHSIC研究计划，目的是为了把电子电路的设计意义以文字或文件的方式保存下来，以便其他人能轻易地了解电路的设计意义
+。 1981年6月成立了VHDL小组。</p>
+<ul>
+<li>1983年第三季度，由IBM公司、TI公司、Intermetric
+公司成立开发小组。</li>
+<li>1986年3月，IEEE开始致力于VHDL的标准化工作，讨论VHDL语言标准。</li>
+<li>IEEE于1987年12月公布了VHDL的标准版本（IEEE STD 1076/1987）；</li>
+<li>1993年VHDL修订，形成新的标准即IEEE STD 1076-1993)。</li>
+</ul>
+<span id="more"></span>
+<h2 id="verilog-hdl的起源与发展">(2) Verilog HDL的起源与发展</h2>
+<ul>
+<li><p>1981年Gateway Automation硬件描述语言公司成立；</p></li>
+<li><p>1983～84年间该公司发布“Verilog HDL”及其仿真器Verilog -XL
+；</p></li>
+<li><p>1986年Phil
+Moorby提出快速门级仿真的XL算法并获得成功，Verilog语言迅速得到推广。
+Verilog-XL较快，特别在门级，能处理万门以上的设计。</p></li>
+<li><p>1987年Synonsys公司开始使用Verilog行为语言作为它综合工具(DC –
+Design Compiler)的输入；</p></li>
+<li><p>1989年12月 Cadence公司并购了Gateway公司；</p></li>
+<li><p>1990年初Cadence公司把Verilog
+HDL和Verilog-XL分成单独产品，公开发布了Verilog
+HDL,与VHDL竞争。并成立Open Verilog
+International(OVI)组织，负责Verilog的发展和标准的制定。</p></li>
+<li><p>1993年 几乎所有ASIC厂商支持Verilog
+HDL,认为Verilog-XL是最好的仿真器。OVI推出2.0版本的Verilog
+HDL规范，IEEE接受了将OVI的Verilog2.0作为IEEE标准的提案。</p></li>
+<li><p>1995年12月，定出Verilog HDL的标准IEEE 1364。</p></li>
+<li><p>2001年3月IEEE正式批准了Verilog-2001标准（即IEEE
+1364-2001）。</p></li>
+<li><p>Verilog-2001标准在Verilog-1995的基础上有几个重要的改进。新标准有力地支持可配置的IP建模，大大提高了深亚微米（DSM）设计的精确性，并对设计管理作了重大改进。</p></li>
+</ul>
+<h2 id="两种语言的比较">(3) 两种语言的比较</h2>
+<h4 id="能力capability">能力（capability）</h4>
+<p>VHDL</p>
+<ul>
+<li>结构建模</li>
+<li>抽象能力强</li>
+<li>系统级－算法级－RTL级－逻辑级－门级</li>
+</ul>
+<p>Verilog</p>
+<ul>
+<li>结构建模</li>
+<li>具体物理建模能力强</li>
+<li>算法级－RTL级－逻辑级－门级－版图级</li>
+</ul>
+<h4 id="数据类型data-type">数据类型（data type）</h4>
+<p>VHDL是一种数据类型性极强的语言。支持用户定义的数据类型。当对象的数据类型不一样时必须用类型转换函数转换。可以使用抽象（比如枚举）类型为系统建模。能利用数据类型检查编程的错误。</p>
+<p>Verilog
+数据类型简单。只能由语言本身定义，不能由用户定义。适于硬件结构的建模，不适于抽象的硬件行为建模。</p>
+<h4 id="易学性easiest-to-learn">易学性（easiest to learn）</h4>
+<p>VHDL是一种数据类型很强的语言，欠直观。加之同一种电路有多种建模方法，通常需要一定的时间和经验，才能高效的完成设计。</p>
+<p>VHDL根植于ADA，有时简洁，有时冗繁，如行为描述简洁，结构描述冗繁。</p>
+<p>Verilog：由于Verilog为直接仿真语言，数据类型较简单，语法很直观，故Verilog更易理解和好学。</p>
+<p>Verilog更像C，约有50％的结构来自C，其余部分来自ADA。</p>
+<h4 id="效-率">效 率</h4>
+<p>VHDL：由于数据类型严格，模型必须精确定义和匹配数据类型，这造成了比同等的Verilog效率要低。</p>
+<p>Verilog：不同位宽的信号可以彼此赋值，较小位数的信号可以从大位数信号中自动截取自己的位号。在综合过程中可以删掉不用的位，这些特点使之简洁，效率较高。</p>
+<h2 id="vhdl语言的新进展">（4）VHDL语言的新进展</h2>
+<p>近年来，VHDL又有了一些新的发展。例如，为了大幅度提高EDA
+工具的设计能力，出现了一系列对HDL语言的扩展。OO-VHDL(Object-Oriented
+VHDL，即面向对象的VHDL)
+模型的代码比VHDL模型短30%～50%，缩短了开发时间，提高了设计效率。
+美国杜克大学扩展的DE-VHDL (Duke Extended
+VHDL)通过增加3条语句，使设计者可以在VHDL描述中调用不可综合的子系统（包括连接该子系统和激活相应功能）。杜克大学用DE-VHDL进行一些多芯片系统的设计，极大地提高了设计能力。</p>
+<h2 id="verilog-hdl语言的新进展">（5）Verilog HDL语言的新进展</h2>
+<p>OVI组织1999年公布了可用于模拟和混合信号系统设计的硬件描述语言Verilog-AMS语言参考手册的草案，Verilog-AMS语言是符合IEEE
+1364标准的Verilog HDL子集。目前Verilog-AMS还在不断的发展和完善中。</p>
+<p>结 论</p>
+<p>HDL主要用于数字电路与系统的建模、仿真和自动化设计。目前有两种标准的硬件描述语言：Verilog和VHDL。由于Verilog简单易学，所以建议大家学习Verilog
+HDL语言。</p>
+<p>我国国家技术监督局于1998年正式将《集成电路/硬件描述语言Verilog》列入国家标准，国家标准编号为GB/T18349-2001，从2001年10月1日起实施。相信该标准的制定对我国集成电路设计技术的发展有重要的推动作用。</p>
+<h2 id="可编程逻辑器件及其发展趋势">可编程逻辑器件及其发展趋势</h2>
+<p>可编程逻辑器件简称PLD(Programable Logic
+Device)，它是EDA技术发展的一个重要支持点，也是实现电子系统非常重要的一种方法，PLD的发展推动了EDA工具的发展，也改变了电子系统的设计方法。</p>
+<h2 id="pld的集成度分类">PLD的集成度分类</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110032958.png" /></p>
+<h2 id="四种spld器件的区别">四种SPLD器件的区别</h2>
+<table>
+<thead>
+<tr class="header">
+<th><strong>器 件</strong></th>
+<th><strong>与 阵 列</strong></th>
+<th><strong>或 阵 列</strong></th>
+<th><strong>输出电路</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PROM</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr class="even">
+<td><strong>PLA</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>PAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>固定</strong></td>
+</tr>
+<tr class="even">
+<td><strong>GAL</strong></td>
+<td><strong>可编程</strong></td>
+<td><strong>固定</strong></td>
+<td><strong>可组态</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="复杂pldcpld与fpga">复杂PLD(CPLD与FPGA)</h2>
+<ul>
+<li>1985年，美国Xilinx公司推出了现场可编程门阵列（FPGA，Field
+Programmable Gate Array）</li>
+<li>CPLD（Complex Programmable Logic
+Device），即复杂可编程逻辑器件，是从Altera 的 EPLD 改进而来的。</li>
+</ul>
+<h2 id="pld的基本原理与结构">PLD的基本原理与结构</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110112800.png" /></p>
+<h2 id="cpld的原理与结构">CPLD的原理与结构</h2>
+<p>CPLD器件的结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110125303.png" /></p>
+<p>CPLD器件宏单元内部结构示意图</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110154714.png" /></p>
+<p>MAX 7000S器件的内部结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110205964.png" /></p>
+<p>MAX 7000S器件的宏单元结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110216108.png" /></p>
+<h2 id="fpga的原理与结构">FPGA的原理与结构</h2>
+<p>2输入或门真值表</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>A B</strong></th>
+<th><strong>F</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0 0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><strong>0 1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1 0</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1 1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>用2输入查找表实现或门功能</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110242726.png" /></p>
+<p>3人表决电路的真值表</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>A B C</strong></th>
+<th><strong>F</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0 0 0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><strong>0 0 1</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>0 1 0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><strong>0 1 1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1 0 0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1 0 1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1 1 0</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1 1 1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110258587.png" /></p>
+<p>用3输入的查找表实现3人表决电路</p>
+<h2 id="查找表原理">查找表原理</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110321198.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110323623.png" /></p>
+<p>4输入LUT及结构</p>
+<h2 id="fpga器件的内部结构示意图">FPGA器件的内部结构示意图</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110345203.png" /></p>
+<h2 id="典型fpga的结构">典型FPGA的结构</h2>
+<p>XC4000器件的CLB结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110359408.png" /></p>
+<h2 id="altera的cyclone-iv器件结构">Altera的Cyclone IV器件结构</h2>
+<p>Cyclone IV器件的LE结构</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230124110410857.png" /></p>
+<h2 id="按编程特点分类">按编程特点分类</h2>
+<p>PLD器件按照可以编程的次数可以分为两类：</p>
+<ul>
+<li><p>一次性编程器件(OTP，One Time Programmable )</p>
+<p>OTP类器件的特点是：只允许对器件编程一次，不能修改；</p></li>
+<li><p>可多次编程器件</p>
+<p>可多次编程器件允许对器件多次编程，适合于科研开发中使用。</p></li>
+</ul>
+<h2 id="按编程元件和编程工艺分类">按编程元件和编程工艺分类</h2>
+<p><strong>非易失性器件</strong></p>
+<ul>
+<li>熔丝（Fuse）</li>
+<li>反熔丝（Antifuse）编程元件</li>
+<li>紫外线擦除、电可编程，如EPROM。</li>
+<li>电擦除、电可编程方式，(EEPROM、快闪存储器(Flash Memory ) )
+，如多数CPLD。</li>
+</ul>
+<p><strong>易失性器件</strong></p>
+<ul>
+<li>静态存储器（SRAM）结构，如多数FPGA。</li>
+</ul>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+<p><a
+target="_blank" rel="noopener" href="https://github.com/timerring/hardware-tutorial">返回首页</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Work-Notes/%E5%85%B3%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9A%84%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" rel="prev" title="关于环境变量配置的思考总结">
+                  <i class="fa fa-chevron-left"></i> 关于环境变量配置的思考总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" rel="next" title="Verilog HDL程序的基本结构">
+                  Verilog HDL程序的基本结构 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

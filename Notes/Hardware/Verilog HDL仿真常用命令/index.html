@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="系统任务（System Tasks） 1．显示任务（Display Task） $display是Verilog中最有用的任务之一，用于将指定信息（被引用的字符串、变量值或者表达式）以及结束符显示到标准输出设备上。其格式如下：  2.$monitor任务的参数格式与$display的相同.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Verilog HDL仿真常用命令">
+<meta property="og:url" content="http://example.com/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="系统任务（System Tasks） 1．显示任务（Display Task） $display是Verilog中最有用的任务之一，用于将指定信息（被引用的字符串、变量值或者表达式）以及结束符显示到标准输出设备上。其格式如下：  2.$monitor任务的参数格式与$display的相同.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-27T02:53:15.755Z">
+<meta property="article:modified_time" content="2023-01-27T02:53:58.922Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/","path":"Notes/Hardware/Verilog HDL仿真常用命令/","title":"Verilog HDL仿真常用命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Verilog HDL仿真常用命令 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">104</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BB%BB%E5%8A%A1system-tasks"><span class="nav-number">1.</span> <span class="nav-text">系统任务（System Tasks）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E4%BB%BB%E5%8A%A1display-task"><span class="nav-number">1.1.</span> <span class="nav-text">1．显示任务（Display Task）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#monitor%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E4%B8%8Edisplay%E7%9A%84%E7%9B%B8%E5%90%8C."><span class="nav-number">1.2.</span> <span class="nav-text">2.$monitor任务的参数格式与$display的相同.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F%E7%9A%84%E4%B8%AD%E6%AD%A2-stopping-%E5%92%8C-%E5%AE%8C%E6%88%90finishing%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.3.</span> <span class="nav-text">3.仿真的中止
+(Stopping) 和 完成(Finishing)任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%8C%87%E4%BB%A4compiler-directives"><span class="nav-number">2.</span> <span class="nav-text">编译指令(Compiler Directives)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%B0%BA%E5%BA%A6timescale"><span class="nav-number">2.1.</span> <span class="nav-text">时间尺度&#96;timescale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8F%E5%AE%9A%E4%B9%89define"><span class="nav-number">2.2.</span> <span class="nav-text">宏定义&#96;define</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%8C%87%E4%BB%A4include"><span class="nav-number">2.3.</span> <span class="nav-text">文件包含指令&#96;include</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Verilog HDL仿真常用命令 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Verilog HDL仿真常用命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-27 10:53:15" itemprop="dateCreated datePublished" datetime="2023-01-27T10:53:15+08:00">2023-01-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="系统任务system-tasks">系统任务（System Tasks）</h2>
+<h3 id="显示任务display-task">1．显示任务（Display Task）</h3>
+<p>$display是Verilog中最有用的任务之一，用于将指定信息（被引用的字符串、变量值或者表达式）以及结束符显示到标准输出设备上。其格式如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230127101107463.png" /></p>
+<h3
+id="monitor任务的参数格式与display的相同.">2.$monitor任务的参数格式与$display的相同.</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230127101159207.png" /></p>
+<span id="more"></span>
+<h3 id="仿真的中止-stopping-和-完成finishing任务">3.仿真的中止
+(Stopping) 和 完成(Finishing)任务</h3>
+<ul>
+<li>$stop；//在仿真期间，停止执行，未退出仿真环境。</li>
+<li>$finish；//仿真完成，退出仿真环境，并将控制权返回给操作系统。</li>
+<li>系统任务$stop使得仿真进入交互模式，然后设计者可以进行调试。当设计者希望检查信号的值时，就可以使用$stop使仿真器被挂起。然后可以发送交互命令给仿真器继续仿真。</li>
+</ul>
+<h2 id="编译指令compiler-directives">编译指令(Compiler Directives)</h2>
+<p>以
+`（反撇号）开头的标识符就是编译指令，用来控制代码的整个过程。在Verilog代码编译的整个过程中，编译指令始终有效（编译过程可能跨越多个文件），直至遇到其他不同的编译指令为止。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span>  time_unit/time_precision</span></span><br><span class="line"><span class="meta">`<span class="keyword">include</span>  &quot; ../../header.v &quot;</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span>  WORD_SIZE  32      </span><span class="comment">//定义文本宏 </span></span><br><span class="line"><span class="meta">`<span class="keyword">undef</span></span></span><br><span class="line"><span class="meta">`<span class="keyword">ifdef</span>	</span></span><br><span class="line"><span class="meta">`<span class="keyword">ifndef</span>	  </span></span><br><span class="line"><span class="meta">`<span class="keyword">else</span>	  </span></span><br><span class="line"><span class="meta">`elseif   </span></span><br><span class="line"><span class="meta">`<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="时间尺度timescale">时间尺度`timescale</h3>
+<p>`timescale命令用于在文件中指明时间单位和时间精度，通常在对文件进行仿真时体现。EDA工具可以支持在一个设计中可根据仿真需要在不同模块里面指定不同的时间单位。如模块A仿真的时间单位为皮秒（ps），模块B仿真的时间单位为纳秒（ns）。</p>
+<p>使用`timescale命令语句格式如下：</p>
+<ul>
+<li>`timescale <时间单位> / <时间精度></li>
+<li>使用时注意:
+<时间单位>和<时间精度>必须是整数，且时间精度不能大于时间单位值。</li>
+<li>例如：`timescale 1ns / 1ns</li>
+</ul>
+<p>时间单位是定义仿真时间和延迟时间的基准单位；时间精度是定义模块仿真时间的精确程度的，又被称为取整精度（在仿真前，被用来对延迟的时间值进行取整操作）。如果在同一个设计中，出现多个`timescale命令，工具会采用最小的时间精度值来决定仿真的时间单位。</p>
+<p>`timescale 1ns /
+1ps：此命令已定义模块中的时间单位为1ns，即仿真模块中所有的延迟时间单位都是1ns的整数倍；定义了模块的时间精度为1ps，即仿真模块中延迟单位可以指定到小数点后3位，小数超过3位会进行取小数点后3位的操作。</p>
+<h3 id="宏定义define">宏定义`define</h3>
+<p>在设计中，为了提高程序可读性和简化程序描述，可以使用指定的标识符来代替一个长的字符串，或者使用一个简单的名字来代替没有含义的数字或者符号，此时需使用到宏定义命令`define。</p>
+<p>使用`define命令格式如下：</p>
+<ul>
+<li>`define signal（宏名） string（宏内容）</li>
+<li>在设计中进行了以上声明后，在预编译处理时，在此命令后程序中所有的signal都替换成string，此过程称为“宏展开”。</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例1 ：</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> LENGTH 16</span></span><br><span class="line">  <span class="keyword">reg</span> [ `LENGTH–<span class="number">1</span> : <span class="number">0</span> ]   writedata;  </span><br><span class="line">  <span class="comment">//即定义reg[15:0] writedata;</span></span><br><span class="line"><span class="comment">//例2 ：</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span>  expression  a+b+c</span></span><br><span class="line">  <span class="keyword">assign</span> data = `expression + d ; <span class="comment">//经宏展开之后</span></span><br><span class="line">                                   <span class="comment">//assign  data = a+b+c+d;</span></span><br><span class="line"><span class="comment">//例3 ：</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> A  a+b</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> B  c+`A</span></span><br><span class="line"> <span class="keyword">assign</span>  data = `B ;   <span class="comment">// 即data = c + a + b;</span></span><br></pre></td></tr></table></figure>
+<h3 id="文件包含指令include">文件包含指令`include</h3>
+<p>和C语言中声明头文件很类似。其一般形式为：</p>
+<p>`<code>include  “文件名”</code></p>
+<p>例：文件para.v中有一个宏定义 `define A 2+3,
+在test.v文件中可以直接调用。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ps</span></span><br><span class="line"><span class="meta">`<span class="keyword">include</span>  &quot;para.v&quot;</span></span><br><span class="line">`<span class="keyword">module</span> test(    </span><br><span class="line">	   <span class="keyword">input</span> <span class="keyword">wire</span>       clk,      </span><br><span class="line">	<span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] result   </span><br><span class="line">                    );  </span><br><span class="line">   <span class="keyword">always</span>@(<span class="keyword">posedge</span> clk)</span><br><span class="line">      <span class="keyword">begin</span>      </span><br><span class="line">	result &lt;= `A + <span class="number">10</span>;    </span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>关于文件包含的几点说明：</p>
+<ul>
+<li>一个`include只能指定一个包含文件；</li>
+<li>`include中的文件名可以是相对路径，也可以是绝对路径（ISE中调用Modelsim仿真的时候得用绝对路径，否则Modelsim会报错）；</li>
+<li>如果文件1包含文件2，而文件2要用到文件3的内容，那么在文</li>
+</ul>
+<p>例：para.v 中 ： `define A 2+3 para2.v 中： `define B `A+2
+test.v中：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns/1ps</span></span><br><span class="line"><span class="meta">`<span class="keyword">include</span>  &quot; para.v&quot;</span></span><br><span class="line"><span class="meta">`<span class="keyword">include</span>  &quot; para2.v&quot;</span></span><br><span class="line"><span class="keyword">module</span> test(     </span><br><span class="line">	  <span class="keyword">input</span>  <span class="keyword">wire</span>        clk,       </span><br><span class="line">	<span class="keyword">output</span>  <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] result   </span><br><span class="line">	              );  </span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">posedge</span>  clk)    </span><br><span class="line">      <span class="keyword">begin</span>      </span><br><span class="line">	result &lt;= `B+ <span class="number">10</span>;    </span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" rel="prev" title="Verilog HDL程序的基本结构">
+                  <i class="fa fa-chevron-left"></i> Verilog HDL程序的基本结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
