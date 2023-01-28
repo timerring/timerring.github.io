@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">104</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">105</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,129 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Database/MySQL/%E5%9F%BA%E6%9C%AC%E7%9A%84SELECT%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Database/MySQL/%E5%9F%BA%E6%9C%AC%E7%9A%84SELECT%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">基本的SELECT语句</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-19 11:34:18" itemprop="dateCreated datePublished" datetime="2023-01-19T11:34:18+08:00">2023-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="sql概述">1.SQL概述</h2>
+<h3 id="sql背景知识">SQL背景知识</h3>
+<p>1974 年，IBM
+研究员发布了一篇揭开数据库技术的论文《SEQUEL：一门结构化的英语查询语言》，直到今天这门结构化的查询语言并没有太大的变化。</p>
+<p>SQL（Structured Query
+Language，结构化查询语言）是使用关系模型的数据库应用语言，
+与数据直接打交道，由IBM
+上世纪70年代开发出来。后由美国国家标准局（ANSI）开始着手制定SQL标准，SQL
+有两个重要的标准，分别是 SQL92 和 SQL99，它们分别代表了 92 年和 99
+年颁布的 SQL 标准，我们今天使用的 SQL
+语言依然遵循这些标准。<strong>不同的数据库生产厂商都支持SQL语句，但都有特有内容。</strong></p>
+<p>自从 SQL 加入了 TIOBE 编程语言排行榜，就一直保持在 Top 10。</p>
+<h3 id="sql-分类">SQL 分类</h3>
+<p>SQL语言在功能上主要分为如下3大类：</p>
+<ul>
+<li><p><strong>DDL（Data Definition
+Languages、数据定义语言）</strong>，这些语句定义了不同的数据库、表、视图、索引等数据库对象，还可以用来<strong>创建、删除、修改数据库和数据表的结构</strong>。</p>
+<p>主要的语句关键字包括<code>CREATE</code> 、<code>DROP</code>
+、<code>ALTER</code> 等。</p></li>
+<li><p><strong>DML（Data Manipulation
+Language、数据操作语言）</strong>，用于添加、删除、更新和查询数据库记录，并检查数据完整性。</p>
+<p>主要的语句关键字包括<code>INSERT</code> 、<code>DELETE</code>
+、<code>UPDATE</code> 、<code>SELECT</code>
+等<strong>增删改查</strong>。SELECT是SQL语言的基础，最为重要。</p></li>
+<li><p><strong>DCL（Data Control
+Language、数据控制语言）</strong>，用于定义数据库、表、字段、用户的访问权限和安全级别。</p>
+<p>主要的语句关键字包括<code>GRANT</code> 、<code>REVOKE</code>
+、<code>COMMIT</code> 、<code>ROLLBACK</code> 、<code>SAVEPOINT</code>
+等。</p></li>
+</ul>
+<blockquote>
+<p>因为查询语句使用的非常的频繁，所以很多人把查询语句单拎出来一类：DQL（数据查询语言）。</p>
+<p>还有单独将COMMIT 、ROLLBACK 取出来称为TCL （Transaction Control
+Language，事务控制语 言）。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Database/MySQL/%E5%9F%BA%E6%9C%AC%E7%9A%84SELECT%E8%AF%AD%E5%8F%A5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1104,111 +1227,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3%E9%80%9A%E4%BF%A1%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">人机交互接口设计详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-08 11:07:08" itemprop="dateCreated datePublished" datetime="2023-01-08T11:07:08+08:00">2023-01-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="键盘和led的接口原理">键盘和LED的接口原理</h2>
-<p>HA7279A是一片具有串行接口并可同时驱动8位共阴式数码管或64只独立LED的智能显示驱动芯片。该芯片同时可连接多达64键的键盘矩阵，一片即可完成LED显示及键盘接口的全部功能。</p>
-<p>HA7279A一共有28个引脚：</p>
-<ul>
-<li>RESET：复位端。通常，该端接＋5V电源；</li>
-<li>DIG0～DIG7：８个LED管的位驱动输出端；</li>
-<li>SA～SG：LED数码管的Ａ段～Ｇ段的输出端；</li>
-<li>DP：小数点的驱动输出端；</li>
-<li>RC：外接振荡元件连接端。</li>
-<li>HD7279A与微处理器仅需４条接口线:</li>
-<li>CS：片选信号（低电平有效）；</li>
-<li>DATA：串行数据端。</li>
-<li>CLK：数据串行传送的同步时钟输入端，时钟的上升沿表示数据有效。</li>
-<li>KEY:按键信号输出端。该端在无键按下时为高电平；而在有键按下时变为低电平，并一直保持到按键释放为止。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230108090920172.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
