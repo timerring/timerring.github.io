@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">107</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">110</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,323 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%A7%A3/" class="post-title-link" itemprop="url">ARM中断系统设计全解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-03 09:40:13" itemprop="dateCreated datePublished" datetime="2023-01-03T09:40:13+08:00">2023-01-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="一arm9的异常事件管理">一、ARM9的异常事件管理</h3>
+<p>ARM920T能处理有8个异常，他们分别是：Reset，Undefined
+instruction，Software Interrupt，Abort (prefetch)，Abort
+(data)，Reserved，IRQ，FIQ ，它们的矢量表是：</p>
+<p>Address Instruct 0x00000000: b Handle_Reset 0x00000004: b HandleUndef
+0x00000008: b HandleSWI 0x0000000C: b HandlePrefetchAbort 0x00000010: b
+HandleDataAbort 0x00000014: b HandleNotUsed 0x00000018: b HandleIRQ
+0x0000001C: b HandleFIQ</p>
+<p>ARM920T的异常向量表有两种存放方式，一种是低端存放（从0x00000000处开始存放），另一种是高端存放（从0xfff000000处开始存放）。</p>
+<p>异常矢量表的生成一般由一段汇编程序完成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">_start:</span><br><span class="line">    b        Handle_Reset</span><br><span class="line">    b        HandleUndef</span><br><span class="line">    b        HandleSWI</span><br><span class="line">    b        HandlePrefetchAbort</span><br><span class="line">    b        HandleDataAbort</span><br><span class="line">    b        HandleNotUsed</span><br><span class="line">    b        HandleIRQ</span><br><span class="line">    b        HandleFIQ</span><br><span class="line">    …..</span><br><span class="line">    …</span><br><span class="line">    ..</span><br><span class="line">    other codes</span><br><span class="line">    …</span><br><span class="line">    ..</span><br></pre></td></tr></table></figure>
+<p>这部分片段一般出现在一个名叫“head.s”的汇编文件的里，“b
+Handle_Reset”这条语句就是系统上电之后运行的第一条语句。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%A7%A3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">ARM最小系统设计详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-02 10:19:31" itemprop="dateCreated datePublished" datetime="2023-01-02T10:19:31+08:00">2023-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="一什么是最小系统">一、什么是最小系统</h3>
+<p>嵌入式微处理器芯片自己是不能独立工作的，需要一些必要的外围元器件给它提供基本的工作条件。</p>
+<p>一个 ARM 最小系统一般包括：</p>
+<ul>
+<li>ARM 微处理器芯片</li>
+<li>电源电路、复位电路，晶振电路，</li>
+<li>存储器（ FLASH 和 SDRAM ），</li>
+<li>UART（RS232及以太网）接口电路。</li>
+<li>JTAG 调试接口。</li>
+</ul>
+<h4 id="最小系统结构框图">最小系统结构框图</h4>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230102091007808.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">S3C2410与S3C2440的区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-01 15:56:50" itemprop="dateCreated datePublished" datetime="2023-01-01T15:56:50+08:00">2023-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="s3c2410a微处理器概述">S3C2410A微处理器概述</h2>
+<p>SAMSUNG公司的S3C2410A芯片是一款16/32位的RISC微处理器芯片，芯片内使用了ARM公司的ARM920T内核，采用了称为AMBA（Advanced
+Microcontroller Bus Architecture，先进微处理器总线结构）的总线结构。</p>
+<p>S3C2410A芯片组成介绍如下：</p>
+<ul>
+<li>ARM920T，内部包含两个协处理器、单独16KB指令Cache和MMU、单独16KB数据Cache和MMU等</li>
+<li>存储器控制器，产生对SDRAM/Nor
+Flash/SRAM存储器芯片的控制和片选逻辑</li>
+<li>Nand Flash控制器</li>
+<li>中断控制器</li>
+<li>LCD控制器，支持STN及TFT液晶显示器</li>
+<li>带有外部请求引脚的4通道DMA</li>
+<li>3通道通用异步收发器（UART）,支持红外传输</li>
+<li>2通道SPI（Serial Peripheral Interface，串行外设接口）</li>
+<li>1通道多主IIC总线控制器，1通道IIS总线控制器</li>
+<li>MMC/SD/SDIO主控制器</li>
+<li>2端口USB主控制器，1端口USB设备控制器（Ver 1.1）</li>
+<li>4通道脉宽调制（PWM）定时器与1通道内部定时器</li>
+<li>看门狗定时器</li>
+<li>117位GPIO端口，其中24通道可用作24路外部中断源</li>
+<li>电源管理，支持NORMAL、SLOW、IDLE和Power_OFF模式</li>
+<li>8通道10位ADC与触摸屏接口</li>
+<li>带日历功能的RTC</li>
+<li>带锁相环（PLL）的片内时钟发生器</li>
+</ul>
+<h2 id="s3c2410a微处理器组成">S3C2410A微处理器组成</h2>
+<h3 id="s3c2410a微处理器组成-1">S3C2410A微处理器组成</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -922,299 +1239,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/ARM%E7%9B%B8%E5%85%B3%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E6%A6%82%E8%BF%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">ARM符号定义伪操作详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-28 11:28:59" itemprop="dateCreated datePublished" datetime="2022-12-28T11:28:59+08:00">2022-12-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2
-id="arm汇编语言的伪操作宏指令与伪指令">ARM汇编语言的伪操作、宏指令与伪指令</h2>
-<p>ARM汇编语言源程序中语句一般由指令、伪操作、宏指令和伪指令组成
-伪操作是ARM汇编语言程序里的一些特殊指令助记符，它的作用主要是为完成汇编程序做各种准备工作，在源程序进行汇编时由汇编程序处理，而不是在计算机运行期间由机器执行。</p>
-<p>宏指令是一段独立的程序代码，可以插在源程序中，它通过伪操作来定义。宏在被使用之前必须提前定义好，宏之间可以互相调用，也可以自己递归调用。通过直接书写宏名来使用宏，并根据宏指令的格式设置相应的输入参数。宏定义本身不会产生代码，只是在调用它时把宏体插入到源程序中。</p>
-<p>伪指令也是ARM汇编语言程序里的特殊指令助记符，也不在处理器运行期间由机器执行，它们在汇编时将被合适的机器指令代替成ARM或Thumb指令,从而实现真正指令操作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E7%AC%A6%E5%8F%B7%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">ARM常用开发编译软件介绍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-27 10:58:21" itemprop="dateCreated datePublished" datetime="2022-12-27T10:58:21+08:00">2022-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="编译器介绍">编译器介绍</h2>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221227105406508.png" /></p>
-<h2 id="ads1.2">1、ADS1.2</h2>
-<p>ADS（ARM Developer
-Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。
-他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C
-编译器；实时调试器；应用函数库。ADS对汇编、C/C++、java支持的均很好，是目前最成熟的ARM开发工具。很多ARM开发软件（例如Keil）也是借用的ADS的编译器。ADS在2006年版本已经发布到2.2。但国内大部分开发者使用的均是1.2版本</p>
-<p>ADS1.2提供完整的WINDOWS界面开发环境。C编译器效率高，支持c
-以及c++。提供软件模拟仿真功能，使没有Emulators的学习者也能够熟悉ARM的指令系统。配合FFT-ICE使用，ADS1.2提供强大的实时调试跟踪功能,片内运行情况尽在掌握。ADS1.2需要硬件支持才能发挥强大功能。目前支持的硬件调试器有Multi-ICE以及兼容Multi-ICE的调试工具如FFT-ICE。</p>
-<p>版本：ADS1.2</p>
-<p>软件大小：130M</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">ARM嵌入式系统开发流程概述</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-27 10:58:21" itemprop="dateCreated datePublished" datetime="2022-12-27T10:58:21+08:00">2022-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="嵌入式开发的具体过程">嵌入式开发的具体过程</h2>
-<ul>
-<li>系统定义与需求分析阶段</li>
-<li>方案设计阶段</li>
-<li>详细设计阶段</li>
-<li>软硬件集成测试阶段</li>
-<li>系统功能性能测试及可靠性测试阶段</li>
-</ul>
-<h3 id="开发流程图">开发流程图</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221227102743978.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
