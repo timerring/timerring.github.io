@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">116</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">118</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,204 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E5%8F%8A%E9%80%BB%E8%BE%91%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E5%8F%8A%E9%80%BB%E8%BE%91%E9%97%A8/" class="post-title-link" itemprop="url">逻辑运算及逻辑门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-11 10:38:35" itemprop="dateCreated datePublished" datetime="2023-01-11T10:38:35+08:00">2023-01-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="逻辑变量与逻辑函数">逻辑变量与逻辑函数</h2>
+<p>逻辑是指事物因果之间所遵循的规律。为了避免用冗繁的文字来描述逻辑问题，逻辑代数采用逻辑变量和一套运算符组成逻辑函数表达式来描述事物的因果关系。</p>
+<p>逻辑代数中的变量称为逻辑变量，一般用大写字母A、B、C…表示。逻辑变量的取值只有两种，即逻辑0和逻辑1。
+0和1称为逻辑常量。这里0和1本身并没有数值意义，它仅仅是一种符号，代表事物矛盾双方的两种状态。
+数字电路的输出与输入之间的关系是一种因果关系，
+因此它可以用逻辑函数来描述，并称为逻辑电路。</p>
+<p>对于任何一个电路，若输入逻辑变量A、 B、 C …
+的取值确定后，其输出逻辑变量L的值也被唯一地确定了，则可以称L是A、 B、 C
+… 的逻辑函数， 并记为 <span class="math display">\[
+\begin{array}{c}
+L = f(A, B, C, \cdots)
+\end{array}
+\]</span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E5%8F%8A%E9%80%BB%E8%BE%91%E9%97%A8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">数字电路简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-01-10 13:29:22" itemprop="dateCreated datePublished" datetime="2023-01-10T13:29:22+08:00">2023-01-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="数字电路的历史">数字电路的历史</h2>
+<p>数字电路是数字计算机和自动控制系统的基础，它的发展是以电子器件的发展为基础的，器件的发展可以大致上分为3个阶段：</p>
+<ul>
+<li>电子管（1906年）</li>
+<li>晶体管（1947年）</li>
+<li>集成电路（Integrated Circuit，简称IC，1958年）</li>
+</ul>
+<p>器件发展的几个阶段：</p>
+<p>数字电路发展特点: 以电子器件的发展为基础</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF%E7%AE%80%E4%BB%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -994,224 +1192,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/ARM%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">S3C2410与S3C2440的区别</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-01 15:56:50" itemprop="dateCreated datePublished" datetime="2023-01-01T15:56:50+08:00">2023-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="s3c2410a微处理器概述">S3C2410A微处理器概述</h2>
-<p>SAMSUNG公司的S3C2410A芯片是一款16/32位的RISC微处理器芯片，芯片内使用了ARM公司的ARM920T内核，采用了称为AMBA（Advanced
-Microcontroller Bus Architecture，先进微处理器总线结构）的总线结构。</p>
-<p>S3C2410A芯片组成介绍如下：</p>
-<ul>
-<li>ARM920T，内部包含两个协处理器、单独16KB指令Cache和MMU、单独16KB数据Cache和MMU等</li>
-<li>存储器控制器，产生对SDRAM/Nor
-Flash/SRAM存储器芯片的控制和片选逻辑</li>
-<li>Nand Flash控制器</li>
-<li>中断控制器</li>
-<li>LCD控制器，支持STN及TFT液晶显示器</li>
-<li>带有外部请求引脚的4通道DMA</li>
-<li>3通道通用异步收发器（UART）,支持红外传输</li>
-<li>2通道SPI（Serial Peripheral Interface，串行外设接口）</li>
-<li>1通道多主IIC总线控制器，1通道IIS总线控制器</li>
-<li>MMC/SD/SDIO主控制器</li>
-<li>2端口USB主控制器，1端口USB设备控制器（Ver 1.1）</li>
-<li>4通道脉宽调制（PWM）定时器与1通道内部定时器</li>
-<li>看门狗定时器</li>
-<li>117位GPIO端口，其中24通道可用作24路外部中断源</li>
-<li>电源管理，支持NORMAL、SLOW、IDLE和Power_OFF模式</li>
-<li>8通道10位ADC与触摸屏接口</li>
-<li>带日历功能的RTC</li>
-<li>带锁相环（PLL）的片内时钟发生器</li>
-</ul>
-<h2 id="s3c2410a微处理器组成">S3C2410A微处理器组成</h2>
-<h3 id="s3c2410a微处理器组成-1">S3C2410A微处理器组成</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/S3C2410%E4%B8%8ES3C2440%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%86%85%E5%B5%8C%E6%B1%87%E7%BC%96%E5%8F%8AC%E5%92%8CARM%E6%B1%87%E7%BC%96%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E5%86%85%E5%B5%8C%E6%B1%87%E7%BC%96%E5%8F%8AC%E5%92%8CARM%E6%B1%87%E7%BC%96%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">ARM内嵌汇编及C和ARM汇编相互调用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-31 10:43:27" itemprop="dateCreated datePublished" datetime="2022-12-31T10:43:27+08:00">2022-12-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="内嵌汇编">内嵌汇编</h2>
-<p>在C程序中嵌入汇编程序可以实现一些高级语言没有的功能，并可以提高执行效率。armcc和armcpp内嵌汇编器支持完整的ARM指令集；tcc和tcpp用于Thumb指集。但是内嵌汇编器并不支持诸如直接修改PC实现跳转的底层功能。</p>
-<p>内嵌的汇编指令包括大部分的ARM指令和Thumb指令，但是不能直接引用C的变量定义，数据交换必须通过ATPCS进行。嵌入式汇编在形式上表现为独立定义的函数体。</p>
-<h3 id="内嵌汇编指令的语法格式">内嵌汇编指令的语法格式</h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__asm（“指令[；指令]”）；</span><br></pre></td></tr></table></figure>
-<p>ARM
-C汇编器使用关键字“__asm"。如果有多条汇编指令需要嵌入，可以用“｛｝”将它们归为一条语句。如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__asm</span><br><span class="line">｛</span><br><span class="line">指令［；指令］</span><br><span class="line">…</span><br><span class="line">[指令]</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
-<p>各指令用“；”分隔。如果一条指令占据多行，除最后一行外都要使用连字符“＼”。在汇编指令段中可以使用C语言的注释语句。需要特别注意的是__asm是两个下划线。</p>
-<h3 id="内嵌汇编注意事项">内嵌汇编注意事项</h3>
-<p>必须小心使用物理寄存器，如R0~R3，LR和PC</p>
-<p>不要使用寄存器寻址变量</p>
-<p>使用内嵌汇编时，编译器自己会保存和恢复它可能用到的寄存器，用户无须保存和恢复寄存器。事实上，除了CPSR和SPSR寄存器，对物理寄存器没写就读都会引起汇编器报错。</p>
-<p>LDM和STM指令的寄存器列表只允许物理寄存器</p>
-<p>汇编语言用“，”作为操作数分隔符</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E5%86%85%E5%B5%8C%E6%B1%87%E7%BC%96%E5%8F%8AC%E5%92%8CARM%E6%B1%87%E7%BC%96%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="状态机的基本结构及类型 有限状态机的标准模型如图所示，它主要由三部分组成：  下一状态的逻辑电路（组合电路）； 存储状态机当前状态的时序逻辑电路（时序电路）； 输出组合逻辑电路（组合电路）。   一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite State Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="状态机的概念与设计">
+<meta property="og:url" content="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="状态机的基本结构及类型 有限状态机的标准模型如图所示，它主要由三部分组成：  下一状态的逻辑电路（组合电路）； 存储状态机当前状态的时序逻辑电路（时序电路）； 输出组合逻辑电路（组合电路）。   一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite State Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-09T02:36:09.777Z">
+<meta property="article:modified_time" content="2023-02-09T02:36:40.210Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/","path":"Notes/Hardware/状态机的概念与设计/","title":"状态机的概念与设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>状态机的概念与设计 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">118</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E5%8F%8A%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">状态机的基本结构及类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%8A%B6%E6%80%81%E5%9B%BE%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">状态机的状态图表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mealy%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">Mealy型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#moore%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">Moore型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">状态机的设计步骤</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="状态机的概念与设计 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          状态机的概念与设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-09 10:36:09" itemprop="dateCreated datePublished" datetime="2023-02-09T10:36:09+08:00">2023-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="状态机的基本结构及类型">状态机的基本结构及类型</h2>
+<p>有限状态机的标准模型如图所示，它主要由三部分组成：</p>
+<ol type="1">
+<li>下一状态的逻辑电路（组合电路）；</li>
+<li>存储状态机当前状态的时序逻辑电路（时序电路）；</li>
+<li>输出组合逻辑电路（组合电路）。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093806848.png" /></p>
+<p>一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite
+State
+Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟脉冲源上，其状态的转换是在同一时钟源的同一脉冲边沿同步进行的，所以它也被称作时钟同步状态机。</p>
+<p>一般来说，状态机的基本操作主要有以下两种：</p>
+<ol type="1">
+<li>状态机的内部状态转换。</li>
+<li>产生输出信号序列。</li>
+</ol>
+<p>根据电路的输出信号是否与电路的输入有关，可以将状态机分为两种类型：一类是米利型（Mealy）状态机，电路的输出信号不仅与电路当前的状态有关，还与电路的输入有关；另一类是穆尔型（Moore）状态机，电路输出仅仅取决于各触发器的状态，而不受电路当时的输入信号影响或没有输入变量。</p>
+<span id="more"></span>
+<h2 id="状态机的状态图表示法">状态机的状态图表示法</h2>
+<h3 id="mealy型">Mealy型</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093906151.png" /></p>
+<p>上图是米利型状态图的一个例子。在状态图中，每个状态用一个圆圈表示，圆圈内有指示状态的符号。用带箭头的方向线指示状态转换的方向，当方向线的起点和终点都在同一个圆圈上时，则表示状态不变。</p>
+<p>一般来说，状态机中的状态转移有两种方式：无条件转移和有条件转移。在图中，从状态A转移到状态B为无条件转移，其它状态之间的转移都是有条件要求的。</p>
+<h3 id="moore型">Moore型</h3>
+<p>需要强调指出，米利型状态图中，输出值的表示方法容易引起读者的误解。当状态机处于所在的状态，并且在所示的输入的作用下，就会产生输出值，并非在状态机转移到下一状态时才出现输出。由于穆尔型电路的输出只依赖于状态机的当前状态，其状态图的表示方法略有不同，通常将输出变量写在表示状态的圆圈内部，图是穆尔型状态图表示的例子。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094129828.png" /></p>
+<h2 id="状态机的设计步骤">状态机的设计步骤</h2>
+<p>一般来说，状态机的设计步骤如下所示：</p>
+<ol type="1">
+<li>依据具体的设计原则，确定采用状态机类型：穆尔型状态机还是米利型状态机。</li>
+<li>分析设计要求，列出状态机的所有状态，并对每一个状态进行状态编码。</li>
+<li>根据状态转移关系和输出函数，画出状态图(状态表)。</li>
+<li>根据所画的状态图，采用硬件描述语言对状态机进行描述。</li>
+</ol>
+<p>第3步是最困难也是最有创造性的一步。状态图直观地反映了状态机各个状态之间的转换关系以及转换条件，但要求设计的状态个数不能太多。状态个数较多，采用状态表的方法列出状态机的转移条件。输出信号较多，可采用输出逻辑真值表进行表示。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/" rel="prev" title="m序列码产生电路设计与仿真">
+                  <i class="fa fa-chevron-left"></i> m序列码产生电路设计与仿真
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/" rel="next" title="基于Verilog HDL的状态机描述方法">
+                  基于Verilog HDL的状态机描述方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

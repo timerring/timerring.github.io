@@ -16421,4 +16421,201 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
         <tag>FPGA</tag>
       </tags>
   </entry>
+  <entry>
+    <title>状态机的概念与设计</title>
+    <url>/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="状态机的基本结构及类型">状态机的基本结构及类型</h2>
+<p>有限状态机的标准模型如图所示，它主要由三部分组成：</p>
+<ol type="1">
+<li>下一状态的逻辑电路（组合电路）；</li>
+<li>存储状态机当前状态的时序逻辑电路（时序电路）；</li>
+<li>输出组合逻辑电路（组合电路）。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093806848.png" /></p>
+<p>一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite
+State
+Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟脉冲源上，其状态的转换是在同一时钟源的同一脉冲边沿同步进行的，所以它也被称作时钟同步状态机。</p>
+<p>一般来说，状态机的基本操作主要有以下两种：</p>
+<ol type="1">
+<li>状态机的内部状态转换。</li>
+<li>产生输出信号序列。</li>
+</ol>
+<p>根据电路的输出信号是否与电路的输入有关，可以将状态机分为两种类型：一类是米利型（Mealy）状态机，电路的输出信号不仅与电路当前的状态有关，还与电路的输入有关；另一类是穆尔型（Moore）状态机，电路输出仅仅取决于各触发器的状态，而不受电路当时的输入信号影响或没有输入变量。</p>
+<span id="more"></span>
+<h2 id="状态机的状态图表示法">状态机的状态图表示法</h2>
+<h3 id="mealy型">Mealy型</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093906151.png" /></p>
+<p>上图是米利型状态图的一个例子。在状态图中，每个状态用一个圆圈表示，圆圈内有指示状态的符号。用带箭头的方向线指示状态转换的方向，当方向线的起点和终点都在同一个圆圈上时，则表示状态不变。</p>
+<p>一般来说，状态机中的状态转移有两种方式：无条件转移和有条件转移。在图中，从状态A转移到状态B为无条件转移，其它状态之间的转移都是有条件要求的。</p>
+<h3 id="moore型">Moore型</h3>
+<p>需要强调指出，米利型状态图中，输出值的表示方法容易引起读者的误解。当状态机处于所在的状态，并且在所示的输入的作用下，就会产生输出值，并非在状态机转移到下一状态时才出现输出。由于穆尔型电路的输出只依赖于状态机的当前状态，其状态图的表示方法略有不同，通常将输出变量写在表示状态的圆圈内部，图是穆尔型状态图表示的例子。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094129828.png" /></p>
+<h2 id="状态机的设计步骤">状态机的设计步骤</h2>
+<p>一般来说，状态机的设计步骤如下所示：</p>
+<ol type="1">
+<li>依据具体的设计原则，确定采用状态机类型：穆尔型状态机还是米利型状态机。</li>
+<li>分析设计要求，列出状态机的所有状态，并对每一个状态进行状态编码。</li>
+<li>根据状态转移关系和输出函数，画出状态图(状态表)。</li>
+<li>根据所画的状态图，采用硬件描述语言对状态机进行描述。</li>
+</ol>
+<p>第3步是最困难也是最有创造性的一步。状态图直观地反映了状态机各个状态之间的转换关系以及转换条件，但要求设计的状态个数不能太多。状态个数较多，采用状态表的方法列出状态机的转移条件。输出信号较多，可采用输出逻辑真值表进行表示。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>FPGA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于Verilog HDL的状态机描述方法</title>
+    <url>/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="状态图的建立过程">状态图的建立过程</h2>
+<p>设计一个序列检测器电路。功能是检测出串行输入数据Sin中的4位二进制序列0101（自左至右输入），当检测到该序列时，输出Out=1；没有检测到该序列时，输出Out=0。（注意考虑序列重叠的可能性，如010101，相当于出现两个0101序列）。</p>
+<p>解：首先，确定采用米利型状态机设计该电路。因为该电路在连续收到信号0101时，输出为1，其他情况下输出为0，所以采用米利型状态机。</p>
+<p>其次，确定状态机的状态图。根据设计要求，该电路至少应有四个状态，分别用S1、S2、S3、S4表示。若假设电路的初始状态用S0表示，则可用五个状态来描述该电路。根据分析，可以画出图(a)所示的原始状态图。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094448632.png" /></p>
+<p>观察该图可以看出，S2、S4为等价状态，可用S2代替S4，于是得到简化状态图。</p>
+<p>然后，根据上面的状态图给出该状态机的输出逻辑。该状态机只有一个输出变量Out，其输出逻辑非常简单，直接标注在状态图中了。若输出变量较多，则可以列出输出逻辑真值表。</p>
+<p>最后，就可以使用硬件描述语言对状态图进行描述了。</p>
+<h2 id="状态图描述方法">状态图描述方法</h2>
+<p>利用Verilog HDL语言描述状态图主要包含四部分内容：</p>
+<ol type="1">
+<li><p>利用参数定义语句parameter描述状态机中各个状态的名称，并指定状态编码。例如，对序列检测器的状态分配可以使用最简单的自然二进制码，其描述如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">parameter</span>  S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure>
+<p>或者，</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>用时序的always 块描述状态触发器实现的状态存储。</p></li>
+<li><p>使用敏感表和case语句(也可以采用if-else等价语句)描述的状态转换逻辑。</p></li>
+<li><p>描述状态机的输出逻辑。</p></li>
+</ol>
+<p>描述状态图的方法多种多样，下面介绍几种：</p>
+<span id="more"></span>
+<h3
+id="单个always块描述状态机的方法尽量避免">单个always块描述状态机的方法（尽量避免）</h3>
+<p>用一个always块对该例的状态机进行描述，其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> Detector1 ( Sin, CP, nCR, Out) ;</span><br><span class="line">	<span class="keyword">input</span> Sin, CP, nCR;    <span class="comment">//声明输入变量</span></span><br><span class="line">	<span class="keyword">output</span> Out ;                <span class="comment">//声明输出变量</span></span><br><span class="line">	<span class="keyword">reg</span> Out; </span><br><span class="line">	<span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] state;  </span><br><span class="line"><span class="comment">// 声明两个状态触发器变量state[1]和state[0]，记忆电路现态</span></span><br><span class="line"><span class="comment">//The state labels and their assignments</span></span><br><span class="line"><span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nCR)   </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (~nCR)</span><br><span class="line">state &lt;= S0;  <span class="comment">//在nCR跳变为0时，异步清零</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">           <span class="keyword">case</span>(state) </span><br><span class="line">	  S0: <span class="keyword">begin</span> Out =<span class="number">1</span>’b0; state &lt;= (Sin==<span class="number">1</span>)? S0 : S1; <span class="keyword">end</span></span><br><span class="line">	  S1: <span class="keyword">begin</span> Out = <span class="number">1</span>’b0; state &lt;= (Sin==<span class="number">1</span>)? S2 : S1; <span class="keyword">end</span></span><br><span class="line">	  S2: <span class="keyword">begin</span> Out = <span class="number">1</span>’b0; state &lt;= (Sin==<span class="number">1</span>)? S0 : S3; <span class="keyword">end</span>	  </span><br><span class="line">      S3: <span class="keyword">if</span> (Sin==<span class="number">1</span>)  <span class="keyword">begin</span> Out =<span class="number">1</span>’b1; state &lt;=  S2; <span class="keyword">end</span></span><br><span class="line">	        <span class="keyword">else</span>               </span><br><span class="line">		   <span class="keyword">begin</span> Out =<span class="number">1</span>’b0; state &lt;= S1; <span class="keyword">end</span>               	</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>严格地说，对序列检测器电路用单个always块的描述方法所描述的逻辑存在着一个隐含的错误，即输出信号Out的描述。</p>
+<p>case语句中对输出向量的赋值应是下一个状态输出，这点易出错；状态向量与输出向量都由寄存器实现，面积大，不能实现异步米勒状态机。因此，单个always块描述状态机的写法仅仅适用于穆尔型状态机。单个always块写法的电路结构框图可以用下图进行概括。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094750807.png" /></p>
+<h3
+id="两个always块描述状态机的方法推荐写法">两个always块描述状态机的方法（推荐写法！）</h3>
+<p>用两个always块对该例的状态机进行描述，其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span>  Detector2 ( Sin, CP, nCR, Out) ;</span><br><span class="line"><span class="keyword">input</span> Sin, CP, nCR;    <span class="comment">//定义输入变量</span></span><br><span class="line"><span class="keyword">output</span> Out ;                <span class="comment">//定义输出变量</span></span><br><span class="line"><span class="keyword">reg</span> Out; </span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] Current_state, Next_state;</span><br><span class="line"><span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br><span class="line"><span class="comment">//状态转换，时序逻辑</span></span><br><span class="line">  <span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nCR ) </span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">if</span> (~nCR)</span><br><span class="line">	Current_state &lt;= S0;   <span class="comment">//异步清零</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">     Current_state &lt;= Next_state; </span><br><span class="line">     <span class="comment">//在CP上升沿触发器状态翻转</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下一状态产生和输出信号，组合逻辑</span></span><br><span class="line"><span class="keyword">always</span> @( Current_state <span class="keyword">or</span> Sin) </span><br><span class="line">   <span class="keyword">begin</span>	</span><br><span class="line">     Next_state =<span class="number">2</span>’bxx;                                                                                                                                                                                                                      </span><br><span class="line">     Out=<span class="number">1</span>’b <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">case</span>(Current_state )</span><br><span class="line">     S0: <span class="keyword">begin</span> Out =<span class="number">1</span>’b0; Next_state = (Sin==<span class="number">1</span>)? S0 : S1; <span class="keyword">end</span></span><br><span class="line">     S1: <span class="keyword">begin</span> Out =<span class="number">1</span>’b0; Next_state = (Sin==<span class="number">1</span>)? S2 : S1; <span class="keyword">end</span></span><br><span class="line">     S2: <span class="keyword">begin</span> Out =<span class="number">1</span>’b0; Next_state = (Sin==<span class="number">1</span>)? S0 : S3; <span class="keyword">end</span>	 </span><br><span class="line">     S3: <span class="keyword">if</span> (Sin==<span class="number">1</span>)</span><br><span class="line">	    	<span class="keyword">begin</span> Out =<span class="number">1</span>’b1; Next_state = S2; <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">begin</span> Out =<span class="number">1</span>’b0; Next_state = S1; <span class="keyword">end</span>	  </span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span>	</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>用两个always块描述状态机的写法是值得推荐的方法之一，两个always块写法的电路结构框图可以用下图进行概括。</p>
+<p>两个always块写法的电路结构框图概括。</p>
+<p>第一个always模块采用同步时序逻辑方式描述状态转移（中间方框）;
+第二个always模块采用组合逻辑方式描述状态转移规律（第一个方框）和描述电路的输出信号（第三个方框）。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094925478.png" /></p>
+<h3 id="使用三个always块分别描述">使用三个always块分别描述</h3>
+<p>即第一个always模块采用同步时序逻辑方式描述状态转移（中间方框）;
+第二个always模块采用组合逻辑方式描述状态转移规律（第一个方框）;
+第三个always模块描述电路的输出信号，<strong>在时序允许的情况下，通常让输出信号经过一个寄存器再输出，保证输出信号中没有毛刺。</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094947190.png" /></p>
+<p>用三个always块对该例的状态机进行描述，其代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span>  Detector3 ( Sin, CP, nCR, Out) ;</span><br><span class="line">	<span class="keyword">input</span> Sin, CP, nCR;    <span class="comment">//定义输入变量</span></span><br><span class="line">	<span class="keyword">output</span> Out ;                <span class="comment">//定义输出变量</span></span><br><span class="line">	<span class="keyword">reg</span> Out; </span><br><span class="line">	<span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] Current_state, Next_state;</span><br><span class="line">     <span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br><span class="line"><span class="comment">//状态转换，时序逻辑</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nCR )</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">     <span class="keyword">if</span> (~nCR)</span><br><span class="line">       Current_state &lt;= S0;                 <span class="comment">//异步清零</span></span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">       Current_state &lt;=  Next_state; <span class="comment">//在CP上升沿触发器状态翻转</span></span><br><span class="line">  <span class="keyword">end</span> </span><br><span class="line"> <span class="comment">//下一状态产生，组合逻辑</span></span><br><span class="line"><span class="keyword">always</span> @( Current_state <span class="keyword">or</span> Sin) </span><br><span class="line">  <span class="keyword">begin</span>	</span><br><span class="line">       Next_state =<span class="number">2</span>’bxx;                                                                                                                                                                                                                      </span><br><span class="line">       <span class="keyword">case</span>(Current_state )</span><br><span class="line">     	S0: <span class="keyword">begin</span> Next_state = (Sin==<span class="number">1</span>)? S0 : S1; <span class="keyword">end</span></span><br><span class="line">    	 S1: <span class="keyword">begin</span> Next_state = (Sin==<span class="number">1</span>)? S2 : S1; <span class="keyword">end</span></span><br><span class="line">    	 S2: <span class="keyword">begin</span> Next_state = (Sin==<span class="number">1</span>)? S0 : S3; <span class="keyword">end</span>	 </span><br><span class="line">    	 S3: <span class="keyword">if</span> (Sin==<span class="number">1</span>)</span><br><span class="line">	    		<span class="keyword">begin</span> Next_state = S2; <span class="keyword">end</span></span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">begin</span> Next_state = S1; <span class="keyword">end</span>	  </span><br><span class="line">       <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span>	</span><br><span class="line"> <span class="comment">/* 输出逻辑: 让输出信号经过一个寄存器再输出，可以消除Out信号中的毛刺，时序逻辑*/</span></span><br><span class="line"><span class="keyword">always</span> @ (<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nCR )</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">if</span> (~nCR)    Out &lt;= <span class="number">1</span>’b <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">else</span> </span><br><span class="line">                      <span class="keyword">begin</span> </span><br><span class="line">    	           <span class="keyword">case</span>(Current_state )</span><br><span class="line">	      	 S0, S1, S2:          Out &lt;= <span class="number">1</span>’b0;	 </span><br><span class="line">                              S3:               <span class="keyword">if</span> (Sin==<span class="number">1</span>)  </span><br><span class="line">                                            	 Out &lt;= <span class="number">1</span>’b1; </span><br><span class="line">		                      <span class="keyword">else</span>             </span><br><span class="line">                                                           Out &lt;= <span class="number">1</span>’b0; </span><br><span class="line">         	            <span class="keyword">endcase</span></span><br><span class="line">        	        <span class="keyword">end</span>	</span><br><span class="line">    <span class="keyword">end</span>	</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h3 id="三种描述方法比较">三种描述方法比较</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>1-always</strong></th>
+<th><strong>2-always</strong></th>
+<th><strong>3-always</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>结构化设计</strong></td>
+<td><strong>否</strong></td>
+<td><strong>是</strong></td>
+<td><strong>是</strong></td>
+</tr>
+<tr class="even">
+<td><strong>代码编写/理解</strong></td>
+<td><strong>不宜，理解难</strong></td>
+<td><strong>宜</strong></td>
+<td><strong>宜</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>输出信号</strong></td>
+<td><strong>寄存器输出</strong></td>
+<td><strong>组合逻辑输出</strong></td>
+<td><strong>寄存器输出</strong></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>不产生毛刺</strong></td>
+<td><strong>产生毛刺</strong></td>
+<td><strong>不产生毛刺</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>面积消耗</strong></td>
+<td><strong>大</strong></td>
+<td><strong>最小</strong></td>
+<td><strong>小</strong></td>
+</tr>
+<tr class="even">
+<td><strong>时序约束</strong></td>
+<td><strong>不利</strong></td>
+<td><strong>有利</strong></td>
+<td><strong>有利</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>可靠性、可维护性</strong></td>
+<td><strong>低</strong></td>
+<td><strong>较高</strong></td>
+<td><strong>最高</strong></td>
+</tr>
+<tr class="even">
+<td><strong>后端物理设计</strong></td>
+<td><strong>不利</strong></td>
+<td><strong>有利</strong></td>
+<td><strong>有利</strong></td>
+</tr>
+</tbody>
+</table>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>FPGA</tag>
+      </tags>
+  </entry>
 </search>

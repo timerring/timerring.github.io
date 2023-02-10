@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">116</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">118</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,213 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/" class="post-title-link" itemprop="url">ARM立即寻址与寄存器寻址</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-16 23:57:46" itemprop="dateCreated datePublished" datetime="2022-12-16T23:57:46+08:00">2022-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="立即寻址">立即寻址</h2>
+<p>立即寻址也叫立即数寻址，这是一种特殊的寻址方式，操作数本身就在指令中给出，只要取出指令也就取到了操作数，这个操作数被称为立即数，对应的寻址方式也就叫做立即寻址。例如以下指令：
+<code>ADD    R0，R0，＃1        /*R0←R0＋1*/</code>
+<code>ADD    R0，R0，＃0x3f /*R0←R0＋0x3f*/</code></p>
+<p>立即数，要求以“＃”为前缀，对于以十六进制表示的立即数，还要求在“＃”后加上“0x”，对于以二进制表示的立即数，还要求在“＃”后加上“0b”
+，对于以十进制表示的立即数，还要求在“＃”后加上“0d”或者缺省 。</p>
+<h3 id="立即数的表示">立即数的表示</h3>
+<p>（1）8位立即数的表示</p>
+<ul>
+<li>8位立即数用“#”+数字直接表示。</li>
+</ul>
+<p>（2）32位立即数的表示
+由于32位立即数在指令中占用32个位，如果直接表示，则将导致ARM指令编码的长度超过32位，为了减小编码长度，32位立即数采用移位间接表示法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E7%AB%8B%E5%8D%B3%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">ARM指令集分类及编码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-15 10:43:44" itemprop="dateCreated datePublished" datetime="2022-12-15T10:43:44+08:00">2022-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>ARM指令集是32位的，程序的启动都是从ARM指令集开始。主要是以下三个方面：</p>
+<ul>
+<li>指令分类及指令格式</li>
+<li>条件执行</li>
+<li>指令集编码</li>
+</ul>
+<h3 id="指令分类及指令格式">指令分类及指令格式</h3>
+<p>ARM指令使用的基本格式如下： 〈opcode〉{〈cond〉} {S}
+〈Rd〉,〈Rn〉{,〈operand2〉} &lt; &gt; 是必须项 ， {}是可选项</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221215102100900.png" /></p>
+<p>指令格式中符号说明:</p>
+<p><strong>opcode</strong>操作码；指令助记符，如ADD、STR等。
+<strong>cond</strong> 可选的条件码；执行条件，如EQ、NE等。
+<strong>S</strong>
+可选后缀；若指定“S”，则根据指令执行结果更新CPSR中的条件码。
+<strong>Rd</strong> 目标寄存器。 <strong>Rn</strong>
+存放第1操作数的寄存器。 <strong>op2</strong> 第2个操作数。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E6%8C%87%E4%BB%A4%E9%9B%86%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BC%96%E7%A0%81/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1005,210 +1212,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/ARM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8C%87%E4%BB%A4%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8C%87%E4%BB%A4%E9%9B%86/" class="post-title-link" itemprop="url">计算机体系结构及指令集</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-05 19:57:55" itemprop="dateCreated datePublished" datetime="2022-12-05T19:57:55+08:00">2022-12-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="计算机的两种体系结构">计算机的两种体系结构</h2>
-<p>冯·诺依曼体系结构和哈佛体系结构</p>
-<h3 id="冯诺依曼体系结构">冯·诺依曼体系结构</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221201094410509.png" /></p>
-<p>冯·诺依曼体系的特点</p>
-<ol type="1">
-<li>数据与指令都存储在存储器中,程序执行效率不高</li>
-<li>被大多数计算机所采用,简单</li>
-<li><strong>ARM7——冯诺依曼体系</strong></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%8F%8A%E6%8C%87%E4%BB%A4%E9%9B%86/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%8F%91%E5%B1%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%8F%91%E5%B1%95/" class="post-title-link" itemprop="url">嵌入式系统的应用与发展</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-04 09:47:42" itemprop="dateCreated datePublished" datetime="2022-12-04T09:47:42+08:00">2022-12-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>嵌入式系统广泛地应用于消费电子、通信、汽车、国防、航空航天、工业控制、仪表、办公自动化等领域。</p>
-<blockquote>
-<p>据欧盟的统计：</p>
-<ul>
-<li>2003年全球大概有80亿片嵌入式微处理器，到2012年，预计会达到160亿片，地球上的人平均拥有3个嵌入式微处理器；</li>
-<li>在航空电子中，嵌入式软件的开发成本占整个飞机研制成本的50%；对于汽车工业，汽车电子在整车价值中的比例逐年提高，将从1997年的20%提升到2012年的33-40%；</li>
-<li>消费电子数量越来越大，据预测，到2012年，仅数字家庭在美国的销售额就将达到2000亿欧元。</li>
-</ul>
-</blockquote>
-<h3 id="消费电子领域">消费电子领域</h3>
-<ul>
-<li>随着技术的发展，消费电子产品正向数字化和网络化方向发展。</li>
-<li>高清晰度数字电视将代替传统的模拟电视。</li>
-<li>数码相机将代替传统的胶片相机。</li>
-<li>固定电话今后会被IP电话所替代。</li>
-<li>各种家用电器（电视机、冰箱、微波炉、电话等）将通过家庭通信、控制中心与Internet连接，实现远程控制、信息交互、网上娱乐、远程医疗和远程教育等。转变为智能网络家电，还可以实现远程医疗，远程教育等。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%8F%91%E5%B1%95/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

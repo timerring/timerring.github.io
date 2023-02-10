@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">116</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">118</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,201 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">算法基础：差分算法及模板应用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-14 11:23:06" itemprop="dateCreated datePublished" datetime="2022-11-14T11:23:06+08:00">2022-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一维差分">一维差分</h2>
+<p>差分思想和前缀和是相反的。</p>
+<p>首先我们先定义数组a, 其中a[1],a[2]...a[n]作为前缀和。</p>
+<p>然后构造数组b，b[1],b[2]...b[n]为差分数组。其中通过差分数组的前缀和来表示a数组，即a[n]
+= b[1] + b[2]+...+b[n]。</p>
+<p>一维差分数组的构造也很简单，即a[1] = b[1], b[2] = a[2] - a[1], b[n] =
+a[n] - a[n-1]；</p>
+<p>注意：刚开始时可以初始化数组a,b全部为0，输入a数组后；在构造时，只需要将b[1]看做在[1,
+1]区间上加上a[1]; b[2] 看作在[2, 2]区间上加上a[2]；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//eg:对于b[1]:</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">0</span> + a[<span class="number">1</span>];</span><br><span class="line">b[<span class="number">2</span>] = <span class="number">0</span> - a[<span class="number">1</span>]; 	<span class="comment">//最终：b[1] = a[1]</span></span><br><span class="line"><span class="comment">//对于b[2]:</span></span><br><span class="line">b[<span class="number">2</span>] = b[<span class="number">2</span>] + a[<span class="number">2</span>];  <span class="comment">//==&gt; 最终：b[2] = a[2] - a[1]</span></span><br><span class="line">b[<span class="number">3</span>] = b[<span class="number">3</span>] - b[<span class="number">2</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>差分数组的好处是可以简化运算，例如想要给一个区间 [l,r]
+上的数组加一个常数c，原始的方法是依次加上c，这样的时间复杂度是O(n)的。但是如果采用差分数组的话，可以大大降低时间复杂度到O(1)。</p>
+<p>由于a[n] = b[1] + b[2]+...+b[n]，因此只需要将b[l] = b[l] + c
+即可，这样l之后的数字会依次加上常数c，而在 b[r]处，将b[r+1] = b[r+1] - c
+，这样r之后的数组又会恢复原值，仅需要处理这两个边界的差分数组即可，时间复杂度大大降低。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220915162819362.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">计算机网络：局域网的基本概念和体系结构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-13 15:34:46" itemprop="dateCreated datePublished" datetime="2022-11-13T15:34:46+08:00">2022-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>局域网（Local Area Network，LAN )
+是指在一个较小的地理范围（如所学校）内，将各种计算机、外部设备和数据库系统等通过双绞线、同轴电缆等连接介质互相连接起来，组成资源和信息共享的计算机互联网络。</strong>主要特点如下:</p>
+<ol type="1">
+<li>为一个单位所拥有，且地理范围和站点数目均有限。</li>
+<li>所有站点共享较高的总带宽（即较高的数据传输速率)。</li>
+<li>较低的时延和较低的误码率。</li>
+<li>各站为平等关系而非主从关系。</li>
+<li>能进行广播和组播。</li>
+</ol>
+<p>局域网的特性主要由三个要素决定:<strong>拓扑结构、传输介质、介质访问控制方式</strong>，其中最重要的是<strong>介质访问控制方式，它决定着局域网的技术特性。</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -908,181 +1103,6 @@ ARQ方式中，接收端检测到差错时，就设法通知发送端重发，�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">计算机网络：数据链路层功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-04 08:48:45" itemprop="dateCreated datePublished" datetime="2022-11-04T08:48:45+08:00">2022-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="计算机网络数据链路层功能">计算机网络：数据链路层功能</h2>
-<p>数据链路层在物理层提供服务的基础上向网络层提供服务，其主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221104084140517.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8A%9F%E8%83%BD/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/" class="post-title-link" itemprop="url">计算机网络：组帧</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-03 09:08:19" itemprop="dateCreated datePublished" datetime="2022-11-03T09:08:19+08:00">2022-11-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="计算机网络组帧">计算机网络：组帧</h2>
-<p>数据链路层之所以要把比特组合成帧为单位传输，是为了在出错时只重发出错的帧，而不必重发全部数据，从而提高效率。为了使接收方能正确地接收并检查所传输的帧，<strong>发送方必须依据一定的规则把网络层递交的分组封装成帧（称为组帧)</strong>。组帧主要解决<strong>帧定界、帧同步、透明传输</strong>等问题。</p>
-<p>通常有4种方法实现组帧。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E7%BB%84%E5%B8%A7/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
