@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="状态编码 在使用Verilog HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。 有限状态机的编码方案  状态机编码对状态机速度和面积关系重大 常用编码  二进制码（binary） 格雷码（Gray） 独热码（one-ho">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="状态机设计中的关键技术">
+<meta property="og:url" content="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="状态编码 在使用Verilog HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。 有限状态机的编码方案  状态机编码对状态机速度和面积关系重大 常用编码  二进制码（binary） 格雷码（Gray） 独热码（one-ho">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-11T01:43:25.403Z">
+<meta property="article:modified_time" content="2023-02-11T01:43:51.495Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/","path":"Notes/Hardware/状态机设计中的关键技术/","title":"状态机设计中的关键技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>状态机设计中的关键技术 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">121</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%BC%96%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">状态编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E9%9B%B7%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">格雷码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E7%83%AD%E7%A0%81one-hot%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">独热码(one-hot编码)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E8%BE%93%E5%87%BA%E7%AB%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E6%AF%9B%E5%88%BA"><span class="nav-number">2.</span> <span class="nav-text">如何消除输出端产生的毛刺</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E6%9C%89%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%BE%93%E5%87%BA%E7%9A%84mealy%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">1.具有流水线输出的Mealy状态机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%8A%B6%E6%80%81%E4%BD%8D%E9%87%8C%E7%BC%96%E7%A0%81%E8%BE%93%E5%87%BA%E7%9A%84moore%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">2.在状态位里编码输出的Moore状态机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8one-hot%E7%BC%96%E7%A0%81%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">如何使用One-hot编码方案设计状态机</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="状态机设计中的关键技术 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          状态机设计中的关键技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-11 09:43:25" itemprop="dateCreated datePublished" datetime="2023-02-11T09:43:25+08:00">2023-02-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="状态编码">状态编码</h2>
+<p>在使用Verilog
+HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。</p>
+<p>有限状态机的编码方案</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095432780.png" /></p>
+<p>状态机编码对状态机速度和面积关系重大</p>
+<p>常用编码</p>
+<ul>
+<li>二进制码（binary）</li>
+<li>格雷码（Gray）</li>
+<li>独热码（one-hot）</li>
+</ul>
+<p>二进制码与格雷码是压缩状态编码，使用最少的状态位进行编码。</p>
+<p>二进制编码的优点是使用的状态向量最少，但从一个状态转换到相邻状态时，可能有多个比特位发生变化，瞬变次数多，易产生毛刺。</p>
+<span id="more"></span>
+<h3 id="格雷码">格雷码</h3>
+<p>特点是当前状态改变时，状态向量中仅一位发生变化，因此当系统的状态变化是基于异步的输入信号时，格雷编码能够避免进入错误的状态。</p>
+<p>格雷码既可以消除状态转换时多状态信号传输延迟产生的毛刺，又可降低功耗。</p>
+<h3 id="独热码one-hot编码">独热码(one-hot编码)</h3>
+<p>N个状态使用N个触发器(FF)</p>
+<ul>
+<li>减少了状态寄存器之间的组合逻辑级数，因此提高了运行速度 ；</li>
+<li>触发器(FF)数量增加，组合逻辑电路减少；</li>
+<li>任何状态都可以直接添加/删除等修改而不会影响状态机的其余部分；</li>
+<li>由于译码简单，可提高速度，且易于修改。</li>
+</ul>
+<p>独热码(one-hot编码)的特点是：状态数等于触发器(FF)的数目，冗余的触发器带来的好处是译码电路的简单化，因此它的速度非常快，此外由于FPGA器件内部触发器的数量是固定的且比较丰富，所以one-hot编码非常适合于FPGA设计。</p>
+<p>独热码的缺点</p>
+<ul>
+<li>变化的状态位越多，组合输出稳定前所需的时间就越长，产生的毛刺就越多
+；</li>
+<li>多个寄存器可能受异步输入的影响，使得亚稳态发生的概率有所增加 ；</li>
+</ul>
+<p>状态机复杂状态跳转的分支很多时，要合理的分配状态编码，保证每个状态跳转都仅有1位发生变化，这是很困难的事情。</p>
+<p>不管使用哪种编码，状态机中的各个状态都应该使用符号常量，而不应该直接使用编码数值，赋予各状态有意义的名字对于设计的验证和代码的可读性都是有益的。</p>
+<table>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>编码方法</strong></th>
+<th><strong>面积</strong></th>
+<th><strong>速度</strong></th>
+<th><strong>状态数量</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Binary</strong> <strong>（顺序二进制）</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>Log2(state N)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>One-hot</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>States Number</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Gray</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>Log2(state N)</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="如何消除输出端产生的毛刺">如何消除输出端产生的毛刺</h2>
+<p>前面介绍的普通状态机由组合逻辑电路决定电路的输出.当组合逻辑较大时，若状态触发器的值发生变化或者输入信号发生变化，由于各信号在组合逻辑内部经过的路径不一样，就容易在输出端产生毛刺。</p>
+<p>下面介绍两种常用消除毛刺的方法：</p>
+<h3 id="具有流水线输出的mealy状态机">1.具有流水线输出的Mealy状态机</h3>
+<p>为了消除毛刺，可以在普通Mealy的输出逻辑后加一组输出寄存器，将寄存器的输出值作为输出向量，这种Mealy状态机的等效方框如图所示。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095851933.png"
+alt="具有流水线输出的Mealy 状态机" />
+<figcaption aria-hidden="true">具有流水线输出的Mealy 状态机</figcaption>
+</figure>
+<h3
+id="在状态位里编码输出的moore状态机">2.在状态位里编码输出的Moore状态机</h3>
+<p>这种方法的指导思想是将状态寄存器和输出向量统一进行编码，即将状态位本身作为输出信号，其等效状态框图如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095921348.png" /></p>
+<p>下面以图所示的状态图说明在状态位里编码输出的方法。图中，状态机共有三个状态：IDLE，START和WAIT，输入信号为：input_1，input_2，input_3，input_4。这些输入信号的不同逻辑组合就构成了状态之间跳转的条件。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095941652.png" /></p>
+<p>该状态机需要控制两个输出信号：output_1和output_2。可以采用4bits的状态编码，其中高两位表示当前的状态，末尾两位控制output_1和output_2的输出。IDLE状态编码为4’b0000，START状态编码为4’b0101，WAIT状态编码为
+4’b1011。</p>
+<p>参考程序如下所示：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span>  FSM1 (nRST, CP, input_1, input_2, input_3, input_4, output_1, output_2) ;</span><br><span class="line">	<span class="keyword">input</span> input_1, input_2, input_3, input_4; <span class="comment">//定义输入变量</span></span><br><span class="line">	<span class="keyword">input</span> nRST, CP;</span><br><span class="line">            <span class="keyword">output</span> output_1, output_2 ; <span class="comment">//定义输出变量</span></span><br><span class="line">	<span class="keyword">wire</span> output_1, output_2; </span><br><span class="line">	<span class="keyword">reg</span> [ <span class="number">3</span> : <span class="number">0</span> ] Current_state, Next_state;</span><br><span class="line">	<span class="comment">//状态参量的定义，根据前面所述的全译码状态编码</span></span><br><span class="line"><span class="keyword">parameter</span> [ <span class="number">3</span> : <span class="number">0</span> ] IDLE = <span class="number">4&#x27;b0000</span>,  START = <span class="number">4&#x27;b0101</span>, WAIT = <span class="number">4&#x27;b1011</span>;</span><br><span class="line"><span class="comment">//The first always block, sequential state transition</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nRST) </span><br><span class="line">    <span class="keyword">if</span> (!nRST)        <span class="comment">//当系统复位时，状态寄存器置为IDLE状态</span></span><br><span class="line">        Current_state &lt;= IDLE;  <span class="comment">//设置初态(IDLE)</span></span><br><span class="line">    <span class="keyword">else</span>  <span class="comment">//状态寄存器进行状态存储，将下一状态存储到状态寄存器成为当前状态</span></span><br><span class="line">        Current_state &lt;= Next_state;   </span><br><span class="line"><span class="comment">// The second always block, combinational condition judgment</span></span><br><span class="line"><span class="keyword">always</span> @(Current_state <span class="keyword">or</span> input_1 <span class="keyword">or</span> input_2 <span class="keyword">or</span> input_3 <span class="keyword">or</span> input_4)	</span><br><span class="line">  <span class="keyword">case</span>(Current_state) <span class="comment">//根据当前状态和状态转换条件进行译码</span></span><br><span class="line">     IDLE:</span><br><span class="line">          <span class="keyword">if</span>(input_1 &amp;&amp; input_2)  Next_state = START;</span><br><span class="line">          <span class="keyword">else</span>  Next_state = IDLE;</span><br><span class="line">     START:</span><br><span class="line">          <span class="keyword">if</span>(input_3)  Next_state = WAIT;</span><br><span class="line">          <span class="keyword">else</span>  Next_state = START;  </span><br><span class="line">     WAIT:  </span><br><span class="line">           <span class="keyword">if</span>(input_4)  Next_state = IDLE;</span><br><span class="line">           <span class="keyword">else</span> Next_state = WAIT; </span><br><span class="line">     <span class="keyword">default</span>:  Next_state = IDLE;</span><br><span class="line">   <span class="keyword">endcase</span></span><br><span class="line"><span class="comment">//状态机的输出逻辑</span></span><br><span class="line"><span class="keyword">assign</span>  output_1 = Current_state[<span class="number">1</span>]; </span><br><span class="line"><span class="keyword">assign</span>  output_2 = Current_state[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2
+id="如何使用one-hot编码方案设计状态机">如何使用One-hot编码方案设计状态机</h2>
+<p>对状态机的各个状态赋予一组特定的二进制数称为状态编码。比较常用的有自然二进制码、格雷码和One-hot编码。自然二进制码和格雷码的编码方案使用的触发器较少，其编码效率较高，但负责根据当前状态和状态转换条件进行译码的组合电路会比较复杂，其逻辑规模也较大，使得次态逻辑在传输过程中需要经过多级逻辑，从而影响电路的工作速度。</p>
+<p>One-hot编码方案使用n位状态触发器表示具有n个状态的状态机，每个状态与一个独立的触发器相对应，并且在任何时刻其中只有一个触发器有效（其值为1）。虽然这种方案会使用较多的触发器，但它的编码方式非常简单，可有效地简化组合电路，并换得工作可靠性和工作速度的提高。在大规模可编程逻辑器件如FPGA中，触发器数量较多而门逻辑相对较少，One-hot编码方案有时反而更有利于提高器件资源的利用率。</p>
+<p>定义当前状态向量state为一个5-bits向量，末尾的两位表示状态机输出，state[2]为1表示状态IDLE，state[3]为1表示状态START，state[4]为1表示状态WAIT。</p>
+<p>下面是基于One-Hot编码方式的状态机实现代码：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span>  FSM2 (nRST, CP, input_1, input_2, input_3, input_4, output_1, output_2) ;</span><br><span class="line">	<span class="keyword">input</span> input_1, input_2, input_3, input_4; <span class="comment">//定义输入变量</span></span><br><span class="line">	<span class="keyword">input</span> nRST, CP;</span><br><span class="line">            <span class="keyword">output</span> output_1, output_2 ; <span class="comment">//定义输出变量</span></span><br><span class="line">	<span class="keyword">wire</span> output_1, output_2; </span><br><span class="line">	<span class="keyword">reg</span> [ <span class="number">4</span> : <span class="number">0</span> ] state, Next_state;</span><br><span class="line">    <span class="keyword">parameter</span> [ <span class="number">4</span> : <span class="number">0</span> ] IDLE  = <span class="number">5</span>’b001_00, <span class="comment">//状态参量，末尾两位表示对应的输出</span></span><br><span class="line">         START = <span class="number">5</span>’b010_01,</span><br><span class="line">         WAIT   = <span class="number">5</span>’b100_11;</span><br><span class="line"> <span class="comment">//状态对应在state中的表示位置,One-hot</span></span><br><span class="line"><span class="keyword">parameter</span> [<span class="number">2</span>:<span class="number">0</span>] IDLE_POS    = <span class="number">3&#x27;d2</span>,  <span class="comment">// IDLE POSition</span></span><br><span class="line">                            START_POS = <span class="number">3&#x27;d3</span>,  <span class="comment">// START POSition</span></span><br><span class="line">                            WAIT_POS   = <span class="number">3&#x27;d4</span>;  <span class="comment">// WAIT POSition</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nRST)     <span class="comment">//状态存储</span></span><br><span class="line">     <span class="keyword">if</span> (!nRST)  state &lt;= IDLE;</span><br><span class="line">     <span class="keyword">else</span>             state &lt;= Next_state; </span><br><span class="line"><span class="keyword">always</span> @(input_1 <span class="keyword">or</span> input_2 <span class="keyword">or</span> input_3 <span class="keyword">or</span> input_4)<span class="comment">//状态转移逻辑</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        Next_state  =  IDLE; <span class="comment">//设置初态</span></span><br><span class="line">        <span class="keyword">case</span>(<span class="number">1</span>’b1)                   <span class="comment">//One-Hot编码实现状态转移时,</span></span><br><span class="line">           <span class="comment">//每次取state的一位与1比较</span></span><br><span class="line">        state[IDLE_POS]:</span><br><span class="line">               <span class="keyword">if</span>(input_1 &amp;&amp; input_2)</span><br><span class="line">                          Next_state = START;</span><br><span class="line">               <span class="keyword">else</span>     Next_state = IDLE;</span><br><span class="line">        state[START_POS]:</span><br><span class="line">               <span class="keyword">if</span>(input_3)</span><br><span class="line">                          Next_state = WAIT;</span><br><span class="line">               <span class="keyword">else</span>     Next_state = START;  </span><br><span class="line">        state[WAIT_POS]:  </span><br><span class="line">               <span class="keyword">if</span>(input_4)</span><br><span class="line">                        Next_state = IDLE;</span><br><span class="line">              <span class="keyword">else</span>    Next_state = WAIT; </span><br><span class="line">        <span class="keyword">default</span>:   Next_state = IDLE;</span><br><span class="line">     <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">//状态机的输出逻辑</span></span><br><span class="line"><span class="keyword">assign</span>  output_1 = state[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">assign</span>  output_2 = state[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>One-hot编码特点：指定各个状态在状态编码中的表示位，采用参量定义方式指定One-hot状态编码；使用always语句描述状态寄存器的状态存储；使用敏感表和case语句描述状态转换逻辑，在case语句中只采用一位寄存器比较方式；使用assign语句描述状态编码控制的状态机输出。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/" rel="prev" title="基于Verilog HDL的状态机描述方法">
+                  <i class="fa fa-chevron-left"></i> 基于Verilog HDL的状态机描述方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/" rel="next" title="状态机设计举例">
+                  状态机设计举例 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

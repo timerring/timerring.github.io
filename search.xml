@@ -16618,4 +16618,401 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
         <tag>FPGA</tag>
       </tags>
   </entry>
+  <entry>
+    <title>信息论绪论</title>
+    <url>/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<h2 id="一信息的基本概念">一、信息的基本概念</h2>
+<h3 id="什么是信息information">什么是信息（information)</h3>
+<ul>
+<li><p>信息:一个既复杂又抽象的概念。</p></li>
+<li><p><strong>广义: 消息、情报、知识</strong></p></li>
+<li><p><strong>技术术语:
+计算机处理(通信传输)的对象——数据、文字、记录</strong></p></li>
+<li><p>科学名词: 统计数学、通信技术</p>
+<ul>
+<li>用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。</li>
+<li>它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念</li>
+</ul></li>
+<li><p>信息是指各个事物运动的状态及状态变化的方式：</p>
+<p>人们从来自对周围世界的观察得到的数据中获得信息。信息是抽象的意识或知识，它是看不见、模不到的。人脑的思维活动产生的一种想法，当它仍储存在脑子中的时候它就是一种信息。</p></li>
+</ul>
+<h3 id="信息消息和信号">信息、消息和信号</h3>
+<span id="more"></span>
+<h4 id="信息">信息</h4>
+<ul>
+<li>信息是通信系统中传输（或存储、处理)的对象，它包含在消息中。</li>
+<li>是事物运动状态或存在方式的不确定性的描述。（香农信息的定义）</li>
+</ul>
+<h4 id="消息">消息</h4>
+<ul>
+<li>是指包含有信息的语言、文字和图像等;</li>
+<li>消息中载荷有信息，但是同一个信息可以由不同的消息载荷。</li>
+</ul>
+<h4 id="信号">信号</h4>
+<ul>
+<li>是消息的物理体现。可以用不同类型的信号，如声、光、电等传递同一个消息。</li>
+</ul>
+<p>在通信系统中，实际传输的是信号，但本质内容的是信息。<strong>信息包含在信号之中，信号是信息的载体。通信的结果是消除或部分消除不确定性，从而获得信息。</strong></p>
+<h3 id="信息的特征">信息的特征</h3>
+<p>信息的基本概念在于它的不确定性,<strong>任何已确定的事物都不含信息</strong>。</p>
+<ul>
+<li>接收者在收到信息之前，对它的内容是不知道的，所以，信息是新知识、新内容;</li>
+<li>信息是能使认识主体对某一事物的未知性或不确定性减少的有用知识;</li>
+<li>信息可以产生，也可以消失，同时信息可以被携带、贮存及处理;</li>
+<li>信息是可以量度的，信息量有多少的差别。</li>
+</ul>
+<blockquote>
+<p>Question：除了上述的信息的特征，信息还有一些其他的特征，请选择下面哪些是信息的特征?
+(ACD)</p>
+<p>A. 信息非负 B. 信息可以是任意值 C. 信息具有可加性 D.
+确定消息（事件)的所含信息量为零</p>
+<p>解析：信息不可以是任意值。因为信息和任意值没有关联。</p>
+</blockquote>
+<h3 id="信息论">信息论</h3>
+<p>信息论是一门应用概率论、随机过程、数理统计和近代代数的方法，来研究信息传输、提取和处理系统中一般规律的学科，被称为“通信的数学理论”。</p>
+<p>信息论是在<strong>信息可以量度</strong>的基础上,
+研究<strong>有效地和可靠地传递信息</strong>的科学,它涉及信息量度、信息特性、信息传输速率、信道容量、干扰对信息传输的影响等方面的知识。</p>
+<h2 id="二信息论研究的内容">二、信息论研究的内容</h2>
+<h3 id="狭义信息论">狭义信息论</h3>
+<p>主要研究信息的测度、信道容量以及信源和信道编码理论等问题。</p>
+<h3 id="一般信息论">一般信息论</h3>
+<p>主要也是研究信息传输和处理问题，除香农信息论，还包括噪声理论、信号滤波和预测、统计检测和估计、调制理论、信息处理理论以及保密理论等。</p>
+<h3 id="广义信息论">广义信息论</h3>
+<p>不仅包括上述两方面内容，而且包括所有与信息有关的自然和社会领域，如模式识别、计算机翻译、心理学、遗传学、神经生理学、语言学、语义学甚至包括社会学中有关信息的问题</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230128121548139.png" /></p>
+<h3 id="信息论研究的内容">信息论研究的内容</h3>
+<h4 id="通信的统计理论研究">1、通信的统计理论研究</h4>
+<p>主要研究利用统计数学工具分析信息和信息传输的统计规律。其具体内容有:</p>
+<ul>
+<li>信息的测度;</li>
+<li>信息速率与嫡;</li>
+<li>信道传输能力——信道容量。</li>
+</ul>
+<h4 id="信源的统计特性">2、信源的统计特性</h4>
+<ul>
+<li>文字(如汉字)、字母(如英文)的统计特性;</li>
+<li>语音的参数分析和统计特件;</li>
+<li>图片及活动图像(电视)的统计特性;</li>
+<li>其他信源的统计特性。</li>
+</ul>
+<h4 id="编码理论与技术的研究">3、编码理论与技术的研究</h4>
+<ul>
+<li><p>有效性编码:</p>
+<p><strong>提高信息传输的有效率</strong>，主要针对信源的统计特性进行编码，也称<strong>信源编码</strong>。</p></li>
+<li><p>抗干扰编码:</p>
+<p><strong>提高信息传输的可靠性</strong>，主要针对信道统的计特性进行编码;
+也称<strong>信道编码</strong>。</p></li>
+</ul>
+<h4 id="提高信息传输效率的研究">4、提高信息传输效率的研究</h4>
+<ul>
+<li>功率的节约;</li>
+<li>频带的压缩;</li>
+<li>传输时间的缩短，即快速传输问题。</li>
+</ul>
+<h4 id="抗干扰理论与技术的研究">5、抗干扰理论与技术的研究</h4>
+<ul>
+<li>各种调制制式的抗干扰性;</li>
+<li>理想接收机的实现</li>
+</ul>
+<h4
+id="噪声中信号检测理论与技术的研究">6、噪声中信号检测理论与技术的研究</h4>
+<ul>
+<li>信号检测的最佳准则;</li>
+<li>信号最佳检测的实现。</li>
+</ul>
+<h2 id="三信息论发展历程香农">三、信息论发展历程&amp;香农</h2>
+<p>“通信的基本问题就是在一点重新准确地或近似地再现另一点所选择的消息”。这是数学家香农(Claude
+E.Shanon)在他的惊世之著《通信的数学理论》中的一句铭言。</p>
+<p>香农应用数理统计的方法来研究通信系统，从而创立了影响深远的信息论。香农因此成为信息论的奠基人。</p>
+<p>香农，1816年生于美国密执安州的加洛德。在大学中他就表现出了对数理问题的高度敏感。他的硕士论文就是关于布尔代数在逻辑开关理论中的应用。后来,他就职于贝尔电话研究所,在这个世界上最大的通信公司(美国电话电报公司)的研究基地里,他受着前辈的工作的启示,其中最具代表性的是《贝尔系统技术杂志》上所披露的奈奎斯特的《影响电报速率的一些因素》和哈特莱的《信息的传输》。正是他们最早研究了通信系统的信息传输能力，第一次提出了信息量的概念,并试图用教学公式予以描述。香农则创造性地继承了他们的事业,在信息论的领域中钻研了8年之久,终于在1948年也在《贝尔系统技术杂志》上发表了244页的长篇论著《通信的数学理论》。次年,他又在同一杂志上发表了另一篇名著《噪声下的通信》。</p>
+<p>在这两篇文章中, 香农解决了过去许多悬而未决的问题:
+<strong>经典地阐明了通信的基本问题，提出了通信系统的模型，给出了信息量的数学表达式，解决了信道容量、信源统计特性、信源编码、信道编码等有关精确地传送通信符号的基本技术问题。</strong>两篇文章成了现在信息论的奠基著作。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Proakis, John G., et al. <em>Communication systems engineering</em>.
+Vol. 2. New Jersey: Prentice Hall, 1994.</li>
+<li>Proakis, John G., et al. <em>SOLUTIONS MANUAL Communication Systems
+Engineering</em>. Vol. 2. New Jersey: Prentice Hall, 1994.</li>
+<li>周炯槃. 通信原理（第3版）[M]. 北京：北京邮电大学出版社, 2008.</li>
+<li>樊昌信, 曹丽娜. 通信原理（第7版） [M]. 北京：国防工业出版社,
+2012.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Basic knowledge</category>
+      </categories>
+      <tags>
+        <tag>Information Theory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状态机设计中的关键技术</title>
+    <url>/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h2 id="状态编码">状态编码</h2>
+<p>在使用Verilog
+HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。</p>
+<p>有限状态机的编码方案</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095432780.png" /></p>
+<p>状态机编码对状态机速度和面积关系重大</p>
+<p>常用编码</p>
+<ul>
+<li>二进制码（binary）</li>
+<li>格雷码（Gray）</li>
+<li>独热码（one-hot）</li>
+</ul>
+<p>二进制码与格雷码是压缩状态编码，使用最少的状态位进行编码。</p>
+<p>二进制编码的优点是使用的状态向量最少，但从一个状态转换到相邻状态时，可能有多个比特位发生变化，瞬变次数多，易产生毛刺。</p>
+<span id="more"></span>
+<h3 id="格雷码">格雷码</h3>
+<p>特点是当前状态改变时，状态向量中仅一位发生变化，因此当系统的状态变化是基于异步的输入信号时，格雷编码能够避免进入错误的状态。</p>
+<p>格雷码既可以消除状态转换时多状态信号传输延迟产生的毛刺，又可降低功耗。</p>
+<h3 id="独热码one-hot编码">独热码(one-hot编码)</h3>
+<p>N个状态使用N个触发器(FF)</p>
+<ul>
+<li>减少了状态寄存器之间的组合逻辑级数，因此提高了运行速度 ；</li>
+<li>触发器(FF)数量增加，组合逻辑电路减少；</li>
+<li>任何状态都可以直接添加/删除等修改而不会影响状态机的其余部分；</li>
+<li>由于译码简单，可提高速度，且易于修改。</li>
+</ul>
+<p>独热码(one-hot编码)的特点是：状态数等于触发器(FF)的数目，冗余的触发器带来的好处是译码电路的简单化，因此它的速度非常快，此外由于FPGA器件内部触发器的数量是固定的且比较丰富，所以one-hot编码非常适合于FPGA设计。</p>
+<p>独热码的缺点</p>
+<ul>
+<li>变化的状态位越多，组合输出稳定前所需的时间就越长，产生的毛刺就越多
+；</li>
+<li>多个寄存器可能受异步输入的影响，使得亚稳态发生的概率有所增加 ；</li>
+</ul>
+<p>状态机复杂状态跳转的分支很多时，要合理的分配状态编码，保证每个状态跳转都仅有1位发生变化，这是很困难的事情。</p>
+<p>不管使用哪种编码，状态机中的各个状态都应该使用符号常量，而不应该直接使用编码数值，赋予各状态有意义的名字对于设计的验证和代码的可读性都是有益的。</p>
+<table>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>编码方法</strong></th>
+<th><strong>面积</strong></th>
+<th><strong>速度</strong></th>
+<th><strong>状态数量</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Binary</strong> <strong>（顺序二进制）</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>Log2(state N)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>One-hot</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>States Number</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Gray</strong></td>
+<td><strong>较好</strong></td>
+<td><strong>较差</strong></td>
+<td><strong>Log2(state N)</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="如何消除输出端产生的毛刺">如何消除输出端产生的毛刺</h2>
+<p>前面介绍的普通状态机由组合逻辑电路决定电路的输出.当组合逻辑较大时，若状态触发器的值发生变化或者输入信号发生变化，由于各信号在组合逻辑内部经过的路径不一样，就容易在输出端产生毛刺。</p>
+<p>下面介绍两种常用消除毛刺的方法：</p>
+<h3 id="具有流水线输出的mealy状态机">1.具有流水线输出的Mealy状态机</h3>
+<p>为了消除毛刺，可以在普通Mealy的输出逻辑后加一组输出寄存器，将寄存器的输出值作为输出向量，这种Mealy状态机的等效方框如图所示。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095851933.png"
+alt="具有流水线输出的Mealy 状态机" />
+<figcaption aria-hidden="true">具有流水线输出的Mealy 状态机</figcaption>
+</figure>
+<h3
+id="在状态位里编码输出的moore状态机">2.在状态位里编码输出的Moore状态机</h3>
+<p>这种方法的指导思想是将状态寄存器和输出向量统一进行编码，即将状态位本身作为输出信号，其等效状态框图如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095921348.png" /></p>
+<p>下面以图所示的状态图说明在状态位里编码输出的方法。图中，状态机共有三个状态：IDLE，START和WAIT，输入信号为：input_1，input_2，input_3，input_4。这些输入信号的不同逻辑组合就构成了状态之间跳转的条件。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095941652.png" /></p>
+<p>该状态机需要控制两个输出信号：output_1和output_2。可以采用4bits的状态编码，其中高两位表示当前的状态，末尾两位控制output_1和output_2的输出。IDLE状态编码为4’b0000，START状态编码为4’b0101，WAIT状态编码为
+4’b1011。</p>
+<p>参考程序如下所示：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span>  FSM1 (nRST, CP, input_1, input_2, input_3, input_4, output_1, output_2) ;</span><br><span class="line">	<span class="keyword">input</span> input_1, input_2, input_3, input_4; <span class="comment">//定义输入变量</span></span><br><span class="line">	<span class="keyword">input</span> nRST, CP;</span><br><span class="line">            <span class="keyword">output</span> output_1, output_2 ; <span class="comment">//定义输出变量</span></span><br><span class="line">	<span class="keyword">wire</span> output_1, output_2; </span><br><span class="line">	<span class="keyword">reg</span> [ <span class="number">3</span> : <span class="number">0</span> ] Current_state, Next_state;</span><br><span class="line">	<span class="comment">//状态参量的定义，根据前面所述的全译码状态编码</span></span><br><span class="line"><span class="keyword">parameter</span> [ <span class="number">3</span> : <span class="number">0</span> ] IDLE = <span class="number">4&#x27;b0000</span>,  START = <span class="number">4&#x27;b0101</span>, WAIT = <span class="number">4&#x27;b1011</span>;</span><br><span class="line"><span class="comment">//The first always block, sequential state transition</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nRST) </span><br><span class="line">    <span class="keyword">if</span> (!nRST)        <span class="comment">//当系统复位时，状态寄存器置为IDLE状态</span></span><br><span class="line">        Current_state &lt;= IDLE;  <span class="comment">//设置初态(IDLE)</span></span><br><span class="line">    <span class="keyword">else</span>  <span class="comment">//状态寄存器进行状态存储，将下一状态存储到状态寄存器成为当前状态</span></span><br><span class="line">        Current_state &lt;= Next_state;   </span><br><span class="line"><span class="comment">// The second always block, combinational condition judgment</span></span><br><span class="line"><span class="keyword">always</span> @(Current_state <span class="keyword">or</span> input_1 <span class="keyword">or</span> input_2 <span class="keyword">or</span> input_3 <span class="keyword">or</span> input_4)	</span><br><span class="line">  <span class="keyword">case</span>(Current_state) <span class="comment">//根据当前状态和状态转换条件进行译码</span></span><br><span class="line">     IDLE:</span><br><span class="line">          <span class="keyword">if</span>(input_1 &amp;&amp; input_2)  Next_state = START;</span><br><span class="line">          <span class="keyword">else</span>  Next_state = IDLE;</span><br><span class="line">     START:</span><br><span class="line">          <span class="keyword">if</span>(input_3)  Next_state = WAIT;</span><br><span class="line">          <span class="keyword">else</span>  Next_state = START;  </span><br><span class="line">     WAIT:  </span><br><span class="line">           <span class="keyword">if</span>(input_4)  Next_state = IDLE;</span><br><span class="line">           <span class="keyword">else</span> Next_state = WAIT; </span><br><span class="line">     <span class="keyword">default</span>:  Next_state = IDLE;</span><br><span class="line">   <span class="keyword">endcase</span></span><br><span class="line"><span class="comment">//状态机的输出逻辑</span></span><br><span class="line"><span class="keyword">assign</span>  output_1 = Current_state[<span class="number">1</span>]; </span><br><span class="line"><span class="keyword">assign</span>  output_2 = Current_state[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2
+id="如何使用one-hot编码方案设计状态机">如何使用One-hot编码方案设计状态机</h2>
+<p>对状态机的各个状态赋予一组特定的二进制数称为状态编码。比较常用的有自然二进制码、格雷码和One-hot编码。自然二进制码和格雷码的编码方案使用的触发器较少，其编码效率较高，但负责根据当前状态和状态转换条件进行译码的组合电路会比较复杂，其逻辑规模也较大，使得次态逻辑在传输过程中需要经过多级逻辑，从而影响电路的工作速度。</p>
+<p>One-hot编码方案使用n位状态触发器表示具有n个状态的状态机，每个状态与一个独立的触发器相对应，并且在任何时刻其中只有一个触发器有效（其值为1）。虽然这种方案会使用较多的触发器，但它的编码方式非常简单，可有效地简化组合电路，并换得工作可靠性和工作速度的提高。在大规模可编程逻辑器件如FPGA中，触发器数量较多而门逻辑相对较少，One-hot编码方案有时反而更有利于提高器件资源的利用率。</p>
+<p>定义当前状态向量state为一个5-bits向量，末尾的两位表示状态机输出，state[2]为1表示状态IDLE，state[3]为1表示状态START，state[4]为1表示状态WAIT。</p>
+<p>下面是基于One-Hot编码方式的状态机实现代码：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="keyword">module</span>  FSM2 (nRST, CP, input_1, input_2, input_3, input_4, output_1, output_2) ;</span><br><span class="line">	<span class="keyword">input</span> input_1, input_2, input_3, input_4; <span class="comment">//定义输入变量</span></span><br><span class="line">	<span class="keyword">input</span> nRST, CP;</span><br><span class="line">            <span class="keyword">output</span> output_1, output_2 ; <span class="comment">//定义输出变量</span></span><br><span class="line">	<span class="keyword">wire</span> output_1, output_2; </span><br><span class="line">	<span class="keyword">reg</span> [ <span class="number">4</span> : <span class="number">0</span> ] state, Next_state;</span><br><span class="line">    <span class="keyword">parameter</span> [ <span class="number">4</span> : <span class="number">0</span> ] IDLE  = <span class="number">5</span>’b001_00, <span class="comment">//状态参量，末尾两位表示对应的输出</span></span><br><span class="line">         START = <span class="number">5</span>’b010_01,</span><br><span class="line">         WAIT   = <span class="number">5</span>’b100_11;</span><br><span class="line"> <span class="comment">//状态对应在state中的表示位置,One-hot</span></span><br><span class="line"><span class="keyword">parameter</span> [<span class="number">2</span>:<span class="number">0</span>] IDLE_POS    = <span class="number">3&#x27;d2</span>,  <span class="comment">// IDLE POSition</span></span><br><span class="line">                            START_POS = <span class="number">3&#x27;d3</span>,  <span class="comment">// START POSition</span></span><br><span class="line">                            WAIT_POS   = <span class="number">3&#x27;d4</span>;  <span class="comment">// WAIT POSition</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CP <span class="keyword">or</span> <span class="keyword">negedge</span> nRST)     <span class="comment">//状态存储</span></span><br><span class="line">     <span class="keyword">if</span> (!nRST)  state &lt;= IDLE;</span><br><span class="line">     <span class="keyword">else</span>             state &lt;= Next_state; </span><br><span class="line"><span class="keyword">always</span> @(input_1 <span class="keyword">or</span> input_2 <span class="keyword">or</span> input_3 <span class="keyword">or</span> input_4)<span class="comment">//状态转移逻辑</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        Next_state  =  IDLE; <span class="comment">//设置初态</span></span><br><span class="line">        <span class="keyword">case</span>(<span class="number">1</span>’b1)                   <span class="comment">//One-Hot编码实现状态转移时,</span></span><br><span class="line">           <span class="comment">//每次取state的一位与1比较</span></span><br><span class="line">        state[IDLE_POS]:</span><br><span class="line">               <span class="keyword">if</span>(input_1 &amp;&amp; input_2)</span><br><span class="line">                          Next_state = START;</span><br><span class="line">               <span class="keyword">else</span>     Next_state = IDLE;</span><br><span class="line">        state[START_POS]:</span><br><span class="line">               <span class="keyword">if</span>(input_3)</span><br><span class="line">                          Next_state = WAIT;</span><br><span class="line">               <span class="keyword">else</span>     Next_state = START;  </span><br><span class="line">        state[WAIT_POS]:  </span><br><span class="line">               <span class="keyword">if</span>(input_4)</span><br><span class="line">                        Next_state = IDLE;</span><br><span class="line">              <span class="keyword">else</span>    Next_state = WAIT; </span><br><span class="line">        <span class="keyword">default</span>:   Next_state = IDLE;</span><br><span class="line">     <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">//状态机的输出逻辑</span></span><br><span class="line"><span class="keyword">assign</span>  output_1 = state[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">assign</span>  output_2 = state[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>One-hot编码特点：指定各个状态在状态编码中的表示位，采用参量定义方式指定One-hot状态编码；使用always语句描述状态寄存器的状态存储；使用敏感表和case语句描述状态转换逻辑，在case语句中只采用一位寄存器比较方式；使用assign语句描述状态编码控制的状态机输出。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>FPGA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状态机设计举例</title>
+    <url>/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/</url>
+    <content><![CDATA[<h2 id="汽车尾灯控制电路设计">汽车尾灯控制电路设计</h2>
+<p>重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。</p>
+<p>例
+(试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些灯的亮、灭规律如下：</p>
+<ol type="1">
+<li>汽车正常行驶时，尾部两侧的6个灯全部熄灭。</li>
+<li>刹车时，汽车尾灯工作在告警状态，所有6个灯按一定频率闪烁（或一直保持常亮状态）。</li>
+<li>左转弯时，左侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（a）所示，右侧灯全灭。</li>
+<li>右转弯时，右侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（b）所示，左侧灯全灭。</li>
+</ol>
+<p>假设电路的输入时钟信号为CP，CP的频率对于汽车尾灯所要求的闪烁频率。试根据上述要求设计出一个时钟同步的状态机来控制汽车的尾灯。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100305424.png" /></p>
+<p>（1）画出原始状态图</p>
+<p>选择Moore机设计该电路，则尾灯的亮、灭直接由状态译码就可以得到。由设计要求可知：汽车左转弯时，右边的灯不亮而左边的灯依次循环点亮，即0个、1个、2个或3个灯亮，分别用L0、L1、L2、L3表示，状态机在4个状态中循环。同理，汽车右转弯时，状态机也会在4个状态中循环，即左边灯不亮而右边的灯有0个、1个、2个或3个灯亮，分别用R0、R1、R2、R3表示。由于L0和R0都表示6个灯不亮，所以合起来用IDLE表示。将6个灯都亮的状态用LR3表示。可得原始的状态图就画出来了，如图所示。</p>
+<span id="more"></span>
+<p>分析一下下图，就会发现一个没有考虑到的实际问题，即如果多个输入同时有效，状态机如何工作呢？下图解决了多个输入同时有效的问题，并将LEFT和RIGHT同时有效的情况处理成告警状态。经过改进且具有这一特性的状态图如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100358100.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100447979.png" /></p>
+<p>（2）列出电路的输出</p>
+<p>由于电路的输出信号较多，不便于写在状态图中，所以单独列出输出逻辑真值表，如表所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100518283.png" /></p>
+<p>（3）选择一种编码方案，对上述状态图进行状态分配，然后用Verilog
+HDL描述状态图和输出逻辑。</p>
+<p>状态图完成后，必须进行完备性和互斥性的检查。</p>
+<p>①完备性的检查方法是：对于每一个状态，将所有脱离这一状态的条件表达式进行逻辑或运算，如果结果为1就是完备的。否则不完备，也就是说状态图进入某状态后，却不能跳出该状态。</p>
+<p>②互斥性的检查方法是：对于每一个状态，将所有脱离这一状态的条件表达式找出来，然后任意两个表达式进行逻辑与运算，如果结果为0就是互斥的。也就是要保证在任何时候不会同时激活两个脱离状态的转换，即从一个状态跳到两个状态。</p>
+<h2
+id="应用算法状态机设计十字路口交通灯控制电路">应用算法状态机设计十字路口交通灯控制电路</h2>
+<p>算法状态机ASM（Algorithmic State
+Machine）图是描述数字系统控制算法的流程图。应用ASM图设计数字系统，可以很容易将语言描述的设计问题变成时序流程图的描述，根据时序流程图就可以得到电路的状态图和输出函数，从而得出相应的硬件电路。</p>
+<h3
+id="asm图的状态框判断框和输出框">1.ASM图的状态框、判断框和输出框。</h3>
+<p>ASM图中有三种基本的符号，即状态框、判断框和输出框。数字系统控制序列中的状态用状态框表示，如图（a）所示。图（b）为状态框实例。图中的箭头表示系统状态的流向。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100611098.png" /></p>
+<p>判断框表示状态变量对控制器工作的影响，如图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100651666.png" /></p>
+<p>条件输出框如下图所示，条件框的入口必定与判断框的输出相连。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100700314.png" /></p>
+<h3
+id="asm图中各种逻辑框之间的时间关系">2.ASM图中各种逻辑框之间的时间关系</h3>
+<p>从表面上来看ASM图与程序流程图很相似，但实际上有很大的差异。程序流程图只表示事件发生的先后顺序，没有时间概念，而ASM图则不同，它表示事件的精确时间间隔顺序。在ASM图中每一个状态框表示一个时钟周期内的系统状态，状态框和与之相连的判断框，条件输出框所规定的操作，都是在一个共同的时钟周期实现的，同时系统的控制器从现在状态（现态）转移到下一个状态（次态）。因此，可以很容易将图（a）所示的ASM图转换成状态图，如图（b）所示，其中E和F为状态转换条件。与ASM图不同，状态图无法表示寄存器操作。</p>
+<p>图（c）给出了ASM图的各种操作及状态转换的时间图。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100751091.png" /></p>
+<h3
+id="十字路口交通灯控制电路设计举例">3.十字路口交通灯控制电路设计举例</h3>
+<p>例(基于算法状态机构造状态图的方法)图4.4.10表示位于主干道和支干道的十字路口交通灯系统，支干道两边安装有传感器S(Sensor)，试设计一个主干道和支干道十字路口的交通灯控制电路，其技术要求如下：</p>
+<ol type="1">
+<li>一般情况下，保持主干道畅通，主干道绿灯亮、支干道红灯亮，并且主干道绿灯亮的时间不得少于60秒。</li>
+<li>主干道车辆通行时间已经达到60秒，且支干道有车时，则主干道红灯亮、支干道绿灯亮，但支干道绿灯亮的时间不得超过30秒。</li>
+<li>每次主干道或支干道绿灯变红灯时，黄灯先亮5秒钟。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100850473.png" /></p>
+<p>设计步骤：</p>
+<ol type="1">
+<li>明确系统的功能，进行逻辑抽象</li>
+<li>确定系统方案并画出ASM图</li>
+</ol>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100944234.png"
+alt="交通灯系统框图" />
+<figcaption aria-hidden="true">交通灯系统框图</figcaption>
+</figure>
+<p>交通灯控制单元的控制过程分为四个阶段，对应的输出有四种状态，分别用S0,
+S1, S2和S3表示：</p>
+<p>S0状态：主干道绿灯亮支干道红灯亮，此时若支干道有车等待通过，而且主干道绿灯已亮足规定的时间间隔TL(60s)，控制器发出状态转换信号ST，控制器从状态S0转换到S1。</p>
+<p>S1状态：主干道黄灯亮，支干道红灯亮，进入此状态，黄灯亮足规定的时间间隔TY(5s)时，控制器发出状态转换信号ST，控制器从状态S1转换到S2。</p>
+<p>S2状态：支干道绿灯亮，主干道红灯亮，若此时支干道继续有车，则继续保持此状态，但支干道绿灯亮的时间不得超过TS(30s)时间间隔，否则控制单元发出状态转换信号ST，控制器转换到S3状态。</p>
+<p>S3状态：支干道黄灯亮，主干道红灯亮，此时状态与S1状态持续的时间间隔相同，均为TY(5s)
+，时间到时，控制器发出ST信号，控制器从状态S3回到S0状态。</p>
+<p>对上述S0、S1、S2和S3四种状态按照格雷码进行状态编码，分别为00，01，11和10，由此得到交通灯控制单元的ASM图如图所示。依此类推得出所示的状态图。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209101040730.png" /></p>
+<p>（3）交通灯控制器各功能模块电路的框架设计</p>
+<p>通过分析交通灯控制电路的要求可知，系统主要由传感器S(Sensor)、时钟脉冲产生器(CLK
+)、定时器(TL, TS,
+TY)、控制器及译码器构成，传感器S在有车辆通过时发出一个高电平信号。</p>
+<p>①设计控制器</p>
+<p>根据交通灯控制单元的ASM图，得出其状态图如图4.4.13所示。ASM图中的状态框与状态图中的状态相对应，判断框中的条件是状态转换的输入条件，条件输出框与控制单元状态转换的输出相对应。状态图是描述状态之间的转换。</p>
+<p>②设计定时器</p>
+<p>定时器由与系统秒脉冲同步的计数器构成，时钟脉冲上升沿到来时，在控制信号ST作用下，计数器从零开始计数，并向控制器提供模M5、M30和M60信号，即TY、TS和TL定时时间信号。</p>
+<p>③设计译码器</p>
+<p>当交通灯控制电路处于不同工作状态时，交通信号灯按一定的规律与之对应。</p>
+<p>（4）用Verilog HDL描述交通灯控制电路</p>
+<p>根据以上设计思路，可以写出交通灯控制电路的Verilog HDL代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line"><span class="comment">//--------------- controller.v ---------------</span></span><br><span class="line"><span class="comment">// Traffic Signal Controller</span></span><br><span class="line"><span class="comment">//State definition     HighWay   Country</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S0   2&#x27;b00  </span><span class="comment">//GREEN	     RED，采用宏定义方式给出状态编码</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S1   2&#x27;b01  </span><span class="comment">//YELLOW RED，不建议采用此方法</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S2   2&#x27;b11  </span><span class="comment">//RED	    GREEN</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S3   2&#x27;b10  </span><span class="comment">//RED	    YELLOW</span></span><br><span class="line"><span class="keyword">module</span> controller (CLK, S, nRESET, HG, HY, HR, FG, FY, FR, TimerH, TimerL);</span><br><span class="line"><span class="comment">//I/O ports</span></span><br><span class="line"><span class="keyword">input</span> CLK, S, nRESET;  <span class="comment">//if S=1, indicates that there is car on the country road</span></span><br><span class="line"><span class="keyword">output</span> HG, HY, HR, FG, FY, FR; </span><br><span class="line"><span class="comment">//declared output signals are registers</span></span><br><span class="line"><span class="keyword">reg</span>    HG, HY, HR, FG, FY, FR;</span><br><span class="line"><span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] TimerH;</span><br><span class="line"><span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] TimerL;</span><br><span class="line"><span class="keyword">reg</span>    [<span class="number">3</span>:<span class="number">0</span>] TimerH, TimerL;</span><br><span class="line"><span class="comment">//Internal state variables</span></span><br><span class="line"><span class="keyword">wire</span> Tl, Ts, Ty; <span class="comment">//timer output signals</span></span><br><span class="line"><span class="keyword">reg</span> St;           <span class="comment">//state translate signal</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] CurrentState, NextState;    <span class="comment">//FSM state register</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*===== Description of the timer block =====*/</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CLK <span class="keyword">or</span> <span class="keyword">negedge</span> nRESET )</span><br><span class="line"><span class="keyword">begin</span>:  counter</span><br><span class="line">    <span class="keyword">if</span> (~nRESET)  &#123;TimerH, TimerL&#125; &lt;= <span class="number">8&#x27;h00</span>; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (St)         &#123;TimerH, TimerL&#125; &lt;= <span class="number">8&#x27;h00</span>; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((TimerH == <span class="number">5</span>) &amp; (TimerL == <span class="number">9</span>)) </span><br><span class="line">        <span class="keyword">begin</span> &#123;TimerH, TimerL&#125; &lt;= &#123;TimerH, TimerL&#125;; <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (TimerL == <span class="number">9</span>) </span><br><span class="line">        <span class="keyword">begin</span> TimerH &lt;= TimerH + <span class="number">1</span>;  TimerL &lt;= <span class="number">0</span>; <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">begin</span> TimerH &lt;= TimerH; TimerL &lt;= TimerL + <span class="number">1</span>; <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span>  <span class="comment">// BCD counter</span></span><br><span class="line"><span class="keyword">assign</span>  Ty = (TimerH==<span class="number">0</span>)&amp;(TimerL==<span class="number">4</span>);</span><br><span class="line"><span class="keyword">assign</span>  Ts = (TimerH==<span class="number">2</span>)&amp;(TimerL==<span class="number">9</span>);</span><br><span class="line"><span class="keyword">assign</span>  Tl = (TimerH==<span class="number">5</span>)&amp;(TimerL==<span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*===== Description of the signal controller block =====*/</span></span><br><span class="line"><span class="comment">//FSM register:State change only at positive edge of clock</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CLK <span class="keyword">or</span> <span class="keyword">negedge</span> nRESET )</span><br><span class="line">    <span class="keyword">begin</span>:  statereg</span><br><span class="line">	<span class="keyword">if</span> (~nRESET)    <span class="comment">//Signal controller starts in S0 state</span></span><br><span class="line">	 	CurrentState  &lt;=  `S0;</span><br><span class="line">	<span class="keyword">else</span>      CurrentState  &lt;=  NextState;</span><br><span class="line">     <span class="keyword">end</span>   <span class="comment">//statereg</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// FSM combinational block: state machine using case statements</span></span><br><span class="line"><span class="keyword">always</span> @(S <span class="keyword">or</span> CurrentState <span class="keyword">or</span> Tl <span class="keyword">or</span> Ts <span class="keyword">or</span> Ty )</span><br><span class="line">   <span class="keyword">begin</span>: fsm</span><br><span class="line">	  <span class="keyword">case</span>(CurrentState)</span><br><span class="line">	  	`S0: <span class="keyword">begin</span>      <span class="comment">//S0是用define定义的，在引用时要加右撇号(反撇号)</span></span><br><span class="line">                 NextState = (Tl &amp;&amp; S) ? `S1 :`S0;</span><br><span class="line">				St = (Tl &amp;&amp; S) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S1:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ty) ? `S2 :`S1;</span><br><span class="line">				St = (Ty) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S2:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ts || ~S) ? `S3 :`S2;</span><br><span class="line">				St = (Ts || ~S) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S3:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ty) ? `S0 :`S3;</span><br><span class="line">				St = (Ty) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">              <span class="keyword">end</span></span><br><span class="line">	 <span class="keyword">endcase</span>	</span><br><span class="line"><span class="keyword">end</span>  <span class="comment">//fsm</span></span><br><span class="line"><span class="comment">/*===== Description of the decoder block =====*/</span></span><br><span class="line"><span class="comment">//Compute values of main signal and country signal</span></span><br><span class="line"><span class="keyword">always</span> @(CurrentState)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span> (CurrentState)</span><br><span class="line">	`S0: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b100</span>; <span class="comment">//Highway signal is green</span></span><br><span class="line">	          &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b001</span>; <span class="comment">//Country signal is red </span></span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">            `S1: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b010</span>; <span class="comment">//Highway signal is yellow</span></span><br><span class="line">			  &#123;FG, FY, FR&#125;  = <span class="number">3&#x27;b001</span>;    <span class="comment">//Country signal is red</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">	 `S2: <span class="keyword">begin</span></span><br><span class="line">	           &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b001</span>;   <span class="comment">//Highway signal is red</span></span><br><span class="line">	           &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b100</span>;   <span class="comment">//Country signal is green</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">	 `S3: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b001</span>;   <span class="comment">//Highway signal is red</span></span><br><span class="line">	          &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b010</span>;   <span class="comment">//Country signal is yellow</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">           <span class="keyword">endcase</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="状态机设计准则">状态机设计准则</h2>
+<p>状态机要安全，是指FSM不会进入死循环，特别是不会进入非预知的状态，而且由于某些扰动进入非设计状态，也能很快的恢复到正常的状态循环中来。这里面有两层含意：</p>
+<p>其一要求该FSM的综合实现结果无毛刺等异常扰动；</p>
+<p>其二要求FSM要完备，即使受到异常扰动进入非设计状态，也能很快恢复到正常状态。</p>
+<p>状态机的设计要满足设计的面积和速度的要求;</p>
+<p>状态机的设计要清晰易懂、易维护.</p>
+<h2 id="fsm输出方法">FSM输出方法</h2>
+<p>ONE HOT编码</p>
+<p>使用N位状态寄存器表达具有Ng
+状态的FSM，每个状态具有独立的寄存器位。任意时刻只有1位寄存器为1，即hot
+point。此为one hot。</p>
+<p>One hot
+编码方程用简单的次态方程驱动，减少了状态寄存器之间的组合逻辑级数，因此提高了运行速度。同时是以牺牲寄存器逻辑资源和提高成本为代价的。</p>
+<p>目标器件具有较多寄存器资源，寄存器之间组合逻辑较少时比较适用。</p>
+<h2 id="有限状态机hdl描述规则">有限状态机HDL描述规则</h2>
+<p>单独用一个模块来描述一个有限状态机。这样易于简化状态的定义、调试和修改；同时，也可使用EDA工具来进行综合与优化。</p>
+<p>使用代表状态名的参数（parameter）来给状态赋值，不使用宏定义（define)。宏定义产生全局定义，参数则仅仅定义一个模块内的局部定义常量。不宜产生冲突。</p>
+<p>在always组合块中使用阻塞赋值，在always时序块中使用非阻塞赋值。</p>
+<h2 id="可靠性与容错性">可靠性与容错性</h2>
+<p>状态机应该有一个默认（default）状态，当转移条件不满足，或者状态发生了突变时，要能保证逻辑不会陷入“死循环”
+；</p>
+<p>状态机剩余状态的设置（3个去向）：</p>
+<ol type="a">
+<li><p>转入空闲状态，等待下一个工作任务的到来；</p></li>
+<li><p>转入指定的状态，去执行特定任务；</p></li>
+<li><p>转入预定义的专门处理错误的状态，如预警状态。</p></li>
+</ol>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Hardware</category>
+      </categories>
+      <tags>
+        <tag>FPGA</tag>
+      </tags>
+  </entry>
 </search>

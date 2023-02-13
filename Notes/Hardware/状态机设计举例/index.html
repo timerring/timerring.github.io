@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="汽车尾灯控制电路设计 重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。 例 (试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="状态机设计举例">
+<meta property="og:url" content="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="汽车尾灯控制电路设计 重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。 例 (试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-12T00:46:15.393Z">
+<meta property="article:modified_time" content="2023-02-12T00:46:57.805Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/","path":"Notes/Hardware/状态机设计举例/","title":"状态机设计举例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>状态机设计举例 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">121</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%BD%E8%BD%A6%E5%B0%BE%E7%81%AF%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">汽车尾灯控制电路设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%AE%97%E6%B3%95%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E5%8D%81%E5%AD%97%E8%B7%AF%E5%8F%A3%E4%BA%A4%E9%80%9A%E7%81%AF%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">应用算法状态机设计十字路口交通灯控制电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#asm%E5%9B%BE%E7%9A%84%E7%8A%B6%E6%80%81%E6%A1%86%E5%88%A4%E6%96%AD%E6%A1%86%E5%92%8C%E8%BE%93%E5%87%BA%E6%A1%86"><span class="nav-number">2.1.</span> <span class="nav-text">1.ASM图的状态框、判断框和输出框。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asm%E5%9B%BE%E4%B8%AD%E5%90%84%E7%A7%8D%E9%80%BB%E8%BE%91%E6%A1%86%E4%B9%8B%E9%97%B4%E7%9A%84%E6%97%B6%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="nav-number">2.2.</span> <span class="nav-text">2.ASM图中各种逻辑框之间的时间关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%AD%97%E8%B7%AF%E5%8F%A3%E4%BA%A4%E9%80%9A%E7%81%AF%E6%8E%A7%E5%88%B6%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">3.十字路口交通灯控制电路设计举例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E5%87%86%E5%88%99"><span class="nav-number">3.</span> <span class="nav-text">状态机设计准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsm%E8%BE%93%E5%87%BA%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">FSM输出方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BAhdl%E6%8F%8F%E8%BF%B0%E8%A7%84%E5%88%99"><span class="nav-number">5.</span> <span class="nav-text">有限状态机HDL描述规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%B8%8E%E5%AE%B9%E9%94%99%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">可靠性与容错性</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="状态机设计举例 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          状态机设计举例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-12 08:46:15" itemprop="dateCreated datePublished" datetime="2023-02-12T08:46:15+08:00">2023-02-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="汽车尾灯控制电路设计">汽车尾灯控制电路设计</h2>
+<p>重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。</p>
+<p>例
+(试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些灯的亮、灭规律如下：</p>
+<ol type="1">
+<li>汽车正常行驶时，尾部两侧的6个灯全部熄灭。</li>
+<li>刹车时，汽车尾灯工作在告警状态，所有6个灯按一定频率闪烁（或一直保持常亮状态）。</li>
+<li>左转弯时，左侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（a）所示，右侧灯全灭。</li>
+<li>右转弯时，右侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（b）所示，左侧灯全灭。</li>
+</ol>
+<p>假设电路的输入时钟信号为CP，CP的频率对于汽车尾灯所要求的闪烁频率。试根据上述要求设计出一个时钟同步的状态机来控制汽车的尾灯。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100305424.png" /></p>
+<p>（1）画出原始状态图</p>
+<p>选择Moore机设计该电路，则尾灯的亮、灭直接由状态译码就可以得到。由设计要求可知：汽车左转弯时，右边的灯不亮而左边的灯依次循环点亮，即0个、1个、2个或3个灯亮，分别用L0、L1、L2、L3表示，状态机在4个状态中循环。同理，汽车右转弯时，状态机也会在4个状态中循环，即左边灯不亮而右边的灯有0个、1个、2个或3个灯亮，分别用R0、R1、R2、R3表示。由于L0和R0都表示6个灯不亮，所以合起来用IDLE表示。将6个灯都亮的状态用LR3表示。可得原始的状态图就画出来了，如图所示。</p>
+<span id="more"></span>
+<p>分析一下下图，就会发现一个没有考虑到的实际问题，即如果多个输入同时有效，状态机如何工作呢？下图解决了多个输入同时有效的问题，并将LEFT和RIGHT同时有效的情况处理成告警状态。经过改进且具有这一特性的状态图如下所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100358100.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100447979.png" /></p>
+<p>（2）列出电路的输出</p>
+<p>由于电路的输出信号较多，不便于写在状态图中，所以单独列出输出逻辑真值表，如表所示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100518283.png" /></p>
+<p>（3）选择一种编码方案，对上述状态图进行状态分配，然后用Verilog
+HDL描述状态图和输出逻辑。</p>
+<p>状态图完成后，必须进行完备性和互斥性的检查。</p>
+<p>①完备性的检查方法是：对于每一个状态，将所有脱离这一状态的条件表达式进行逻辑或运算，如果结果为1就是完备的。否则不完备，也就是说状态图进入某状态后，却不能跳出该状态。</p>
+<p>②互斥性的检查方法是：对于每一个状态，将所有脱离这一状态的条件表达式找出来，然后任意两个表达式进行逻辑与运算，如果结果为0就是互斥的。也就是要保证在任何时候不会同时激活两个脱离状态的转换，即从一个状态跳到两个状态。</p>
+<h2
+id="应用算法状态机设计十字路口交通灯控制电路">应用算法状态机设计十字路口交通灯控制电路</h2>
+<p>算法状态机ASM（Algorithmic State
+Machine）图是描述数字系统控制算法的流程图。应用ASM图设计数字系统，可以很容易将语言描述的设计问题变成时序流程图的描述，根据时序流程图就可以得到电路的状态图和输出函数，从而得出相应的硬件电路。</p>
+<h3
+id="asm图的状态框判断框和输出框">1.ASM图的状态框、判断框和输出框。</h3>
+<p>ASM图中有三种基本的符号，即状态框、判断框和输出框。数字系统控制序列中的状态用状态框表示，如图（a）所示。图（b）为状态框实例。图中的箭头表示系统状态的流向。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100611098.png" /></p>
+<p>判断框表示状态变量对控制器工作的影响，如图所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100651666.png" /></p>
+<p>条件输出框如下图所示，条件框的入口必定与判断框的输出相连。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100700314.png" /></p>
+<h3
+id="asm图中各种逻辑框之间的时间关系">2.ASM图中各种逻辑框之间的时间关系</h3>
+<p>从表面上来看ASM图与程序流程图很相似，但实际上有很大的差异。程序流程图只表示事件发生的先后顺序，没有时间概念，而ASM图则不同，它表示事件的精确时间间隔顺序。在ASM图中每一个状态框表示一个时钟周期内的系统状态，状态框和与之相连的判断框，条件输出框所规定的操作，都是在一个共同的时钟周期实现的，同时系统的控制器从现在状态（现态）转移到下一个状态（次态）。因此，可以很容易将图（a）所示的ASM图转换成状态图，如图（b）所示，其中E和F为状态转换条件。与ASM图不同，状态图无法表示寄存器操作。</p>
+<p>图（c）给出了ASM图的各种操作及状态转换的时间图。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100751091.png" /></p>
+<h3
+id="十字路口交通灯控制电路设计举例">3.十字路口交通灯控制电路设计举例</h3>
+<p>例(基于算法状态机构造状态图的方法)图4.4.10表示位于主干道和支干道的十字路口交通灯系统，支干道两边安装有传感器S(Sensor)，试设计一个主干道和支干道十字路口的交通灯控制电路，其技术要求如下：</p>
+<ol type="1">
+<li>一般情况下，保持主干道畅通，主干道绿灯亮、支干道红灯亮，并且主干道绿灯亮的时间不得少于60秒。</li>
+<li>主干道车辆通行时间已经达到60秒，且支干道有车时，则主干道红灯亮、支干道绿灯亮，但支干道绿灯亮的时间不得超过30秒。</li>
+<li>每次主干道或支干道绿灯变红灯时，黄灯先亮5秒钟。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100850473.png" /></p>
+<p>设计步骤：</p>
+<ol type="1">
+<li>明确系统的功能，进行逻辑抽象</li>
+<li>确定系统方案并画出ASM图</li>
+</ol>
+<figure>
+<img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100944234.png"
+alt="交通灯系统框图" />
+<figcaption aria-hidden="true">交通灯系统框图</figcaption>
+</figure>
+<p>交通灯控制单元的控制过程分为四个阶段，对应的输出有四种状态，分别用S0,
+S1, S2和S3表示：</p>
+<p>S0状态：主干道绿灯亮支干道红灯亮，此时若支干道有车等待通过，而且主干道绿灯已亮足规定的时间间隔TL(60s)，控制器发出状态转换信号ST，控制器从状态S0转换到S1。</p>
+<p>S1状态：主干道黄灯亮，支干道红灯亮，进入此状态，黄灯亮足规定的时间间隔TY(5s)时，控制器发出状态转换信号ST，控制器从状态S1转换到S2。</p>
+<p>S2状态：支干道绿灯亮，主干道红灯亮，若此时支干道继续有车，则继续保持此状态，但支干道绿灯亮的时间不得超过TS(30s)时间间隔，否则控制单元发出状态转换信号ST，控制器转换到S3状态。</p>
+<p>S3状态：支干道黄灯亮，主干道红灯亮，此时状态与S1状态持续的时间间隔相同，均为TY(5s)
+，时间到时，控制器发出ST信号，控制器从状态S3回到S0状态。</p>
+<p>对上述S0、S1、S2和S3四种状态按照格雷码进行状态编码，分别为00，01，11和10，由此得到交通灯控制单元的ASM图如图所示。依此类推得出所示的状态图。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209101040730.png" /></p>
+<p>（3）交通灯控制器各功能模块电路的框架设计</p>
+<p>通过分析交通灯控制电路的要求可知，系统主要由传感器S(Sensor)、时钟脉冲产生器(CLK
+)、定时器(TL, TS,
+TY)、控制器及译码器构成，传感器S在有车辆通过时发出一个高电平信号。</p>
+<p>①设计控制器</p>
+<p>根据交通灯控制单元的ASM图，得出其状态图如图4.4.13所示。ASM图中的状态框与状态图中的状态相对应，判断框中的条件是状态转换的输入条件，条件输出框与控制单元状态转换的输出相对应。状态图是描述状态之间的转换。</p>
+<p>②设计定时器</p>
+<p>定时器由与系统秒脉冲同步的计数器构成，时钟脉冲上升沿到来时，在控制信号ST作用下，计数器从零开始计数，并向控制器提供模M5、M30和M60信号，即TY、TS和TL定时时间信号。</p>
+<p>③设计译码器</p>
+<p>当交通灯控制电路处于不同工作状态时，交通信号灯按一定的规律与之对应。</p>
+<p>（4）用Verilog HDL描述交通灯控制电路</p>
+<p>根据以上设计思路，可以写出交通灯控制电路的Verilog HDL代码如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//--------------- controller.v ---------------</span></span><br><span class="line"><span class="comment">// Traffic Signal Controller</span></span><br><span class="line"><span class="comment">//State definition     HighWay   Country</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S0   2&#x27;b00  </span><span class="comment">//GREEN	     RED，采用宏定义方式给出状态编码</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S1   2&#x27;b01  </span><span class="comment">//YELLOW RED，不建议采用此方法</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S2   2&#x27;b11  </span><span class="comment">//RED	    GREEN</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> S3   2&#x27;b10  </span><span class="comment">//RED	    YELLOW</span></span><br><span class="line"><span class="keyword">module</span> controller (CLK, S, nRESET, HG, HY, HR, FG, FY, FR, TimerH, TimerL);</span><br><span class="line"><span class="comment">//I/O ports</span></span><br><span class="line"><span class="keyword">input</span> CLK, S, nRESET;  <span class="comment">//if S=1, indicates that there is car on the country road</span></span><br><span class="line"><span class="keyword">output</span> HG, HY, HR, FG, FY, FR; </span><br><span class="line"><span class="comment">//declared output signals are registers</span></span><br><span class="line"><span class="keyword">reg</span>    HG, HY, HR, FG, FY, FR;</span><br><span class="line"><span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] TimerH;</span><br><span class="line"><span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] TimerL;</span><br><span class="line"><span class="keyword">reg</span>    [<span class="number">3</span>:<span class="number">0</span>] TimerH, TimerL;</span><br><span class="line"><span class="comment">//Internal state variables</span></span><br><span class="line"><span class="keyword">wire</span> Tl, Ts, Ty; <span class="comment">//timer output signals</span></span><br><span class="line"><span class="keyword">reg</span> St;           <span class="comment">//state translate signal</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] CurrentState, NextState;    <span class="comment">//FSM state register</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*===== Description of the timer block =====*/</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CLK <span class="keyword">or</span> <span class="keyword">negedge</span> nRESET )</span><br><span class="line"><span class="keyword">begin</span>:  counter</span><br><span class="line">    <span class="keyword">if</span> (~nRESET)  &#123;TimerH, TimerL&#125; &lt;= <span class="number">8&#x27;h00</span>; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (St)         &#123;TimerH, TimerL&#125; &lt;= <span class="number">8&#x27;h00</span>; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((TimerH == <span class="number">5</span>) &amp; (TimerL == <span class="number">9</span>)) </span><br><span class="line">        <span class="keyword">begin</span> &#123;TimerH, TimerL&#125; &lt;= &#123;TimerH, TimerL&#125;; <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (TimerL == <span class="number">9</span>) </span><br><span class="line">        <span class="keyword">begin</span> TimerH &lt;= TimerH + <span class="number">1</span>;  TimerL &lt;= <span class="number">0</span>; <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">begin</span> TimerH &lt;= TimerH; TimerL &lt;= TimerL + <span class="number">1</span>; <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span>  <span class="comment">// BCD counter</span></span><br><span class="line"><span class="keyword">assign</span>  Ty = (TimerH==<span class="number">0</span>)&amp;(TimerL==<span class="number">4</span>);</span><br><span class="line"><span class="keyword">assign</span>  Ts = (TimerH==<span class="number">2</span>)&amp;(TimerL==<span class="number">9</span>);</span><br><span class="line"><span class="keyword">assign</span>  Tl = (TimerH==<span class="number">5</span>)&amp;(TimerL==<span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*===== Description of the signal controller block =====*/</span></span><br><span class="line"><span class="comment">//FSM register:State change only at positive edge of clock</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> CLK <span class="keyword">or</span> <span class="keyword">negedge</span> nRESET )</span><br><span class="line">    <span class="keyword">begin</span>:  statereg</span><br><span class="line">	<span class="keyword">if</span> (~nRESET)    <span class="comment">//Signal controller starts in S0 state</span></span><br><span class="line">	 	CurrentState  &lt;=  `S0;</span><br><span class="line">	<span class="keyword">else</span>      CurrentState  &lt;=  NextState;</span><br><span class="line">     <span class="keyword">end</span>   <span class="comment">//statereg</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// FSM combinational block: state machine using case statements</span></span><br><span class="line"><span class="keyword">always</span> @(S <span class="keyword">or</span> CurrentState <span class="keyword">or</span> Tl <span class="keyword">or</span> Ts <span class="keyword">or</span> Ty )</span><br><span class="line">   <span class="keyword">begin</span>: fsm</span><br><span class="line">	  <span class="keyword">case</span>(CurrentState)</span><br><span class="line">	  	`S0: <span class="keyword">begin</span>      <span class="comment">//S0是用define定义的，在引用时要加右撇号(反撇号)</span></span><br><span class="line">                 NextState = (Tl &amp;&amp; S) ? `S1 :`S0;</span><br><span class="line">				St = (Tl &amp;&amp; S) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S1:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ty) ? `S2 :`S1;</span><br><span class="line">				St = (Ty) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S2:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ts || ~S) ? `S3 :`S2;</span><br><span class="line">				St = (Ts || ~S) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">			  <span class="keyword">end</span></span><br><span class="line">	  	`S3:       <span class="keyword">begin</span></span><br><span class="line">				NextState = (Ty) ? `S0 :`S3;</span><br><span class="line">				St = (Ty) ? <span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">              <span class="keyword">end</span></span><br><span class="line">	 <span class="keyword">endcase</span>	</span><br><span class="line"><span class="keyword">end</span>  <span class="comment">//fsm</span></span><br><span class="line"><span class="comment">/*===== Description of the decoder block =====*/</span></span><br><span class="line"><span class="comment">//Compute values of main signal and country signal</span></span><br><span class="line"><span class="keyword">always</span> @(CurrentState)</span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span> (CurrentState)</span><br><span class="line">	`S0: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b100</span>; <span class="comment">//Highway signal is green</span></span><br><span class="line">	          &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b001</span>; <span class="comment">//Country signal is red </span></span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">            `S1: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b010</span>; <span class="comment">//Highway signal is yellow</span></span><br><span class="line">			  &#123;FG, FY, FR&#125;  = <span class="number">3&#x27;b001</span>;    <span class="comment">//Country signal is red</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">	 `S2: <span class="keyword">begin</span></span><br><span class="line">	           &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b001</span>;   <span class="comment">//Highway signal is red</span></span><br><span class="line">	           &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b100</span>;   <span class="comment">//Country signal is green</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">	 `S3: <span class="keyword">begin</span></span><br><span class="line">	          &#123;HG, HY, HR&#125; = <span class="number">3&#x27;b001</span>;   <span class="comment">//Highway signal is red</span></span><br><span class="line">	          &#123;FG, FY, FR&#125;   = <span class="number">3&#x27;b010</span>;   <span class="comment">//Country signal is yellow</span></span><br><span class="line">	         <span class="keyword">end</span></span><br><span class="line">           <span class="keyword">endcase</span></span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="状态机设计准则">状态机设计准则</h2>
+<p>状态机要安全，是指FSM不会进入死循环，特别是不会进入非预知的状态，而且由于某些扰动进入非设计状态，也能很快的恢复到正常的状态循环中来。这里面有两层含意：</p>
+<p>其一要求该FSM的综合实现结果无毛刺等异常扰动；</p>
+<p>其二要求FSM要完备，即使受到异常扰动进入非设计状态，也能很快恢复到正常状态。</p>
+<p>状态机的设计要满足设计的面积和速度的要求;</p>
+<p>状态机的设计要清晰易懂、易维护.</p>
+<h2 id="fsm输出方法">FSM输出方法</h2>
+<p>ONE HOT编码</p>
+<p>使用N位状态寄存器表达具有Ng
+状态的FSM，每个状态具有独立的寄存器位。任意时刻只有1位寄存器为1，即hot
+point。此为one hot。</p>
+<p>One hot
+编码方程用简单的次态方程驱动，减少了状态寄存器之间的组合逻辑级数，因此提高了运行速度。同时是以牺牲寄存器逻辑资源和提高成本为代价的。</p>
+<p>目标器件具有较多寄存器资源，寄存器之间组合逻辑较少时比较适用。</p>
+<h2 id="有限状态机hdl描述规则">有限状态机HDL描述规则</h2>
+<p>单独用一个模块来描述一个有限状态机。这样易于简化状态的定义、调试和修改；同时，也可使用EDA工具来进行综合与优化。</p>
+<p>使用代表状态名的参数（parameter）来给状态赋值，不使用宏定义（define)。宏定义产生全局定义，参数则仅仅定义一个模块内的局部定义常量。不宜产生冲突。</p>
+<p>在always组合块中使用阻塞赋值，在always时序块中使用非阻塞赋值。</p>
+<h2 id="可靠性与容错性">可靠性与容错性</h2>
+<p>状态机应该有一个默认（default）状态，当转移条件不满足，或者状态发生了突变时，要能保证逻辑不会陷入“死循环”
+；</p>
+<p>状态机剩余状态的设置（3个去向）：</p>
+<ol type="a">
+<li><p>转入空闲状态，等待下一个工作任务的到来；</p></li>
+<li><p>转入指定的状态，去执行特定任务；</p></li>
+<li><p>转入预定义的专门处理错误的状态，如预警状态。</p></li>
+</ol>
+<p>参考文献：</p>
+<ol type="1">
+<li>Verilog HDL与FPGA数字系统设计，罗杰，机械工业出版社，2015年04月</li>
+<li>Verilog HDL与CPLD/FPGA项目开发教程(第2版), 聂章龙, 机械工业出版社,
+2015年12月</li>
+<li>Verilog HDL数字设计与综合(第2版), Samir Palnitkar著，夏宇闻等译,
+电子工业出版社, 2015年08月</li>
+<li>Verilog HDL入门(第3版), J. BHASKER 著 夏宇闻甘伟 译,
+北京航空航天大学出版社, 2019年03月</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/" rel="prev" title="状态机设计中的关键技术">
+                  <i class="fa fa-chevron-left"></i> 状态机设计中的关键技术
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/" rel="next" title="信息论绪论">
+                  信息论绪论 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

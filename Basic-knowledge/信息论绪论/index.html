@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、信息的基本概念 什么是信息（information)  信息:一个既复杂又抽象的概念。 广义: 消息、情报、知识 技术术语: 计算机处理(通信传输)的对象——数据、文字、记录 科学名词: 统计数学、通信技术  用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。 它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="信息论绪论">
+<meta property="og:url" content="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="一、信息的基本概念 什么是信息（information)  信息:一个既复杂又抽象的概念。 广义: 消息、情报、知识 技术术语: 计算机处理(通信传输)的对象——数据、文字、记录 科学名词: 统计数学、通信技术  用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。 它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-13T09:46:25.793Z">
+<meta property="article:modified_time" content="2023-02-13T10:26:11.837Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="Information Theory">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/","path":"Basic-knowledge/信息论绪论/","title":"信息论绪论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息论绪论 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">121</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BF%A1%E6%81%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">一、信息的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AFinformation"><span class="nav-number">1.1.</span> <span class="nav-text">什么是信息（information)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%B6%88%E6%81%AF%E5%92%8C%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.</span> <span class="nav-text">信息、消息和信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.3.</span> <span class="nav-text">信号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">信息的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">1.4.</span> <span class="nav-text">信息论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%A0%94%E7%A9%B6%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">二、信息论研究的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AD%E4%B9%89%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">2.1.</span> <span class="nav-text">狭义信息论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">2.2.</span> <span class="nav-text">一般信息论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E4%BF%A1%E6%81%AF%E8%AE%BA"><span class="nav-number">2.3.</span> <span class="nav-text">广义信息论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%A0%94%E7%A9%B6%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">2.4.</span> <span class="nav-text">信息论研究的内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%90%86%E8%AE%BA%E7%A0%94%E7%A9%B6"><span class="nav-number">2.4.1.</span> <span class="nav-text">1、通信的统计理论研究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E6%BA%90%E7%9A%84%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%80%A7"><span class="nav-number">2.4.2.</span> <span class="nav-text">2、信源的统计特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="nav-number">2.4.3.</span> <span class="nav-text">3、编码理论与技术的研究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E4%BF%A1%E6%81%AF%E4%BC%A0%E8%BE%93%E6%95%88%E7%8E%87%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="nav-number">2.4.4.</span> <span class="nav-text">4、提高信息传输效率的研究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%97%E5%B9%B2%E6%89%B0%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="nav-number">2.4.5.</span> <span class="nav-text">5、抗干扰理论与技术的研究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%99%AA%E5%A3%B0%E4%B8%AD%E4%BF%A1%E5%8F%B7%E6%A3%80%E6%B5%8B%E7%90%86%E8%AE%BA%E4%B8%8E%E6%8A%80%E6%9C%AF%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="nav-number">2.4.6.</span> <span class="nav-text">6、噪声中信号检测理论与技术的研究</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%BF%A1%E6%81%AF%E8%AE%BA%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B%E9%A6%99%E5%86%9C"><span class="nav-number">3.</span> <span class="nav-text">三、信息论发展历程&amp;香农</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息论绪论 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息论绪论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-13 17:46:25" itemprop="dateCreated datePublished" datetime="2023-02-13T17:46:25+08:00">2023-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一信息的基本概念">一、信息的基本概念</h2>
+<h3 id="什么是信息information">什么是信息（information)</h3>
+<ul>
+<li><p>信息:一个既复杂又抽象的概念。</p></li>
+<li><p><strong>广义: 消息、情报、知识</strong></p></li>
+<li><p><strong>技术术语:
+计算机处理(通信传输)的对象——数据、文字、记录</strong></p></li>
+<li><p>科学名词: 统计数学、通信技术</p>
+<ul>
+<li>用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。</li>
+<li>它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念</li>
+</ul></li>
+<li><p>信息是指各个事物运动的状态及状态变化的方式：</p>
+<p>人们从来自对周围世界的观察得到的数据中获得信息。信息是抽象的意识或知识，它是看不见、模不到的。人脑的思维活动产生的一种想法，当它仍储存在脑子中的时候它就是一种信息。</p></li>
+</ul>
+<h3 id="信息消息和信号">信息、消息和信号</h3>
+<span id="more"></span>
+<h4 id="信息">信息</h4>
+<ul>
+<li>信息是通信系统中传输（或存储、处理)的对象，它包含在消息中。</li>
+<li>是事物运动状态或存在方式的不确定性的描述。（香农信息的定义）</li>
+</ul>
+<h4 id="消息">消息</h4>
+<ul>
+<li>是指包含有信息的语言、文字和图像等;</li>
+<li>消息中载荷有信息，但是同一个信息可以由不同的消息载荷。</li>
+</ul>
+<h4 id="信号">信号</h4>
+<ul>
+<li>是消息的物理体现。可以用不同类型的信号，如声、光、电等传递同一个消息。</li>
+</ul>
+<p>在通信系统中，实际传输的是信号，但本质内容的是信息。<strong>信息包含在信号之中，信号是信息的载体。通信的结果是消除或部分消除不确定性，从而获得信息。</strong></p>
+<h3 id="信息的特征">信息的特征</h3>
+<p>信息的基本概念在于它的不确定性,<strong>任何已确定的事物都不含信息</strong>。</p>
+<ul>
+<li>接收者在收到信息之前，对它的内容是不知道的，所以，信息是新知识、新内容;</li>
+<li>信息是能使认识主体对某一事物的未知性或不确定性减少的有用知识;</li>
+<li>信息可以产生，也可以消失，同时信息可以被携带、贮存及处理;</li>
+<li>信息是可以量度的，信息量有多少的差别。</li>
+</ul>
+<blockquote>
+<p>Question：除了上述的信息的特征，信息还有一些其他的特征，请选择下面哪些是信息的特征?
+(ACD)</p>
+<p>A. 信息非负 B. 信息可以是任意值 C. 信息具有可加性 D.
+确定消息（事件)的所含信息量为零</p>
+<p>解析：信息不可以是任意值。因为信息和任意值没有关联。</p>
+</blockquote>
+<h3 id="信息论">信息论</h3>
+<p>信息论是一门应用概率论、随机过程、数理统计和近代代数的方法，来研究信息传输、提取和处理系统中一般规律的学科，被称为“通信的数学理论”。</p>
+<p>信息论是在<strong>信息可以量度</strong>的基础上,
+研究<strong>有效地和可靠地传递信息</strong>的科学,它涉及信息量度、信息特性、信息传输速率、信道容量、干扰对信息传输的影响等方面的知识。</p>
+<h2 id="二信息论研究的内容">二、信息论研究的内容</h2>
+<h3 id="狭义信息论">狭义信息论</h3>
+<p>主要研究信息的测度、信道容量以及信源和信道编码理论等问题。</p>
+<h3 id="一般信息论">一般信息论</h3>
+<p>主要也是研究信息传输和处理问题，除香农信息论，还包括噪声理论、信号滤波和预测、统计检测和估计、调制理论、信息处理理论以及保密理论等。</p>
+<h3 id="广义信息论">广义信息论</h3>
+<p>不仅包括上述两方面内容，而且包括所有与信息有关的自然和社会领域，如模式识别、计算机翻译、心理学、遗传学、神经生理学、语言学、语义学甚至包括社会学中有关信息的问题</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230128121548139.png" /></p>
+<h3 id="信息论研究的内容">信息论研究的内容</h3>
+<h4 id="通信的统计理论研究">1、通信的统计理论研究</h4>
+<p>主要研究利用统计数学工具分析信息和信息传输的统计规律。其具体内容有:</p>
+<ul>
+<li>信息的测度;</li>
+<li>信息速率与嫡;</li>
+<li>信道传输能力——信道容量。</li>
+</ul>
+<h4 id="信源的统计特性">2、信源的统计特性</h4>
+<ul>
+<li>文字(如汉字)、字母(如英文)的统计特性;</li>
+<li>语音的参数分析和统计特件;</li>
+<li>图片及活动图像(电视)的统计特性;</li>
+<li>其他信源的统计特性。</li>
+</ul>
+<h4 id="编码理论与技术的研究">3、编码理论与技术的研究</h4>
+<ul>
+<li><p>有效性编码:</p>
+<p><strong>提高信息传输的有效率</strong>，主要针对信源的统计特性进行编码，也称<strong>信源编码</strong>。</p></li>
+<li><p>抗干扰编码:</p>
+<p><strong>提高信息传输的可靠性</strong>，主要针对信道统的计特性进行编码;
+也称<strong>信道编码</strong>。</p></li>
+</ul>
+<h4 id="提高信息传输效率的研究">4、提高信息传输效率的研究</h4>
+<ul>
+<li>功率的节约;</li>
+<li>频带的压缩;</li>
+<li>传输时间的缩短，即快速传输问题。</li>
+</ul>
+<h4 id="抗干扰理论与技术的研究">5、抗干扰理论与技术的研究</h4>
+<ul>
+<li>各种调制制式的抗干扰性;</li>
+<li>理想接收机的实现</li>
+</ul>
+<h4
+id="噪声中信号检测理论与技术的研究">6、噪声中信号检测理论与技术的研究</h4>
+<ul>
+<li>信号检测的最佳准则;</li>
+<li>信号最佳检测的实现。</li>
+</ul>
+<h2 id="三信息论发展历程香农">三、信息论发展历程&amp;香农</h2>
+<p>“通信的基本问题就是在一点重新准确地或近似地再现另一点所选择的消息”。这是数学家香农(Claude
+E.Shanon)在他的惊世之著《通信的数学理论》中的一句铭言。</p>
+<p>香农应用数理统计的方法来研究通信系统，从而创立了影响深远的信息论。香农因此成为信息论的奠基人。</p>
+<p>香农，1816年生于美国密执安州的加洛德。在大学中他就表现出了对数理问题的高度敏感。他的硕士论文就是关于布尔代数在逻辑开关理论中的应用。后来,他就职于贝尔电话研究所,在这个世界上最大的通信公司(美国电话电报公司)的研究基地里,他受着前辈的工作的启示,其中最具代表性的是《贝尔系统技术杂志》上所披露的奈奎斯特的《影响电报速率的一些因素》和哈特莱的《信息的传输》。正是他们最早研究了通信系统的信息传输能力，第一次提出了信息量的概念,并试图用教学公式予以描述。香农则创造性地继承了他们的事业,在信息论的领域中钻研了8年之久,终于在1948年也在《贝尔系统技术杂志》上发表了244页的长篇论著《通信的数学理论》。次年,他又在同一杂志上发表了另一篇名著《噪声下的通信》。</p>
+<p>在这两篇文章中, 香农解决了过去许多悬而未决的问题:
+<strong>经典地阐明了通信的基本问题，提出了通信系统的模型，给出了信息量的数学表达式，解决了信道容量、信源统计特性、信源编码、信道编码等有关精确地传送通信符号的基本技术问题。</strong>两篇文章成了现在信息论的奠基著作。</p>
+<p>参考文献：</p>
+<ol type="1">
+<li>Proakis, John G., et al. <em>Communication systems engineering</em>.
+Vol. 2. New Jersey: Prentice Hall, 1994.</li>
+<li>Proakis, John G., et al. <em>SOLUTIONS MANUAL Communication Systems
+Engineering</em>. Vol. 2. New Jersey: Prentice Hall, 1994.</li>
+<li>周炯槃. 通信原理（第3版）[M]. 北京：北京邮电大学出版社, 2008.</li>
+<li>樊昌信, 曹丽娜. 通信原理（第7版） [M]. 北京：国防工业出版社,
+2012.</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Information-Theory/" rel="tag"><i class="fa fa-tag"></i> Information Theory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/" rel="prev" title="状态机设计举例">
+                  <i class="fa fa-chevron-left"></i> 状态机设计举例
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

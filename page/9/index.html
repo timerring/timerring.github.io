@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">118</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">15</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">121</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,310 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/" class="post-title-link" itemprop="url">信息论与编码：恒参信道特性</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-28 09:15:59" itemprop="dateCreated datePublished" datetime="2022-11-28T09:15:59+08:00">2022-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="信息论与编码恒参信道特性">信息论与编码：恒参信道特性</h2>
+<p>恒参信道
+：信道特性不随时间变化或者变化很缓慢，信道特性主要由传输媒介所决定，如传输媒介基本不随时间变化，则它构成的信道属于恒参信道。</p>
+<p>若信道的冲激响应为 ℎ(𝑡)，信道输入为 𝑥(𝑡)，则信道的输出为<span
+class="math inline">\(𝑦(𝑡)=𝑥(𝑡)∗ℎ(𝑡)+𝑛(𝑡)\)</span>,其中𝑛(𝑡)为加性高斯白噪声，双边功率谱密度为<span
+class="math inline">\(\frac{N_{0}}{2}\)</span>W/Hz。</p>
+<h3 id="无失真信道满足的条件">无失真信道满足的条件</h3>
+<p>设信道输入信号为𝑥(𝑡)，输出信号为 𝑦(𝑡)，信道传输函数为 𝐻(𝑓) 。</p>
+<p>若满足： <span class="math display">\[
+y(t)=\alpha x\left(t-t_{0}\right)  \alpha \in R, t_{0}&gt;0
+\]</span> 则称信道为理想的无失真信道。</p>
+<p>若信道无失真, 有<span class="math inline">\(H(f)=\alpha e^{-j 2 \pi f
+t_{0}}\)</span>, 即<span class="math inline">\(|H(f)|=\alpha \quad
+\angle H(f)=\varphi(f)=-2 \pi f t_{0}\)</span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E6%81%92%E5%8F%82%E4%BF%A1%E9%81%93%E7%89%B9%E6%80%A7/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">信息论与编码：线性分组码与性能参数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-27 10:51:40" itemprop="dateCreated datePublished" datetime="2022-11-27T10:51:40+08:00">2022-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="线性分组码nk定义">1.1 线性分组码(n,k)定义</h3>
+<p>线性分组码是由 (n, k) 形式表示。编码器将一个 k
+比特信息分组（信息矢量）转变成一个更长的由给定符号集组成的 n
+比特编码分组（编码矢量）。当这个符号集包含 2 个元素 (0 and 1) 时 ,
+称为二进制编码。</p>
+<p>k-bit 信息形成 <span class="math inline">\(2^k\)</span>
+不同的信息序列 , 称为 k 元组。 n-bit 可以形成 <span
+class="math inline">\(2^n\)</span> 个不同序列，称为 n 元组。</p>
+<p>(n，k）分组码输出的长度为n的序列称为<strong>码字</strong>。所有这些码字的集合称为该线性分组码的<strong>码组</strong>。
+因为n&gt;k，故编码时需按某种规则加入r=n-k个监督（校验）码元。</p>
+<p>对于分组码(n,k),定义</p>
+<ul>
+<li><strong>编码效率: k/n</strong></li>
+<li><strong>编码冗余度:(n-k)/n</strong></li>
+</ul>
+<p>线性分组码的几个重要概念</p>
+<ul>
+<li><p><strong>码距（汉明距离）</strong>：两个码组中<strong>对应位置上具有不同二进制码元的位数</strong></p></li>
+<li><p><strong>码重（汉明重量）</strong>：线性分组码中，将码字（组）中<strong>所含
+1 的数目</strong>定义为码字(组)的重量</p></li>
+<li><p>编码信道：研究信道编码和译码的信道模型</p>
+<ul>
+<li>二元码、硬判决时，建模为 BSC （二元对称）信道</li>
+<li>软判决时，建模为 AWGN 信道</li>
+<li>软判决与硬判决译码（简单理解：译码器输入比特的选取）</li>
+</ul></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E7%BA%BF%E6%80%A7%E5%88%86%E7%BB%84%E7%A0%81%E4%B8%8E%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">信息论与编码：信道的定义和分类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-26 09:33:36" itemprop="dateCreated datePublished" datetime="2022-11-26T09:33:36+08:00">2022-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>信道是任何一种通信系统中必不可少的组成部分。任何一个通信系统都可以视为由发送，信道与接收三部分组成。信道通常指以传输媒介为基础的信号通道。</p>
+<p>信号在信道中传输，可能遇到的影响主要有<strong>信道加性噪声</strong>
+、 <strong>信号幅度衰减</strong>和<strong>相位失真</strong> 、
+<strong>信道特性的非线性</strong>
+、<strong>带宽限制</strong>和<strong>多径失真</strong>等。</p>
+<blockquote>
+<p>实际通信系统中，通过调整通信系统参数可以减小信道对信号失真的影响，但由于传输媒介的物理特性和实际通信系统中所采用的电子元器件的限制，使系统参数的调整范围受到限制，导致了在<strong>任何一通信系统中可靠的信息传输速率的大小是受限的</strong>。</p>
+</blockquote>
+<p>信道可以分为：狭义信道和广义信道</p>
+<h3 id="狭义信道"><strong>狭义信道</strong></h3>
+<p>仅指传输媒介，可分为 <strong>有线信道 和 无线信道</strong> 两类。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%86%E7%B1%BB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -875,299 +1179,8 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/" class="post-title-link" itemprop="url">计算机网络：IEEE 802.11无线局域网</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-17 13:33:52" itemprop="dateCreated datePublished" datetime="2022-11-17T13:33:52+08:00">2022-11-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="无线局域网的组成">1.无线局域网的组成</h3>
-<p>无线局域网可分为两大类:有固定基础设施的无线局域网和无固定基础设施的移动自组织网络。所谓“固定基础设施”，是指<strong>预先建立的、能覆盖一定地理范围的固定基站</strong>。</p>
-<h4 id="有固定基础设施无线局域网">(1)有固定基础设施无线局域网</h4>
-<p>对于有固定基础设施的无线局域网，IEEE制定了无线局域网的802.11系列协议标准，包括802.11a/b/g/n等。<strong>802.11使用星形拓扑</strong>，其<strong>中心称为接入点(Access
-Point，AP)</strong>，<strong>在MAC层使用CSMA/CA协议</strong>。使用<strong>802.11系列协议的局域网又称Wi-Fi</strong>。</p>
-<p>802.11标准规定<strong>无线局域网的最小构件是基本服务集BSS(Basic
-Service Set,
-BSS)</strong>。一个基本服务集包括一个接入点和若干移动站。各站在本
-BSS内之间的通信，或与本
-BSS外部站的通信，都<strong>必须通过本BSS的AP</strong>。上面提到的<strong>AP就是基本服务集中的基站(base
-station)</strong>。安装AP时，必须为该<strong>AP分配一个不超过32字节的服务集标识符(Service
-Set IDentifier，SSID）和一个信道</strong>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9AIEEE%20802.11%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%B8%8EIEEE%20802.3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%B8%8EIEEE%20802.3/" class="post-title-link" itemprop="url">计算机网络：以太网与IEEE 802.3</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-16 10:38:55" itemprop="dateCreated datePublished" datetime="2022-11-16T10:38:55+08:00">2022-11-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="计算机网络以太网与ieee-802.3">计算机网络：以太网与IEEE
-802.3</h2>
-<p>IEEE
-802.3标准是一种<strong>基带总线形</strong>的局域网标准，它<strong>描述物理层和数据链路层的MAC子层的实现方法</strong>。</p>
-<p>以太网逻辑上采用<strong>总线形拓扑结构</strong>，以太网中的所有计算机共享同一条总线，信息以广播方式发送。为了保证数据通信的方便性和可靠性，以太网简化了通信流程并<strong>使用了CSMA/CD方式对总线进行访问控制</strong>。</p>
-<p>严格来说，以太网应当是指符合DIX Ethernet V2标准的局域网，但DIX
-Ethernet V2标准与IEEE
-802.3标准只有很小的差别，因此通常将802.3局域网简称为以太网。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%B8%8EIEEE%20802.3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">算法基础：离散化及模板详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-15 09:55:53" itemprop="dateCreated datePublished" datetime="2022-11-15T09:55:53+08:00">2022-11-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="基本思想">基本思想</h3>
-<p>首先，离散化是指数值域非常大，例如<span
-class="math inline">\(1-10^6\)</span>，但是个数相对较少,例如只有<span
-class="math inline">\(10^3\)</span>个,
-但在我们的程序中需要通过这些数值作为下标,且依赖的是这些数值之间的顺序关系（当然通常这些数是有序的）。如果为了这<span
-class="math inline">\(10^3\)</span>个数而开一个<span
-class="math inline">\(10^6\)</span>的数组过于浪费空间，因此我们可以采用离散化的方法，将这些数映射到<span
-class="math inline">\(0-10^3\)</span>上，这个过程就叫做离散化。</p>
-<blockquote>
-<p>注意：这里的映射数字指的是元素的下标数字，而非元素本身的数值。</p>
-</blockquote>
-<h3 id="算法思路">算法思路</h3>
-<p>对于有序数组进行映射，其基本思路如下：</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221013133143457.png"
-alt="image-20221013133143457" />
-<figcaption aria-hidden="true">image-20221013133143457</figcaption>
-</figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
