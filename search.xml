@@ -17015,4 +17015,342 @@ point。此为one hot。</p>
         <tag>FPGA</tag>
       </tags>
   </entry>
+  <entry>
+    <title>字符串拷贝实验</title>
+    <url>/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="一实验目的">一、实验目的</h2>
+<p>通过实验掌握使用
+LDB/STB，b等指令完成较为复杂的存储区访问和程序分支，学习使用条件码</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>熟悉开发环境的使用并完成一块存储区的拷贝。</p>
+<p>完成分支程序设计，要求判断参数，根据不同参数，调用不同的子程序。</p>
+<h2 id="四实验要求">四、实验要求</h2>
+<ol type="1">
+<li>按照2.3节介绍的方法,
+在ADS下创建一个工程asmlab2，定义两个数据存储区Src和Dst，Src用于存放原字符串，Dst用于存放目的字符串。堆栈地址0x400，将变量原字符串的内容拷贝到目的字符串中，要能判断原字符串的结束符（0），并统计字符串中字符的个数。通过AXD查看寄存器和memory和寄存器中数据变化。</li>
+<li>在指令后面加上适当注释,说明指令功能。</li>
+<li>指出程序执行完成后各相关寄存器及存储器单元的具体内容。</li>
+</ol>
+<span id="more"></span>
+<h2 id="五实验完成情况">五、实验完成情况：</h2>
+<p>1、实验源代码（含注释）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AREA Init,CODE,READONLY ;定义CODE片段Init 只读</span><br><span class="line"> ENTRY                ;进入程序</span><br><span class="line"> CODE32              ;以下为32位的ARM程序</span><br><span class="line">start</span><br><span class="line">  MOV SP, #0x400     ; 设置堆栈地址为0x400</span><br><span class="line">  LDR R0, =Src        ; 先将原字符串地址加载到R0</span><br><span class="line">  LDR R1, =Dst        ; 将目的字符串地址加载到R1</span><br><span class="line">  MOV R3,#0         ; 定义R3中的内容为0</span><br><span class="line">strcopy</span><br><span class="line">  LDRB R2,[R0],#1     ; 将R0的内容读入寄存器R2，并将R0R0+1</span><br><span class="line">  CMP R2,#0         ; 比较R2和0是否相等，主要检测字符串是否结束</span><br><span class="line">  BEQ endcopy       ; 等于0则跳转至endcopy</span><br><span class="line">  STRB R2,[R1],#1     ; 先将R2中的字节数据写入R1中，并把地址R1+1的值存入R1</span><br><span class="line">  ADD R3,R3,#1       ; R3自加一，用于记录字符个数</span><br><span class="line">  B strcopy           ; 循环</span><br><span class="line">endcopy</span><br><span class="line">  LDR R0, =ByteNum   ; 将字符数的地址加载到R0</span><br><span class="line">  STR R3,[R0]         ; 将R3的内容存在R0中</span><br><span class="line">  B .</span><br><span class="line">  AREA Datapool,DATA,READWRITE  ; 定义DATA类型的Datapool</span><br><span class="line">Src  DCB  &quot;string&quot;,0  ; 初始化字符串的存储空间</span><br><span class="line">Dst DCB 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0   ; 目的字符串存储空间</span><br><span class="line">ByteNum DCD 0 ; 初始化字符数</span><br><span class="line"> END</span><br></pre></td></tr></table></figure>
+<p>2、实验过程（含结果截图及相应文字解释）：</p>
+<p>定义两个数据存储区Src和Dst，Src用于存放原字符串，Dst用于存放目的字符串。堆栈地址0x400，将变量原字符串的内容拷贝到目的字符串中，要能判断原字符串的结束符（0），并统计字符串中字符的个数。通过AXD查看寄存器和memory和寄存器中数据变化。</p>
+<p>通过存储器可见，内容正在逐渐地进行拷贝。过程如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173113443.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173134446.png" /></p>
+<p>直到拷贝过程结束，实验结束后存储单元中的内容如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173140994.png" /></p>
+<p>相关寄存器中的具体内容如下所示：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173151628.png" /></p>
+<p>练习题：</p>
+<p>编写程序循环对R4～R11 进行累加8 次赋值，R4～R11
+起始值为1～8，每次加操作后把 R4～R11 的内容放入SP 栈中，SP
+初始设置为0x800。最后把R4～R11清空赋值为0。</p>
+<p>提示：多字的加载与存储使用多寄存器寻址，使用的指令为LDM和STM。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LDMIA R0!, &#123;R4-R11&#125;</span><br><span class="line">STMIA R1!, &#123;R4-R11&#125;</span><br></pre></td></tr></table></figure>
+<p>编写实验代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  AREA Init,CODE,READONLY ;定义CODE片段Init 只读</span><br><span class="line"> ENTRY    ;进入程序</span><br><span class="line"> CODE32    ;以下为32位的ARM程序</span><br><span class="line">main NOP</span><br><span class="line">NUM EQU 8     ; 定义NUM为8，即一共经过8次循环           </span><br><span class="line">start</span><br><span class="line"> MOV SP,#0X800    ；设置栈顶指针为0X800</span><br><span class="line"> LDR R0,=src            ; 将src的地址加载到R0</span><br><span class="line"> MOV R2,#NUM         ; 将循环次数赋给R2</span><br><span class="line"> MOV R4,#1				 ; 设置寄存器R4的初始值</span><br><span class="line"> MOV R5,#2				; 设置寄存器R5的初始值</span><br><span class="line"> MOV R6,#3				; 设置寄存器R6的初始值</span><br><span class="line"> MOV R7,#4				; 设置寄存器R7的初始值</span><br><span class="line"> MOV R8,#5				; 设置寄存器R8的初始值</span><br><span class="line"> MOV R9,#6				; 设置寄存器R9的初始值</span><br><span class="line"> MOV R10,#7			; 设置寄存器R10的初始值</span><br><span class="line"> MOV R11,#8			; 设置寄存器R11的初始值    </span><br><span class="line">loop</span><br><span class="line"> ADD R4,R4,#1			; 将寄存器的值加一，下同</span><br><span class="line"> ADD R5,R5,#1</span><br><span class="line"> ADD R6,R6,#1</span><br><span class="line"> ADD R7,R7,#1</span><br><span class="line"> ADD R8,R8,#1</span><br><span class="line"> ADD R9,R9,#1</span><br><span class="line"> ADD R10,R10,#1</span><br><span class="line"> ADD R11,R11,#1    </span><br><span class="line"> STMFD SP!,&#123;R4-R11&#125;      ;多寄存器寻址，把R4~R11的内容放入SP栈中</span><br><span class="line"> SUBS R2,R2,#1           ;将R2的内容，即循环次数减一</span><br><span class="line"> BNE loop                ;如果不为0则跳转到loop继续循环    </span><br><span class="line"> LDMIA R0!,&#123;R4-R11&#125;      ;将以R0起始地址的值存入R4-R11，即把R4~R11清空赋值为0.</span><br><span class="line">Stop</span><br><span class="line"> B Stop</span><br><span class="line"> LTORG                   ; 声明数据缓冲池</span><br><span class="line">src DCD 0,0,0,0,0,0,0,0       ; 初始化</span><br><span class="line"> END</span><br></pre></td></tr></table></figure>
+<p>实验初始时，寄存器中内容如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173253315.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173300701.png" /></p>
+<p>实验结束后，寄存器中的内容如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230215173326499.png" /></p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Embedded System</category>
+      </categories>
+      <tags>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单数据搬移实验</title>
+    <url>/Notes/Embedded-System/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E6%90%AC%E7%A7%BB%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="一实验目的">一、实验目的</h2>
+<p>熟悉实验开发环境，掌握简单ARM汇编指令的使用方法。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>熟悉开发环境并使用LDR/STR，MOV等指令访问寄存器或存储单元；</p>
+<p>使用ADD/SUB/LSL/LSR/AND/ORR等指令，完成基本数学/逻辑运算。</p>
+<h2 id="四实验要求">四、实验要求</h2>
+<p>（1）按照2.3节介绍的方法,
+在ADS下创建一个工程asmlab1，定义两个变量x,y和堆栈地址0x1000，将变量x的内容存到堆栈顶，然后计算x+y,并将和存到堆栈的下一个单元。通过AXD查看寄存器和memory和寄存器中数据变化。</p>
+<p>（2）在指令后面加上适当注释,说明指令功能。</p>
+<p>（3）指出程序执行完成后各相关寄存器及存储器单元的具体内容。</p>
+<span id="more"></span>
+<h2 id="五实验完成情况">五、实验完成情况</h2>
+<p>1、实验源代码（含注释）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AREA Init,CODE,READONLY  ;伪指令AREA定义名为Init,属性为只读或的代码片段</span><br><span class="line">  ENTRY  ;伪指令ENTRY声明程序入口</span><br><span class="line">  CODE32 ;声明以下代码为 32 位 ARM 指令</span><br><span class="line">x EQU 45</span><br><span class="line">y EQU 64 ;定义两个变量 x,y</span><br><span class="line">stack_top EQU 0x1000 ;定义堆栈地址 0x1000</span><br><span class="line">start MOV SP, #stack_top  ;设置栈顶地址</span><br><span class="line">      MOV R0, #x  ;把x的值赋给R0</span><br><span class="line">      STR R0, [SP]  ;R0中的内容入栈</span><br><span class="line">MOV R0, #y  ;把y的值赋给R0</span><br><span class="line">LDR R1, [SP]  ; 数据出栈，放入R1，即R1中放x的值</span><br><span class="line">      ADD R0, R0, R1  ;R0=R0+R1</span><br><span class="line">      STR R0, [SP,#4] ;先执行SP+4(ARM为32位指令集)，再将R0内容复制到SP指向的寄存器</span><br><span class="line">      B .</span><br><span class="line">END  ;程序结束</span><br></pre></td></tr></table></figure>
+<p>2、实验过程（含结果截图及相应文字解释）：</p>
+<p>根据代码可知，</p>
+<p>1.首先执行start MOV SP, #stack_top
+通过该语句设置了栈顶地址为0x1000。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145117856.png" /></p>
+<p>2.然后执行MOV R0,
+#x，把x的值赋值给了R0寄存器，此时R0寄存器的值变成45，由于是十六进制存储的，因此显示为2D。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145129493.png" /></p>
+<p>3.然后执行STR R0,
+[SP]，将R0的值入栈，由于前面已经设置了栈顶地址为0x1000，因此可以查看到内存地址0x100处的数据变成了2D。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145826048.png" /></p>
+<p>4.然后执行MOV R0,
+#y，把y的值赋值给了R0寄存器，此时R0寄存器的值变成64，由于是十六进制存储的，因此显示为40。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145152762.png" /></p>
+<p>5.然后执行LDR R1,
+[SP]，该数据出栈，将数据赋值给R1，此时R1中保存的值为2D。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145201302.png" /></p>
+<p>6.然后执行ADD R0, R0,
+R1，其含义相当于R0=R0+R1，因此R0寄存器的值为2D+40 = 6D。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145210393.png" /></p>
+<p>7.最后执行STR R0, [SP,
+#4]，先执行SP+4，将指针进行偏移，再将R0的值复制到此时SP指向的地址0x1004，该数据赋值为6D。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145219696.png" /></p>
+<p>最后程序执行完成后各相关寄存器及存储器单元的具体内容如下：</p>
+<p>寄存器：</p>
+<ul>
+<li>R0内容为0x6D，</li>
+<li>R1内容为0x2D，</li>
+<li>SP内容为0x1000，</li>
+</ul>
+<p>存储器单元:</p>
+<ul>
+<li>0x1000内容为0x2D，</li>
+<li>0x1004内容为0x6D。</li>
+</ul>
+<p>练习题</p>
+<p>编写程序实现对一段数据的最大值最小值搜索,最大值存于max变量之中,最小值存于min变量之中。</p>
+<p>提示: 数据的定义采用伪指令:DCD来实现,如:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DataBuf DCD 11,-2,35,47,96,63,128,-23</span><br></pre></td></tr></table></figure>
+<p>搜索最大值和最小值可以利用两个寄存器R1，R2来存放。用到的比较指令为CMP,用到的条件标识符小于为LT,大于为GT。</p>
+<p>基本思路为：利用R0做基地址，将R1，R2分别存入第一个单元的内容，利用R3做循环计数器，利用R4遍历读取第2至最后一个数据，如果R1的数据小于新读入的R4数据则将R4的内容存入R1，
+如果R2的内容大于R4的内容则将R4的内容存入R2。遍历完成之后，R1将存放最大数据，R2将存放最小数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> AREA comp,CODE,READONLY ;定义CODE片段comp 只读</span><br><span class="line"> ENTRY           ;进入程序</span><br><span class="line"> CODE32          ;以下为32位的ARM程序</span><br><span class="line">START         </span><br><span class="line">  LDR R0, = DAT      ;加载数据段中DAT的数据的地址到R0</span><br><span class="line">  LDR R1, [R0]       ;加载R0的内容到R1</span><br><span class="line">  LDR R2, [R0]       ;加载R0的内容到R1</span><br><span class="line">  MOV R3,#1        ;设置循环变量R3并初始化为1</span><br><span class="line">LOOP</span><br><span class="line">  ADD R0,R0,#4       ;每次循环R0+4</span><br><span class="line">  LDR R4,[R0]      ;R4存入R0的数据</span><br><span class="line">  CMP R1,R4        ;比较R1,R4</span><br><span class="line">  MOVLT R1,R4      ;如果R1&lt;R4 就把R4存入R1</span><br><span class="line">  CMP R2,R4        ;比较R2，R4</span><br><span class="line">  MOVGT R2,R4      ;如果R2&gt;R4 就把R4存入R2</span><br><span class="line">  ADD R3,R3,#1       ;每次循环R3值加一</span><br><span class="line">  CMP R3,#8        ;判断R3与8</span><br><span class="line">  BLT LOOP         ;如果R3 &lt; 8则跳转到LOOP执行</span><br><span class="line"> B .           ;退出</span><br><span class="line"> AREA D,DATA,READONLY  ;定义一个数据段D，读写</span><br><span class="line">DAT DCD 11,-2,35,47,96,63,128,-23</span><br><span class="line"> END</span><br></pre></td></tr></table></figure>
+<p>实验结果如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230214145928589.png" /></p>
+<p>程序的基本思路是将DataBuf的首地址装载到R0中，再通过首地址将第一个数据装载到R1和R2中，设定R3为循环变量，并且初始化为1。然后进入循环，通过循环比较，将比较过程中得到的最大值放在R1中，最小值放在R2中，每一次循环R3中的值加1，当R3=8时，比较循环结束。</p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Embedded System</category>
+      </categories>
+      <tags>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ARM启动过程控制实验</title>
+    <url>/Notes/Embedded-System/ARM%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="一实验目的">一、实验目的</h2>
+<p>（1） 掌握建立基本完整的ARM 工程，包含启动代码，C语言程序等；</p>
+<p>（2） 了解ARM启动过程，学会编写简单的C
+语言程序和汇编启动代码并进行调试；</p>
+<p>（3） 掌握如何指定代码入口地址与入口点；</p>
+<p>（4） 掌握通过memory/register/watch/variable 窗口分析判断结果。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机。</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>使用汇编语言编写初始化程序，并引导至C语言main函数，用汇编语言编写延时函数实现毫秒级的延时，在C语言中调用延时函数,实现1s钟定时。</p>
+<span id="more"></span>
+<h2 id="四实验要求">四、实验要求</h2>
+<ol type="1">
+<li>在ADS下创建一个工程armasmc，编写3个文件，如下图所示：</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164645184.png" /></p>
+<p>其中一个初始化汇编语言文件Init.s，该文件中主要完成异常矢量表的建立，模式堆栈初始化，并将程序引导至C语言的main函数。</p>
+<p>C语言程序保存为armasmc.c。
+C语言中调用汇编语言文件delay.s中的毫秒延时程序delayxms，C语言将延时的毫秒数通过参数传递到汇编语言，汇编语言完成延时，然后返回C语言函数。</p>
+<p>通过AXD运用单步执行方式调试程序。观察程序执行过程中的寄存器及存储器的变化情况。</p>
+<p>（2）实验过程中请记录并思考以下内容：</p>
+<p>1）如何建立异常矢量入口表？</p>
+<p>2）如何在汇编语言中切换至C语言的main函数？。</p>
+<p>3）如何在C语言中调用汇编语言函数，并完成参数传递？</p>
+<p>4）汇编语言函数中用到的寄存器如何保护与恢复，为什么要保护参考程序中的R11？</p>
+<p>5）将delay.s中的R11改成R4，并将两条R11 的保护与恢复语句stmfd
+sp!,{r11} 和ldmfd
+sp!,{r11}删掉，在C语言程序中的语句i--处设置端点，观察运行过程中变量i的变化情况，并解释其中的原因。</p>
+<h2 id="五实验情况">五、实验情况</h2>
+<p>1、实验源代码（含注释）：</p>
+<p>Init.s代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">;************************ entry.s ****************************</span><br><span class="line"> IMPORT Main  ;在汇编程序调用该c程序前要在汇编语言程序中使用IMPORT伪操作来声明该c程序</span><br><span class="line"></span><br><span class="line">  area Init,code,readonly   ;定义CODE片段Init 只读 </span><br><span class="line">  entry     ;设置程序入口伪指令</span><br><span class="line">  code32   ;以下为32位的ARM程序</span><br><span class="line">; *********** Setup interrupt/exception vector *******************</span><br><span class="line">start              b Reset_Handler        ;异常矢量表，根据异常矢量表进入不同模式的中断程序      </span><br><span class="line">Undefined_Handler  b Undefined_Handler</span><br><span class="line">SWI_Handler        b SWI_Handler</span><br><span class="line">Prefetch_handler   b Prefetch_handler</span><br><span class="line">Abort_Handler      b Abort_Handler</span><br><span class="line">                   nop   ;Reserved vector</span><br><span class="line">IRQ_Handler        b IRQ_Handler</span><br><span class="line">FIQ_Handler        b FIQ_Handler</span><br><span class="line"></span><br><span class="line">Reset_Handler     ;Reset中断，为整个中断的实际入口点        </span><br><span class="line">             bl initstack    ;初始化各模式下的堆栈指针</span><br><span class="line">                             </span><br><span class="line">             ;切换至用户模式堆    </span><br><span class="line">             msr cpsr_c,#0xd0    ;110  10000</span><br><span class="line">                 </span><br><span class="line">             bl Main</span><br><span class="line"></span><br><span class="line">halt  b halt</span><br><span class="line"></span><br><span class="line">initstack    mov r0,lr   ;r0&lt;--lr,因为各种模式下r0是相同的而各个模式?                            </span><br><span class="line">                                   </span><br><span class="line">             ;设置管理模式堆栈</span><br><span class="line">             msr cpsr_c,#0xd3    ;110  10011  </span><br><span class="line">             ldr sp,stacksvc</span><br><span class="line">               </span><br><span class="line">             ;设置中断模式堆栈</span><br><span class="line">             msr cpsr_c,#0xd2    ;110  10010</span><br><span class="line">             ldr sp,stackirq  </span><br><span class="line">             </span><br><span class="line">             ;设置快速中断模式堆栈</span><br><span class="line">             msr cpsr_c,#0xd1    ;110  10001</span><br><span class="line">             ldr sp,stackfiq</span><br><span class="line">                                </span><br><span class="line">             ;设置中止模式堆栈      </span><br><span class="line">             msr cpsr_c,#0xd7    ;110  10111</span><br><span class="line">             ldr sp,stackabt</span><br><span class="line">                                    </span><br><span class="line">            ;设置未定义模式堆栈   </span><br><span class="line">             msr cpsr_c,#0xdb    ;110  11011</span><br><span class="line">             ldr sp,stackund</span><br><span class="line">   </span><br><span class="line">             ;设置系统模式堆栈    </span><br><span class="line">             msr cpsr_c,#0xdf    ;110  11111</span><br><span class="line">             ldr sp,stackusr</span><br><span class="line">             </span><br><span class="line">             mov pc,r0 ;返回</span><br><span class="line">         </span><br><span class="line">  LTORG      </span><br><span class="line"></span><br><span class="line">stackusr     dcd  usrstackspace+128</span><br><span class="line">stacksvc     dcd  svcstackspace+128</span><br><span class="line">stackirq     dcd  irqstackspace+128</span><br><span class="line">stackfiq     dcd  fiqstackspace+128</span><br><span class="line">stackabt     dcd  abtstackspace+128</span><br><span class="line">stackund     dcd  undstackspace+128</span><br><span class="line"></span><br><span class="line">  area Interrupt,data,READWRITE  ;分配堆栈空间</span><br><span class="line">usrstackspace space 128</span><br><span class="line">svcstackspace space 128</span><br><span class="line">irqstackspace space 128</span><br><span class="line">fiqstackspace space 128</span><br><span class="line">abtstackspace space 128</span><br><span class="line">undstackspace space 128</span><br><span class="line">     </span><br><span class="line">       end</span><br></pre></td></tr></table></figure>
+<p>delay.s代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">;************************* delay.s *****************************</span><br><span class="line">  EXPORT delayxms ；EXPORT伪指令用于在程序中声明一个全局的标号，该标号可在其他的文件中引用</span><br><span class="line">  area delay,code,readonly  ;定义code片段delay只读</span><br><span class="line">  code32  ;以下为32位的ARM程序</span><br><span class="line">  </span><br><span class="line">;下面是延时若干ms的子程序      </span><br><span class="line">delayxms</span><br><span class="line">     stmfd sp!,&#123;r11&#125; ; 寄存器入栈</span><br><span class="line">     sub r0,r0,#1 ;r0=r0-1</span><br><span class="line">     ldr r11,=1000 ；加载至r11中</span><br><span class="line">loop2</span><br><span class="line">     sub r11,r11,#1 ；每次将r11自减一</span><br><span class="line">     cmp r11,#0x0 ;将r11与0比较</span><br><span class="line">     bne loop2  ;比较的结果不为0，则继续调用loop2  </span><br><span class="line">     cmp r0,#0x0    ;将r0与0比较</span><br><span class="line">     bne delayxms   ;比较的结果不为0，则继续调用delayxms</span><br><span class="line">     ldmfd sp!,&#123;r11&#125;;</span><br><span class="line">     mov pc,lr;返回</span><br><span class="line">     </span><br><span class="line">     end</span><br></pre></td></tr></table></figure>
+<p>armasmc.c代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//*************************armasmc.c******************************</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int Main()</span><br><span class="line">&#123;  </span><br><span class="line">  extern void delayxms(int xms);  //在C程序调用汇编程序之前需要在C语言程序中使用extern关键词来声明该汇编程序</span><br><span class="line">  </span><br><span class="line">  int i=100;</span><br><span class="line">  </span><br><span class="line">  while(1)</span><br><span class="line">  &#123;</span><br><span class="line">     delayxms(1000); // 调用delayxms汇编程序</span><br><span class="line">     i--;</span><br><span class="line">     if(i==0)</span><br><span class="line">       i=100;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、实验过程（含结果截图及相应文字解释）：</p>
+<p>1.如何建立异常矢量入口表？</p>
+<p>答：建立异常矢量入口表需要设置中断类型号，并且要设置中断服务子程序段地址，以根据异常矢量表进入不同模式的中断程序。在实验程序中也有定义：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164750525.png" /></p>
+<p>2.如何在汇编语言中切换至C语言的main函数？</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164800573.png" /></p>
+<p>答：由上代码可知，为保证程序调用时参数的正确传递，汇编程序设计要遵守ATPCS（ARM-Thumb
+Produce Call
+Standard）,它是ARM程序和Thumb程序中子程序调用的基本规则，目的是为了使单独编译的C语言程序和汇编程序之间能够相互调用。这些基本规则包括子程序调用过程中寄存器的使用规则、数据栈的使用规则和参数的传递规则。在C程序中不需要任何关键字来声明将被汇编语言调用的C程序，但需要在汇编语言程序之前使用IMPORT伪操作来声明该C程序。在汇编程序中通过BL指令来调用子程序。同时，汇编程序可以通过地址间接访问在C语言程序中声明的全局变量。通过使用IMPORT关键词引入全局变量，并利用LDR和STR指令根据全局变量的地址可以访问它们。</p>
+<p>3.如何在C语言中调用汇编语言函数，并完成参数传递？</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164818655.png" /></p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164824557.png" /></p>
+<p>答：为了保证程序调用时参数的正确传递，汇编程序设计要遵守ATPCS。在汇编程序中需要使用EXPORT伪操作来声明，同时，在C程序中调用该汇编程序之前需要在C语言程序中使用extern关键词来声明该汇编程序。</p>
+<p>4.汇编语言函数中用到的寄存器如何保护与恢复，为什么要保护参考程序中的R11？</p>
+<p>答：汇编语言函数中用到的寄存器通过压栈来保护，出栈来恢复。根据ATPCS规则，R11对应ARM
+状态局部变量寄存器8，R11中含有循环次数的重要参量，因此要保护R11避免在程序运行与调用过程中受到影响而导致程序异常。</p>
+<p>5.将delay.s中的R11改成R4，并将两条R11 的保护与恢复语句stmfd sp!,{r11}
+和ldmfd
+sp!,{r11}删掉，在C语言程序中的语句i--处设置端点，观察运行过程中变量i的变化情况，并解释其中的原因。</p>
+<p>修改程序如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230217164908542.png" /></p>
+<p>答：由上可知R4对应局部变量寄存器1，即变量i，因此在子程序delay.s中，R4的值减为0，若不进行保护，则返回C程序后自减-1，导致变量i的值变为-1，此时将无法满足0的条件，也就无法执行if，导致i会一直递减下去，最终无法停止。</p>
+<h2 id="六总结">六、总结</h2>
+<p>本次有关汇编与C语言相互调用的部分，建立异常矢量入口表的方法，即需要设置中断类型号，并且要设置中断服务子程序段地址，以根据异常矢量表进入不同模式的中断程序。此外，还有ARM程序和Thumb程序中子程序调用的基本规则ATPCS（ARM-Thumb
+Produce Call
+Standard），目的是为了使单独编译的C语言程序和汇编程序之间能够相互调用。这些基本规则包括子程序调用过程中寄存器的使用规则、数据栈的使用规则和参数的传递规则，为调用提供了相关的规范。其中汇编程序访问全局C变量的方法是：汇编程序可以通过地址间接访问在C语言程序中声明的全局变量。通过使用IMPORT关键词引入全局变量，并利用LDR和STR指令根据全局变量的地址可以访问它们。在C语言程序中调用汇编程序的方法是：在汇编程序中需要使用EXPORT伪操作来声明，使得本程序可以被其它程序调用。同时，在C程序调用该汇编程序之前需要在C语言程序中使用extern关键词来声明该汇编程序。而在汇编程序中调用C语言程序的方法是：在C程序中不需要使用任何关键字来声明将被汇编语言调用的C程序，但是在汇编程序调用该C程序之前需要在汇编语言程序中使用IMPORT伪操作来声明该C程序。在汇编程序中通过BL指令来调用子程序。</p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Embedded System</category>
+      </categories>
+      <tags>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ARM处理器工作模式实验</title>
+    <url>/Notes/Embedded-System/ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="一实验目的">一、实验目的</h2>
+<p>（1） 通过实验掌握学会使用msr/mrs 指令实现ARM
+处理器工作模式的切换，观察不同模式下的寄存器，加深对CPU 结构的理解；</p>
+<p>（2） 通过实验掌握ld 中如何使用命令行指定代码段起始地址。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机。</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>通过 ARM
+汇编指令，在各种处理器模式下切换并观察各种模式下寄存器的区别；掌握ARM
+不同模式的进入与退出。</p>
+<h2 id="四实验要求">四、实验要求</h2>
+<p>(1)按照2.3节介绍的方法,
+在ADS下创建一个工程asmmodelab，完成各个模式下的堆栈初始化工作,并将R1-R12的内容存入当前模式下堆栈。通过AXD运用单步执行方式调试程序，验证工作模式的切换，注意观察CPSR寄存器中的变化。随着程序调试过程中在模式间的切换，使用寄存器观察器切换到不同的工作模式下观察SP（R13）的变化情况。</p>
+<p>(2)实验过程中请记录并思考以下内容：</p>
+<p>1）程序复位之后系统处于什么模式？</p>
+<p>2）记录每种模式下的初始堆栈指针，以及执行R1-R12内容压栈后本模式堆栈相关内存单元的数值。并分析快速中断FIQ模式与其他模式存入的R1-R12有什么不同。</p>
+<p>3）切换成用户模式之后还能否从用户模式切换到其他模式（如系统模式）？</p>
+<p>4）用户模式下能否执行堆栈压栈操作？如果能得话，观察用户模式下压栈之前和压栈之后其堆栈区域的变化情况。</p>
+<p>5）观察本程序模式切换过程中SPSR有无变化，并解释其原因。</p>
+<span id="more"></span>
+<h2 id="五实验情况">五、实验情况</h2>
+<p>1、实验源代码（含注释）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">usr_stack_legth equ 64 ;定义各个模式的栈空间长度</span><br><span class="line">svc_stack_legth equ 32</span><br><span class="line">fiq_stack_legth equ 16</span><br><span class="line">irq_stack_legth equ 64</span><br><span class="line">abt_stack_legth equ 16</span><br><span class="line">und_stack_legth equ 16               </span><br><span class="line"></span><br><span class="line">  area reset,code,readonly ;定义code片段reset只读</span><br><span class="line">  entry ;设置程序入口伪指令</span><br><span class="line">  code32 ;定义后面的指令为32位的ARM指令</span><br><span class="line"></span><br><span class="line">;设置各个寄存器中的内容</span><br><span class="line">start    mov r0,#0</span><br><span class="line">    mov r1,#1</span><br><span class="line">    mov r2,#2</span><br><span class="line">    mov r3,#3</span><br><span class="line">    mov r4,#4</span><br><span class="line">    mov r5,#5</span><br><span class="line">    mov r6,#6</span><br><span class="line">    mov r7,#7</span><br><span class="line">    mov r8,#8</span><br><span class="line">    mov r9,#9</span><br><span class="line">    mov r10,#10</span><br><span class="line">    mov r11,#11</span><br><span class="line">    mov r12,#12</span><br><span class="line">             </span><br><span class="line">    bl initstack  ;跳转至initstack，并且初始化各模式下的堆栈指针，打开IRQ中断(将cpsr寄存器的i位清0)</span><br><span class="line">                              </span><br><span class="line">    mrs r0,cpsr        ;r0&lt;--cpsr</span><br><span class="line">    bic r0,r0,#0x80    ;cpsr的I位置0，开IRQ中断</span><br><span class="line">    msr cpsr_cxsf,r0   ;cpsr&lt;--r0</span><br><span class="line">                                    </span><br><span class="line">    ;切换到用户模式</span><br><span class="line">    msr cpsr_c,#0xd0  ;设置11010000，其中I，F位置1，禁止IRQ和FIQ中断，T=0，ARM执行，M[4：0]为10000，切换到用户模式</span><br><span class="line">    mrs r0,cpsr          ;r0&lt;--cpsr</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125;   ;将R1-R12入栈     </span><br><span class="line">;观察用户模式能否切换到其他模式</span><br><span class="line">    ;切换到管理模式</span><br><span class="line">    msr cpsr_c,#0xdf    ;设置11011111，其中I，F位置1，禁止IRQ和FIQ中断，T=0，ARM执行，M[4：0]为11111，切换到系统模式</span><br><span class="line">    mrs r0,cpsr			;r0&lt;--cpsr</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125;  ;将寄存器列表中的r1-r12寄存器存入堆栈</span><br><span class="line"></span><br><span class="line">halt  b halt ;从halt跳转到halt循环</span><br><span class="line"></span><br><span class="line">initstack  mov r0,lr   ; r0&lt;--lr,因为各种模式下r0是相同的而各个模式不同       </span><br><span class="line">                                   </span><br><span class="line">    ;设置管理模式堆栈</span><br><span class="line">    msr cpsr_c,#0xd3   ; 设置11010011 切换到管理模式</span><br><span class="line">    ldr sp,stacksvc    ;设置管理模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    ;设置中断模式堆栈</span><br><span class="line">    msr cpsr_c,#0xd2   ;设置11010010  切换到中断模式</span><br><span class="line">    ldr sp,stackirq    ;设置中断模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    ;设置快速中断模式堆栈</span><br><span class="line">    msr cpsr_c,#0xd1   ; 设置11010001  切换到快速中断模式</span><br><span class="line">    ldr sp,stackfiq    ;设置快速中断模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    ;设置中止模式堆栈   </span><br><span class="line">    msr cpsr_c,#0xd7   ; 设置11010111  切换到中止模式</span><br><span class="line">    ldr sp,stackabt    ;设置中止模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    ;设置未定义模式堆栈   </span><br><span class="line">    msr cpsr_c,#0xdb   ; 设置11011011  切换到未定义模式</span><br><span class="line">    ldr sp,stackund    ;设置未定义模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    ;设置系统模式堆栈    </span><br><span class="line">    msr cpsr_c,#0xdf   ; 设置11011111  切换到系统模式</span><br><span class="line">    ldr sp,stackusr    ;设置系统模式堆栈地址</span><br><span class="line">    stmfd sp!,&#123;r1-r12&#125; ;R1-R12入栈，满递减模式</span><br><span class="line"></span><br><span class="line">    mov pc,r0 ;返回</span><br><span class="line">    </span><br><span class="line">    ;为各模式堆栈开辟一段连续的字存储空间</span><br><span class="line">stackusr    dcd  usrstackspace+(usr_stack_legth-1)*4</span><br><span class="line">stacksvc    dcd  svcstackspace+(svc_stack_legth-1)*4</span><br><span class="line">stackirq    dcd  irqstackspace+(irq_stack_legth-1)*4</span><br><span class="line">stackfiq    dcd  fiqstackspace+(fiq_stack_legth-1)*4</span><br><span class="line">stackabt    dcd  abtstackspace+(abt_stack_legth-1)*4</span><br><span class="line">stackund    dcd  undstackspace+(und_stack_legth-1)*4</span><br><span class="line">	  ;定义data段并命名</span><br><span class="line">      area reset,data,noinit,align=2</span><br><span class="line">;为各模式堆栈分配存储区域</span><br><span class="line">usrstackspace space usr_stack_legth*4</span><br><span class="line">svcstackspace space svc_stack_legth*4</span><br><span class="line">irqstackspace space irq_stack_legth*4</span><br><span class="line">fiqstackspace space fiq_stack_legth*4</span><br><span class="line">abtstackspace space abt_stack_legth*4</span><br><span class="line">undstackspace space und_stack_legth*4</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<p>2、实验过程（含结果截图及相应文字解释）：</p>
+<p>实验过程中请记录并思考以下内容：</p>
+<p>1）程序复位之后系统处于什么模式？</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172434148.png" /></p>
+<p>由上可知，系统复位后处于管理模式。</p>
+<p>2）记录每种模式下的初始堆栈指针，以及执行R1-R12内容压栈后本模式堆栈相关内存单元的数值。并分析快速中断FIQ模式与其他模式存入的R1-R12有什么不同。</p>
+<p>①管理模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172449005.png" /></p>
+<p>由上图可知，管理模式初始指针为0x8244。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172459007.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8214，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>②中断模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172509999.png" /></p>
+<p>由上图可知，中断模式初始指针为0x8344。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172520181.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8314，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>③快速中断模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172530582.png" /></p>
+<p>由上图可知，快速中断模式初始指针为0x8384。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172540224.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8354，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R7存储的数值对应，说明该模式下仅能压入R1-R7，因为快速中断模式有自己的R8-R12。</p>
+<p>④中止模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172552215.png" /></p>
+<p>由上图可知，中止模式初始指针为0x83C4。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172604110.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8394，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>⑤未定义模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172615549.png" /></p>
+<p>由上图可知，未定义模式初始指针为0x8404。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172625583.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x83D4，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>⑥系统模式</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172635438.png" /></p>
+<p>由上图可知，系统模式初始指针为0x81C4。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172645101.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8194，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>⑦用户模式：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172657646.png" /></p>
+<p>由上图可知，用户模式初始指针为0x8194。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172705997.png" /></p>
+<p>执行R1-R12内容压栈后本模式堆栈相关内存单元的数值如上图所示，可知压栈后，堆栈指针变为0x8164，离初始的堆栈指针0x30字节，即12个字(32位系统)，从内存单元的数值可以看到分别与R1-R12存储的数值对应。</p>
+<p>3）切换成用户模式之后还能否从用户模式切换到其他模式（如系统模式）？</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172713999.png" /></p>
+<p>由上图可知，当进行切换管理模式时，模式仍是用户模式，因此可知切换成用户模式之后，不能操作CPSR返回到其他模式。</p>
+<p>4）用户模式下能否执行堆栈压栈操作？如果能得话，观察用户模式下压栈之前和压栈之后其堆栈区域的变化情况。</p>
+<p>压栈前：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172739431.png" /></p>
+<p>压栈后：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172749462.png" /></p>
+<p>压栈后存储单元情况：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230216172758958.png" /></p>
+<p>答：用户模式下可以执行堆栈压栈操作，且以4个字节（1个字）为单位进行压栈操作，压栈前堆栈区域情况如左图，压栈后如右图所示，对应的存储单元情况如上图。</p>
+<p>5）观察本程序模式切换过程中SPSR有无变化，并解释其原因。</p>
+<p>答：除了用户模式和系统模式，其余模式下都有一个私有SPSR保存状态寄存器.
+用来保存切换到该模式之前的执行状态，SPSR是异常模式的程序状态保存寄存器,
+当特定的异常中断发生时，这个寄存器存放CPSR的内容，在异常中断退出时，可以用SPSR来恢复CPSR，但是通过观察可知，整个切换过程中没有异常的发生，因此SPSR没有变化。</p>
+<h2 id="六总结">六、总结</h2>
+<p>ARM处理器模式分别是usr（用户模式），fiq（快速中断模式），irq（通用中断模式），svc（管理模式），abt（终止模式），sys（系统模式）以及und（未定义模式）。也通过ARM指令，实现了ARM不同模式的进入与退出，切换各种处理器模式，并观察各种模式下寄存器的区别。当特定的异常出现时，进入相应的模式。每种模式都有某些附加的寄存器，以避免异常出现时用户模式的状态不可靠。此外也使用状态寄存器到通用寄存器的传送指令（MRS）以及通用寄存器到状态寄存器的传送指令（MSR），修改状态寄存器通过“读取－修改－写回”三个步骤操作来实现。</p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Embedded System</category>
+      </categories>
+      <tags>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
 </search>
