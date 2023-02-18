@@ -17353,4 +17353,46 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
         <tag>ARM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>信号的FIR滤波操作</title>
+    <url>/Notes/Embedded-System/%E4%BF%A1%E5%8F%B7%E7%9A%84FIR%E6%BB%A4%E6%B3%A2%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h2 id="一实验目的">一、实验目的</h2>
+<p>通过实验了解嵌入式汇编语言程序结构，完成文件读写操作，实现对信号的滤波处理。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>1、硬件：PC 机</p>
+<p>1、软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验要求">三、实验要求</h2>
+<p>（1）自行设计一个FIR的低通滤波器（7阶以上），可以采用Matlab等其他工具软件设计，也可以直接给定滤波器系数。</p>
+<p>（2）生成一个1000点的信号，可以采用Matlab等其他工具软件生成，也可以录制一个声音文件，也可以生成一个正弦波信号。</p>
+<p>（3）对该信号添加高斯白噪声噪声。</p>
+<p>（4）按照实验要求编写汇编语言源程序。</p>
+<p>（5）对汇编源程序进行编译、汇编。</p>
+<p>（6）对程序进行调试。</p>
+<p>（7）观察程序运行结果，给出信号原始波形和信号滤波以后的波形，说明滤波的效果。</p>
+<span id="more"></span>
+<h2 id="四实验代码">四、实验代码</h2>
+<p>程序代码如下：</p>
+<p>其中滤波器的设计，信号的生成以及波形及频谱图的生成均借用Matlab完成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"> </span><br><span class="line">#define Length 1024</span><br><span class="line">#define pi 3.1415926</span><br><span class="line">int fs=4096;	//采样频率</span><br><span class="line">int f1=100;		//信号频率</span><br><span class="line">int f2=200;		//噪声频率</span><br><span class="line">#define w1 2*pi*f1/fs	//信号角频率</span><br><span class="line">#define w2 2*pi*f2/fs	//噪声角频率</span><br><span class="line"> </span><br><span class="line">int i;</span><br><span class="line">long input[Length];		//</span><br><span class="line">long output[Length];</span><br><span class="line">int min( int a, int b);</span><br><span class="line">const int BL = 347;</span><br><span class="line">const int B[347] = &#123;</span><br><span class="line">       -2,      0,      0,      0,      0,      1,      1,      2,      3,</span><br><span class="line">        4,      5,      6,      8,     10,     12,     15,     18,     21,</span><br><span class="line">       24,     27,     31,     34,     38,     42,     46,     49,     53,</span><br><span class="line">       56,     60,     62,     65,     67,     68,     69,     69,     69,</span><br><span class="line">       67,     65,     62,     59,     54,     49,     44,     37,     30,</span><br><span class="line">       23,     15,      7,     -1,     -9,    -17,    -24,    -32,    -38,</span><br><span class="line">      -44,    -49,    -53,    -56,    -58,    -58,    -57,    -55,    -52,</span><br><span class="line">      -48,    -42,    -35,    -28,    -19,    -10,      0,     10,     20,</span><br><span class="line">       30,     39,     48,     57,     64,     70,     74,     77,     78,</span><br><span class="line">       78,     75,     71,     65,     58,     49,     38,     26,     13,</span><br><span class="line">       -1,    -15,    -30,    -44,    -58,    -71,    -83,    -94,   -102,</span><br><span class="line">     -109,   -113,   -115,   -115,   -111,   -105,    -96,    -84,    -70,</span><br><span class="line">      -54,    -36,    -16,      5,     27,     49,     71,     93,    113,</span><br><span class="line">      131,    147,    161,    171,    178,    181,    180,    174,    164,</span><br><span class="line">      150,    131,    109,     82,     52,     19,    -16,    -53,    -91,</span><br><span class="line">     -128,   -166,   -201,   -234,   -263,   -289,   -309,   -323,   -330,</span><br><span class="line">     -330,   -322,   -305,   -280,   -246,   -203,   -151,    -90,    -21,</span><br><span class="line">       55,    139,    228,    323,    422,    524,    629,    733,    837,</span><br><span class="line">      939,   1037,   1131,   1218,   1299,   1371,   1433,   1486,   1528,</span><br><span class="line">     1558,   1576,   1582,   1576,   1558,   1528,   1486,   1433,   1371,</span><br><span class="line">     1299,   1218,   1131,   1037,    939,    837,    733,    629,    524,</span><br><span class="line">      422,    323,    228,    139,     55,    -21,    -90,   -151,   -203,</span><br><span class="line">     -246,   -280,   -305,   -322,   -330,   -330,   -323,   -309,   -289,</span><br><span class="line">     -263,   -234,   -201,   -166,   -128,    -91,    -53,    -16,     19,</span><br><span class="line">       52,     82,    109,    131,    150,    164,    174,    180,    181,</span><br><span class="line">      178,    171,    161,    147,    131,    113,     93,     71,     49,</span><br><span class="line">       27,      5,    -16,    -36,    -54,    -70,    -84,    -96,   -105,</span><br><span class="line">     -111,   -115,   -115,   -113,   -109,   -102,    -94,    -83,    -71,</span><br><span class="line">      -58,    -44,    -30,    -15,     -1,     13,     26,     38,     49,</span><br><span class="line">       58,     65,     71,     75,     78,     78,     77,     74,     70,</span><br><span class="line">       64,     57,     48,     39,     30,     20,     10,      0,    -10,</span><br><span class="line">      -19,    -28,    -35,    -42,    -48,    -52,    -55,    -57,    -58,</span><br><span class="line">      -58,    -56,    -53,    -49,    -44,    -38,    -32,    -24,    -17,</span><br><span class="line">       -9,     -1,      7,     15,     23,     30,     37,     44,     49,</span><br><span class="line">       54,     59,     62,     65,     67,     69,     69,     69,     68,</span><br><span class="line">       67,     65,     62,     60,     56,     53,     49,     46,     42,</span><br><span class="line">       38,     34,     31,     27,     24,     21,     18,     15,     12,</span><br><span class="line">       10,      8,      6,      5,      4,      3,      2,      1,      1,</span><br><span class="line">        0,      0,      0,      0,     -2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int min( int a, int b)</span><br><span class="line">&#123;</span><br><span class="line">	return a &lt; b? a : b;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">int main() &#123;</span><br><span class="line">	int L,n;</span><br><span class="line">	FILE *fp,*fp1;</span><br><span class="line">	for(i=0;i&lt;Length;i++)&#123;</span><br><span class="line">			input[i]=1024*sin(w1*i)+1024*sin(w2*i);	//待滤波信号，乘以1024转换为Q10格式（sin范围为-1~1，将其转换为整数格式）&#125;</span><br><span class="line">	/*for(n=0;n&lt;Length+BL;n++)				//卷积计算</span><br><span class="line">	&#123;</span><br><span class="line">	    output[n] = 0;</span><br><span class="line">		for(m=0;(m&lt;BL)&amp;&amp;(m&lt;n);m++)</span><br><span class="line">			output[n]+=B[m]*input[n-m];</span><br><span class="line">	&#125;*/</span><br><span class="line">	for(n = 0; n &lt; Length; n++)</span><br><span class="line">	&#123;	</span><br><span class="line">		output[n] = 0;</span><br><span class="line">		for(L = 0; L &lt; min( n, BL); L++)</span><br><span class="line">		&#123;	</span><br><span class="line">			output[n] += (B[L]*input[n-L]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    fp1 = fopen(&quot;./input.txt&quot;,&quot;w&quot;);</span><br><span class="line">    if(fp1==NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;error\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    for(i=0;i&lt;Length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        fprintf(fp1,&quot;%d\n&quot;,input[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(fp1);</span><br><span class="line">    fp = fopen(&quot;./numbers.txt&quot;,&quot;w&quot;);</span><br><span class="line">    if(fp==NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;error\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    for(i=0;i&lt;Length;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        fprintf(fp,&quot;%d\n&quot;,output[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(fp);</span><br><span class="line">	printf(&quot;Finish!&quot;);</span><br><span class="line">    return 0;</span><br></pre></td></tr></table></figure>
+<p>输入信号波形图如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230218121725148.png" /></p>
+<p>输入信号频谱图如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230218122413384.png" /></p>
+<p>输出信号波形图如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230218121829551.png" /></p>
+<p>输出信号频谱图如下：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230218121849527.png" /></p>
+]]></content>
+      <categories>
+        <category>Notes</category>
+        <category>Embedded System</category>
+      </categories>
+      <tags>
+        <tag>ARM</tag>
+      </tags>
+  </entry>
 </search>
