@@ -17395,4 +17395,118 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
         <tag>ARM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MATLAB的图像显示方法</title>
+    <url>/Image-Processing/MATLAB%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="matlab的图像显示方法">MATLAB的图像显示方法</h1>
+<h3 id="目的">目的</h3>
+<ol type="1">
+<li>了解 MATLAB 的基本功能及操作方法。</li>
+<li>掌握典型离散信号的 Matlab 产生和显示。</li>
+</ol>
+<h3 id="内容">内容</h3>
+<p>在 MATLAB 中, 序列是用矩阵向量表示, 但它没有包含采样信息,
+即序列位置信息, 为 此, 要表示一个序列需要建立两个向量; 一是时间序列 n ,
+或称位置序列, 另一个为取值序 列 x ，表示如下: <span
+class="math inline">\(n=[\cdots,-3,-2,-1,0,1,2,3, \cdots]\)</span>
+，<span class="math inline">\(\mathrm{x}=[\cdots, 6,3,5,2,1,7,9,
+\cdots]\)</span></p>
+<p>一般程序都从 0 位置起始, 则 <span class="math inline">\(x=[x(0),
+x(1), x(2), \cdots]\)</span> 对于多维信号需要建立矩阵来表示,
+矩阵的每个列向量代表一维信号。</p>
+<p>数字信号处理中常用的信号有指数信号、正弦信号、余弦信号、方波信号、锯齿波信号
+等, 在 MATLAB 语言中分别由 exp, sin, cos, square, sawtooth
+等函数来实现。</p>
+<p>1.用 MATLAB 编制程序, 分别产生长度为 <span
+class="math inline">\(\mathrm{N}\)</span> (由输入确定) 的序列:</p>
+<span id="more"></span>
+<h4 id="单位冲击响应序列">(1)单位冲击响应序列</h4>
+<p>可用 MATLAB 中 zeros 函数来实现;</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">t=<span class="number">-20</span>:<span class="number">1</span>:<span class="number">20</span>;</span><br><span class="line">X=<span class="built_in">zeros</span>(<span class="built_in">size</span> (t)) ;</span><br><span class="line">X(<span class="number">21</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="built_in">plot</span>(t,x);</span><br></pre></td></tr></table></figure>
+<h4 id="单位阶跃序列">(2)单位阶跃序列</h4>
+<p>U(n) 可用 MATLAB 中 ones 函数来实现;</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">t=<span class="number">-20</span>:<span class="number">1</span>:<span class="number">20</span>;</span><br><span class="line">X=<span class="built_in">zeros</span> (<span class="built_in">size</span> (t)) ;</span><br><span class="line">x (<span class="number">21</span>:<span class="number">41</span>)=<span class="built_in">ones</span> (<span class="number">1</span>,<span class="number">21</span>);</span><br><span class="line"><span class="built_in">plot</span>(t,x);</span><br></pre></td></tr></table></figure>
+<h4 id="正弦序列">(3)正弦序列</h4>
+<p><span class="math inline">\(\quad x(n)=\sin (\omega n)\)</span>
+；</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N0=<span class="number">20</span>;</span><br><span class="line">w=<span class="number">0.5</span>;</span><br><span class="line">n=-N0:<span class="number">0.5</span>:N0;</span><br><span class="line">y=<span class="built_in">sin</span> (w*n);</span><br><span class="line"><span class="built_in">plot</span> (n, y);</span><br></pre></td></tr></table></figure>
+<h4 id="指数序列">(4)指数序列</h4>
+<p><span
+class="math inline">\(x(n)=a^{n},-\infty&lt;n&lt;+\infty\)</span></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N0=<span class="number">20</span> ;</span><br><span class="line">a=<span class="number">1.1</span>;</span><br><span class="line">n=-N0:<span class="number">2</span>:N0 ;</span><br><span class="line">X=a.^n;</span><br><span class="line"><span class="built_in">plot</span> (n,x);</span><br></pre></td></tr></table></figure>
+<h4 id="复指数序列">(5)复指数序列</h4>
+<p>用 exp 函数实现 <span class="math inline">\(K_{0} e^{(a+j b)
+n}\)</span> , 并给出该复指数序列的实部、虚部、幅 值和相位的图形。(其中
+a=-0.2 ; b=0.5 ; K0=4 ; N=40.)</p>
+<p><span class="math inline">\(K_{0} e^{(a+j b) n}=K_{0} e^{a n}(\cos (b
+n)+j \sin (b n))\)</span></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a=<span class="number">-0.2</span>;</span><br><span class="line">b=<span class="number">0.5</span>;</span><br><span class="line">K0=<span class="number">4</span>;</span><br><span class="line">N=<span class="number">40</span>;</span><br><span class="line">n=-N:<span class="number">1</span>:N;</span><br><span class="line">t=K0*<span class="built_in">exp</span>.^(a+<span class="built_in">j</span>*b)*n ;</span><br></pre></td></tr></table></figure>
+<p>流程图：</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230301094157686.png" /></p>
+<p>在计算机上实现正弦序列 <span class="math inline">\(x(n)=A_{0} \sin (2
+\pi f n+\varphi)\)</span></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A0=<span class="number">-0.2</span>;</span><br><span class="line">f=<span class="number">0.05</span>;</span><br><span class="line"><span class="built_in">pi</span>=<span class="number">3.14</span>;</span><br><span class="line">K0=<span class="number">2</span>/<span class="number">3</span>*<span class="built_in">pi</span>;</span><br><span class="line">N=<span class="number">40</span>;</span><br><span class="line">n=-N:<span class="number">1</span>:N;</span><br><span class="line">x=A0*<span class="built_in">sin</span>(<span class="number">2</span>*<span class="built_in">pi</span>*f*n+K0);</span><br><span class="line"><span class="built_in">plot</span>(n,x)</span><br></pre></td></tr></table></figure>
+<p>1.练习图像读写和显示函数的使用方法</p>
+<p>2.掌握MATLAB支持的五类图像显示方法</p>
+<p>3.数字图像处理中常用到的MATLAB函数</p>
+<h3 id="图像的读">1.图像的读</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">RGB=imread(<span class="string">&#x27;D:\pic\DIP3E_CHO1\Fig0101(1921 digital image).tif);</span></span><br></pre></td></tr></table></figure>
+<h3 id="图像显示">2.图像显示</h3>
+<h4 id="图像显示-1">(1)图像显示</h4>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">f=imread(<span class="string">&#x27;D:\pic\DIP3E_CHO1\Fig0101(1921 digital image).tif&#x27;</span>);</span><br><span class="line">whos f</span><br><span class="line">imshow(f)</span><br><span class="line">[m,n]=<span class="built_in">size</span>(f)<span class="comment">%显示图像的大小</span></span><br></pre></td></tr></table></figure>
+<h4 id="同屏显示多个图像">(2)同屏显示多个图像</h4>
+<p>可用subplot(m,n)将图形窗分为m*n个子窗口，然后取第一、第二...子窗口显示不同的图像，实现同屏显示多个图像。例如:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">%取2×2个子屏中的第一个子屏</span></span><br><span class="line">subplot (<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line"><span class="comment">%显示第一个图像</span></span><br><span class="line">imshow(Il);</span><br><span class="line"><span class="comment">%取2×2个子屏中的第四个子屏</span></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line"><span class="comment">%显示第四个图像</span></span><br><span class="line">imshow(I4);</span><br></pre></td></tr></table></figure>
+<h3
+id="数字图像处理中常用到的matlab函数">3.数字图像处理中常用到的MATLAB函数</h3>
+<p>size ()函数</p>
+<p>Zeros ()函数</p>
+<p>Fft2(), ifft2()函数</p>
+<p>Imhist()函数</p>
+<p>Histeq()函数</p>
+<p>Imrotate()函数</p>
+<p>Imnoise()函数</p>
+<p>Edge()函数</p>
+<p>Title()函数</p>
+<p>Xlable(), Ylable()函数</p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>灰度直方图及直方图均衡化</title>
+    <url>/Image-Processing/%E7%81%B0%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8A%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="灰度直方图及直方图均衡化">灰度直方图及直方图均衡化</h1>
+<h2 id="目的">目的</h2>
+<p>1.直方图的显示</p>
+<p>2.计算并绘制图像直方图</p>
+<p>3.直方图的均衡化</p>
+<h2 id="内容">内容</h2>
+<p>灰度直方图用于显示图像的灰度值分布情况,是数字图像处理中最简单和最实用的工具。</p>
+<p>MATLAB中提供了专门绘制直方图的函数 <code>imhist()</code> 。</p>
+<h3 id="直方图的显示">1.直方图的显示</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">imshow(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif&#x27;</span>);</span><br><span class="line">title(<span class="string">&#x27;原图像&#x27;</span>)</span><br><span class="line"><span class="comment">% 显示原图像</span></span><br><span class="line">A=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imhist(A);</span><br><span class="line">title(<span class="string">&#x27;对应直方图&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="计算并绘制图像直方图">2.计算并绘制图像直方图</h3>
+<p>A：用 bar 函数显示</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line">h=imhist(A);</span><br><span class="line">h1=h(<span class="number">1</span>:<span class="number">10</span>:<span class="number">256</span>);</span><br><span class="line">horz=<span class="number">1</span>:<span class="number">10</span>:<span class="number">256</span>;</span><br><span class="line">bar(horz,h1)<span class="comment">% 用bar 函数显示</span></span><br><span class="line">axis([<span class="number">0</span> <span class="number">255</span> <span class="number">0</span> <span class="number">15000</span>])<span class="comment">% 设置水平轴和垂直轴的最大值和最小值</span></span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">0</span>:<span class="number">50</span>:<span class="number">255</span>)</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,<span class="number">0</span>:<span class="number">2000</span>:<span class="number">15000</span>)</span><br></pre></td></tr></table></figure>
+<p>B：用stem 函数显示</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line">h=imhist(A);</span><br><span class="line">h1=h(<span class="number">1</span>:<span class="number">10</span>:<span class="number">256</span>);</span><br><span class="line">horz=<span class="number">1</span>:<span class="number">10</span>:<span class="number">256</span>;</span><br><span class="line">stem(horz,h1,<span class="string">&#x27;fill&#x27;</span>)<span class="comment">% 用stem 函数显示</span></span><br><span class="line">axis([<span class="number">0</span> <span class="number">255</span> <span class="number">0</span> <span class="number">15000</span>])<span class="comment">% 设置水平轴和垂直轴的最大值和最小值</span></span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,[<span class="number">0</span>:<span class="number">50</span>:<span class="number">255</span>])</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,[<span class="number">0</span>:<span class="number">2000</span>:<span class="number">15000</span>])</span><br></pre></td></tr></table></figure>
+<p>C：用 <code>plot</code> 函数显示</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line">h=imhist(A);</span><br><span class="line"><span class="built_in">plot</span>(h)</span><br><span class="line">axis([<span class="number">0</span> <span class="number">255</span> <span class="number">0</span> <span class="number">15000</span>])<span class="comment">% 设置水平轴和垂直轴的最大值和最小值</span></span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,[<span class="number">0</span>:<span class="number">50</span>:<span class="number">255</span>])</span><br><span class="line">set(gca,<span class="string">&#x27;xtick&#x27;</span>,[<span class="number">0</span>:<span class="number">2000</span>:<span class="number">15000</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="直方图均衡化">3.直方图均衡化</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">imshow(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif&#x27;</span>);</span><br><span class="line">title(<span class="string">&#x27;原图像&#x27;</span>)</span><br><span class="line">I=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imhist(I),title(<span class="string">&#x27;对应直方图&#x27;</span>)</span><br><span class="line"><span class="comment">% 从得到的直方图可以看出，图像的对比度很低，灰度级集中在70-160 范围内，如果只取</span></span><br><span class="line"><span class="comment">% 这个范围内的灰度，并扩展到[0,255]，则会明显增强图像对比度</span></span><br><span class="line">J=imadjust(I,[<span class="number">70</span>/<span class="number">255</span> <span class="number">160</span>/<span class="number">255</span>],[]);</span><br><span class="line"><span class="built_in">figure</span>;imshow(J),title(<span class="string">&#x27;经灰度级调整后的图&#x27;</span>)</span><br><span class="line"><span class="built_in">figure</span>;imhist(J),title(<span class="string">&#x27;灰度级调整后的直方图&#x27;</span>)</span><br><span class="line"><span class="comment">% MATLAB 还提供了histeq 函数（自动直方图均衡化）</span></span><br><span class="line">K=histeq(I);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imshow(K),title(<span class="string">&#x27;经直方图均衡化后的图&#x27;</span>)</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imhist(K),title(<span class="string">&#x27;直方图均衡化后的直方图&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>
