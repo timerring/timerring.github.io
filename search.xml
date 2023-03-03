@@ -17509,4 +17509,60 @@ id="数字图像处理中常用到的matlab函数">3.数字图像处理中常用
         <tag>MATLAB</tag>
       </tags>
   </entry>
+  <entry>
+    <title>图像的傅立叶变换</title>
+    <url>/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/</url>
+    <content><![CDATA[<h2 id="目的">目的</h2>
+<p>1.掌握二维 DFT 变换及其物理意义</p>
+<p>2.掌握二维 DFT 变换的MATLAB 程序</p>
+<p>3.空域滤波与频域滤波</p>
+<h2 id="原理">原理</h2>
+<h3 id="应用傅立叶变换进行图像处理">1.应用傅立叶变换进行图像处理</h3>
+<p>傅里叶变换是线性系统分析的一个有力工具，它能够定量地分析诸如数字化系统、采样点、电子放大器、卷积滤波器、噪音和显示点等的作用。通过实验培养这项技能，将有助于解决大多数图像处理问题。对任何想在工作中有效应用数字图像处理技术的人来说，把时间用在学习和掌握博里叶变换上是很有必要的。</p>
+<h3 id="傅立叶fourier变换的定义">2.傅立叶（Fourier）变换的定义</h3>
+<p>对于二维信号，二维Fourier 变换定义为： <span class="math display">\[
+F(u, v)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-j 2
+\pi (u x+vy)} d x d y
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u d, v) e^{j 2
+\pi (u x+vy) } d u d v
+\]</span> 二维离散傅立叶变换为： <span class="math display">\[
+F(u, v)=\sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) e^{-j 2
+\pi(\frac{\mathrm{ux}}{\mathrm{M}}+\frac{v y}{N})}
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\frac{1}{M N} \sum_{u=0}^{M-1} \sum_{v=0}^{N-1} F(u, v) e^{j 2
+\pi(\frac{\mathrm{ux}}{M}+\frac{v y}{N})}
+\]</span> <span id="more"></span></p>
+<p>图像的傅立叶变换与一维信号的傅立叶变换变换一样，有快速算法，具体参见参考书目，有关傅立叶变换的快速算法的程序不难找到。实际上，现在有实现傅立叶变换的芯片，可以实时实现傅立叶变换。</p>
+<h2 id="利用matlab-实现数字图像的傅立叶变换">利用MATLAB
+实现数字图像的傅立叶变换</h2>
+<p>A．</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">I=imread(<span class="string">&#x27;D:\pic\DIP3E_CH03\Fig0316(3)(third_from_top).tif&#x27;</span>); <span class="comment">%读入原图像文件</span></span><br><span class="line">imshow(I); <span class="comment">%显示原图像</span></span><br><span class="line">fftI=fft2(I); <span class="comment">%二维离散傅立叶变换</span></span><br><span class="line">sfftI=fftshift(fftI); <span class="comment">%直流分量移到频谱中心</span></span><br><span class="line">RR=<span class="built_in">real</span>(sfftI); <span class="comment">%取傅立叶变换的实部</span></span><br><span class="line">II=<span class="built_in">imag</span>(sfftI); <span class="comment">%取傅立叶变换的虚部</span></span><br><span class="line">A=<span class="built_in">sqrt</span>(RR.^<span class="number">2</span>+II.^<span class="number">2</span>);<span class="comment">%计算频谱幅值</span></span><br><span class="line">A=(A-<span class="built_in">min</span>(<span class="built_in">min</span>(A)))/(<span class="built_in">max</span>(<span class="built_in">max</span>(A))-<span class="built_in">min</span>(<span class="built_in">min</span>(A)))*<span class="number">225</span>; <span class="comment">%归一化</span></span><br><span class="line"><span class="built_in">figure</span> <span class="comment">%设定窗口</span></span><br><span class="line">imshow(A); <span class="comment">%显示原图像的频谱</span></span><br></pre></td></tr></table></figure>
+<p>B．</p>
+<p>傅立叶变换在图像处理，特别是在图像增强、复原和压缩中，扮演着非常重要的作用。实际中一般采用一种叫做快速傅立叶变换（FFT）的方法，MATLAB
+中的fft2 指令用于得到二维FFT 的结果，ifft2 指令用于得到二维FFT
+逆变换的结果。</p>
+<p>近似冲击函数的二维快速傅立叶变换（FFT）</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">x=<span class="number">1</span>:<span class="number">99</span>;y=<span class="number">1</span>:<span class="number">99</span>;</span><br><span class="line">[X,Y]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line">A=<span class="built_in">zeros</span>(<span class="number">99</span>,<span class="number">99</span>);</span><br><span class="line">A(<span class="number">49</span>:<span class="number">51</span>,<span class="number">49</span>:<span class="number">51</span>)=<span class="number">1</span>;</span><br><span class="line">B=fft2(A);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>),imshow(A),xlabel(<span class="string">&#x27;空域图象&#x27;</span>);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>),imshow(B),xlabel(<span class="string">&#x27;时域图象&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>),mesh(X,Y,A),xlabel(<span class="string">&#x27;空域&#x27;</span>),grid on;</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>),mesh(X,Y,<span class="built_in">abs</span>(B)),xlabel(<span class="string">&#x27;时域&#x27;</span>),grid on;</span><br></pre></td></tr></table></figure>
+<h2 id="空域滤波与频域滤波">空域滤波与频域滤波</h2>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 用于频域滤波的m函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>=<span class="title">dftfilt</span><span class="params">(f,H)</span></span></span><br><span class="line">F=fft2(f,<span class="built_in">size</span>(H,<span class="number">1</span>),<span class="built_in">size</span>(H,<span class="number">2</span>));</span><br><span class="line">g=<span class="built_in">real</span>(ifft2(H.*F));</span><br><span class="line">g=g(<span class="number">1</span>:<span class="built_in">size</span>(f,<span class="number">1</span>),<span class="number">1</span>:<span class="built_in">size</span>(f,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PQ</span>=<span class="title">paddedsize</span><span class="params">(AB,CD,PARAM)</span></span></span><br><span class="line"><span class="keyword">if</span> nargin==<span class="number">1</span></span><br><span class="line">PQ=<span class="number">2</span>*AB;</span><br><span class="line"><span class="keyword">elseif</span> nargin ==<span class="number">2</span> &amp; ~ischar(CD)</span><br><span class="line">PQ=AB+CD<span class="number">-1</span>;</span><br><span class="line">PQ=<span class="number">2</span>*<span class="built_in">ceil</span>(PQ/<span class="number">2</span>);</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">2</span></span><br><span class="line">m=<span class="built_in">max</span>(AB);</span><br><span class="line">P=<span class="number">2</span>^<span class="built_in">nextpow2</span>(<span class="number">2</span>*m);</span><br><span class="line">PQ=[P,P];</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">3</span></span><br><span class="line">m=<span class="built_in">max</span>([AB CD]);</span><br><span class="line">P=<span class="number">2</span>^<span class="built_in">nextpow2</span>(<span class="number">2</span>*m);</span><br><span class="line">PQ=[P,P];</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">error(<span class="string">&#x27;Wrong number of inputs&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%图像f的傅里叶频谱</span></span><br><span class="line">f=imread(<span class="string">&#x27; D:\pic\DIP3E_CH04\Fig0438(a)(bld_600by600).tif&#x27;</span>);</span><br><span class="line">F=fft2(f);</span><br><span class="line">S=fftshift(<span class="built_in">log</span>(<span class="number">1</span>+<span class="built_in">abs</span>(F)));</span><br><span class="line"><span class="comment">%S=gscale(S);</span></span><br><span class="line"><span class="comment">% gscale 函数参照  function g=gscale(f,varargin)</span></span><br><span class="line">imshow(S)</span><br><span class="line"></span><br><span class="line"><span class="comment">%使用函数fspecial生成空间滤波器</span></span><br><span class="line">h=fspecial(‘sobel’)</span><br><span class="line">freqz2(h) <span class="comment">%查看相应频域滤波器图形</span></span><br><span class="line">PQ=paddedsize(<span class="built_in">size</span>(f));</span><br><span class="line">H=freqz2(h,PQ(<span class="number">1</span>),PQ(<span class="number">2</span>));</span><br><span class="line">H1=ifftshift(H);</span><br><span class="line"></span><br><span class="line">imshow(<span class="built_in">abs</span>(H),[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(H1),[])</span><br><span class="line"></span><br><span class="line">gs=imfilter(double(f),h);<span class="comment">% 生成滤波后的图像，并默认采用了0进行边界填</span></span><br><span class="line">充</span><br><span class="line">gf=dftfilt(f,H1);</span><br><span class="line"></span><br><span class="line">imshow(gs,[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(gf,[])</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gs),[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gf),[])</span><br><span class="line"></span><br><span class="line"><span class="comment">%创建一幅阀值2值图像</span></span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gs)&gt;<span class="number">0.2</span>*<span class="built_in">abs</span>(<span class="built_in">max</span>(gs(:))))</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gf)&gt;<span class="number">0.2</span>*<span class="built_in">abs</span>(<span class="built_in">max</span>(gf(:))))</span><br><span class="line">d=<span class="built_in">abs</span>(gs-gf);</span><br><span class="line"><span class="built_in">max</span>(d(:))</span><br><span class="line"><span class="built_in">min</span>(d(:))</span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p>[1] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>

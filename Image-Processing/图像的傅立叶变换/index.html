@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="目的 1.掌握二维 DFT 变换及其物理意义 2.掌握二维 DFT 变换的MATLAB 程序 3.空域滤波与频域滤波 原理 1.应用傅立叶变换进行图像处理 傅里叶变换是线性系统分析的一个有力工具，它能够定量地分析诸如数字化系统、采样点、电子放大器、卷积滤波器、噪音和显示点等的作用。通过实验培养这项技能，将有助于解决大多数图像处理问题。对任何想在工作中有效应用数字图像处理技术的人来说，把">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="图像的傅立叶变换">
+<meta property="og:url" content="http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="目的 1.掌握二维 DFT 变换及其物理意义 2.掌握二维 DFT 变换的MATLAB 程序 3.空域滤波与频域滤波 原理 1.应用傅立叶变换进行图像处理 傅里叶变换是线性系统分析的一个有力工具，它能够定量地分析诸如数字化系统、采样点、电子放大器、卷积滤波器、噪音和显示点等的作用。通过实验培养这项技能，将有助于解决大多数图像处理问题。对任何想在工作中有效应用数字图像处理技术的人来说，把">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-03T01:17:15.374Z">
+<meta property="article:modified_time" content="2023-03-03T01:22:13.150Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/","path":"Image-Processing/图像的傅立叶变换/","title":"图像的傅立叶变换"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图像的傅立叶变换 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">129</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">1.应用傅立叶变换进行图像处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%85%E7%AB%8B%E5%8F%B6fourier%E5%8F%98%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.傅立叶（Fourier）变换的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8matlab-%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">利用MATLAB
+实现数字图像的傅立叶变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%9F%9F%E6%BB%A4%E6%B3%A2%E4%B8%8E%E9%A2%91%E5%9F%9F%E6%BB%A4%E6%B3%A2"><span class="nav-number">4.</span> <span class="nav-text">空域滤波与频域滤波</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图像的傅立叶变换 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图像的傅立叶变换
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-03 09:17:15" itemprop="dateCreated datePublished" datetime="2023-03-03T09:17:15+08:00">2023-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="目的">目的</h2>
+<p>1.掌握二维 DFT 变换及其物理意义</p>
+<p>2.掌握二维 DFT 变换的MATLAB 程序</p>
+<p>3.空域滤波与频域滤波</p>
+<h2 id="原理">原理</h2>
+<h3 id="应用傅立叶变换进行图像处理">1.应用傅立叶变换进行图像处理</h3>
+<p>傅里叶变换是线性系统分析的一个有力工具，它能够定量地分析诸如数字化系统、采样点、电子放大器、卷积滤波器、噪音和显示点等的作用。通过实验培养这项技能，将有助于解决大多数图像处理问题。对任何想在工作中有效应用数字图像处理技术的人来说，把时间用在学习和掌握博里叶变换上是很有必要的。</p>
+<h3 id="傅立叶fourier变换的定义">2.傅立叶（Fourier）变换的定义</h3>
+<p>对于二维信号，二维Fourier 变换定义为： <span class="math display">\[
+F(u, v)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-j 2
+\pi (u x+vy)} d x d y
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u d, v) e^{j 2
+\pi (u x+vy) } d u d v
+\]</span> 二维离散傅立叶变换为： <span class="math display">\[
+F(u, v)=\sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) e^{-j 2
+\pi(\frac{\mathrm{ux}}{\mathrm{M}}+\frac{v y}{N})}
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\frac{1}{M N} \sum_{u=0}^{M-1} \sum_{v=0}^{N-1} F(u, v) e^{j 2
+\pi(\frac{\mathrm{ux}}{M}+\frac{v y}{N})}
+\]</span> <span id="more"></span></p>
+<p>图像的傅立叶变换与一维信号的傅立叶变换变换一样，有快速算法，具体参见参考书目，有关傅立叶变换的快速算法的程序不难找到。实际上，现在有实现傅立叶变换的芯片，可以实时实现傅立叶变换。</p>
+<h2 id="利用matlab-实现数字图像的傅立叶变换">利用MATLAB
+实现数字图像的傅立叶变换</h2>
+<p>A．</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">I=imread(<span class="string">&#x27;D:\pic\DIP3E_CH03\Fig0316(3)(third_from_top).tif&#x27;</span>); <span class="comment">%读入原图像文件</span></span><br><span class="line">imshow(I); <span class="comment">%显示原图像</span></span><br><span class="line">fftI=fft2(I); <span class="comment">%二维离散傅立叶变换</span></span><br><span class="line">sfftI=fftshift(fftI); <span class="comment">%直流分量移到频谱中心</span></span><br><span class="line">RR=<span class="built_in">real</span>(sfftI); <span class="comment">%取傅立叶变换的实部</span></span><br><span class="line">II=<span class="built_in">imag</span>(sfftI); <span class="comment">%取傅立叶变换的虚部</span></span><br><span class="line">A=<span class="built_in">sqrt</span>(RR.^<span class="number">2</span>+II.^<span class="number">2</span>);<span class="comment">%计算频谱幅值</span></span><br><span class="line">A=(A-<span class="built_in">min</span>(<span class="built_in">min</span>(A)))/(<span class="built_in">max</span>(<span class="built_in">max</span>(A))-<span class="built_in">min</span>(<span class="built_in">min</span>(A)))*<span class="number">225</span>; <span class="comment">%归一化</span></span><br><span class="line"><span class="built_in">figure</span> <span class="comment">%设定窗口</span></span><br><span class="line">imshow(A); <span class="comment">%显示原图像的频谱</span></span><br></pre></td></tr></table></figure>
+<p>B．</p>
+<p>傅立叶变换在图像处理，特别是在图像增强、复原和压缩中，扮演着非常重要的作用。实际中一般采用一种叫做快速傅立叶变换（FFT）的方法，MATLAB
+中的fft2 指令用于得到二维FFT 的结果，ifft2 指令用于得到二维FFT
+逆变换的结果。</p>
+<p>近似冲击函数的二维快速傅立叶变换（FFT）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">1</span>:<span class="number">99</span>;y=<span class="number">1</span>:<span class="number">99</span>;</span><br><span class="line">[X,Y]=<span class="built_in">meshgrid</span>(x,y);</span><br><span class="line">A=<span class="built_in">zeros</span>(<span class="number">99</span>,<span class="number">99</span>);</span><br><span class="line">A(<span class="number">49</span>:<span class="number">51</span>,<span class="number">49</span>:<span class="number">51</span>)=<span class="number">1</span>;</span><br><span class="line">B=fft2(A);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>),imshow(A),xlabel(<span class="string">&#x27;空域图象&#x27;</span>);</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>),imshow(B),xlabel(<span class="string">&#x27;时域图象&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>),mesh(X,Y,A),xlabel(<span class="string">&#x27;空域&#x27;</span>),grid on;</span><br><span class="line">subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>),mesh(X,Y,<span class="built_in">abs</span>(B)),xlabel(<span class="string">&#x27;时域&#x27;</span>),grid on;</span><br></pre></td></tr></table></figure>
+<h2 id="空域滤波与频域滤波">空域滤波与频域滤波</h2>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 用于频域滤波的m函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>=<span class="title">dftfilt</span><span class="params">(f,H)</span></span></span><br><span class="line">F=fft2(f,<span class="built_in">size</span>(H,<span class="number">1</span>),<span class="built_in">size</span>(H,<span class="number">2</span>));</span><br><span class="line">g=<span class="built_in">real</span>(ifft2(H.*F));</span><br><span class="line">g=g(<span class="number">1</span>:<span class="built_in">size</span>(f,<span class="number">1</span>),<span class="number">1</span>:<span class="built_in">size</span>(f,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PQ</span>=<span class="title">paddedsize</span><span class="params">(AB,CD,PARAM)</span></span></span><br><span class="line"><span class="keyword">if</span> nargin==<span class="number">1</span></span><br><span class="line">PQ=<span class="number">2</span>*AB;</span><br><span class="line"><span class="keyword">elseif</span> nargin ==<span class="number">2</span> &amp; ~ischar(CD)</span><br><span class="line">PQ=AB+CD<span class="number">-1</span>;</span><br><span class="line">PQ=<span class="number">2</span>*<span class="built_in">ceil</span>(PQ/<span class="number">2</span>);</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">2</span></span><br><span class="line">m=<span class="built_in">max</span>(AB);</span><br><span class="line">P=<span class="number">2</span>^<span class="built_in">nextpow2</span>(<span class="number">2</span>*m);</span><br><span class="line">PQ=[P,P];</span><br><span class="line"><span class="keyword">elseif</span> nargin == <span class="number">3</span></span><br><span class="line">m=<span class="built_in">max</span>([AB CD]);</span><br><span class="line">P=<span class="number">2</span>^<span class="built_in">nextpow2</span>(<span class="number">2</span>*m);</span><br><span class="line">PQ=[P,P];</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">error(<span class="string">&#x27;Wrong number of inputs&#x27;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%图像f的傅里叶频谱</span></span><br><span class="line">f=imread(<span class="string">&#x27; D:\pic\DIP3E_CH04\Fig0438(a)(bld_600by600).tif&#x27;</span>);</span><br><span class="line">F=fft2(f);</span><br><span class="line">S=fftshift(<span class="built_in">log</span>(<span class="number">1</span>+<span class="built_in">abs</span>(F)));</span><br><span class="line"><span class="comment">%S=gscale(S);</span></span><br><span class="line"><span class="comment">% gscale 函数参照  function g=gscale(f,varargin)</span></span><br><span class="line">imshow(S)</span><br><span class="line"></span><br><span class="line"><span class="comment">%使用函数fspecial生成空间滤波器</span></span><br><span class="line">h=fspecial(‘sobel’)</span><br><span class="line">freqz2(h) <span class="comment">%查看相应频域滤波器图形</span></span><br><span class="line">PQ=paddedsize(<span class="built_in">size</span>(f));</span><br><span class="line">H=freqz2(h,PQ(<span class="number">1</span>),PQ(<span class="number">2</span>));</span><br><span class="line">H1=ifftshift(H);</span><br><span class="line"></span><br><span class="line">imshow(<span class="built_in">abs</span>(H),[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(H1),[])</span><br><span class="line"></span><br><span class="line">gs=imfilter(double(f),h);<span class="comment">% 生成滤波后的图像，并默认采用了0进行边界填</span></span><br><span class="line">充</span><br><span class="line">gf=dftfilt(f,H1);</span><br><span class="line"></span><br><span class="line">imshow(gs,[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(gf,[])</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gs),[])</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gf),[])</span><br><span class="line"></span><br><span class="line"><span class="comment">%创建一幅阀值2值图像</span></span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gs)&gt;<span class="number">0.2</span>*<span class="built_in">abs</span>(<span class="built_in">max</span>(gs(:))))</span><br><span class="line"><span class="built_in">figure</span>,imshow(<span class="built_in">abs</span>(gf)&gt;<span class="number">0.2</span>*<span class="built_in">abs</span>(<span class="built_in">max</span>(gf(:))))</span><br><span class="line">d=<span class="built_in">abs</span>(gs-gf);</span><br><span class="line"><span class="built_in">max</span>(d(:))</span><br><span class="line"><span class="built_in">min</span>(d(:))</span><br></pre></td></tr></table></figure>
+<p>参考文献：</p>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"><i class="fa fa-tag"></i> MATLAB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Image-Processing/%E7%81%B0%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8A%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/" rel="prev" title="灰度直方图及直方图均衡化">
+                  <i class="fa fa-chevron-left"></i> 灰度直方图及直方图均衡化
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
