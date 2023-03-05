@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">129</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">131</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,197 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E7%9A%84%E8%BD%AC%E6%8D%A2%20%E5%B9%B3%E6%BB%91%20%E9%94%90%E5%8C%96%E4%B8%8E%E5%88%86%E5%89%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E7%9A%84%E8%BD%AC%E6%8D%A2%20%E5%B9%B3%E6%BB%91%20%E9%94%90%E5%8C%96%E4%B8%8E%E5%88%86%E5%89%B2/" class="post-title-link" itemprop="url">Matlab实现彩色图像的转换、平滑、锐化与分割</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-05 21:35:47" itemprop="dateCreated datePublished" datetime="2023-03-05T21:35:47+08:00">2023-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="目的">目的</h2>
+<ol type="1">
+<li>使用 RGB、索引和灰度级图像间转换的函数</li>
+<li>掌握彩色图像平滑的MATLAB 仿真</li>
+<li>彩色图像锐化</li>
+<li>RGB 彩色图像分割</li>
+</ol>
+<h2 id="内容">内容</h2>
+<h3 id="使用-rgb索引和灰度级图像间转换的函数">1.使用
+RGB、索引和灰度级图像间转换的函数</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">clc</span><br><span class="line">f=imread(<span class="string">&#x27;D:\pic\DIP3E_CH06\Fig0651(a)(flower_no_compression).tif&#x27;</span>);</span><br><span class="line">imshow(f)</span><br><span class="line">title(<span class="string">&#x27;原图像&#x27;</span>);</span><br><span class="line"></span><br><span class="line">[X1,map1]=rgb2ind(f,<span class="number">8</span>,<span class="string">&#x27;nodither&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">imshow(X1,map1);<span class="comment">%无抖动处理的颜色数减少到8 的图像</span></span><br><span class="line">title(<span class="string">&#x27;无抖动处理的颜色数减少到8 的图像&#x27;</span>);</span><br><span class="line"></span><br><span class="line">[X2,map2]=rgb2ind(f,<span class="number">8</span>,<span class="string">&#x27;dither&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">imshow(X2,map2)<span class="comment">%有抖动处理的颜色数减少到8 的图像</span></span><br><span class="line">title(<span class="string">&#x27;有抖动处理的颜色数减少到8 的图像&#x27;</span>);</span><br><span class="line"></span><br><span class="line">g=rgb2gray(f);</span><br><span class="line">g1=dither(g);</span><br><span class="line"><span class="built_in">figure</span>,imshow(g);</span><br><span class="line">title(<span class="string">&#x27;使用函数rgb2gray 得到的原图像的灰度级图像&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>,imshow(g1);</span><br><span class="line">title(<span class="string">&#x27;经抖动处理后的灰度图像（这是一幅二值图像）&#x27;</span>);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%BD%A9%E8%89%B2%E5%9B%BE%E5%83%8F%E7%9A%84%E8%BD%AC%E6%8D%A2%20%E5%B9%B3%E6%BB%91%20%E9%94%90%E5%8C%96%E4%B8%8E%E5%88%86%E5%89%B2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%9A%84Matlab%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%9A%84Matlab%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">图像的滤波与图像增强的Matlab实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-04 09:24:08" itemprop="dateCreated datePublished" datetime="2023-03-04T09:24:08+08:00">2023-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="目的">目的</h2>
+<ol type="1">
+<li>了解 MATLAB 工具箱中的滤波器。</li>
+<li>掌握空间滤波</li>
+<li>学会对图像的空间变换</li>
+</ol>
+<h2 id="内容">内容</h2>
+<h3 id="a.-用滤波器祛除图象噪声">A. 用滤波器祛除图象噪声</h3>
+<p>在数字图像处理中，常常会遇到图像中混杂有许多的噪声。因此，在进行图像处理中，有时要先进行祛除噪声的工作。最常用的祛除噪声的方法是用滤波器进行滤波处理。MATLAB
+的图像处理工具箱里也设计了许多的滤波器。如均值滤波器、中值滤波器、维纳滤波器等。</p>
+<p>（分别用均值滤波，中值滤波，及维纳滤波器祛除加入高斯噪声的图象）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">I=imread(<span class="string">&#x27;D:\pic\DIP3E_CH04\FigP0438(left).tif &#x27;</span>);</span><br><span class="line">J=imnoise(I,<span class="string">&#x27;gaussian&#x27;</span>,<span class="number">0</span>,<span class="number">0.002</span>);</span><br><span class="line"><span class="comment">%进行均值滤波</span></span><br><span class="line">h=fspecial(<span class="string">&#x27;average&#x27;</span>,<span class="number">3</span>);</span><br><span class="line">I2=uint8(<span class="built_in">round</span>(filter2(h,I)));</span><br><span class="line"><span class="comment">%进行中值滤波</span></span><br><span class="line">I3=medfilt2(J,[<span class="number">3</span>,<span class="number">3</span>]);</span><br><span class="line"><span class="comment">%进行维纳滤波</span></span><br><span class="line">I4=wiener2(J,[<span class="number">3</span>,<span class="number">3</span>]); <span class="comment">%进行一次维纳滤波</span></span><br><span class="line">I5=wiener2(I4,[<span class="number">3</span>,<span class="number">3</span>]);<span class="comment">%进行二次维纳滤波</span></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>),imshow(I),title(<span class="string">&#x27;原图象&#x27;</span>)</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>),imshow(J),title(<span class="string">&#x27;加噪声图象&#x27;</span>)</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>),imshow(I2),title(<span class="string">&#x27;均值滤波后图象&#x27;</span>)</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),imshow(I3),title(<span class="string">&#x27;中值滤波后图象&#x27;</span>)</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>),imshow(I4),title(<span class="string">&#x27;维纳滤波后图象&#x27;</span>)</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>),imshow(I5),title(<span class="string">&#x27;两次维纳滤波后图象&#x27;</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%9A%84Matlab%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1025,211 +1216,8 @@ LDB/STB，b等指令完成较为复杂的存储区访问和程序分支，学习
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/" class="post-title-link" itemprop="url">信息论绪论</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-13 17:46:25" itemprop="dateCreated datePublished" datetime="2023-02-13T17:46:25+08:00">2023-02-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一信息的基本概念">一、信息的基本概念</h2>
-<h3 id="什么是信息information">什么是信息（information)</h3>
-<ul>
-<li><p>信息:一个既复杂又抽象的概念。</p></li>
-<li><p><strong>广义: 消息、情报、知识</strong></p></li>
-<li><p><strong>技术术语:
-计算机处理(通信传输)的对象——数据、文字、记录</strong></p></li>
-<li><p>科学名词: 统计数学、通信技术</p>
-<ul>
-<li>用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。</li>
-<li>它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念</li>
-</ul></li>
-<li><p>信息是指各个事物运动的状态及状态变化的方式：</p>
-<p>人们从来自对周围世界的观察得到的数据中获得信息。信息是抽象的意识或知识，它是看不见、模不到的。人脑的思维活动产生的一种想法，当它仍储存在脑子中的时候它就是一种信息。</p></li>
-</ul>
-<h3 id="信息消息和信号">信息、消息和信号</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/" class="post-title-link" itemprop="url">状态机设计举例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-12 08:46:15" itemprop="dateCreated datePublished" datetime="2023-02-12T08:46:15+08:00">2023-02-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="汽车尾灯控制电路设计">汽车尾灯控制电路设计</h2>
-<p>重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。</p>
-<p>例
-(试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些灯的亮、灭规律如下：</p>
-<ol type="1">
-<li>汽车正常行驶时，尾部两侧的6个灯全部熄灭。</li>
-<li>刹车时，汽车尾灯工作在告警状态，所有6个灯按一定频率闪烁（或一直保持常亮状态）。</li>
-<li>左转弯时，左侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（a）所示，右侧灯全灭。</li>
-<li>右转弯时，右侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（b）所示，左侧灯全灭。</li>
-</ol>
-<p>假设电路的输入时钟信号为CP，CP的频率对于汽车尾灯所要求的闪烁频率。试根据上述要求设计出一个时钟同步的状态机来控制汽车的尾灯。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100305424.png" /></p>
-<p>（1）画出原始状态图</p>
-<p>选择Moore机设计该电路，则尾灯的亮、灭直接由状态译码就可以得到。由设计要求可知：汽车左转弯时，右边的灯不亮而左边的灯依次循环点亮，即0个、1个、2个或3个灯亮，分别用L0、L1、L2、L3表示，状态机在4个状态中循环。同理，汽车右转弯时，状态机也会在4个状态中循环，即左边灯不亮而右边的灯有0个、1个、2个或3个灯亮，分别用R0、R1、R2、R3表示。由于L0和R0都表示6个灯不亮，所以合起来用IDLE表示。将6个灯都亮的状态用LR3表示。可得原始的状态图就画出来了，如图所示。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
