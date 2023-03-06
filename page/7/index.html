@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">131</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">132</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">131</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,117 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ARM数据定义伪操作全总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-29 21:14:52" itemprop="dateCreated datePublished" datetime="2022-12-29T21:14:52+08:00">2022-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol type="1">
+<li>定义字节存储单元伪操作DCB</li>
+<li>定义半字存储单元伪操作DCW（DCWU）</li>
+<li>定义字存储单元伪操作DCD（DCDU）</li>
+<li>为单精度浮点数定义字存储单元伪操作DCFS（DCFSU）</li>
+<li>为双精度浮点数定义字存储单元伪操作DCFD（DCFDU）</li>
+<li>内存单元分配伪操作SPACE</li>
+<li>定义结构化内存表首地址伪操作MAP</li>
+<li>定义结构化内存表中数据域伪操作FIELD</li>
+<li>定义文字池伪操作LTORG</li>
+</ol>
+<h2 id="dcb">DCB</h2>
+<h2 id="dcwdcwu">DCW(DCWU)</h2>
+<h3 id="格式">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCW（或DCWU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能">功能</h3>
+<p>DCW（或DCWU）伪操作用于分配一片连续的半字存储单元并用伪操作中指定的表达式初始化。其中，表达式可以为程序标号或数值表达式。用DCW分配的字存储单元是半字对齐的，而用DCWU分配的字存储单元并不严格按照半字对齐。</p>
+<h2 id="dcd或dcdu">DCD（或DCDU）</h2>
+<h3 id="格式-1">格式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标号 DCD（或DCDU）表达式</span><br></pre></td></tr></table></figure>
+<h3 id="功能-1">功能</h3>
+<p>DCD（或DCDU）伪操作用于分配一片连续的字存储单元并用伪操作中指定的表达式初始化。</p>
+<p>其表达式可以为程序标号或数值表达式。DCD也可用“&amp;”代替。用DCD分配的字存储单元是字对齐的，而用DCDU分配的字存储单元并不严格按照字对齐。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E4%BC%AA%E6%93%8D%E4%BD%9C%E5%85%A8%E6%80%BB%E7%BB%93/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1094,104 +1205,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/ARM%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Load/Store之单寄存器的存取指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-21 11:22:50" itemprop="dateCreated datePublished" datetime="2022-12-21T11:22:50+08:00">2022-12-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ARM处理器是Load/Store型的，即它对数据的操作是通过将数据从存储器加载到片内寄存器中进行处理，处理完成后的结果经过寄存器存回到存储器中，以加快对片外存储器进行数据处理的速度。</p>
-<p>ARM的数据存取指令Load/Store是唯一用于寄存器和存储器之间进行数据传送的指令。</p>
-<p>在ARM系统中I/O操作是通过存储器映射进行寻址的，对I/O设备的操作可以和对存储器的操作一样，因此，也是使用Load/Store指令完成。</p>
-<h3 id="loadstore指令分类">Load/Store指令分类</h3>
-<p>ARM指令集中有三种基本的数据存取指令：</p>
-<ul>
-<li>单寄存器的存取指令（LDR，STR）：提供寄存器和存储器之间最灵活的单数据项传送方式，传送的数据可以是8位字节、16位半字或32位字。</li>
-<li>多寄存器存取指令（LDM，STM）：可有效地用于大批数据的传送。一般这些指令用于进程的进入和退出，保存和恢复工作寄存器以及拷贝存储器中一块数据。</li>
-<li>单寄存器交换指令（SWP）：用于寄存器和存储器中的数据交换。在一个指令中完成存取操作。该指令常用来完成信号量操作，而信号量是一种解决进程同步和互斥问题的机制。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/LoadStore%E4%B9%8B%E5%8D%95%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E5%8F%96%E6%8C%87%E4%BB%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
