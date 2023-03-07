@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">132</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,114 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">Matlab实现图像压缩</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-07 09:04:41" itemprop="dateCreated datePublished" datetime="2023-03-07T09:04:41+08:00">2023-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="目的">目的</h2>
+<p>1． 理解图像压缩的相关概念及图像压缩的主要原则和目的； 2．
+掌握霍夫曼编码 3． 掌握几种常见的图像压缩编码方法 4． 利用 MATLAB
+程序进行图像压缩</p>
+<h2 id="原理">原理</h2>
+<h3 id="图像压缩原理">图像压缩原理</h3>
+<p>图像压缩主要目的是为了节省存储空间，增加传输速度。图像压缩的理想标准是信息丢失最少，压缩比例最大。不损失图像质量的压缩称为无损压缩，无损压缩不可能达到很高的压缩比；损失图像质量的压缩称为有损压缩，高的压缩比是以牺牲图像质量为代价的。压缩的实现方法是对图像重新进行编码，希望用更少的数据表示图像。</p>
+<p>信息的冗余量有许多种，如空间冗余，时间冗余，结构冗余，知识冗余，视觉冗余等，数据压缩实质上是减少这些冗余量。高效编码的主要方法是尽可能去除图像中的冗余成分，从而以最小的码元包含最大的图像信息。</p>
+<p>编码压缩方法有许多种，从不同的角度出发有不同的分类方法，从信息论角度出发可分为两大类。</p>
+<p>（1）冗余度压缩方法，也称无损压缩、信息保持编码或嫡编码。具体说就是解码图像和压缩编码前的图像严格相同，没有失真，从数学上讲是一种可逆运算。</p>
+<p>（2）信息量压缩方法，也称有损压缩、失真度编码或烟压缩编码。也就是说解码图像和原始图像是有差别的，允许有一定的失真。</p>
+<p>应用在多媒体中的图像压缩编码方法，从压缩编码算法原理上可以分为以下 3
+类：</p>
+<p>（1）无损压缩编码种类
+哈夫曼（Huffman）编码，算术编码，行程（RLE）编码，Lempel zev 编码。</p>
+<p>（2）有损压缩编码种类</p>
+<ul>
+<li><p>预测编码，DPCM，运动补偿</p></li>
+<li><p>频率域方法：正交变换编码(如DCT)，子带编码；</p></li>
+<li><p>空间域方法：统计分块编码；</p></li>
+<li><p>模型方法：分形编码，模型基编码；</p></li>
+<li><p>基于重要性：滤波，子采样，比特分配，向量量化；</p></li>
+</ul>
+<p>（3）混合编码。 有 JBIG，H261，JPEG，MPEG 等技术标准。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1082,110 +1190,6 @@ class="math inline">\(\mathrm{N}\)</span> (由输入确定) 的序列:</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">字符串拷贝实验</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-15 18:05:20" itemprop="dateCreated datePublished" datetime="2023-02-15T18:05:20+08:00">2023-02-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一实验目的">一、实验目的</h2>
-<p>通过实验掌握使用
-LDB/STB，b等指令完成较为复杂的存储区访问和程序分支，学习使用条件码</p>
-<h2 id="二实验环境">二、实验环境</h2>
-<p>硬件：PC机</p>
-<p>软件：ADS1.2 集成开发环境</p>
-<h2 id="三实验内容">三、实验内容</h2>
-<p>熟悉开发环境的使用并完成一块存储区的拷贝。</p>
-<p>完成分支程序设计，要求判断参数，根据不同参数，调用不同的子程序。</p>
-<h2 id="四实验要求">四、实验要求</h2>
-<ol type="1">
-<li>按照2.3节介绍的方法,
-在ADS下创建一个工程asmlab2，定义两个数据存储区Src和Dst，Src用于存放原字符串，Dst用于存放目的字符串。堆栈地址0x400，将变量原字符串的内容拷贝到目的字符串中，要能判断原字符串的结束符（0），并统计字符串中字符的个数。通过AXD查看寄存器和memory和寄存器中数据变化。</li>
-<li>在指令后面加上适当注释,说明指令功能。</li>
-<li>指出程序执行完成后各相关寄存器及存储器单元的具体内容。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

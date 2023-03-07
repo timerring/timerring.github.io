@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">132</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">133</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,108 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">寄存器和移位寄存器分析与建模</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-06 10:28:20" itemprop="dateCreated datePublished" datetime="2023-02-06T10:28:20+08:00">2023-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="寄存器及verilog-hdl建模">寄存器及Verilog HDL建模</h2>
+<p>图中，<span class="math inline">\(PD_3\)</span>~<span
+class="math inline">\(PD_0\)</span>是4位数据输入端，</p>
+<ul>
+<li>当Load = 1时，在CP脉冲上升沿到来时，<span class="math inline">\(Q_3
+= PD_3\)</span>，<span class="math inline">\(Q_2 = PD_2\)</span>，<span
+class="math inline">\(Q_1 = PD_1\)</span>，<span
+class="math inline">\(Q_0 = PD_0\)</span>，即输入数据<span
+class="math inline">\(PD_3-PD_0\)</span>同时存入相应的触发器；</li>
+<li>当Load = 0时，即使CP上升沿到来，输出端Q
+的状态将保持不变。可见，电路具有存储输入的4位二进制数据的功能。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202154017076.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1130,111 +1232,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Verilog HDL程序的基本结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-26 17:44:53" itemprop="dateCreated datePublished" datetime="2023-01-26T17:44:53+08:00">2023-01-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="简单verilog-hdl程序实例">简单Verilog HDL程序实例</h2>
-<p>Verilog使用大约100个预定义的关键词定义该语言的结构</p>
-<ol type="1">
-<li><p>Verilog
-HDL程序由模块构成。每个模块的内容都是嵌在两个关键词module和endmodule之间。每个模块实现特定的功能。</p></li>
-<li><p>每个模块先要进行端口的定义，并说明输入（input) 、输出（output)
-和双向（inout)，然后对模块功能进行描述。</p></li>
-<li><p>除了endmodule外，每个语句后必须有英文的分号(;)。</p></li>
-<li><p>可以用/* --- */和//…..，对Verilog
-HDL程序的任何部分做注释。</p></li>
-</ol>
-<h3 id="半加器程序实例">半加器程序实例</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230125094944033.png" /></p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Gate-level description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_GL(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;		<span class="comment">//输入端口声明</span></span><br><span class="line">  <span class="keyword">output</span>  Sum, Carry ;      <span class="comment">//输出端口声明</span></span><br><span class="line">  <span class="keyword">wire</span> A ,B , Sum ,Carry ; </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">xor</span> X1 (Sum, A, B );</span><br><span class="line">  <span class="keyword">and</span> A1 (Carry, A, B);  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Dataflow description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_DF(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;	 	 </span><br><span class="line">  <span class="keyword">output</span>  Sum ,Carry ; </span><br><span class="line">  <span class="keyword">wire</span> A ,B，Sum ,Carry ; </span><br><span class="line">  <span class="keyword">assign</span>   Sum = A ^ B; </span><br><span class="line">  <span class="keyword">assign</span>   Carry = A &amp; B; </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Behavioral description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_BH(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;	 	  </span><br><span class="line">  <span class="keyword">output</span>  Sum ,Carry ; </span><br><span class="line">  <span class="keyword">reg</span> Sum ,Carry ;        <span class="comment">//声明端口数据类型为寄存器</span></span><br><span class="line">  <span class="keyword">always</span> @(A <span class="keyword">or</span> B)  <span class="keyword">begin</span></span><br><span class="line">	Sum = A ^ B;	      <span class="comment">//用过程赋值语句描述逻辑功能</span></span><br><span class="line">	Carry = A &amp; B;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
