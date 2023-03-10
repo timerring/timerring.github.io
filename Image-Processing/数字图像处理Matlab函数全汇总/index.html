@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="图像显示 colorbar 显示彩条 getimage 由坐标轴得到图像数据 ice（DIPUM） 交互彩色编辑 image 创建和显示图像对象 imagesc 缩放数据并显示为图像 immovie 由多帧图像制作电影 imshow 显示图像 imview 在Image Viewer中显示图像 montage 将多个图像帧显示为矩阵蒙太奇 movie 播放录制的电影帧 rgb">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="数字图像处理Matlab函数全汇总">
+<meta property="og:url" content="http://example.com/Image-Processing/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86Matlab%E5%87%BD%E6%95%B0%E5%85%A8%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="timerring&#39;s BLOG">
+<meta property="og:description" content="图像显示 colorbar 显示彩条 getimage 由坐标轴得到图像数据 ice（DIPUM） 交互彩色编辑 image 创建和显示图像对象 imagesc 缩放数据并显示为图像 immovie 由多帧图像制作电影 imshow 显示图像 imview 在Image Viewer中显示图像 montage 将多个图像帧显示为矩阵蒙太奇 movie 播放录制的电影帧 rgb">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-03-10T02:28:59.600Z">
+<meta property="article:modified_time" content="2023-03-10T02:30:09.884Z">
+<meta property="article:author" content="timerring">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/Image-Processing/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86Matlab%E5%87%BD%E6%95%B0%E5%85%A8%E6%B1%87%E6%80%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/Image-Processing/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86Matlab%E5%87%BD%E6%95%B0%E5%85%A8%E6%B1%87%E6%80%BB/","path":"Image-Processing/数字图像处理Matlab函数全汇总/","title":"数字图像处理Matlab函数全汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数字图像处理Matlab函数全汇总 | timerring's BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">timerring's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">136</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">图像显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">图像文件输入&#x2F;输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%AE%97%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">图像算术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2"><span class="nav-number">4.</span> <span class="nav-text">几何变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">5.</span> <span class="nav-text">图像匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%83%8F%E7%B4%A0%E5%80%BC%E5%8F%8A%E7%BB%9F%E8%AE%A1"><span class="nav-number">6.</span> <span class="nav-text">像素值及统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E6%9E%90%E5%8C%85%E6%8B%AC%E5%88%86%E5%89%B2%E6%8F%8F%E8%BF%B0%E5%92%8C%E8%AF%86%E5%88%AB"><span class="nav-number">7.</span> <span class="nav-text">图像分析（包括分割、描述和识别）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8E%8B%E7%BC%A9"><span class="nav-number">8.</span> <span class="nav-text">图像压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA"><span class="nav-number">9.</span> <span class="nav-text">图像增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%99%AA%E5%A3%B0"><span class="nav-number">10.</span> <span class="nav-text">图像噪声</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%92%8C%E9%9D%9E%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2"><span class="nav-number">11.</span> <span class="nav-text">线性和非线性空间滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E4%BA%8C%E7%BB%B4%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="nav-number">12.</span> <span class="nav-text">线性二维滤波器设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8E%BB%E6%A8%A1%E7%B3%8A%E5%A4%8D%E5%8E%9F"><span class="nav-number">13.</span> <span class="nav-text">图像去模糊（复原）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E5%8F%98%E6%8D%A2"><span class="nav-number">14.</span> <span class="nav-text">图像变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%B3%A2"><span class="nav-number">15.</span> <span class="nav-text">小波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%86%E5%9F%9F%E5%92%8C%E5%9D%97%E5%A4%84%E7%90%86"><span class="nav-number">16.</span> <span class="nav-text">领域和块处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E4%BA%AE%E5%BA%A6%E5%92%8C%E4%BA%8C%E5%80%BC%E5%9B%BE%E5%83%8F"><span class="nav-number">17.</span> <span class="nav-text">形态学操作（亮度和二值图像）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A2%E6%80%81%E5%AD%A6%E6%93%8D%E4%BD%9C%E4%BA%8C%E5%80%BC%E5%9B%BE%E5%83%8F"><span class="nav-number">18.</span> <span class="nav-text">形态学操作（二值图像）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%85%83%E7%B4%A0strel%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">19.</span> <span class="nav-text">结构元素（STREL）的创建和操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">20.</span> <span class="nav-text">基于区域的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E6%98%A0%E5%B0%84%E5%A4%84%E7%90%86"><span class="nav-number">21.</span> <span class="nav-text">彩色映射处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E7%A9%BA%E9%97%B4%E8%BD%AC%E6%8D%A2"><span class="nav-number">22.</span> <span class="nav-text">彩色空间转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C"><span class="nav-number">23.</span> <span class="nav-text">数组操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">24.</span> <span class="nav-text">图像类型和类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0"><span class="nav-number">25.</span> <span class="nav-text">其他函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%8F%82%E6%95%B0"><span class="nav-number">26.</span> <span class="nav-text">工具箱参数</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">timerring</p>
+  <div class="site-description" itemprop="description">Blogs about AI, blockchain, and full stack development.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/timerring" title="Github → https:&#x2F;&#x2F;github.com&#x2F;timerring" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://timerring.blog.csdn.net/" title="CSDN → https:&#x2F;&#x2F;timerring.blog.csdn.net" rel="noopener" target="_blank"><i class="fa fa-c fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/timerring" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86Matlab%E5%87%BD%E6%95%B0%E5%85%A8%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数字图像处理Matlab函数全汇总 | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数字图像处理Matlab函数全汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-10 10:28:59" itemprop="dateCreated datePublished" datetime="2023-03-10T10:28:59+08:00">2023-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="图像显示">图像显示</h2>
+<p>colorbar 显示彩条</p>
+<p>getimage 由坐标轴得到图像数据</p>
+<p>ice（DIPUM） 交互彩色编辑</p>
+<p>image 创建和显示图像对象</p>
+<p>imagesc 缩放数据并显示为图像</p>
+<p>immovie 由多帧图像制作电影</p>
+<p>imshow 显示图像</p>
+<p>imview 在Image Viewer中显示图像</p>
+<p>montage 将多个图像帧显示为矩阵蒙太奇</p>
+<p>movie 播放录制的电影帧</p>
+<p>rgbcube 显示一个彩色RGB立方体</p>
+<p>subimage 在单个图形中显示多幅图像</p>
+<p>truesize 调整图像的显示尺寸</p>
+<p>warp 将图像显示为纹理映射的表面</p>
+<span id="more"></span>
+<h2 id="图像文件输入输出">图像文件输入/输出</h2>
+<p>Dicominfo 从一条DICOM消息中读取元数据</p>
+<p>Dicomread 读一幅DICOM图像</p>
+<p>Dicomwrite 写一幅DICOM图像</p>
+<p>Dicom-dict.txt 包含DICOM数据字典的文本文件</p>
+<p>Dicomuid 产生DICOM唯一的识别器</p>
+<p>Imfinfo 返回关于图像的文件的信息</p>
+<p>Imread 读图像文件</p>
+<p>Imwrite 写图像文件</p>
+<h2 id="图像算术">图像算术</h2>
+<p>Imabsdiff 计算两幅图像的绝对差</p>
+<p>Imadd 两幅图像相加或把常数加到图像上</p>
+<p>Imcomplement 图像求补</p>
+<p>Imdivide 两幅图像相除，或用常数除图像</p>
+<p>Imlincomb 计算图像的线性组合</p>
+<p>Immultiply 两幅图像相乘或用常数乘图像</p>
+<p>Imsubtract 两幅图像相减，或从图像中减去常数</p>
+<h2 id="几何变换">几何变换</h2>
+<p>Checkerboard 创建棋盘格图像</p>
+<p>Findbounds 求几何变换的输出范围</p>
+<p>Fliptform 颠倒TFORM结构的输入/输出</p>
+<p>Imcrop 修剪图像</p>
+<p>Imresize 调整图像大小</p>
+<p>Imrotate 旋转图像</p>
+<p>Imtransform 对图像应用几何变换</p>
+<p>Intline 整数坐标线绘制算法</p>
+<p>Makersampler 创建重取样器结构</p>
+<p>Maketform 创建几何变换结构（TFORM）</p>
+<p>Pixeldup（DIPUM）在两个方向上复制图像的像素</p>
+<p>Tformarray 对N-D数组应用几何变换</p>
+<p>Tformfwd 应用正向几何变换</p>
+<p>Tforminv 应用反向几何变换</p>
+<p>Vstformfwd（DIPUM）可视化正向几何变换</p>
+<h2 id="图像匹配">图像匹配</h2>
+<p>Cpstruct2pairs 将CPSTRUCT转换为有效的控制点对</p>
+<p>Cp2tform 由控制点对推断几何变换</p>
+<p>Cpcorr 使用互相关校准控制点位置</p>
+<p>Cpselect 控制点选择工具</p>
+<p>Normxcorr2 归一化二维互相关</p>
+<h2 id="像素值及统计">像素值及统计</h2>
+<p>Corr2 计算二维相关系数</p>
+<p>Covmatrix（DIPUM）计算向量族的协方差矩阵</p>
+<p>Imcontour 创建图像数据的轮廓线</p>
+<p>Imhist 显示图像数据的直方图</p>
+<p>Impixel 确定像素的彩色点</p>
+<p>Improfile 计算沿着线段的像素值横截面</p>
+<p>Mean2 计算矩阵元素的均值</p>
+<p>Pixval 显示关于像素的信息</p>
+<p>Regionprops 测量图像区域的属性</p>
+<p>Statmoments（DIPUM）计算一幅图像直方图的统计中心距</p>
+<p>Std2 计算矩阵元素的标准偏差</p>
+<h2
+id="图像分析包括分割描述和识别">图像分析（包括分割、描述和识别）</h2>
+<p>Bayesgauss（DIPUM） 高斯模式的贝叶斯分类器</p>
+<p>Bound2eight（DIPUM）将4连接边界转换为8连接边界</p>
+<p>Bound2four（DIPUM）将8连接边界转换为4连接边界</p>
+<p>Bwboundaries 追踪区域边界</p>
+<p>Bwtraceboundary 追踪单个边界</p>
+<p>Bound2im（DIPUM） 将边界转换为图像</p>
+<p>Boundaries（DIPUM） 追踪区域边界</p>
+<p>Bsubsamp（DIPUM） 对边界二次取样</p>
+<p>Colorgrad（DIPUM） 计算一幅RGB图像的向量梯度</p>
+<p>Colorseq（DIPUM） 分割一幅彩色图像</p>
+<p>Connectpoly（DIPUM） 连接多边形的顶点</p>
+<p>Diameter（DIPUM） 测量图像区域的直径</p>
+<p>Edge（DIPUM） 在一幅亮度图像中寻找边缘</p>
+<p>Fchcode（DIPUM） 计算边界的freeman链码</p>
+<p>Frdescp（DIPUM） 计算傅里叶描绘子</p>
+<p>Graythresh 使用Ostu方法计算图像的全局阈值</p>
+<p>Hough（DIPUM） Hough变换</p>
+<p>Houghlines（DIPUM） 基于Hough变换提取线段</p>
+<p>Houghpeaks（DIPUM） 在Hough变换中检测峰值</p>
+<p>Houghpixels（DIPUM） 计算属于Hough变换bin的图像像素</p>
+<p>Ifrdescp（DIPUM） 计算逆傅里叶描绘子</p>
+<p>Imstack2vectors（DIPUM） 从图像堆栈提取向量</p>
+<p>Invmoments（DIPUM） 计算图像不变距</p>
+<p>Mahalanobis（DIPUM） 计算Mahalanobis距离</p>
+<p>Minperpoly（DIPUM） 计算最小周长多边形</p>
+<p>Polyangles（DIPUM） 计算多边形内角</p>
+<p>Princomp（DIPUM） 得到主分量向量和相关量</p>
+<p>Qtdecomp 执行四叉树分解</p>
+<p>Qtgetblk 得到四叉树分解中的块值</p>
+<p>Qtsetblk 在四叉树中设置块值</p>
+<p>Randvertex（DIPUM） 随机置换多边形顶点</p>
+<p>Regiongrow（DIPUM） 由区域生长来执行分割</p>
+<p>Signature（DIPUM） 计算边界的标记</p>
+<p>Specxture（DIPUM） 计算图像的谱纹理</p>
+<p>Splitmerge（DIPUM） 使用分离-合并算法分割图像</p>
+<p>Statxture（DIPUM） 计算图像中纹理的统计度量</p>
+<p>Strsimilarity（DIPUM） 两个串间的相似性度量</p>
+<p>X2majoraxis（DIPUM） 以区域的主轴排列坐标x</p>
+<h2 id="图像压缩">图像压缩</h2>
+<p>Compare（DIPUM） 计算和显示两个矩阵间的误差</p>
+<p>Entropy（DIPUM） 计算矩阵的熵的一阶估计</p>
+<p>Huff2mat（DIPUM） 解码霍夫曼编码矩阵</p>
+<p>Huffman（DIPUM） 为符号源建立一个变长霍夫曼码</p>
+<p>Im2jpeg（DIPUM） 使用JPEG近似压缩一幅图像</p>
+<p>Im2jpeg2k（DIPUM） 使用JPEG2000近似压缩一幅图像</p>
+<p>Imratio（DIPUM） 计算两幅图像或变量中的比特率</p>
+<p>Jpeg2im（DIPUM） 解码IM2JPEG压缩的图像</p>
+<p>Jpeg2k2im（DIPUM） 解码IM2JPEG2K压缩的图像</p>
+<p>Lpc2mat（DIPUM） 解压缩一维有损预测编码矩阵</p>
+<p>Mat2huff（DIPUM） 霍夫曼编码矩阵</p>
+<p>Mat2lpc（DIPUM） 使用一维有损预测编码矩阵</p>
+<p>Quantize（DIPUM） 量化UINT8类矩阵的元素</p>
+<h2 id="图像增强">图像增强</h2>
+<p>Adapthisteq 自适应直方图量化</p>
+<p>Decorrstretch 对多通道图像应用去相关拉伸</p>
+<p>Gscale（DIPUM） 按比例调整输入图像的亮度</p>
+<p>Histeq 使用直方图均衡化来增强对比度</p>
+<p>Intrans（DIPUM） 执行亮度变换</p>
+<p>Imadjust 调整图像亮度值或彩色映射</p>
+<p>Stretchlim 寻找对比度拉伸图像的限制</p>
+<h2 id="图像噪声">图像噪声</h2>
+<p>Imnoise 给一幅图像添加噪声</p>
+<p>Imnoise2（DIPUM） 使用指定的PDF生成一个随机数数组</p>
+<p>Imnoise3（DIPUM） 生成周期噪声</p>
+<h2 id="线性和非线性空间滤波">线性和非线性空间滤波</h2>
+<p>Adpmedian（DIPUM） 执行自适应中值滤波</p>
+<p>Convmtx2 计算二维卷积矩阵</p>
+<p>Dftcorr（DIPUM） 执行频率域相关</p>
+<p>Dftfilt（DIPUM） 执行频率域滤波</p>
+<p>Fspecial 创建预定义滤波器</p>
+<p>Medfilt2 执行二维中值滤波</p>
+<p>Imfilter 滤波二维和N维图像</p>
+<p>Ordfilter2 执行二维顺序统计滤波</p>
+<p>Spfilt（DIPUM） 执行线性和非线性空间滤波</p>
+<p>Wiener2 执行二维去噪滤波</p>
+<h2 id="线性二维滤波器设计">线性二维滤波器设计</h2>
+<p>Freqspace 确定二维频率响应间隔</p>
+<p>Freqz2 计算二维频率响应</p>
+<p>Fsamp2 使用频率取样设计二维FIR滤波器</p>
+<p>Ftrans2 使用频率变换设计二维FIR滤波器</p>
+<p>Fwind1 使用一维窗法设计二维滤波器</p>
+<p>Fwind2 使用二维窗法设计二维滤波器</p>
+<p>Hpfilter（DIPUM） 计算频率域高通滤波器</p>
+<p>Lpfilter（DIPUM） 计算频率域低通滤波器</p>
+<h2 id="图像去模糊复原">图像去模糊（复原）</h2>
+<p>Deconvblind 使用盲去卷积去模糊图像</p>
+<p>Deconvlucy 使用Lucy-Richardson方法去模糊</p>
+<p>Deconvreg 使用规则化滤波器去模糊</p>
+<p>Deconvwnr 使用维纳滤波器去模糊</p>
+<p>Edgetaper 使用点扩散函数锐化边缘</p>
+<p>Otf2psf 光传递函数到点扩散函数</p>
+<p>Pst2otf 点扩散函数到光传递函数</p>
+<h2 id="图像变换">图像变换</h2>
+<p>Dct2 二维离散余弦变换</p>
+<p>Dctmtx 离散余弦变换矩阵</p>
+<p>Fan2para 将扇形束投影变换为并行射束</p>
+<p>Fanbeam 计算扇形射束变换</p>
+<p>Fft2 二维快速傅里叶变换</p>
+<p>Fftn N维快速傅里叶变换</p>
+<p>Fftshift 颠倒FFT输出的象限</p>
+<p>Idct2 二维逆离散余弦变换</p>
+<p>Ifanbeam 计算扇形射束逆变换</p>
+<p>Ifft2 二维快速傅里叶逆变换</p>
+<p>Ifftn N维快速傅里叶逆变换</p>
+<p>Iradon 计算逆Radon变换</p>
+<p>Para2fan 将并行射束投影变换为扇形射束</p>
+<p>Phantom 生成头部仿真模型的图像</p>
+<p>Radon 计算Radon变换</p>
+<h2 id="小波">小波</h2>
+<p>Wave2gray（DIPUM） 显示小波分解系数</p>
+<p>Waveback（DIPUM） 执行多灰度级二维快速小波逆变换</p>
+<p>Wavecopy（DIPUM） 存取小波分解结构的系数</p>
+<p>Wavecut（DIPUM） 在小波分解结构中置零系数</p>
+<p>Wavefast（DIPUM） 执行多灰度级二维快速小波变换</p>
+<p>Wavefilter（DIPUM） 构造小波分解和重构滤波器</p>
+<p>Wavepaste（DIPUM） 在小波分解结构中放置系数</p>
+<p>Wavework（DIPUM） 编辑小波分解结构</p>
+<p>Wavezero（DIPUM） 将小波细节系数设置为零</p>
+<h2 id="领域和块处理">领域和块处理</h2>
+<p>Bestblk 为块处理选择块大小</p>
+<p>Blkproc 为图像实现不同的块处理</p>
+<p>Col2im 将矩阵列重排为块</p>
+<p>Colfilt 按列邻域操作</p>
+<p>Im2col 将图像块重排为列</p>
+<p>Nlfilter 执行一般的滑动邻域操作</p>
+<h2 id="形态学操作亮度和二值图像">形态学操作（亮度和二值图像）</h2>
+<p>Conndef 默认连通性</p>
+<p>Imbothat 执行底帽滤波</p>
+<p>Imclearborder 抑制与图像边框相连的亮结构</p>
+<p>Imclose 关闭图像</p>
+<p>Imdilate 膨胀图像</p>
+<p>Imerode 腐蚀图像</p>
+<p>Imextendedmax 最大扩展变换</p>
+<p>Imextendedmin 最小扩展变换</p>
+<p>Imfill 填充图像区域和孔洞</p>
+<p>Imhmax H最大变换</p>
+<p>Imhmin H最小变换</p>
+<p>Imimposemin 强制最小</p>
+<p>Imopen 打开图像</p>
+<p>Imreconstruct 形态学重构</p>
+<p>Imregionalmax 局部最大区域</p>
+<p>Imregionalmin 局部最小区域</p>
+<p>Imtophat 执行顶帽滤波</p>
+<p>Watershed 分水岭变换</p>
+<h2 id="形态学操作二值图像">形态学操作（二值图像）</h2>
+<p>Applylut 使用查表法执行邻域操作</p>
+<p>Bwarea 计算二值图像中的对象面积</p>
+<p>Bwareaopen 打开二值区域（删除小对象）</p>
+<p>Bwdist 计算二值图像的距离变换</p>
+<p>Bweuler 计算二值图像的欧拉数</p>
+<p>Bwhitmiss 二值击不中操作</p>
+<p>Bwlabel 在二维图像中标记连接分量</p>
+<p>Bwlabeln 在N维二值图像中标记连接分量</p>
+<p>Bwmorph 对二值图像执行形态学操作</p>
+<p>Bwpack 打包二值图像</p>
+<p>Bwperim 确定二值图像中的对象的周长</p>
+<p>Bwselect 选择二值图像中的对象</p>
+<p>Bwulterode 最终腐蚀</p>
+<p>Bwunpack 解包二值图像</p>
+<p>Endpoints（DIPUM）计算二值图像的端点</p>
+<p>Makelut 构建applylut使用的查找表</p>
+<h2 id="结构元素strel的创建和操作">结构元素（STREL）的创建和操作</h2>
+<p>Getheight 得到strel的高度</p>
+<p>Getneighbors 得到strel邻域的偏移位置和高度</p>
+<p>Getnhood 得到strel邻域</p>
+<p>Getsequence 得到分解的strel序列</p>
+<p>Isflat 对平坦的strel返回值</p>
+<p>Reflect 以其中心反射strel</p>
+<p>Strel 创建形态学结构元素</p>
+<p>Translate 变换strel</p>
+<h2 id="基于区域的处理">基于区域的处理</h2>
+<p>Histroi（DIPUM） 计算图像中的ROI的直方图</p>
+<p>Poly2mask 将ROI多边形转换为掩膜</p>
+<p>Roicolor 基于颜色选择ROI</p>
+<p>Roifill 在任意区域内平稳地内插</p>
+<p>Roifilt2 对ROI进行滤波</p>
+<p>Roipoly 选择多边形ROI</p>
+<h2 id="彩色映射处理">彩色映射处理</h2>
+<p>Brighten 加亮或加暗彩色映射</p>
+<p>Cmpermute 在彩色映射中重排颜色</p>
+<p>Cmunique 寻找唯一的彩色映射颜色和相应的图像</p>
+<p>Colormap 设置或得到彩色查找表</p>
+<p>Imapprox 以很少的颜色近似被索引的图像</p>
+<p>Rgbplot 绘制RGB彩色映射分量</p>
+<h2 id="彩色空间转换">彩色空间转换</h2>
+<p>Applyform 应用独立于设备的彩色空间变换</p>
+<p>Hsv2rgb 将HSV值转换为RGB彩色空间</p>
+<p>Iccread 读ICC彩色配置文件</p>
+<p>Lab2double 将L<em>a</em>b*彩色值转换为double类</p>
+<p>Lab2uint16 将L<em>a</em>b*彩色值转换为uint16类</p>
+<p>Lab2uint8 将L<em>a</em>b*彩色值转换为uint8类</p>
+<p>Makecform 创建独立于设备的彩色空间变换结构</p>
+<p>Ntsc2rgb 将NTSC值转换为RGB彩色空间</p>
+<p>Rgb2hsv 将RGB值转换为HSV彩色空间</p>
+<p>Rgb2ntsc 将RGB值转换为NTSC彩色空间</p>
+<p>Rgb2ycbcr 将RGB值转换为YCBCR彩色空间</p>
+<p>Ycbcr2rgb 将YCBCR值转换为RGB彩色空间</p>
+<p>Rgb2hsi（DIPUM） 将RGB值转换为HSI彩色空间</p>
+<p>Hsi2rgb（DIPUM） 将HSI值转换为RGB彩色空间</p>
+<p>Whitepoint 返回标准照明的XYZ值</p>
+<p>Xyz2double 将XYZ彩色值转换为double类</p>
+<p>Xyz2uint16 将XYZ彩色值转换为uint16类</p>
+<h2 id="数组操作">数组操作</h2>
+<p>Circshift 循环地移位数组</p>
+<p>Dftuv（DIPUM） 计算网格数组</p>
+<p>Padarray 填充数组</p>
+<p>Paddedsize（DIPUM）计算用于FFT的最小填充尺寸</p>
+<h2 id="图像类型和类型转换">图像类型和类型转换</h2>
+<p>Changeclass 改变一幅图像的类</p>
+<p>Dither 使用抖动转换图像</p>
+<p>Gray2ind 将亮度图像转换为索引图像</p>
+<p>Grayslice 通过阈值处理从亮度图像创建索引图像</p>
+<p>Im2bw 通过阈值处理将图像转换为二值图像</p>
+<p>Im2double 将图像数组转换为双精度</p>
+<p>Im2java 将图像转换为Java图像</p>
+<p>Im2java2d 将图像转换为Java缓存的图像对象</p>
+<p>Im2uint8 将图像数组转换为8比特无符号整数</p>
+<p>Im2uint16 将图像数组转换为16比特无符号整数</p>
+<p>Ind2gray 将索引图像转换为亮度图像</p>
+<p>Ind2rgb 将索引图像转换为RGB图像</p>
+<p>Label2rgb 将标记矩阵转换为RGB图像</p>
+<p>Mat2gray 将矩阵转换为亮度图像</p>
+<p>Rgb2gray 将RGB图像或彩色映射转换为灰度图像</p>
+<p>Rgb2ind 将RGB图像转换为索引图像</p>
+<h2 id="其他函数">其他函数</h2>
+<p>Conwaylaws（DIPUM） 对单个像素应用Conway的遗传定律</p>
+<p>Manualhist（DIPUM） 交互地生成2模式直方图</p>
+<p>Twomodegauss（DIPUM）生成一个2模式高斯函数</p>
+<p>Uintlut 基于查找表计算新数组值</p>
+<h2 id="工具箱参数">工具箱参数</h2>
+<p>Iptgetpref 获得图像处理工具箱参数的值</p>
+<p>Iptsetpref 设置图像处理工具箱参数的值</p>
+<p>参考文献：</p>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+target="_blank" rel="noopener" href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/timerring">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">Github</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://timerring.blog.csdn.net">
+          <span class="icon">
+            <i class="fa fa-c"></i>
+          </span>
+
+          <span class="label">CSDN</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"><i class="fa fa-tag"></i> MATLAB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Image-Processing/Matlab%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" rel="prev" title="Matlab实现图像分割">
+                  <i class="fa fa-chevron-left"></i> Matlab实现图像分割
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">timerring</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
