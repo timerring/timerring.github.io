@@ -18185,4 +18185,113 @@ href="https://github.com/timerring/digital-image-processing-matlab/blob/main/ref
         <tag>MATLAB</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Matlab常用图像处理命令108例（一）</title>
+    <url>/Image-Processing/Matlab%E5%B8%B8%E7%94%A8%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4108%E4%BE%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="applylut">1.applylut</h2>
+<p>在二进制图像中利用lookup 表进行边沿操作。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = applylut(BW,lut) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">lut = makelut(<span class="string">&#x27;sum(x(:)) == 4&#x27;</span>,<span class="number">2</span>); </span><br><span class="line"></span><br><span class="line">BW1 = imread(<span class="string">&#x27;text.tif&#x27;</span>); </span><br><span class="line"></span><br><span class="line">BW2 = applylut(BW1,lut); </span><br><span class="line"></span><br><span class="line">imshow(BW1) </span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-08-57-55-1678496273.png" /></p>
+<p>相关命令： makelut</p>
+<span id="more"></span>
+<h2 id="bestblk">2.bestblk</h2>
+<p>功能：确定进行块操作的块大小。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">siz = bestblk([m n],k) </span><br><span class="line"></span><br><span class="line">[mb,nb] = bestblk([m n],k) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">siz = bestblk([<span class="number">640</span> <span class="number">800</span>],<span class="number">72</span>) </span><br><span class="line"></span><br><span class="line">siz = <span class="number">64</span> <span class="number">50</span> </span><br></pre></td></tr></table></figure>
+<p>相关命令： Blkproc</p>
+<h2 id="blkproc">3.blkproc</h2>
+<p>功能：实现图像的显式块操作。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = blkproc(A,[m n],fun) </span><br><span class="line"></span><br><span class="line">B = blkproc(A,[m n],fun,P1,P2,...)</span><br><span class="line"></span><br><span class="line">B = blkproc(A,[m n],[mborder nborder],fun,...)</span><br><span class="line"></span><br><span class="line">B = blkproc(A,<span class="string">&#x27;indexed&#x27;</span>,...)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">I = imread(<span class="string">&#x27;alumgrns.tif&#x27;</span>);</span><br><span class="line"></span><br><span class="line">I2 = blkproc(I,[<span class="number">8</span> <span class="number">8</span>],<span class="string">&#x27;std2(x)*ones(size(x))&#x27;</span>);</span><br><span class="line"></span><br><span class="line">imshow(I)</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>, imshow(I2,[]);</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-00-58-1678496456.png" /></p>
+<p>相关命令：</p>
+<p>colfilt, nlfilter,inline</p>
+<h2 id="brighten">4.brighten</h2>
+<p>功能：增加或降低颜色映像表的亮度。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">brighten(<span class="built_in">beta</span>)</span><br><span class="line">newmap = brighten(<span class="built_in">beta</span>)</span><br><span class="line">newmap = brighten(map,<span class="built_in">beta</span>)</span><br><span class="line">brighten(fig,<span class="built_in">beta</span>)</span><br></pre></td></tr></table></figure>
+<p>相关命令：</p>
+<p>imadjust, rgbplot</p>
+<h2 id="bwarea">5.bwarea</h2>
+<p>功能：计算二进制图像对象的面积。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">total = bwarea(BW)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW = imread(<span class="string">&#x27;circles.tif&#x27;</span>);</span><br><span class="line">imshow(BW);</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-02-37-1678496556.png" /></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">bwarea(BW) </span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> = </span><br><span class="line"></span><br><span class="line"><span class="number">15799</span> </span><br></pre></td></tr></table></figure>
+<p>相关命令： bweuler, bwperim</p>
+<h2 id="bweuler">6.bweuler</h2>
+<p>功能：计算二进制图像的欧拉数。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">eul = bweuler(BW,n) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW = imread(<span class="string">&#x27;circles.tif&#x27;</span>); </span><br><span class="line"></span><br><span class="line">imshow(BW); </span><br><span class="line"></span><br><span class="line">bweuler(BW) </span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> = –<span class="number">2</span> </span><br></pre></td></tr></table></figure>
+<p>相关命令： bwmorph, bwperim</p>
+<h2 id="bwfill">7.bwfill</h2>
+<p>功能：填充二进制图像的背景色。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2</span><br><span class="line">= bwfill(BW1,c,r,n) BW2 =</span><br><span class="line">bwfill(BW1,n) [BW2,idx] = bwfill(...)</span><br><span class="line"></span><br><span class="line">BW2</span><br><span class="line">= bwfill(x,y,BW1,xi,yi,n) [x,y,BW2,idx,xi,yi]</span><br><span class="line">= bwfill(...) BW2 =</span><br><span class="line">bwfill(BW1,<span class="string">&#x27;holes&#x27;</span>,n) [BW2,idx] = bwfill(BW1,<span class="string">&#x27;holes&#x27;</span>,n)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 =[<span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">BW2 = bwfill(BW1,<span class="number">3</span>,<span class="number">3</span>,<span class="number">8</span>) </span><br><span class="line"></span><br><span class="line">BW2 =</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">I = imread(<span class="string">&#x27;blood1.tif&#x27;</span>); BW3</span><br><span class="line">= ~im2bw(I);</span><br><span class="line"></span><br><span class="line">BW4</span><br><span class="line">= bwfill(BW3,<span class="string">&#x27;holes&#x27;</span>); imshow(BW3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>, imshow(BW4)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-06-43-2023-03-11-09-06-33-image.png" /></p>
+<p>相关命令： bwselect, roifill</p>
+<h2 id="bwlabel">8.bwlabel</h2>
+<p>功能：标注二进制图像中已连接的部分。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">L = bwlabel(BW,n) [L,num] = bwlabel(BW,n) 举例 </span><br><span class="line">BW = [<span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]</span><br><span class="line">L = bwlabel(BW,<span class="number">4</span>) L =</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">2</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">2</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">3</span> <span class="number">0</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">[r,c] = <span class="built_in">find</span>(L==<span class="number">2</span>); rc = [r c]</span><br><span class="line">rc = <span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="number">3</span> <span class="number">5</span></span><br><span class="line"><span class="number">2</span> <span class="number">6</span></span><br><span class="line"><span class="number">3</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>相关命令： bweuler, bwselect</p>
+<h2 id="bwmorph">9.bwmorph</h2>
+<p>功能：提取二进制图像的轮廓。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = bwmorph(BW1,operation) </span><br><span class="line">BW2 = bwmorph(BW1,operation,n) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 = imread(<span class="string">&#x27;circles.tif&#x27;</span>);</span><br><span class="line">imshow(BW1);</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-08-59-1678496938.png" /></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = bwmorph(BW1,<span class="string">&#x27;remove&#x27;</span>); </span><br><span class="line">BW3 = bwmorph(BW1,<span class="string">&#x27;skel&#x27;</span>,Inf); </span><br><span class="line">imshow(BW2)</span><br><span class="line"><span class="built_in">figure</span>, imshow(BW3)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-09-26-1678496964.png" /></p>
+<p>相关命令：</p>
+<p>bweuler, bwperim, dilate, erode</p>
+<h2 id="bwperim">10.bwperim</h2>
+<p>功能：计算二进制图像中对象的周长。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = bwperim(BW1,n)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 = imread(<span class="string">&#x27;circbw.tif&#x27;</span>); </span><br><span class="line"></span><br><span class="line">BW2 = bwperim(BW1,<span class="number">8</span>); </span><br><span class="line"></span><br><span class="line">imshow(BW1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-09-10-53-1678497051.png" /></p>
+<p>相关命令：</p>
+<p>bwarea, bweuler, bwfill</p>
+<p>参考文献：</p>
+<p>[1] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>

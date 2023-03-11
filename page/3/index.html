@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">136</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">137</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">137</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,112 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">状态机的概念与设计</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-09 10:36:09" itemprop="dateCreated datePublished" datetime="2023-02-09T10:36:09+08:00">2023-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="状态机的基本结构及类型">状态机的基本结构及类型</h2>
+<p>有限状态机的标准模型如图所示，它主要由三部分组成：</p>
+<ol type="1">
+<li>下一状态的逻辑电路（组合电路）；</li>
+<li>存储状态机当前状态的时序逻辑电路（时序电路）；</li>
+<li>输出组合逻辑电路（组合电路）。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093806848.png" /></p>
+<p>一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite
+State
+Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟脉冲源上，其状态的转换是在同一时钟源的同一脉冲边沿同步进行的，所以它也被称作时钟同步状态机。</p>
+<p>一般来说，状态机的基本操作主要有以下两种：</p>
+<ol type="1">
+<li>状态机的内部状态转换。</li>
+<li>产生输出信号序列。</li>
+</ol>
+<p>根据电路的输出信号是否与电路的输入有关，可以将状态机分为两种类型：一类是米利型（Mealy）状态机，电路的输出信号不仅与电路当前的状态有关，还与电路的输入有关；另一类是穆尔型（Moore）状态机，电路输出仅仅取决于各触发器的状态，而不受电路当时的输入信号影响或没有输入变量。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1115,105 +1221,6 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E8%A1%8C%E4%B8%BA%E7%BA%A7%E5%BB%BA%E6%A8%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">Verilog HDL数据流建模与运算符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-30 12:17:52" itemprop="dateCreated datePublished" datetime="2023-01-30T12:17:52+08:00">2023-01-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>对于基本单元逻辑电路，使用Verilog语言提供的门级元件模型描述电路非常方便。</p>
-<p>但随着电路复杂性的增加，使用的逻辑门较多时，使用HDL门级描述的工作效率就很低。</p>
-<p>数据流建模能够在较高的抽象级别描述电路的逻辑功能，并且通过逻辑综合软件，能够自动地将数据流描述转换成为门级电路。</p>
-<p>数据流建模主要使用逻辑表达式，所以要了解各种运算符和表达式。</p>
-<h2 id="数据流建模">数据流建模</h2>
-<p>数据流建模使用的连续赋值语句，由关键词assign开始，后面跟着由操作数和运算符等组成的逻辑表达式。</p>
-<p>一般用法如下：</p>
-<pre><code>wire [位宽说明] 变量名1，变量名2，……，变量名n；
-assign 变量名＝表达式；</code></pre>
-<p>注意，assign
-语句只能对wire型变量进行赋值，所以等号左边变量名的数据类型必须是wire型。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
