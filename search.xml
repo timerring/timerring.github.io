@@ -18294,4 +18294,115 @@ href="https://github.com/timerring/digital-image-processing-matlab/blob/main/ref
         <tag>MATLAB</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Matlab常用图像处理命令108例（二）</title>
+    <url>/Image-Processing/Matlab%E5%B8%B8%E7%94%A8%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4108%E4%BE%8B%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="bwselect">11.bwselect</h2>
+<p>功能：在二进制图像中选择对象。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = bwselect(BW1,c,r,n) </span><br><span class="line"></span><br><span class="line">BW2 = bwselect(BW1,n) </span><br><span class="line"></span><br><span class="line">[BW2,idx] = bwselect(...) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 = imread(<span class="string">&#x27;text.tif&#x27;</span>);</span><br><span class="line"></span><br><span class="line">c = [<span class="number">16</span> <span class="number">90</span> <span class="number">144</span>];</span><br><span class="line"></span><br><span class="line">r = [<span class="number">85</span> <span class="number">197</span> <span class="number">247</span>];</span><br><span class="line"></span><br><span class="line">BW2 = bwselect(BW1,c,r,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">imshow(BW1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-21-47-14-1678542432.png" /></p>
+<p>相关命令：</p>
+<p>bwfill, bwlabel, impixel, roipoly, roifill</p>
+<span id="more"></span>
+<h2 id="cmpermute">12.cmpermute</h2>
+<p>功能：调整颜色映像表中的颜色。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[Y,newmap] = cmpermute(X,map) </span><br><span class="line"></span><br><span class="line">[Y,newmap] = cmpermute(X,map,index)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">To order a colormap by luminance, use:</span><br><span class="line"></span><br><span class="line">ntsc = rgb2ntsc(map);</span><br><span class="line"></span><br><span class="line">[dum,index] = <span class="built_in">sort</span>(ntsc(:,<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">[Y,newmap] = cmpermute(X,map,index);</span><br></pre></td></tr></table></figure>
+<p>相关命令： randperm</p>
+<h2 id="cmunique">13.cmunique</h2>
+<p>功能：查找颜色映像表中特定的颜色及相应的图像。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[Y,newmap] = cmunique(X,map) </span><br><span class="line"></span><br><span class="line">[Y,newmap] = cmunique(RGB) </span><br><span class="line"></span><br><span class="line">[Y,newmap] = cmunique(I)</span><br></pre></td></tr></table></figure>
+<p>相关命令： gray2ind, rgb2ind</p>
+<h2 id="col2im">14.col2im</h2>
+<p>功能：将矩阵的列重新组织到块中。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = col2im(B,[m n],[mm nn],block_type)</span><br><span class="line">A = col2im(B,[m n],[mm nn])</span><br></pre></td></tr></table></figure>
+<p>相关命令： blkproc, colfilt, im2col, nlfilter</p>
+<h2 id="colfilt">15.colfilt</h2>
+<p>利用列相关函数进行边沿操作。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = colfilt(A,[m n],block_type,fun)</span><br><span class="line">B = colfilt(A,[m n],block_type,fun,P1,P2,...)</span><br><span class="line">B = colfilt(A,[m n],[mblock nblock],block_type,fun,...) </span><br><span class="line">B = colfilt(A,<span class="string">&#x27;indexed&#x27;</span>,...)</span><br></pre></td></tr></table></figure>
+<p>相关命令： blkproc, col2im, im2col, nlfilter</p>
+<h2 id="colorbar">16.colorbar</h2>
+<p>功能：显示颜色条。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">colorbar(<span class="string">&#x27;vert&#x27;</span>) </span><br><span class="line"></span><br><span class="line">colorbar(<span class="string">&#x27;horiz&#x27;</span>) </span><br><span class="line"></span><br><span class="line">colorbar(h) </span><br><span class="line"></span><br><span class="line">colorbar</span><br><span class="line">h = colorbar(...)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">I = imread(<span class="string">&#x27;blood1.tif&#x27;</span>); </span><br><span class="line"></span><br><span class="line">h = fspecial(<span class="string">&#x27;log&#x27;</span>);</span><br><span class="line">I2 = filter2(h,I);</span><br><span class="line">imshow(I2,[]), colormap(jet(<span class="number">64</span>)), colorbar</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-21-51-45-1678542704.png" /></p>
+<h2 id="conv2">17.conv2</h2>
+<p>功能：进行二维卷积操作。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">C = conv2(A,B)</span><br><span class="line">C = conv2(hcol,hrow,A) </span><br><span class="line">C = conv2(...,shape)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = <span class="built_in">magic</span>(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">A =</span><br><span class="line"><span class="number">17</span> <span class="number">24</span> <span class="number">1</span> <span class="number">8</span> <span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="number">23</span> <span class="number">5</span> <span class="number">7</span> <span class="number">14</span> <span class="number">16</span></span><br><span class="line"><span class="number">4</span> <span class="number">6</span> <span class="number">13</span> <span class="number">20</span> <span class="number">22</span></span><br><span class="line"><span class="number">10</span> <span class="number">12</span> <span class="number">19</span> <span class="number">21</span> <span class="number">3</span></span><br><span class="line"><span class="number">11</span> <span class="number">18</span> <span class="number">25</span> <span class="number">2</span> <span class="number">9</span></span><br><span class="line">B = [<span class="number">1</span> <span class="number">2</span> <span class="number">1</span>;<span class="number">0</span> <span class="number">2</span> <span class="number">0</span>;<span class="number">3</span> <span class="number">1</span> <span class="number">3</span>] </span><br><span class="line"></span><br><span class="line">B =</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">0</span> <span class="number">2</span> <span class="number">0</span></span><br><span class="line"><span class="number">3</span> <span class="number">1</span> <span class="number">3</span></span><br><span class="line">C = conv2(A,B) </span><br><span class="line"></span><br><span class="line">C =</span><br><span class="line"><span class="number">17</span> <span class="number">58</span> <span class="number">66</span> <span class="number">34</span> <span class="number">32</span> <span class="number">38</span> <span class="number">15</span></span><br><span class="line"><span class="number">23</span> <span class="number">85</span> <span class="number">88</span> <span class="number">35</span> <span class="number">67</span> <span class="number">76</span> <span class="number">16</span></span><br><span class="line"><span class="number">55</span> <span class="number">149</span> <span class="number">117</span> <span class="number">163</span> <span class="number">159</span> <span class="number">135</span> <span class="number">67</span></span><br><span class="line"><span class="number">79</span> <span class="number">78</span> <span class="number">160</span> <span class="number">161</span> <span class="number">187</span> <span class="number">129</span> <span class="number">51</span></span><br><span class="line"><span class="number">23</span> <span class="number">82</span> <span class="number">153</span> <span class="number">199</span> <span class="number">205</span> <span class="number">108</span> <span class="number">75</span></span><br><span class="line"><span class="number">30</span> <span class="number">68</span> <span class="number">135</span> <span class="number">168</span> <span class="number">91</span> <span class="number">84</span> <span class="number">9</span></span><br><span class="line"><span class="number">33</span> <span class="number">65</span> <span class="number">126</span> <span class="number">85</span> <span class="number">104</span> <span class="number">15</span> <span class="number">27</span></span><br></pre></td></tr></table></figure>
+<p>相关命令： filter2</p>
+<h2 id="convmtx2">18.convmtx2</h2>
+<p>功能：计算二维卷积矩阵。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">T = convmtx2(H,m,n) </span><br><span class="line"></span><br><span class="line">T = convmtx2(H,[m n])</span><br></pre></td></tr></table></figure>
+<p>相关命令： conv2</p>
+<h2 id="convn">19.convn</h2>
+<p>功能：计算n 维卷积。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">C = convn(A,B)</span><br><span class="line">C = convn(A,B,shape) </span><br></pre></td></tr></table></figure>
+<p>相关命令： conv2</p>
+<h2 id="corr2">20.corr2</h2>
+<p>功能：计算两个矩阵的二维相关系数。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">r = corr2(A,B) </span><br></pre></td></tr></table></figure>
+<p>相关命令： std2</p>
+<h2 id="dct2">21.dct2</h2>
+<p>功能：进行二维离散余弦变换。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = dct2(A)</span><br><span class="line">B = dct2(A,m,n)</span><br><span class="line">B = dct2(A,[m n])</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">RGB = imread(<span class="string">&#x27;autumn.tif&#x27;</span>); </span><br><span class="line">I = rgb2gray(RGB);</span><br><span class="line">J = dct2(I);</span><br><span class="line">imshow(<span class="built_in">log</span>(<span class="built_in">abs</span>(J)),[]), colormap(jet(<span class="number">64</span>)), colorbar</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-21-54-41-1678542880.png" /></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">J(<span class="built_in">abs</span>(J) &lt; <span class="number">10</span>) = <span class="number">0</span>;</span><br><span class="line">K = idct2(J)/<span class="number">255</span>; </span><br><span class="line">imshow(K)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-21-55-13-1678542912.png" /></p>
+<p>相关命令： fft2, idct2, ifft2</p>
+<h2 id="dctmtx">22.dctmtx</h2>
+<p>功能：计算离散余弦变换矩阵。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">D = dctmtx(n) </span><br></pre></td></tr></table></figure>
+<p>相关命令： dct2</p>
+<h2 id="dilate">23.dilate</h2>
+<p>功能：放大二进制图像。语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = dilate(BW1,SE)</span><br><span class="line">BW2 = dilate(BW1,SE,alg) BW2 = dilate(BW1,SE,...,n)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 = imread(<span class="string">&#x27;text.tif&#x27;</span>); </span><br><span class="line">SE = <span class="built_in">ones</span>(<span class="number">6</span>,<span class="number">2</span>);</span><br><span class="line">BW2 = dilate(BW1,SE); </span><br><span class="line">imshow(BW1)</span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-21-56-56-1678543010.png" /></p>
+<p>相关命令： bwmorph, erode</p>
+<h2 id="dither">24.dither</h2>
+<p>功能：通过抖动增加外观颜色分辨率，转换图像。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">X = dither(RGB,map) </span><br><span class="line">BW = dither(I)</span><br></pre></td></tr></table></figure>
+<p>相关命令： rgb2ind</p>
+<h2 id="double">25.double</h2>
+<p>功能：转换数据为双精度型。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = double(A)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = imread(<span class="string">&#x27;saturn.tif&#x27;</span>); </span><br><span class="line">B = <span class="built_in">sqrt</span>(double(A));</span><br></pre></td></tr></table></figure>
+<p>相关命令： im2double, im2uint, uint8</p>
+<p>参考文献：</p>
+<p>[1] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>

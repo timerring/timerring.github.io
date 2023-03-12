@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">137</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">138</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">137</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,109 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">信息论与编码：信道的数学模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-11-26 09:33:32" itemprop="dateCreated datePublished" datetime="2022-11-26T09:33:32+08:00">2022-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="广义信道的数学模型">广义信道的数学模型</h3>
+<p>连续信道模型 和 离散信道模型</p>
+<h3 id="连续信道的数学模型">连续信道的数学模型</h3>
+<p>广义信道中的<strong>调制信道</strong>属于连续信道。我们所关心的是信号经过信道所得到的输出信号，信道内部的变化过程并不重要。可以用描述一定输入、输出关系的方框来表示。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191150839.png" /></p>
+<p>连续信道具有以下一些特征：</p>
+<ul>
+<li>可以有一对或者多对输入端和输出端；</li>
+<li>大多数信道都为线性，也就是满足线性叠加原理；</li>
+<li>信号通过此类信道具有固定或者时变延迟，以及固定或时变的损耗和衰落；</li>
+<li>信道中不可避免的会引入噪声，即使没有输入信号，也会有噪声输出。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221118191338106.png" /></p>
+<p>连续信道一般可以看作一个输出端叠加有噪声的时变线性网络，输入输出关系如下：
+<span class="math display">\[
+r(t)=f\left[s_{i}(t)\right]+n(t)
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E7%BC%96%E7%A0%81%EF%BC%9A%E4%BF%A1%E9%81%93%E7%9A%84%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1041,107 +1144,6 @@ alt="image-20221013133143457" />
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E7%A6%BB%E6%95%A3%E5%8C%96%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">算法基础：差分算法及模板应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-11-14 11:23:06" itemprop="dateCreated datePublished" datetime="2022-11-14T11:23:06+08:00">2022-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一维差分">一维差分</h2>
-<p>差分思想和前缀和是相反的。</p>
-<p>首先我们先定义数组a, 其中a[1],a[2]...a[n]作为前缀和。</p>
-<p>然后构造数组b，b[1],b[2]...b[n]为差分数组。其中通过差分数组的前缀和来表示a数组，即a[n]
-= b[1] + b[2]+...+b[n]。</p>
-<p>一维差分数组的构造也很简单，即a[1] = b[1], b[2] = a[2] - a[1], b[n] =
-a[n] - a[n-1]；</p>
-<p>注意：刚开始时可以初始化数组a,b全部为0，输入a数组后；在构造时，只需要将b[1]看做在[1,
-1]区间上加上a[1]; b[2] 看作在[2, 2]区间上加上a[2]；</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//eg:对于b[1]:</span></span><br><span class="line">b[<span class="number">1</span>] = <span class="number">0</span> + a[<span class="number">1</span>];</span><br><span class="line">b[<span class="number">2</span>] = <span class="number">0</span> - a[<span class="number">1</span>]; 	<span class="comment">//最终：b[1] = a[1]</span></span><br><span class="line"><span class="comment">//对于b[2]:</span></span><br><span class="line">b[<span class="number">2</span>] = b[<span class="number">2</span>] + a[<span class="number">2</span>];  <span class="comment">//==&gt; 最终：b[2] = a[2] - a[1]</span></span><br><span class="line">b[<span class="number">3</span>] = b[<span class="number">3</span>] - b[<span class="number">2</span>];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>差分数组的好处是可以简化运算，例如想要给一个区间 [l,r]
-上的数组加一个常数c，原始的方法是依次加上c，这样的时间复杂度是O(n)的。但是如果采用差分数组的话，可以大大降低时间复杂度到O(1)。</p>
-<p>由于a[n] = b[1] + b[2]+...+b[n]，因此只需要将b[l] = b[l] + c
-即可，这样l之后的数字会依次加上常数c，而在 b[r]处，将b[r+1] = b[r+1] - c
-，这样r之后的数组又会恢复原值，仅需要处理这两个边界的差分数组即可，时间复杂度大大降低。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20220915162819362.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Algorithm/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%EF%BC%9A%E5%B7%AE%E5%88%86%E7%AE%97%E6%B3%95%E5%8F%8A%E6%A8%A1%E6%9D%BF%E5%BA%94%E7%94%A8/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
