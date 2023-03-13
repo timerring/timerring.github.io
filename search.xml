@@ -18405,4 +18405,102 @@ href="https://github.com/timerring/digital-image-processing-matlab/blob/main/ref
         <tag>MATLAB</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Matlab常用图像处理命令108例（三）</title>
+    <url>/Image-Processing/Matlab%E5%B8%B8%E7%94%A8%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4108%E4%BE%8B%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="edge">26.edge</h2>
+<p>功能：识别强度图像中的边界。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW = edge(I,<span class="string">&#x27;sobel&#x27;</span>)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;sobel&#x27;</span>,thresh)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;sobel&#x27;</span>,thresh,direction) </span><br><span class="line">[BW,thresh] = edge(I,<span class="string">&#x27;sobel&#x27;</span>,...)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;prewitt&#x27;</span>)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;prewitt&#x27;</span>,thresh)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;prewitt&#x27;</span>,thresh,direction) </span><br><span class="line">[BW,thresh] = edge(I,<span class="string">&#x27;prewitt&#x27;</span>,...)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;roberts&#x27;</span>)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;roberts&#x27;</span>,thresh) </span><br><span class="line">[BW,thresh] = edge(I,<span class="string">&#x27;roberts&#x27;</span>,...) </span><br><span class="line">BW = edge(I,<span class="string">&#x27;log&#x27;</span>)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;log&#x27;</span>,thresh)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;log&#x27;</span>,thresh,sigma) </span><br><span class="line">[BW,threshold] = edge(I,<span class="string">&#x27;log&#x27;</span>,...) </span><br><span class="line">BW = edge(I,<span class="string">&#x27;zerocross&#x27;</span>,thresh,h) </span><br><span class="line">[BW,thresh] = edge(I,<span class="string">&#x27;zerocross&#x27;</span>,...) </span><br><span class="line">BW = edge(I,<span class="string">&#x27;canny&#x27;</span>)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;canny&#x27;</span>,thresh)</span><br><span class="line">BW = edge(I,<span class="string">&#x27;canny&#x27;</span>,thresh,sigma) </span><br><span class="line">[BW,threshold] = edge(I,<span class="string">&#x27;canny&#x27;</span>,...) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">I = imread(<span class="string">&#x27;rice.tif&#x27;</span>);</span><br><span class="line">BW1 = edge(I,<span class="string">&#x27;prewitt&#x27;</span>); </span><br><span class="line">BW2 = edge(I,<span class="string">&#x27;canny&#x27;</span>); </span><br><span class="line">imshow(BW1);</span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-22-16-12-1678544168.png" /></p>
+<span id="more"></span>
+<h2 id="erode">27.erode</h2>
+<p>功能：弱化二进制图像的边界。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW2 = erode(BW1,SE)</span><br><span class="line">BW2 = erode(BW1,SE,alg) </span><br><span class="line">BW2 = erode(BW1,SE,...,n)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">BW1 = imread(<span class="string">&#x27;text.tif&#x27;</span>); </span><br><span class="line">SE = <span class="built_in">ones</span>(<span class="number">3</span>,<span class="number">1</span>);</span><br><span class="line">BW2 = erode(BW1,SE);</span><br><span class="line">imshow(BW1)</span><br><span class="line"><span class="built_in">figure</span>, imshow(BW2) </span><br></pre></td></tr></table></figure>
+<p>相关命令： bwmorph, dilate</p>
+<h2 id="fft2">28.fft2</h2>
+<p>功能：进行二维快速傅里叶变换。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = fft2(A)</span><br><span class="line">B = fft2(A,m,n)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">load imdemos saturn2 </span><br><span class="line">imshow(saturn2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-22-16-56-1678544214.png" /></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = fftshift(fft2(saturn2));</span><br><span class="line">imshow(<span class="built_in">log</span>(<span class="built_in">abs</span>(B)),[]), colormap(jet(<span class="number">64</span>)), colorbar</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-22-17-25-1678544244.png" /></p>
+<p>相关命令： dct2, fftshift, idct2, ifft2</p>
+<h2 id="fftn">29.fftn</h2>
+<p>功能：进行n 维快速傅里叶变换。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = fftn(A)</span><br><span class="line">B = fftn(A,siz) 相关命令： fft2, ifftn</span><br></pre></td></tr></table></figure>
+<h2 id="fftshift">30.fftshift</h2>
+<p>功能：把快速傅里叶变换的DC 组件移到光谱中心。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = fftshift(A)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = fftn(A);</span><br><span class="line">C = fftshift(B);</span><br></pre></td></tr></table></figure>
+<p>相关命令： fft2, fftn, ifftshift</p>
+<h2 id="filter2">31.filter2</h2>
+<p>功能：进行二维线性过滤操作。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">B = filter2(h,A)</span><br><span class="line">B = filter2(h,A,shape)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">A = <span class="built_in">magic</span>(<span class="number">6</span>) </span><br><span class="line">A =</span><br><span class="line"><span class="number">35</span> <span class="number">1</span> <span class="number">6</span> <span class="number">26</span> <span class="number">19</span> <span class="number">24</span></span><br><span class="line"><span class="number">3</span> <span class="number">32</span> <span class="number">7</span> <span class="number">21</span> <span class="number">23</span> <span class="number">25</span></span><br><span class="line"><span class="number">31</span> <span class="number">9</span> <span class="number">2</span> <span class="number">22</span> <span class="number">27</span> <span class="number">20</span></span><br><span class="line"><span class="number">8</span> <span class="number">28</span> <span class="number">33</span> <span class="number">17</span> <span class="number">10</span> <span class="number">15</span></span><br><span class="line"><span class="number">30</span> <span class="number">5</span> <span class="number">34</span> <span class="number">12</span> <span class="number">14</span> <span class="number">16</span></span><br><span class="line"><span class="number">4</span> <span class="number">36</span> <span class="number">29</span> <span class="number">13</span> <span class="number">18</span> <span class="number">11</span></span><br><span class="line">h = fspecial(<span class="string">&#x27;sobel&#x27;</span>) </span><br><span class="line">h =</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">1</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line">–<span class="number">1</span> –<span class="number">2</span> –<span class="number">1</span></span><br><span class="line">B = filter2(h,A,<span class="string">&#x27;valid&#x27;</span>) </span><br><span class="line">B =</span><br><span class="line">–<span class="number">8</span> <span class="number">4</span> <span class="number">4</span> –<span class="number">8</span></span><br><span class="line">–<span class="number">23</span> –<span class="number">44</span> –<span class="number">5</span> <span class="number">40</span></span><br><span class="line">–<span class="number">23</span> –<span class="number">50</span> <span class="number">1</span> <span class="number">40</span></span><br><span class="line">–<span class="number">8</span> <span class="number">4</span> <span class="number">4</span> –<span class="number">8</span></span><br></pre></td></tr></table></figure>
+<p>相关命令： conv2, roifilt2</p>
+<h2 id="freqspace">32.freqspace</h2>
+<p>功能：确定二维频率响应的频率空间。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[f1,f2] = <span class="built_in">freqspace</span>(n) </span><br><span class="line">[f1,f2] = <span class="built_in">freqspace</span>([m n])</span><br><span class="line">[x1,y1] = <span class="built_in">freqspace</span>(...,<span class="string">&#x27;meshgrid&#x27;</span>) </span><br><span class="line">f = <span class="built_in">freqspace</span>(N)</span><br><span class="line">f = <span class="built_in">freqspace</span>(N,<span class="string">&#x27;whole&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>相关命令： fsamp2, fwind1, fwind2</p>
+<h2 id="freqz2">33.freqz2</h2>
+<p>功能：计算二维频率响应。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[H,f1,f2] = freqz2(h,n1,n2)</span><br><span class="line">[H,f1,f2] = freqz2(h,[n2 n1])</span><br><span class="line">[H,f1,f2] = freqz2(h,f1,f2)</span><br><span class="line">[H,f1,f2] = freqz2(h)</span><br><span class="line">[...] = freqz2(h,...,[dx dy])</span><br><span class="line">[...] = freqz2(h,...,dx) </span><br><span class="line">freqz2(...)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Hd = <span class="built_in">zeros</span>(<span class="number">16</span>,<span class="number">16</span>); </span><br><span class="line">Hd(<span class="number">5</span>:<span class="number">12</span>,<span class="number">5</span>:<span class="number">12</span>) = <span class="number">1</span>;</span><br><span class="line">Hd(<span class="number">7</span>:<span class="number">10</span>,<span class="number">7</span>:<span class="number">10</span>) = <span class="number">0</span>;</span><br><span class="line">h = fwind1(Hd,bartlett(<span class="number">16</span>)); </span><br><span class="line">colormap(jet(<span class="number">64</span>))</span><br><span class="line">freqz2(h,[<span class="number">32</span> <span class="number">32</span>]); </span><br><span class="line">axis ([–<span class="number">1</span> <span class="number">1</span> –<span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-22-20-26-1678544423.png" /></p>
+<h2 id="fsamp2">34.fsamp2</h2>
+<p>功能：用频率采样法设计二维FIR 过滤器。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">h = fsamp2(Hd)</span><br><span class="line">h = fsamp2(f1,f2,Hd,[m n])</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">[f1,f2] = <span class="built_in">freqspace</span>(<span class="number">21</span>,<span class="string">&#x27;meshgrid&#x27;</span>); </span><br><span class="line">Hd = <span class="built_in">ones</span>(<span class="number">21</span>);</span><br><span class="line">r = <span class="built_in">sqrt</span>(f1.^<span class="number">2</span> + f2.^<span class="number">2</span>); </span><br><span class="line">Hd((r&lt;<span class="number">0.1</span>)|(r&gt;<span class="number">0.5</span>)) = <span class="number">0</span>;</span><br><span class="line">colormap(jet(<span class="number">64</span>)) </span><br><span class="line">mesh(f1,f2,Hd)</span><br></pre></td></tr></table></figure>
+<p>相关命令： conv2, filter2, freqspace, ftrans2, fwind1, fwind2</p>
+<h2 id="fspecial">35.fspecial</h2>
+<p>功能：创建预定义过滤器。 语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">h = fspecial(<span class="built_in">type</span>)</span><br><span class="line">h = fspecial(<span class="built_in">type</span>,parameters)</span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">I = imread(<span class="string">&#x27;saturn.tif&#x27;</span>);</span><br><span class="line">h = fspecial(<span class="string">&#x27;unsharp&#x27;</span>,<span class="number">0.5</span>); </span><br><span class="line">I2 = filter2(h,I)/<span class="number">255</span>; </span><br><span class="line">imshow(I)</span><br><span class="line"><span class="built_in">figure</span>, imshow(I2)</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://raw.githubusercontent.com/timerring/scratchpad2023/main/2023/03/11-22-21-26-1678544485.png" /></p>
+<p>相关命令： conv2, edge, filter2, fsamp2, fwind1, fwind2</p>
+<h2 id="ftrans2">36.ftrans2</h2>
+<p>功能：通过频率转换设计二维FIR 过滤器。</p>
+<p>语法：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">h = ftrans2(b,t) h = ftrans2(b) </span><br></pre></td></tr></table></figure>
+<p>举例</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">colormap(jet(<span class="number">64</span>))</span><br><span class="line">b = remez(<span class="number">10</span>,[<span class="number">0</span> <span class="number">0.05</span> <span class="number">0.15</span> <span class="number">0.55</span> <span class="number">0.65</span> <span class="number">1</span>],[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>]);</span><br><span class="line">[H,w] = freqz(b,<span class="number">1</span>,<span class="number">128</span>,<span class="string">&#x27;whole&#x27;</span>); </span><br><span class="line"><span class="built_in">plot</span>(w/<span class="built_in">pi</span>–<span class="number">1</span>,fftshift(<span class="built_in">abs</span>(H)))</span><br></pre></td></tr></table></figure>
+<p>相关命令：</p>
+<p>conv2, filter2, fsamp2, fwind1, fwind2</p>
+<p>参考文献：</p>
+<p>[1] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_Using_Matlab.pdf">Rafael
+C. Gonzalez, Richard E. Woods, and Steven L. Eddins. 2003. Digital Image
+Processing Using MATLAB. Prentice-Hall, Inc., USA.</a></p>
+<p>[2] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(MATLAB_version).pdf">阮秋琦.
+数字图像处理（MATLAB版）[M]. 北京：电子工业出版社, 2014.</a></p>
+<p>[3] <a
+href="https://github.com/timerring/digital-image-processing-matlab/blob/main/reference/Digital_Image_Processing_(Third_Edition).pdf">冈萨雷斯.
+数字图像处理（第三版）[M]. 北京：电子工业出版社, 2011.</a></p>
+]]></content>
+      <categories>
+        <category>Image Processing</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
+  </entry>
 </search>

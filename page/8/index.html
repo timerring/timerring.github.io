@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">138</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">139</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -207,6 +207,106 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">ARM常用开发编译软件介绍</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-12-27 10:58:21" itemprop="dateCreated datePublished" datetime="2022-12-27T10:58:21+08:00">2022-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="编译器介绍">编译器介绍</h2>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20221227105406508.png" /></p>
+<h2 id="ads1.2">1、ADS1.2</h2>
+<p>ADS（ARM Developer
+Suite），是在1993年由Metrowerks公司开发是ARM处理器下最主要的开发工具。
+他的前身是SDT，SDT是ARM公司几年前的开发环境软件，目前SDT早已经不再升级。ADS包括了四个模块分别是：SIMULATOR；C
+编译器；实时调试器；应用函数库。ADS对汇编、C/C++、java支持的均很好，是目前最成熟的ARM开发工具。很多ARM开发软件（例如Keil）也是借用的ADS的编译器。ADS在2006年版本已经发布到2.2。但国内大部分开发者使用的均是1.2版本</p>
+<p>ADS1.2提供完整的WINDOWS界面开发环境。C编译器效率高，支持c
+以及c++。提供软件模拟仿真功能，使没有Emulators的学习者也能够熟悉ARM的指令系统。配合FFT-ICE使用，ADS1.2提供强大的实时调试跟踪功能,片内运行情况尽在掌握。ADS1.2需要硬件支持才能发挥强大功能。目前支持的硬件调试器有Multi-ICE以及兼容Multi-ICE的调试工具如FFT-ICE。</p>
+<p>版本：ADS1.2</p>
+<p>软件大小：130M</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E7%BC%96%E8%AF%91%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1098,102 +1198,6 @@ Stack），当堆栈由低地址向高地址生成时，称为递增堆栈，当
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Notes/Embedded-System/%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80%E3%80%81%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80%E4%B8%8EARM%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/" class="post-title-link" itemprop="url">ARM间接寻址、变址寻址与多寄存器寻址</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-12-18 19:44:47" itemprop="dateCreated datePublished" datetime="2022-12-18T19:44:47+08:00">2022-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="寄存器间接寻址">寄存器间接寻址</h2>
-<p>寄存器间接寻址就是以寄存器中的值作为操作数的地址，而操作数本身存放在存储器中。例如以下指令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR	R0，[R1]		/*R0←[R1]*/</span><br><span class="line">STR	R0，[R1]		/*[R1]←R0*/</span><br></pre></td></tr></table></figure>
-<p>第一条指令将以R1的值为地址的存储器中的数据传送到R0中。第二条指令将R0的值传送到以R1的值为地址的存储器中。</p>
-<p>ARM的数据传送指令都是基于寄存器间接寻址，即通过Load/Store完成对数据的传送操作。</p>
-<h2 id="基址加偏址寻址变址寻址">基址加偏址寻址（变址寻址）</h2>
-<p>基址变址寻址就是将寄存器（该寄存器一般称作基址寄存器）的内容与指令中给出的地址偏移量（用12位表示，不超过4KB）相加，从而得到一个操作数的有效地址。变址寻址方式常用于访问某基地址附近的地址单元。</p>
-<p>变址寻址方式可以分为：前变址（Pre-indexed）、自动变址（Auto-indexed）和后变址（Post-indexed）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Embedded-System/ARM%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80%E3%80%81%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E4%B8%8E%E5%A4%9A%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
