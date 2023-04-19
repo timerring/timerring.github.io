@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">139</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">149</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%88%86%E5%B1%82%E6%AC%A1%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,7 +234,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E5%88%86%E5%B1%82%E6%AC%A1%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">分层次的电路设计方法</a>
+          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">状态机设计中的关键技术</a>
         </h2>
 
         <div class="post-meta-container">
@@ -245,7 +245,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-02-01 10:16:41" itemprop="dateCreated datePublished" datetime="2023-02-01T10:16:41+08:00">2023-02-01</time>
+      <time title="Created: 2023-02-11 09:43:25" itemprop="dateCreated datePublished" datetime="2023-02-11T09:43:25+08:00">2023-02-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -271,20 +271,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="设计方法">设计方法</h2>
+          <h2 id="状态编码">状态编码</h2>
+<p>在使用Verilog
+HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。</p>
+<p>有限状态机的编码方案</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230130103739077.png" /></p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230130103747281.png" /></p>
-<p>使用自下而上的方法（bottom-up） ：</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095432780.png" /></p>
+<p>状态机编码对状态机速度和面积关系重大</p>
+<p>常用编码</p>
 <ul>
-<li>实例引用基本门级元件xor、and定义底层的半加器模块halfadder；</li>
-<li>实例引用两个半加器模块halfadder和一个基本或门元件or组合成为1位全加器模块fulladder；</li>
-<li>实例引用4个1位的全加器模块fulladder构成4位全加器的顶层模块。</li>
+<li>二进制码（binary）</li>
+<li>格雷码（Gray）</li>
+<li>独热码（one-hot）</li>
 </ul>
+<p>二进制码与格雷码是压缩状态编码，使用最少的状态位进行编码。</p>
+<p>二进制编码的优点是使用的状态向量最少，但从一个状态转换到相邻状态时，可能有多个比特位发生变化，瞬变次数多，易产生毛刺。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E5%88%86%E5%B1%82%E6%AC%A1%E7%9A%84%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -315,7 +319,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E8%A1%8C%E4%B8%BA%E7%BA%A7%E5%BB%BA%E6%A8%A1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -333,7 +337,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E8%A1%8C%E4%B8%BA%E7%BA%A7%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">Verilog HDL行为级建模</a>
+          <a href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">基于Verilog HDL的状态机描述方法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -344,7 +348,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-01-31 10:23:29" itemprop="dateCreated datePublished" datetime="2023-01-31T10:23:29+08:00">2023-01-31</time>
+      <time title="Created: 2023-02-10 10:01:10" itemprop="dateCreated datePublished" datetime="2023-02-10T10:01:10+08:00">2023-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -370,533 +374,30 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>行为级建模就是描述数字逻辑电路的功能和算法。</p>
-<p>在Verilog中，行为级描述主要使用由关键词initial或always定义的两种结构类型的语句。一个模块的内部可以包含多个initial或always语句。</p>
-<p>initial语句是一条初始化语句，仅执行一次，经常用于测试模块中，对激励信号进行描述，在硬件电路的行为描述中，有时为了仿真的需要，也用initial语句给寄存器变量赋初值。</p>
-<p>initial语句主要是一条面向仿真的过程语句，不能用于逻辑综合
-。这里不介绍它的用法。</p>
-<p>在always结构型语句内部有一系列过程性赋值语句，用来描述电路的功能（行为）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E8%A1%8C%E4%B8%BA%E7%BA%A7%E5%BB%BA%E6%A8%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">Verilog HDL数据流建模与运算符</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-30 12:17:52" itemprop="dateCreated datePublished" datetime="2023-01-30T12:17:52+08:00">2023-01-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>对于基本单元逻辑电路，使用Verilog语言提供的门级元件模型描述电路非常方便。</p>
-<p>但随着电路复杂性的增加，使用的逻辑门较多时，使用HDL门级描述的工作效率就很低。</p>
-<p>数据流建模能够在较高的抽象级别描述电路的逻辑功能，并且通过逻辑综合软件，能够自动地将数据流描述转换成为门级电路。</p>
-<p>数据流建模主要使用逻辑表达式，所以要了解各种运算符和表达式。</p>
-<h2 id="数据流建模">数据流建模</h2>
-<p>数据流建模使用的连续赋值语句，由关键词assign开始，后面跟着由操作数和运算符等组成的逻辑表达式。</p>
-<p>一般用法如下：</p>
-<pre><code>wire [位宽说明] 变量名1，变量名2，……，变量名n；
-assign 变量名＝表达式；</code></pre>
-<p>注意，assign
-语句只能对wire型变量进行赋值，所以等号左边变量名的数据类型必须是wire型。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E6%95%B0%E6%8D%AE%E6%B5%81%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E9%97%A8%E7%BA%A7%E5%BB%BA%E6%A8%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E9%97%A8%E7%BA%A7%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">Verilog HDL门级建模</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-29 22:14:14" itemprop="dateCreated datePublished" datetime="2023-01-29T22:14:14+08:00">2023-01-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="基本概念">基本概念</h2>
-<p>结构级建模: 就是根据逻辑电路的结构（逻辑图），实例引用Verilog
-HDL中内置的基本门级元件或者用户定义的元件或其他模块，来描述结构图中的元件以及元件之间的连接关系。</p>
-<p>门级建模: Verilog
-HDL中内置了12个基本门级元件（Primitive，有的翻译为“原语”）模型，引用这些基本门级元件对逻辑图进行描述，也称为门级建模。</p>
-<h3 id="基本门级元件primitive-原语">基本门级元件（Primitive :
-原语）</h3>
-<ul>
-<li>多输入门：and、nand、or、nor、xor、xnor
-<ul>
-<li>只有单个输出, 1个或多个输入</li>
-</ul></li>
-<li>多输出门：not、buf
-<ul>
-<li>允许有多个输出, 但只有一个输入</li>
-</ul></li>
-<li>三态门：bufif0、bufif1、notif0、notif1
-<ul>
-<li>有一个输出, 一个数据输入和一个控制输入</li>
-</ul></li>
-<li>上拉电阻pullup、下拉电阻pulldown</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E9%97%A8%E7%BA%A7%E5%BB%BA%E6%A8%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/" class="post-title-link" itemprop="url">Verilog HDL基本语法规则</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-28 10:53:38" itemprop="dateCreated datePublished" datetime="2023-01-28T10:53:38+08:00">2023-01-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="词法规定">词法规定</h2>
-<p>为对数字电路进行描述,Verilog语言规定了一套完整的语法结构。</p>
-<h3 id="间隔符">1．间隔符</h3>
-<p>Verilog
-的间隔符主要起分隔文本的作用，可以使文本错落有致，便于阅读与修改。间隔符包括空格符（、TAB
-键（、换行符（）及换页符。</p>
-<h3 id="注释符">2．注释符</h3>
-<p>注释只是为了改善程序可读性，编译时不起作用。</p>
-<ul>
-<li>多行注释符(用于写多行注释): /* --- */；</li>
-<li>单行注释符 :以//开始到行尾结束为注释文字。</li>
-</ul>
-<h3 id="标识符和关键词">3．标识符和关键词</h3>
-<p>标识符:
-给对象（如模块名、电路的输入与输出端口、变量等）取名所用的字符串。以英文字母或下划线开始
-如，clk、counter8、_net、bus_A 。</p>
-<p>关键词:
-用Verilog语言本身规定的特殊字符串定义语言的结构。例如，module、endmodule、input、output、wire、reg、and等都是关键词。关键词都是小写，关键词不能作为标识符使用
-。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Verilog HDL仿真常用命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-27 10:53:15" itemprop="dateCreated datePublished" datetime="2023-01-27T10:53:15+08:00">2023-01-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="系统任务system-tasks">系统任务（System Tasks）</h2>
-<h3 id="显示任务display-task">1．显示任务（Display Task）</h3>
-<p>$display是Verilog中最有用的任务之一，用于将指定信息（被引用的字符串、变量值或者表达式）以及结束符显示到标准输出设备上。其格式如下：</p>
+          <h2 id="状态图的建立过程">状态图的建立过程</h2>
+<p>设计一个序列检测器电路。功能是检测出串行输入数据Sin中的4位二进制序列0101（自左至右输入），当检测到该序列时，输出Out=1；没有检测到该序列时，输出Out=0。（注意考虑序列重叠的可能性，如010101，相当于出现两个0101序列）。</p>
+<p>解：首先，确定采用米利型状态机设计该电路。因为该电路在连续收到信号0101时，输出为1，其他情况下输出为0，所以采用米利型状态机。</p>
+<p>其次，确定状态机的状态图。根据设计要求，该电路至少应有四个状态，分别用S1、S2、S3、S4表示。若假设电路的初始状态用S0表示，则可用五个状态来描述该电路。根据分析，可以画出图(a)所示的原始状态图。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230127101107463.png" /></p>
-<h3
-id="monitor任务的参数格式与display的相同.">2.$monitor任务的参数格式与$display的相同.</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230127101159207.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E4%BB%BF%E7%9C%9F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Verilog HDL程序的基本结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-26 17:44:53" itemprop="dateCreated datePublished" datetime="2023-01-26T17:44:53+08:00">2023-01-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="简单verilog-hdl程序实例">简单Verilog HDL程序实例</h2>
-<p>Verilog使用大约100个预定义的关键词定义该语言的结构</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094448632.png" /></p>
+<p>观察该图可以看出，S2、S4为等价状态，可用S2代替S4，于是得到简化状态图。</p>
+<p>然后，根据上面的状态图给出该状态机的输出逻辑。该状态机只有一个输出变量Out，其输出逻辑非常简单，直接标注在状态图中了。若输出变量较多，则可以列出输出逻辑真值表。</p>
+<p>最后，就可以使用硬件描述语言对状态图进行描述了。</p>
+<h2 id="状态图描述方法">状态图描述方法</h2>
+<p>利用Verilog HDL语言描述状态图主要包含四部分内容：</p>
 <ol type="1">
-<li><p>Verilog
-HDL程序由模块构成。每个模块的内容都是嵌在两个关键词module和endmodule之间。每个模块实现特定的功能。</p></li>
-<li><p>每个模块先要进行端口的定义，并说明输入（input) 、输出（output)
-和双向（inout)，然后对模块功能进行描述。</p></li>
-<li><p>除了endmodule外，每个语句后必须有英文的分号(;)。</p></li>
-<li><p>可以用/* --- */和//…..，对Verilog
-HDL程序的任何部分做注释。</p></li>
+<li><p>利用参数定义语句parameter描述状态机中各个状态的名称，并指定状态编码。例如，对序列检测器的状态分配可以使用最简单的自然二进制码，其描述如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span>  S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure>
+<p>或者，</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>用时序的always 块描述状态触发器实现的状态存储。</p></li>
+<li><p>使用敏感表和case语句(也可以采用if-else等价语句)描述的状态转换逻辑。</p></li>
+<li><p>描述状态机的输出逻辑。</p></li>
 </ol>
-<h3 id="半加器程序实例">半加器程序实例</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230125094944033.png" /></p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Gate-level description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_GL(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;		<span class="comment">//输入端口声明</span></span><br><span class="line">  <span class="keyword">output</span>  Sum, Carry ;      <span class="comment">//输出端口声明</span></span><br><span class="line">  <span class="keyword">wire</span> A ,B , Sum ,Carry ; </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">xor</span> X1 (Sum, A, B );</span><br><span class="line">  <span class="keyword">and</span> A1 (Carry, A, B);  </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Dataflow description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_DF(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;	 	 </span><br><span class="line">  <span class="keyword">output</span>  Sum ,Carry ; </span><br><span class="line">  <span class="keyword">wire</span> A ,B，Sum ,Carry ; </span><br><span class="line">  <span class="keyword">assign</span>   Sum = A ^ B; </span><br><span class="line">  <span class="keyword">assign</span>   Carry = A &amp; B; </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Behavioral description of a half adder */</span></span><br><span class="line"><span class="keyword">module</span> HalfAdder_BH(A, B, Sum, Carry);</span><br><span class="line">  <span class="keyword">input</span>  A ,B ;	 	  </span><br><span class="line">  <span class="keyword">output</span>  Sum ,Carry ; </span><br><span class="line">  <span class="keyword">reg</span> Sum ,Carry ;        <span class="comment">//声明端口数据类型为寄存器</span></span><br><span class="line">  <span class="keyword">always</span> @(A <span class="keyword">or</span> B)  <span class="keyword">begin</span></span><br><span class="line">	Sum = A ^ B;	      <span class="comment">//用过程赋值语句描述逻辑功能</span></span><br><span class="line">	Carry = A &amp; B;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>描述状态图的方法多种多样，下面介绍几种：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/FPGA%EF%BC%9AVerilog%20HDL%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/#more" rel="contents">
+              <a class="btn" href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -927,7 +428,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -945,7 +446,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">硬件描述语言简介</a>
+          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">状态机的概念与设计</a>
         </h2>
 
         <div class="post-meta-container">
@@ -956,7 +457,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-01-26 17:40:09" itemprop="dateCreated datePublished" datetime="2023-01-26T17:40:09+08:00">2023-01-26</time>
+      <time title="Created: 2023-02-09 10:36:09" itemprop="dateCreated datePublished" datetime="2023-02-09T10:36:09+08:00">2023-02-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -982,26 +483,27 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>硬件描述语言HDL(Hardware Description Language )
-类似于高级程序设计语言.
-它是一种以文本形式来描述数字系统硬件的结构和行为的语言,
-用它可以表示逻辑电路图、逻辑表达式，复杂数字逻辑系统的逻辑功能。用HDL编写设计说明文档易于存储和修改，并能被计算机识别和处理.</p>
-<p>HDL是高层次自动化设计的起点和基础.目前，
-IEEE推出两种标准：VHDL和Verilog HDL</p>
-<h2 id="vhdl的起源与发展">(1) VHDL的起源与发展</h2>
-<p>Very high speed integrated Hardware Description Language
-(VHDL)它是70年代末和80年代初，起源于美国国防部提出的超高速集成电路VHSIC研究计划，目的是为了把电子电路的设计意义以文字或文件的方式保存下来，以便其他人能轻易地了解电路的设计意义
-。 1981年6月成立了VHDL小组。</p>
-<ul>
-<li>1983年第三季度，由IBM公司、TI公司、Intermetric
-公司成立开发小组。</li>
-<li>1986年3月，IEEE开始致力于VHDL的标准化工作，讨论VHDL语言标准。</li>
-<li>IEEE于1987年12月公布了VHDL的标准版本（IEEE STD 1076/1987）；</li>
-<li>1993年VHDL修订，形成新的标准即IEEE STD 1076-1993)。</li>
-</ul>
+          <h2 id="状态机的基本结构及类型">状态机的基本结构及类型</h2>
+<p>有限状态机的标准模型如图所示，它主要由三部分组成：</p>
+<ol type="1">
+<li>下一状态的逻辑电路（组合电路）；</li>
+<li>存储状态机当前状态的时序逻辑电路（时序电路）；</li>
+<li>输出组合逻辑电路（组合电路）。</li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093806848.png" /></p>
+<p>一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite
+State
+Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟脉冲源上，其状态的转换是在同一时钟源的同一脉冲边沿同步进行的，所以它也被称作时钟同步状态机。</p>
+<p>一般来说，状态机的基本操作主要有以下两种：</p>
+<ol type="1">
+<li>状态机的内部状态转换。</li>
+<li>产生输出信号序列。</li>
+</ol>
+<p>根据电路的输出信号是否与电路的输入有关，可以将状态机分为两种类型：一类是米利型（Mealy）状态机，电路的输出信号不仅与电路当前的状态有关，还与电路的输入有关；另一类是穆尔型（Moore）状态机，电路输出仅仅取决于各触发器的状态，而不受电路当时的输入信号影响或没有输入变量。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/FPGA%EF%BC%9A%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/#more" rel="contents">
+              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1032,7 +534,7 @@ IEEE推出两种标准：VHDL和Verilog HDL</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Work-Notes/%E5%85%B3%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9A%84%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1050,7 +552,7 @@ IEEE推出两种标准：VHDL和Verilog HDL</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Work-Notes/%E5%85%B3%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9A%84%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">关于环境变量配置的思考总结</a>
+          <a href="/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/" class="post-title-link" itemprop="url">m序列码产生电路设计与仿真</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1061,7 +563,7 @@ IEEE推出两种标准：VHDL和Verilog HDL</p>
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-01-26 16:47:42" itemprop="dateCreated datePublished" datetime="2023-01-26T16:47:42+08:00">2023-01-26</time>
+      <time title="Created: 2023-02-08 10:09:31" itemprop="dateCreated datePublished" datetime="2023-02-08T10:09:31+08:00">2023-02-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1069,96 +571,11 @@ IEEE推出两种标准：VHDL和Verilog HDL</p>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Work-Notes/" itemprop="url" rel="index"><span itemprop="name">Work Notes</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>其实写这一篇时还是非常不好意思的，毕竟无论是学习还是开发这么久，第一步就是配置SDK，编辑环境变量。但是这一步我为了避免一些未知的错误，避免踩坑，通常采用的方式是网上找对应的有效图文教程，跟着一步步完成。整个过程中还是少了一点思考，因此印象不深。今天，借着搭建go的开发环境，对整个配置过程进行了梳理，有了一些思考与总结。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Work-Notes/%E5%85%B3%E4%BA%8E%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E7%9A%84%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Database/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B8%8E7%E7%A7%8DJOINS%E7%9A%84%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Database/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B8%8E7%E7%A7%8DJOINS%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">多表查询与7种JOINS的实现</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-01-26 16:16:44" itemprop="dateCreated datePublished" datetime="2023-01-26T16:16:44+08:00">2023-01-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
         </span>
     </span>
 
@@ -1172,20 +589,657 @@ IEEE推出两种标准：VHDL和Verilog HDL</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>多表查询，也称为关联查询，指两个或更多个表一起完成查询操作。</p>
-<p>前提条件：这些一起查询的表之间是有关系的（一对一、一对多），它们之间一定是有关联字段，这个关联字段可能建立了外键，也可能没有建立外键。比如：员工表和部门表，这两个表依靠“部门编号”进行关联。</p>
-<h2 id="案例多表连接">1.案例多表连接</h2>
-<h3 id="案例说明">案例说明</h3>
+          <p>m 序列又叫做伪随机序列、伪噪声(pseudo
+noise，PN)码或伪随机码，是一种可以预先确定并可以重复地产生和复制、又具有随机统计特性的二进制码序列。</p>
+<p>伪随机序列一般用二进制表示，每个码元（即构成m序列的元素）只有“0”或“1”两种取值，分别与数字电路中的低电平或高电平相对应。</p>
+<p>m
+序列是对最长线性反馈移位寄存器序列的简称，它是一种由带线性反馈的移位寄存器所产生的序列，并且具有最长周期。</p>
+<p>图所示是一种3位m序列产生器，它将1,3两级触发器的输出通过同或门反馈到第一级的输入端。</p>
+<p>其工作原理是：在清零后，3个触发器的输出均为0，于是同或门的输出为1，在时钟触发下，每次移位后各级寄存器状态都会发生变化。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230119124806570.png" /></p>
-<p>从多个表中获取数据：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 错误的实现方式：每个员工都与每个部门匹配了一遍。</span><br><span class="line"><span class="keyword">SELECT</span> employee_id,department_name</span><br><span class="line"><span class="keyword">FROM</span> employees,departments;  </span><br><span class="line"># 查询出<span class="number">2889</span>条记录</span><br></pre></td></tr></table></figure>
-<p>分析错误情况：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(employee_id) <span class="keyword">FROM</span> employees;</span><br><span class="line">#输出<span class="number">107</span>行</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(department_id)<span class="keyword">FROM</span> departments;</span><br><span class="line"># 输出<span class="number">27</span>行</span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">107</span><span class="operator">*</span><span class="number">27</span> <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
-<p>因此把多表查询中出现的问题称为：笛卡尔积的错误。</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202161913637.png" /></p>
+<p>分析该电路得到如图所示的仿真波形图，其中任何一级触发器（通常为末级）的输出都是一个周期序列（或者称为m序列），但各个输出端的m序列的初始相位不同。m序列的周期不仅与移位寄存器的级数有关，而且与线性反馈逻辑和初始状态有关。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Database/MySQL/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E4%B8%8E7%E7%A7%8DJOINS%E7%9A%84%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+              <a class="btn" href="/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Verilog HDL函数与任务的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-07 09:52:27" itemprop="dateCreated datePublished" datetime="2023-02-07T09:52:27+08:00">2023-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="函数function说明语句">函数（function）说明语句</h2>
+<h3 id="函数的定义">函数的定义</h3>
+<p>函数定义部分可以出现在模块说明中的任何位置，其语法格式如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> &lt;返回值类型或位宽&gt; &lt;函数名&gt;；</span><br><span class="line">    &lt;输入参量与类型声明&gt;</span><br><span class="line">    &lt;局部变量声明&gt;</span><br><span class="line">    行为语句；</span><br><span class="line"><span class="keyword">endfunction</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数的调用">函数的调用</h3>
+<p>函数调用是表达式的一部分，其格式如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;函数名&gt; （&lt;输入表达式<span class="number">1</span>&gt;，……&lt;输入表达式n&gt;）；</span><br></pre></td></tr></table></figure>
+<p>其中输入表达式的排列顺序必须与各个输入端口在函数定义结构中的排列顺序一致。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">同步计数器设计与建模</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-06 10:29:36" itemprop="dateCreated datePublished" datetime="2023-02-06T10:29:36+08:00">2023-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="概-述">概 述</h2>
+<ol type="1">
+<li>计数器的逻辑功能</li>
+</ol>
+<p>计数器的基本功能是对输入时钟脉冲进行计数。它也可用于分频、定时、产生节拍脉冲和脉冲序列及进行数字运算等。</p>
+<ol start="2" type="1">
+<li>计数器的分类</li>
+</ol>
+<p>按脉冲输入方式，分为同步和异步计数器</p>
+<p>按进位体制，分为二进制、十进制和任意进制计数器</p>
+<p>按逻辑功能，分为加法、减法和可逆计数器</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202160146568.png" /></p>
+<p>计数器运行时，依次遍历规定的各状态后完成一次循环，它所经过的状态总数称为计数器的“模”（Modulo），通常用M表示。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">寄存器和移位寄存器分析与建模</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-06 10:28:20" itemprop="dateCreated datePublished" datetime="2023-02-06T10:28:20+08:00">2023-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="寄存器及verilog-hdl建模">寄存器及Verilog HDL建模</h2>
+<p>图中，<span class="math inline">\(PD_3\)</span>~<span
+class="math inline">\(PD_0\)</span>是4位数据输入端，</p>
+<ul>
+<li>当Load = 1时，在CP脉冲上升沿到来时，<span class="math inline">\(Q_3
+= PD_3\)</span>，<span class="math inline">\(Q_2 = PD_2\)</span>，<span
+class="math inline">\(Q_1 = PD_1\)</span>，<span
+class="math inline">\(Q_0 = PD_0\)</span>，即输入数据<span
+class="math inline">\(PD_3-PD_0\)</span>同时存入相应的触发器；</li>
+<li>当Load = 0时，即使CP上升沿到来，输出端Q
+的状态将保持不变。可见，电路具有存储输入的4位二进制数据的功能。</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202154017076.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">D触发器(D-FF)详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-04 11:15:04" itemprop="dateCreated datePublished" datetime="2023-02-04T11:15:04+08:00">2023-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="d触发器的逻辑功能">D触发器的逻辑功能</h2>
+<h3 id="d触发器的逻辑符号">D触发器的逻辑符号</h3>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202124154085.png" /></p>
+<p>把 CP 有效沿到来之前电路的状态称为现态，用<span
+class="math inline">\(Q^n\)</span>表示。</p>
+<p>把 CP 有效沿到来之后，电路所进入的新状态称为次态，用<span
+class="math inline">\(Q^{n+1}\)</span>表示。</p>
+<h3 id="特性表">特性表</h3>
+<table>
+<thead>
+<tr class="header">
+<th><em>D</em></th>
+<th><span class="math inline">\(Q^n\)</span></th>
+<th><span class="math inline">\(Q^{n+1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>0</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+<td><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">时序电路建模基础</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-03 10:00:23" itemprop="dateCreated datePublished" datetime="2023-02-03T10:00:23+08:00">2023-02-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Verilog行为级描述用关键词initial或always，但initial是面向仿真，不能用于逻辑综合。always是无限循环语句，其用法为：
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 　</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span>＠(事件控制表达式（或敏感事件表)）</span><br><span class="line">　<span class="keyword">begin</span>　</span><br><span class="line">　块内局部变量的定义；</span><br><span class="line">　过程赋值语句；</span><br><span class="line"><span class="keyword">end</span>　　　　　　　　　　　　　</span><br></pre></td></tr></table></figure>
+<h2
+id="阻塞型赋值语句与非阻塞型赋值语句">阻塞型赋值语句与非阻塞型赋值语句</h2>
+<p>在always语句内部的过程赋值语句有两种类型：</p>
+<ul>
+<li>阻塞型赋值语句（Blocking Assignment Statement）</li>
+<li>非阻塞型赋值语句（Non-Blocking Assignment Statement）</li>
+</ul>
+<h3 id="赋值运算符">赋值运算符</h3>
+<p>赋值运算符(＝) ：阻塞型过程赋值算符</p>
+<ul>
+<li>前一条语句没有完成赋值过程之前，后面的语句不可能被执行。</li>
+</ul>
+<p>赋值运算符(&lt;＝) ：非阻塞型过程赋值算符</p>
+<ul>
+<li>一条非阻塞型赋值语句的执行，并不会影响块中其它语句的执行。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">SR锁存器与D锁存器设计与建模</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-02 17:17:35" itemprop="dateCreated datePublished" datetime="2023-02-02T17:17:35+08:00">2023-02-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="锁存器和触发器的基本特性">锁存器和触发器的基本特性</h2>
+<p>锁存器和触发器是构成时序逻辑电路的基本逻辑单元，它们具有存储数据的功能。
+每个锁存器或触发器都能存储1位二值信息，所以又称为存储单元或记忆单元。
+若输入信号不发生变化，锁存器和触发器必然处于其中一种状态，且一旦状态被确定，就能自行保持不变，即长期存储1位二进制数。
+电路在输入信号的作用下，会从一种稳定状态转换成为另一种稳定状态。</p>
+<h2 id="锁存器latch与触发器flip-flop的区别">锁存器(Latch)与触发器(Flip
+Flop)的区别</h2>
+<p>锁存器(Latch)——
+没有时钟输入端，对脉冲电平敏感的存储电路，在特定输入脉冲电平作用下改变状态。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202115115993.png" /></p>
+<p>触发器(Flip
+Flop)——每一个触发器有一个时钟输入端。对脉冲边沿敏感的存储电路，在时钟脉冲的上升沿或下降沿的变化瞬间改变状态。</p>
+<p><img
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202115145514.png" /></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1209,7 +1263,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>

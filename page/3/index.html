@@ -84,7 +84,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">139</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">17</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">149</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -234,7 +234,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">状态机设计中的关键技术</a>
+          <a href="/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">图像的傅立叶变换</a>
         </h2>
 
         <div class="post-meta-container">
@@ -245,7 +245,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-02-11 09:43:25" itemprop="dateCreated datePublished" datetime="2023-02-11T09:43:25+08:00">2023-02-11</time>
+      <time title="Created: 2023-03-03 09:17:15" itemprop="dateCreated datePublished" datetime="2023-03-03T09:17:15+08:00">2023-03-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -253,11 +253,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
         </span>
     </span>
 
@@ -271,24 +267,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="状态编码">状态编码</h2>
-<p>在使用Verilog
-HDL描述状态机时，通常用参数定义语句parameter指定状态编码。状态编码方案一般有三种：自然二进制编码、格雷(Gray)编码和独热码(one-hot编码)。对应于图所示的状态图的各种编码方案如表所示。</p>
-<p>有限状态机的编码方案</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209095432780.png" /></p>
-<p>状态机编码对状态机速度和面积关系重大</p>
-<p>常用编码</p>
-<ul>
-<li>二进制码（binary）</li>
-<li>格雷码（Gray）</li>
-<li>独热码（one-hot）</li>
-</ul>
-<p>二进制码与格雷码是压缩状态编码，使用最少的状态位进行编码。</p>
-<p>二进制编码的优点是使用的状态向量最少，但从一个状态转换到相邻状态时，可能有多个比特位发生变化，瞬变次数多，易产生毛刺。</p>
+          <h2 id="目的">目的</h2>
+<p>1.掌握二维 DFT 变换及其物理意义</p>
+<p>2.掌握二维 DFT 变换的MATLAB 程序</p>
+<p>3.空域滤波与频域滤波</p>
+<h2 id="原理">原理</h2>
+<h3 id="应用傅立叶变换进行图像处理">1.应用傅立叶变换进行图像处理</h3>
+<p>傅里叶变换是线性系统分析的一个有力工具，它能够定量地分析诸如数字化系统、采样点、电子放大器、卷积滤波器、噪音和显示点等的作用。通过实验培养这项技能，将有助于解决大多数图像处理问题。对任何想在工作中有效应用数字图像处理技术的人来说，把时间用在学习和掌握博里叶变换上是很有必要的。</p>
+<h3 id="傅立叶fourier变换的定义">2.傅立叶（Fourier）变换的定义</h3>
+<p>对于二维信号，二维Fourier 变换定义为： <span class="math display">\[
+F(u, v)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) e^{-j 2
+\pi (u x+vy)} d x d y
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u d, v) e^{j 2
+\pi (u x+vy) } d u d v
+\]</span> 二维离散傅立叶变换为： <span class="math display">\[
+F(u, v)=\sum_{x=0}^{M-1} \sum_{y=0}^{N-1} f(x, y) e^{-j 2
+\pi(\frac{\mathrm{ux}}{\mathrm{M}}+\frac{v y}{N})}
+\]</span> 逆变换： <span class="math display">\[
+f(x, y)=\frac{1}{M N} \sum_{u=0}^{M-1} \sum_{v=0}^{N-1} F(u, v) e^{j 2
+\pi(\frac{\mathrm{ux}}{M}+\frac{v y}{N})}
+\]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF/#more" rel="contents">
+              <a class="btn" href="/Image-Processing/%E5%9B%BE%E5%83%8F%E7%9A%84%E5%82%85%E7%AB%8B%E5%8F%B6%E5%8F%98%E6%8D%A2/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -319,7 +321,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/%E7%81%B0%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8A%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -337,7 +339,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">基于Verilog HDL的状态机描述方法</a>
+          <a href="/Image-Processing/%E7%81%B0%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8A%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/" class="post-title-link" itemprop="url">灰度直方图及直方图均衡化</a>
         </h2>
 
         <div class="post-meta-container">
@@ -348,7 +350,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-02-10 10:01:10" itemprop="dateCreated datePublished" datetime="2023-02-10T10:01:10+08:00">2023-02-10</time>
+      <time title="Created: 2023-03-02 12:37:30" itemprop="dateCreated datePublished" datetime="2023-03-02T12:37:30+08:00">2023-03-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -356,11 +358,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
         </span>
     </span>
 
@@ -374,30 +372,124 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="状态图的建立过程">状态图的建立过程</h2>
-<p>设计一个序列检测器电路。功能是检测出串行输入数据Sin中的4位二进制序列0101（自左至右输入），当检测到该序列时，输出Out=1；没有检测到该序列时，输出Out=0。（注意考虑序列重叠的可能性，如010101，相当于出现两个0101序列）。</p>
-<p>解：首先，确定采用米利型状态机设计该电路。因为该电路在连续收到信号0101时，输出为1，其他情况下输出为0，所以采用米利型状态机。</p>
-<p>其次，确定状态机的状态图。根据设计要求，该电路至少应有四个状态，分别用S1、S2、S3、S4表示。若假设电路的初始状态用S0表示，则可用五个状态来描述该电路。根据分析，可以画出图(a)所示的原始状态图。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209094448632.png" /></p>
-<p>观察该图可以看出，S2、S4为等价状态，可用S2代替S4，于是得到简化状态图。</p>
-<p>然后，根据上面的状态图给出该状态机的输出逻辑。该状态机只有一个输出变量Out，其输出逻辑非常简单，直接标注在状态图中了。若输出变量较多，则可以列出输出逻辑真值表。</p>
-<p>最后，就可以使用硬件描述语言对状态图进行描述了。</p>
-<h2 id="状态图描述方法">状态图描述方法</h2>
-<p>利用Verilog HDL语言描述状态图主要包含四部分内容：</p>
+          <h1 id="灰度直方图及直方图均衡化">灰度直方图及直方图均衡化</h1>
+<h2 id="目的">目的</h2>
+<p>1.直方图的显示</p>
+<p>2.计算并绘制图像直方图</p>
+<p>3.直方图的均衡化</p>
+<h2 id="内容">内容</h2>
+<p>灰度直方图用于显示图像的灰度值分布情况,是数字图像处理中最简单和最实用的工具。</p>
+<p>MATLAB中提供了专门绘制直方图的函数 <code>imhist()</code> 。</p>
+<h3 id="直方图的显示">1.直方图的显示</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">imshow(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif&#x27;</span>);</span><br><span class="line">title(<span class="string">&#x27;原图像&#x27;</span>)</span><br><span class="line"><span class="comment">% 显示原图像</span></span><br><span class="line">A=imread(<span class="string">&#x27;D:\pic\DIP3E_CH02\Fig0221(a)(ctskull-256).tif &#x27;</span>,<span class="string">&#x27;tif&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>;</span><br><span class="line">imhist(A);</span><br><span class="line">title(<span class="string">&#x27;对应直方图&#x27;</span>)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Image-Processing/%E7%81%B0%E5%BA%A6%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%8F%8A%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Image-Processing/MATLAB%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Image-Processing/MATLAB%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">MATLAB的图像显示方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-02 12:37:25" itemprop="dateCreated datePublished" datetime="2023-03-02T12:37:25+08:00">2023-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Image-Processing/" itemprop="url" rel="index"><span itemprop="name">Image Processing</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="matlab的图像显示方法">MATLAB的图像显示方法</h1>
+<h3 id="目的">目的</h3>
 <ol type="1">
-<li><p>利用参数定义语句parameter描述状态机中各个状态的名称，并指定状态编码。例如，对序列检测器的状态分配可以使用最简单的自然二进制码，其描述如下：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span>  S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure>
-<p>或者，</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span> [<span class="number">1</span>:<span class="number">0</span>] S0=<span class="number">2&#x27;b00</span>, S1=<span class="number">2&#x27;b01</span>, S2 = <span class="number">2&#x27;b10</span>, S3 = <span class="number">2&#x27;b11</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>用时序的always 块描述状态触发器实现的状态存储。</p></li>
-<li><p>使用敏感表和case语句(也可以采用if-else等价语句)描述的状态转换逻辑。</p></li>
-<li><p>描述状态机的输出逻辑。</p></li>
+<li>了解 MATLAB 的基本功能及操作方法。</li>
+<li>掌握典型离散信号的 Matlab 产生和显示。</li>
 </ol>
-<p>描述状态图的方法多种多样，下面介绍几种：</p>
+<h3 id="内容">内容</h3>
+<p>在 MATLAB 中, 序列是用矩阵向量表示, 但它没有包含采样信息,
+即序列位置信息, 为 此, 要表示一个序列需要建立两个向量; 一是时间序列 n ,
+或称位置序列, 另一个为取值序 列 x ，表示如下: <span
+class="math inline">\(n=[\cdots,-3,-2,-1,0,1,2,3, \cdots]\)</span>
+，<span class="math inline">\(\mathrm{x}=[\cdots, 6,3,5,2,1,7,9,
+\cdots]\)</span></p>
+<p>一般程序都从 0 位置起始, 则 <span class="math inline">\(x=[x(0),
+x(1), x(2), \cdots]\)</span> 对于多维信号需要建立矩阵来表示,
+矩阵的每个列向量代表一维信号。</p>
+<p>数字信号处理中常用的信号有指数信号、正弦信号、余弦信号、方波信号、锯齿波信号
+等, 在 MATLAB 语言中分别由 exp, sin, cos, square, sawtooth
+等函数来实现。</p>
+<p>1.用 MATLAB 编制程序, 分别产生长度为 <span
+class="math inline">\(\mathrm{N}\)</span> (由输入确定) 的序列:</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E5%9F%BA%E4%BA%8EVerilog%20HDL%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%BA%E6%8F%8F%E8%BF%B0%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/Image-Processing/MATLAB%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%96%B9%E6%B3%95/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -428,7 +520,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E4%BF%A1%E5%8F%B7%E7%9A%84FIR%E6%BB%A4%E6%B3%A2%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -446,7 +538,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">状态机的概念与设计</a>
+          <a href="/Notes/Embedded-System/%E4%BF%A1%E5%8F%B7%E7%9A%84FIR%E6%BB%A4%E6%B3%A2%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">信号的FIR滤波操作</a>
         </h2>
 
         <div class="post-meta-container">
@@ -457,7 +549,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-02-09 10:36:09" itemprop="dateCreated datePublished" datetime="2023-02-09T10:36:09+08:00">2023-02-09</time>
+      <time title="Created: 2023-02-18 14:31:58" itemprop="dateCreated datePublished" datetime="2023-02-18T14:31:58+08:00">2023-02-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -469,7 +561,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
         </span>
     </span>
 
@@ -483,763 +575,637 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="状态机的基本结构及类型">状态机的基本结构及类型</h2>
-<p>有限状态机的标准模型如图所示，它主要由三部分组成：</p>
+          <h2 id="一实验目的">一、实验目的</h2>
+<p>通过实验了解嵌入式汇编语言程序结构，完成文件读写操作，实现对信号的滤波处理。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>1、硬件：PC 机</p>
+<p>1、软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验要求">三、实验要求</h2>
+<p>（1）自行设计一个FIR的低通滤波器（7阶以上），可以采用Matlab等其他工具软件设计，也可以直接给定滤波器系数。</p>
+<p>（2）生成一个1000点的信号，可以采用Matlab等其他工具软件生成，也可以录制一个声音文件，也可以生成一个正弦波信号。</p>
+<p>（3）对该信号添加高斯白噪声噪声。</p>
+<p>（4）按照实验要求编写汇编语言源程序。</p>
+<p>（5）对汇编源程序进行编译、汇编。</p>
+<p>（6）对程序进行调试。</p>
+<p>（7）观察程序运行结果，给出信号原始波形和信号滤波以后的波形，说明滤波的效果。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/%E4%BF%A1%E5%8F%B7%E7%9A%84FIR%E6%BB%A4%E6%B3%A2%E6%93%8D%E4%BD%9C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">ARM启动过程控制实验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-17 20:22:37" itemprop="dateCreated datePublished" datetime="2023-02-17T20:22:37+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一实验目的">一、实验目的</h2>
+<p>（1） 掌握建立基本完整的ARM 工程，包含启动代码，C语言程序等；</p>
+<p>（2） 了解ARM启动过程，学会编写简单的C
+语言程序和汇编启动代码并进行调试；</p>
+<p>（3） 掌握如何指定代码入口地址与入口点；</p>
+<p>（4） 掌握通过memory/register/watch/variable 窗口分析判断结果。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机。</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>使用汇编语言编写初始化程序，并引导至C语言main函数，用汇编语言编写延时函数实现毫秒级的延时，在C语言中调用延时函数,实现1s钟定时。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">ARM处理器工作模式实验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-16 17:49:45" itemprop="dateCreated datePublished" datetime="2023-02-16T17:49:45+08:00">2023-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一实验目的">一、实验目的</h2>
+<p>（1） 通过实验掌握学会使用msr/mrs 指令实现ARM
+处理器工作模式的切换，观察不同模式下的寄存器，加深对CPU 结构的理解；</p>
+<p>（2） 通过实验掌握ld 中如何使用命令行指定代码段起始地址。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机。</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>通过 ARM
+汇编指令，在各种处理器模式下切换并观察各种模式下寄存器的区别；掌握ARM
+不同模式的进入与退出。</p>
+<h2 id="四实验要求">四、实验要求</h2>
+<p>(1)按照2.3节介绍的方法,
+在ADS下创建一个工程asmmodelab，完成各个模式下的堆栈初始化工作,并将R1-R12的内容存入当前模式下堆栈。通过AXD运用单步执行方式调试程序，验证工作模式的切换，注意观察CPSR寄存器中的变化。随着程序调试过程中在模式间的切换，使用寄存器观察器切换到不同的工作模式下观察SP（R13）的变化情况。</p>
+<p>(2)实验过程中请记录并思考以下内容：</p>
+<p>1）程序复位之后系统处于什么模式？</p>
+<p>2）记录每种模式下的初始堆栈指针，以及执行R1-R12内容压栈后本模式堆栈相关内存单元的数值。并分析快速中断FIQ模式与其他模式存入的R1-R12有什么不同。</p>
+<p>3）切换成用户模式之后还能否从用户模式切换到其他模式（如系统模式）？</p>
+<p>4）用户模式下能否执行堆栈压栈操作？如果能得话，观察用户模式下压栈之前和压栈之后其堆栈区域的变化情况。</p>
+<p>5）观察本程序模式切换过程中SPSR有无变化，并解释其原因。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/ARM%E5%A4%84%E7%90%86%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%AE%9E%E9%AA%8C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">字符串拷贝实验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-15 18:05:20" itemprop="dateCreated datePublished" datetime="2023-02-15T18:05:20+08:00">2023-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一实验目的">一、实验目的</h2>
+<p>通过实验掌握使用
+LDB/STB，b等指令完成较为复杂的存储区访问和程序分支，学习使用条件码</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>熟悉开发环境的使用并完成一块存储区的拷贝。</p>
+<p>完成分支程序设计，要求判断参数，根据不同参数，调用不同的子程序。</p>
+<h2 id="四实验要求">四、实验要求</h2>
 <ol type="1">
-<li>下一状态的逻辑电路（组合电路）；</li>
-<li>存储状态机当前状态的时序逻辑电路（时序电路）；</li>
-<li>输出组合逻辑电路（组合电路）。</li>
+<li>按照2.3节介绍的方法,
+在ADS下创建一个工程asmlab2，定义两个数据存储区Src和Dst，Src用于存放原字符串，Dst用于存放目的字符串。堆栈地址0x400，将变量原字符串的内容拷贝到目的字符串中，要能判断原字符串的结束符（0），并统计字符串中字符的个数。通过AXD查看寄存器和memory和寄存器中数据变化。</li>
+<li>在指令后面加上适当注释,说明指令功能。</li>
+<li>指出程序执行完成后各相关寄存器及存储器单元的具体内容。</li>
 </ol>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209093806848.png" /></p>
-<p>一般情况下，状态触发器的数量是有限的，其状态数也是有限的，故称为有限状态机（Finite
-State
-Machine，简称为FSM）。状态机中所有触发器的时钟输入端被连接到一个公共时钟脉冲源上，其状态的转换是在同一时钟源的同一脉冲边沿同步进行的，所以它也被称作时钟同步状态机。</p>
-<p>一般来说，状态机的基本操作主要有以下两种：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%B7%E8%B4%9D%E5%AE%9E%E9%AA%8C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Embedded-System/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E6%90%AC%E7%A7%BB%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Embedded-System/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E6%90%AC%E7%A7%BB%E5%AE%9E%E9%AA%8C/" class="post-title-link" itemprop="url">简单数据搬移实验</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-14 15:28:30" itemprop="dateCreated datePublished" datetime="2023-02-14T15:28:30+08:00">2023-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Embedded-System/" itemprop="url" rel="index"><span itemprop="name">Embedded System</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一实验目的">一、实验目的</h2>
+<p>熟悉实验开发环境，掌握简单ARM汇编指令的使用方法。</p>
+<h2 id="二实验环境">二、实验环境</h2>
+<p>硬件：PC机</p>
+<p>软件：ADS1.2 集成开发环境</p>
+<h2 id="三实验内容">三、实验内容</h2>
+<p>熟悉开发环境并使用LDR/STR，MOV等指令访问寄存器或存储单元；</p>
+<p>使用ADD/SUB/LSL/LSR/AND/ORR等指令，完成基本数学/逻辑运算。</p>
+<h2 id="四实验要求">四、实验要求</h2>
+<p>（1）按照2.3节介绍的方法,
+在ADS下创建一个工程asmlab1，定义两个变量x,y和堆栈地址0x1000，将变量x的内容存到堆栈顶，然后计算x+y,并将和存到堆栈的下一个单元。通过AXD查看寄存器和memory和寄存器中数据变化。</p>
+<p>（2）在指令后面加上适当注释,说明指令功能。</p>
+<p>（3）指出程序执行完成后各相关寄存器及存储器单元的具体内容。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Notes/Embedded-System/%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E6%90%AC%E7%A7%BB%E5%AE%9E%E9%AA%8C/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/" class="post-title-link" itemprop="url">信息论绪论</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-13 17:46:25" itemprop="dateCreated datePublished" datetime="2023-02-13T17:46:25+08:00">2023-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Basic-knowledge/" itemprop="url" rel="index"><span itemprop="name">Basic knowledge</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一信息的基本概念">一、信息的基本概念</h2>
+<h3 id="什么是信息information">什么是信息（information)</h3>
+<ul>
+<li><p>信息:一个既复杂又抽象的概念。</p></li>
+<li><p><strong>广义: 消息、情报、知识</strong></p></li>
+<li><p><strong>技术术语:
+计算机处理(通信传输)的对象——数据、文字、记录</strong></p></li>
+<li><p>科学名词: 统计数学、通信技术</p>
+<ul>
+<li>用严格的数学公式定义的科学名词，它与内容无关，而且不随信息具体表现形式的变化而变化,因而也独立于形式。</li>
+<li>它反映了信息表达形式中统计方面的性质，是一个统计学上的抽象概念</li>
+</ul></li>
+<li><p>信息是指各个事物运动的状态及状态变化的方式：</p>
+<p>人们从来自对周围世界的观察得到的数据中获得信息。信息是抽象的意识或知识，它是看不见、模不到的。人脑的思维活动产生的一种想法，当它仍储存在脑子中的时候它就是一种信息。</p></li>
+</ul>
+<h3 id="信息消息和信号">信息、消息和信号</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Basic-knowledge/%E4%BF%A1%E6%81%AF%E8%AE%BA%E7%BB%AA%E8%AE%BA/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="timerring">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="timerring's BLOG">
+      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | timerring's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/" class="post-title-link" itemprop="url">状态机设计举例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-02-12 08:46:15" itemprop="dateCreated datePublished" datetime="2023-02-12T08:46:15+08:00">2023-02-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="汽车尾灯控制电路设计">汽车尾灯控制电路设计</h2>
+<p>重点介绍构造状态图的两种方法：一是试探法，二是基于算法状态机构造状态图的方法。</p>
+<p>例
+(试探法)汽车尾灯发出的信号主要是给后面行驶汽车的司机看的，通常汽车驾驶室有刹车开关（HAZ）、左转弯开关(LEFT)和右转弯开关(RIGHT)，司机通过操作这3个开关给出车辆的行驶状态。假设在汽车尾部左、右两侧各有3个指示灯，分别用LA、LB、LC、RA、RB、RC表示，如图所示。这些灯的亮、灭规律如下：</p>
 <ol type="1">
-<li>状态机的内部状态转换。</li>
-<li>产生输出信号序列。</li>
+<li>汽车正常行驶时，尾部两侧的6个灯全部熄灭。</li>
+<li>刹车时，汽车尾灯工作在告警状态，所有6个灯按一定频率闪烁（或一直保持常亮状态）。</li>
+<li>左转弯时，左侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（a）所示，右侧灯全灭。</li>
+<li>右转弯时，右侧3个灯轮流顺序点亮（或按一定频率闪烁），其规律如图（b）所示，左侧灯全灭。</li>
 </ol>
-<p>根据电路的输出信号是否与电路的输入有关，可以将状态机分为两种类型：一类是米利型（Mealy）状态机，电路的输出信号不仅与电路当前的状态有关，还与电路的输入有关；另一类是穆尔型（Moore）状态机，电路输出仅仅取决于各触发器的状态，而不受电路当时的输入信号影响或没有输入变量。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E8%AE%BE%E8%AE%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/" class="post-title-link" itemprop="url">m序列码产生电路设计与仿真</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-08 10:09:31" itemprop="dateCreated datePublished" datetime="2023-02-08T10:09:31+08:00">2023-02-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>m 序列又叫做伪随机序列、伪噪声(pseudo
-noise，PN)码或伪随机码，是一种可以预先确定并可以重复地产生和复制、又具有随机统计特性的二进制码序列。</p>
-<p>伪随机序列一般用二进制表示，每个码元（即构成m序列的元素）只有“0”或“1”两种取值，分别与数字电路中的低电平或高电平相对应。</p>
-<p>m
-序列是对最长线性反馈移位寄存器序列的简称，它是一种由带线性反馈的移位寄存器所产生的序列，并且具有最长周期。</p>
-<p>图所示是一种3位m序列产生器，它将1,3两级触发器的输出通过同或门反馈到第一级的输入端。</p>
-<p>其工作原理是：在清零后，3个触发器的输出均为0，于是同或门的输出为1，在时钟触发下，每次移位后各级寄存器状态都会发生变化。</p>
+<p>假设电路的输入时钟信号为CP，CP的频率对于汽车尾灯所要求的闪烁频率。试根据上述要求设计出一个时钟同步的状态机来控制汽车的尾灯。</p>
 <p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202161913637.png" /></p>
-<p>分析该电路得到如图所示的仿真波形图，其中任何一级触发器（通常为末级）的输出都是一个周期序列（或者称为m序列），但各个输出端的m序列的初始相位不同。m序列的周期不仅与移位寄存器的级数有关，而且与线性反馈逻辑和初始状态有关。</p>
+src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230209100305424.png" /></p>
+<p>（1）画出原始状态图</p>
+<p>选择Moore机设计该电路，则尾灯的亮、灭直接由状态译码就可以得到。由设计要求可知：汽车左转弯时，右边的灯不亮而左边的灯依次循环点亮，即0个、1个、2个或3个灯亮，分别用L0、L1、L2、L3表示，状态机在4个状态中循环。同理，汽车右转弯时，状态机也会在4个状态中循环，即左边灯不亮而右边的灯有0个、1个、2个或3个灯亮，分别用R0、R1、R2、R3表示。由于L0和R0都表示6个灯不亮，所以合起来用IDLE表示。将6个灯都亮的状态用LR3表示。可得原始的状态图就画出来了，如图所示。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/m%E5%BA%8F%E5%88%97%E7%A0%81%E4%BA%A7%E7%94%9F%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E4%B8%8E%E4%BB%BF%E7%9C%9F/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Verilog HDL函数与任务的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-07 09:52:27" itemprop="dateCreated datePublished" datetime="2023-02-07T09:52:27+08:00">2023-02-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="函数function说明语句">函数（function）说明语句</h2>
-<h3 id="函数的定义">函数的定义</h3>
-<p>函数定义部分可以出现在模块说明中的任何位置，其语法格式如下：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> &lt;返回值类型或位宽&gt; &lt;函数名&gt;；</span><br><span class="line">    &lt;输入参量与类型声明&gt;</span><br><span class="line">    &lt;局部变量声明&gt;</span><br><span class="line">    行为语句；</span><br><span class="line"><span class="keyword">endfunction</span></span><br></pre></td></tr></table></figure>
-<h3 id="函数的调用">函数的调用</h3>
-<p>函数调用是表达式的一部分，其格式如下：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;函数名&gt; （&lt;输入表达式<span class="number">1</span>&gt;，……&lt;输入表达式n&gt;）；</span><br></pre></td></tr></table></figure>
-<p>其中输入表达式的排列顺序必须与各个输入端口在函数定义结构中的排列顺序一致。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/Verilog%20HDL%E5%87%BD%E6%95%B0%E4%B8%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">同步计数器设计与建模</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-06 10:29:36" itemprop="dateCreated datePublished" datetime="2023-02-06T10:29:36+08:00">2023-02-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="概-述">概 述</h2>
-<ol type="1">
-<li>计数器的逻辑功能</li>
-</ol>
-<p>计数器的基本功能是对输入时钟脉冲进行计数。它也可用于分频、定时、产生节拍脉冲和脉冲序列及进行数字运算等。</p>
-<ol start="2" type="1">
-<li>计数器的分类</li>
-</ol>
-<p>按脉冲输入方式，分为同步和异步计数器</p>
-<p>按进位体制，分为二进制、十进制和任意进制计数器</p>
-<p>按逻辑功能，分为加法、减法和可逆计数器</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202160146568.png" /></p>
-<p>计数器运行时，依次遍历规定的各状态后完成一次循环，它所经过的状态总数称为计数器的“模”（Modulo），通常用M表示。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E5%90%8C%E6%AD%A5%E8%AE%A1%E6%95%B0%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">寄存器和移位寄存器分析与建模</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-06 10:28:20" itemprop="dateCreated datePublished" datetime="2023-02-06T10:28:20+08:00">2023-02-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="寄存器及verilog-hdl建模">寄存器及Verilog HDL建模</h2>
-<p>图中，<span class="math inline">\(PD_3\)</span>~<span
-class="math inline">\(PD_0\)</span>是4位数据输入端，</p>
-<ul>
-<li>当Load = 1时，在CP脉冲上升沿到来时，<span class="math inline">\(Q_3
-= PD_3\)</span>，<span class="math inline">\(Q_2 = PD_2\)</span>，<span
-class="math inline">\(Q_1 = PD_1\)</span>，<span
-class="math inline">\(Q_0 = PD_0\)</span>，即输入数据<span
-class="math inline">\(PD_3-PD_0\)</span>同时存入相应的触发器；</li>
-<li>当Load = 0时，即使CP上升沿到来，输出端Q
-的状态将保持不变。可见，电路具有存储输入的4位二进制数据的功能。</li>
-</ul>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202154017076.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E6%9E%90%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">D触发器(D-FF)详解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-04 11:15:04" itemprop="dateCreated datePublished" datetime="2023-02-04T11:15:04+08:00">2023-02-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="d触发器的逻辑功能">D触发器的逻辑功能</h2>
-<h3 id="d触发器的逻辑符号">D触发器的逻辑符号</h3>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202124154085.png" /></p>
-<p>把 CP 有效沿到来之前电路的状态称为现态，用<span
-class="math inline">\(Q^n\)</span>表示。</p>
-<p>把 CP 有效沿到来之后，电路所进入的新状态称为次态，用<span
-class="math inline">\(Q^{n+1}\)</span>表示。</p>
-<h3 id="特性表">特性表</h3>
-<table>
-<thead>
-<tr class="header">
-<th><em>D</em></th>
-<th><span class="math inline">\(Q^n\)</span></th>
-<th><span class="math inline">\(Q^{n+1}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>0</strong></td>
-<td><strong>0</strong></td>
-<td><strong>0</strong></td>
-</tr>
-<tr class="even">
-<td><strong>0</strong></td>
-<td><strong>1</strong></td>
-<td><strong>0</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>1</strong></td>
-<td><strong>0</strong></td>
-<td><strong>1</strong></td>
-</tr>
-<tr class="even">
-<td><strong>1</strong></td>
-<td><strong>1</strong></td>
-<td><strong>1</strong></td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/D%E8%A7%A6%E5%8F%91%E5%99%A8(D-FF)%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">时序电路建模基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-03 10:00:23" itemprop="dateCreated datePublished" datetime="2023-02-03T10:00:23+08:00">2023-02-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Verilog行为级描述用关键词initial或always，但initial是面向仿真，不能用于逻辑综合。always是无限循环语句，其用法为：
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 　</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span>＠(事件控制表达式（或敏感事件表)）</span><br><span class="line">　<span class="keyword">begin</span>　</span><br><span class="line">　块内局部变量的定义；</span><br><span class="line">　过程赋值语句；</span><br><span class="line"><span class="keyword">end</span>　　　　　　　　　　　　　</span><br></pre></td></tr></table></figure>
-<h2
-id="阻塞型赋值语句与非阻塞型赋值语句">阻塞型赋值语句与非阻塞型赋值语句</h2>
-<p>在always语句内部的过程赋值语句有两种类型：</p>
-<ul>
-<li>阻塞型赋值语句（Blocking Assignment Statement）</li>
-<li>非阻塞型赋值语句（Non-Blocking Assignment Statement）</li>
-</ul>
-<h3 id="赋值运算符">赋值运算符</h3>
-<p>赋值运算符(＝) ：阻塞型过程赋值算符</p>
-<ul>
-<li>前一条语句没有完成赋值过程之前，后面的语句不可能被执行。</li>
-</ul>
-<p>赋值运算符(&lt;＝) ：非阻塞型过程赋值算符</p>
-<ul>
-<li>一条非阻塞型赋值语句的执行，并不会影响块中其它语句的执行。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/%E6%97%B6%E5%BA%8F%E7%94%B5%E8%B7%AF%E5%BB%BA%E6%A8%A1%E5%9F%BA%E7%A1%80/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="timerring">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="timerring's BLOG">
-      <meta itemprop="description" content="Blogs about AI, blockchain, and full stack development.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | timerring's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/" class="post-title-link" itemprop="url">SR锁存器与D锁存器设计与建模</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-02-02 17:17:35" itemprop="dateCreated datePublished" datetime="2023-02-02T17:17:35+08:00">2023-02-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Notes/Hardware/" itemprop="url" rel="index"><span itemprop="name">Hardware</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="锁存器和触发器的基本特性">锁存器和触发器的基本特性</h2>
-<p>锁存器和触发器是构成时序逻辑电路的基本逻辑单元，它们具有存储数据的功能。
-每个锁存器或触发器都能存储1位二值信息，所以又称为存储单元或记忆单元。
-若输入信号不发生变化，锁存器和触发器必然处于其中一种状态，且一旦状态被确定，就能自行保持不变，即长期存储1位二进制数。
-电路在输入信号的作用下，会从一种稳定状态转换成为另一种稳定状态。</p>
-<h2 id="锁存器latch与触发器flip-flop的区别">锁存器(Latch)与触发器(Flip
-Flop)的区别</h2>
-<p>锁存器(Latch)——
-没有时钟输入端，对脉冲电平敏感的存储电路，在特定输入脉冲电平作用下改变状态。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202115115993.png" /></p>
-<p>触发器(Flip
-Flop)——每一个触发器有一个时钟输入端。对脉冲边沿敏感的存储电路，在时钟脉冲的上升沿或下降沿的变化瞬间改变状态。</p>
-<p><img
-src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230202115145514.png" /></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Notes/Hardware/SR%E9%94%81%E5%AD%98%E5%99%A8%E4%B8%8ED%E9%94%81%E5%AD%98%E5%99%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%BB%BA%E6%A8%A1/#more" rel="contents">
+              <a class="btn" href="/Notes/Hardware/%E7%8A%B6%E6%80%81%E6%9C%BA%E8%AE%BE%E8%AE%A1%E4%B8%BE%E4%BE%8B/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1263,7 +1229,7 @@ src="https://raw.githubusercontent.com/timerring/picgo/master/picbed/image-20230
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
