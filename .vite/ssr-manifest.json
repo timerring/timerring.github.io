@@ -10,7 +10,7 @@
   "../../../__vue-router/auto-routes": [],
   "assets/app-!~{001}~.js-unocss-hash.css": [],
   "data/talks.ts": [
-    "/assets/talks-mk0CFysI.js"
+    "/assets/talks-DFpcV5Oq.js"
   ],
   "index.html": [],
   "node_modules/.pnpm/@algolia+events@4.0.1/node_modules/@algolia/events/events.js": [],
@@ -24,7 +24,7 @@
   "node_modules/.pnpm/@unhead+shared@1.9.16/node_modules/@unhead/shared/dist/index.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.16_vue@3.4.33_typescript@5.5.3_/node_modules/@unhead/vue/dist/shared/vue.cf295fb1.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.16_vue@3.4.33_typescript@5.5.3_/node_modules/@unhead/vue/dist/shared/vue.f36acd1f.mjs": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-Kb0JVFQT.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-C5JDOywp.js"
   ],
   "node_modules/.pnpm/@unocss+reset@0.61.5/node_modules/@unocss/reset/tailwind.css": [],
   "node_modules/.pnpm/@vue+reactivity@3.4.33/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [],
@@ -285,56 +285,56 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.33_typescript@5.5.3___vue@3.4.33_typescript@5.5.3_/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.33_typescript@5.5.3_/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-cOz0Nt9c.js"
+    "/assets/_...404_-CDHqU73J.js"
   ],
   "pages/index.md": [
-    "/assets/index-CUXGlJ0K.js"
+    "/assets/index-vQ3STIJ8.js"
   ],
   "pages/podcasts.md": [
-    "/assets/podcasts-D-VTS6Ie.js"
+    "/assets/podcasts-CpoILagn.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-CAOwjawb.js",
+    "/assets/projects-B31vawUa.js",
     "/assets/projects-BrCFdPFu.css"
   ],
   "pages/talks.md": [
-    "/assets/talks-mk0CFysI.js"
+    "/assets/talks-DFpcV5Oq.js"
   ],
   "pages/videos.md": [
-    "/assets/videos-9hFbKVJq.js"
+    "/assets/videos-DixNzYtL.js"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Footer.vue": [],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ListPosts.vue_vue_type_script_setup_true_lang-C2aLTGjq.js"
+    "/assets/ListPosts.vue_vue_type_script_setup_true_lang-BEH_Fio_.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-CAOwjawb.js",
+    "/assets/projects-B31vawUa.js",
     "/assets/projects-BrCFdPFu.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-CAOwjawb.js",
+    "/assets/projects-B31vawUa.js",
     "/assets/projects-BrCFdPFu.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=54ee4a09&lang.css": [
-    "/assets/projects-CAOwjawb.js",
+    "/assets/projects-B31vawUa.js",
     "/assets/projects-BrCFdPFu.css"
   ],
   "src/components/ListTalks.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/talks-mk0CFysI.js"
+    "/assets/talks-DFpcV5Oq.js"
   ],
   "src/components/NavBar.vue": [],
   "src/components/NavBar.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=b6cefe26&lang.css": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-Hp5HcJ_C.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-CFEurJr4.js"
   ],
   "src/components/TalkDate.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/talks-mk0CFysI.js"
+    "/assets/talks-DFpcV5Oq.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-Kb0JVFQT.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-C5JDOywp.js"
   ],
   "src/logics/index.ts": [],
   "src/main.ts": [],
